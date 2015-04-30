@@ -1,5 +1,6 @@
 # Files to ignore
 .idea
+**/*.iml
 **/*.log
 **/*.class
 **/.DS_Store
