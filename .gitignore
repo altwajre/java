@@ -5,4 +5,7 @@
 **/*.class
 **/.DS_Store
 **/node_modules/
+
+# Java
 **/target/
+**/dependency-reduced-pom.xml
