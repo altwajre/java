@@ -1,8 +1,8 @@
-# dropwizard
+# Dropwizard
 
 > https://dropwizard.github.io/dropwizard/index.html
 
-## compile
+## Compile
 
 > `mvn package` or `mvn clean install`
 
