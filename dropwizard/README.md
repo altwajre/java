@@ -26,4 +26,4 @@ maven project
 
 > Run, Run..., Select App
 
-> Result `{"id":3,"content":"Hello yml, Stranger yml!"}`
+> Result `{"id":1,"content":"Hello yml, Stranger yml!"}`
