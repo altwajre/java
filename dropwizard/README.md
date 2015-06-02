@@ -1,6 +1,6 @@
 # Dropwizard
 
-maven project
+maven-archetype-quickstart project
 
 ## Restful service
 
@@ -27,3 +27,11 @@ maven project
 > Run, Run..., Select App
 
 > Result `{"id":1,"content":"Hello yml, Stranger yml!"}`
+
+## Restful testng
+
+### Run the testng tests
+
+#### Intellij IDE
+
+> Right click `TestNgTest` class, and click `Run 'test()'``
