@@ -1,11 +1,11 @@
-rest-api
+server-nodejs
 =============
 
 ## Running / Development
 
 ### Launch Server
 
-> `cd server-nodejs`
+> `cd server`
 
 > `node server.js`
 
