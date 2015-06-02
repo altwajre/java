@@ -1,5 +1,7 @@
 # Dropwizard
 
+maven project
+
 ## Restful service
 
 > https://dropwizard.github.io/dropwizard/index.html
