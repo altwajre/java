@@ -15,3 +15,11 @@
 ### Visit
 
 > http://localhost:8080/hello-world
+
+## Restful client
+
+### Run the application
+
+> Run, Run..., Select App
+
+> Result `{"id":3,"content":"Hello yml, Stranger yml!"}`
