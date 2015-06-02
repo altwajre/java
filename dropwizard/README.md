@@ -22,6 +22,8 @@ maven project
 
 ### Run the application
 
+#### Intellij IDE
+
 > Run, Run..., Select App
 
 > Result `{"id":3,"content":"Hello yml, Stranger yml!"}`
