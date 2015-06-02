@@ -1,4 +1,4 @@
-# Dropwizard
+# restful-web-services
 
 maven-archetype-quickstart project
 
