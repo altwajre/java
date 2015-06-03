@@ -26,5 +26,3 @@ public class ServerResource {
         return new Person(this.name, 18);
     }
 }
-
-
