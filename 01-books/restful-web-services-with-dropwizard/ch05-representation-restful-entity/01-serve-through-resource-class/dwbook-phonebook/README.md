@@ -1,4 +1,4 @@
-# externalize config - dwbook-phonebook
+# serve-through-resource-class - dwbook-phonebook
 
 maven-archetype-quickstart project
 

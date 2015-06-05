@@ -1,4 +1,4 @@
-# externalize config - dwbook-phonebook
+# add-rest-resource - dwbook-phonebook
 
 maven-archetype-quickstart project
 

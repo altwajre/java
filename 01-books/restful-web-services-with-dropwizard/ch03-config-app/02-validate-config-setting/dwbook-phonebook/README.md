@@ -1,4 +1,4 @@
-# externalize config - dwbook-phonebook
+# validate-config-setting - dwbook-phonebook
 
 maven-archetype-quickstart project
 
