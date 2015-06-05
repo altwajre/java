@@ -24,6 +24,8 @@ maven-archetype-quickstart project
 
 #### Intellij IDE
 
+> Use Intellij IDE to open 02-restful-client/pom.xml to open the project
+
 > Run, Run..., Select App
 
 > Result `{"id":1,"content":"Hello yml, Stranger yml!"}`
@@ -33,5 +35,7 @@ maven-archetype-quickstart project
 ### Run the testng tests
 
 #### Intellij IDE
+
+> Use Intellij IDE to open 03-restful-testng/pom.xml to open the project
 
 > Right click `TestNgTest` class, and click `Run 'test()'``

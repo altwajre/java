@@ -6,7 +6,6 @@ import org.hibernate.validator.constraints.Length;
 public class Saying {
     private long id;
 
-    @Length(max = 3)
     private String content;
 
     public Saying(){
