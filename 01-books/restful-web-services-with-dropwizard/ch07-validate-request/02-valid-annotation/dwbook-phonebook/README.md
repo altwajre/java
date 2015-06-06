@@ -1,4 +1,4 @@
-# validate-request-validator - dwbook-phonebook
+# validate-request-valid-annotation - dwbook-phonebook
 
 maven-archetype-quickstart project
 
