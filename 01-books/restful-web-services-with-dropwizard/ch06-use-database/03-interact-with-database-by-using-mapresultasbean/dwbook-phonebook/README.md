@@ -2,6 +2,19 @@
 
 maven-archetype-quickstart project
 
+```
+The @MapResultAsBean annotation
+In this example, we have implemented a mapper and used the @Mapper annotation in order to map the result of an SQL query to a Contact instance. 
+An alternative approach would be the use of the MapResultAsBean annotation.
+
+@MapResultAsBean
+@SqlQuery("select * from contact where id= :id")
+Contact getContactById(@Bind("id") int id);
+By annotating #getContactById() in this example, we map the result of the SQL query directly to a Contact instance, without needing to implement a custom mapper. 
+In order for this to work though, the Contact class should be updated with setters (that is, setFirstName(String firstName){ .. }). 
+Due to this, the final keyword will have to be removed from the declaration of each member variable.
+```
+
 ## Start mysql server
 
 > `mysql.server start`
