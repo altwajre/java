@@ -2,6 +2,12 @@
 
 maven-archetype-quickstart project
 
+## Start mysql server
+
+> `mysql.server start`
+
+> `mysql.server stop` when you are done
+
 ## Compile
 
 > `mvn package` or `mvn clean install`
@@ -15,3 +21,8 @@ maven-archetype-quickstart project
 ### GET request
 
 > `curl http://localhost:8080/contact/1`
+
+```
+$ curl http://localhost:8080/contact/1
+{"id":1,"firstName":"John","lastName":"Doe","phone":"+123456789"}
+```
