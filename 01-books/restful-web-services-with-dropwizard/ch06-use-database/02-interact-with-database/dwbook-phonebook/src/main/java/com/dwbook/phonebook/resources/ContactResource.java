@@ -7,6 +7,9 @@ import org.skife.jdbi.v2.DBI;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Iterator;
 
 @Path("/contact")
 @Produces(MediaType.APPLICATION_JSON)
@@ -18,6 +21,14 @@ public class ContactResource {
     }
 
     @GET
+    @Path("/all")
+    public Response getContacts(){
+        // retrieve information about the contact with the provided id
+        Iterator<Contact> contacts = contactDao.getContacts();
+        return Response.ok(contacts).build();
+    }
+
+    @GET
     @Path("/{id}")
     public Response getContact(@PathParam("id") int id){
         // retrieve information about the contact with the provided id
@@ -26,10 +37,11 @@ public class ContactResource {
     }
 
     @POST
-    public Response createContact(Contact contact){
+    public Response createContact(Contact contact) throws URISyntaxException {
         // store the new contact
         // ...
-        return Response.created(null).build();
+        int newContactId = contactDao.createContact(contact.getFirstName(), contact.getLastName(), contact.getPhone());
+        return Response.created(new URI(String.valueOf(newContactId))).build();
     }
 
     @DELETE
@@ -37,6 +49,7 @@ public class ContactResource {
     public Response deleteContact(@PathParam("id") int id){
         // delete the contact with the provided id
         // ...
+        contactDao.deleteContact(id);
         return Response.noContent().build();
     }
 
@@ -47,6 +60,7 @@ public class ContactResource {
             Contact contact){
         // update the contact with the provided ID
         // ...
+        contactDao.updateContact(id, contact.getFirstName(), contact.getLastName(), contact.getPhone());
         return Response.ok(new Contact(id, contact.getFirstName(), contact.getLastName(), contact.getPhone()))
                 .build();
     }
