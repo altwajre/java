@@ -1,4 +1,4 @@
-# interact-with-database-by-using-mapper - dwbook-phonebook
+# interact-with-database-by-using-mapresultasbean - dwbook-phonebook
 
 maven-archetype-quickstart project
 
