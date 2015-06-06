@@ -1,4 +1,4 @@
-# interact-with-database-by-using-mapresultasbean - dwbook-phonebook
+# validate-request-validator - dwbook-phonebook
 
 maven-archetype-quickstart project
 
