@@ -88,5 +88,3 @@ First name: John
 Last name: Doe
 Phone: +123456789
 ```
-
-
