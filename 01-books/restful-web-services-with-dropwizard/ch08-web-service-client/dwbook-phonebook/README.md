@@ -2,6 +2,18 @@
 
 maven-archetype-quickstart project
 
+## Client side code
+
+> /dwbook-phonebook/src/main/java/com/dwbook/phonebook/resources/ClientResource.java
+
+> /dwbook-phonebook/src/main/java/com/dwbook/phonebook/App.java
+
+```
+  // build the client and add the resource to the environment
+  final Client client = ClientBuilder.newClient();
+  e.jersey().register(new ClientResource(client));
+```
+
 ## Start mysql server
 
 > `mysql.server start`
