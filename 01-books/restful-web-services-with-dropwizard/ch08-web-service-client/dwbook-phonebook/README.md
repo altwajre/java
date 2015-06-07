@@ -28,9 +28,20 @@ maven-archetype-quickstart project
 
 > `java -jar target/dwbook-phonebook-1.0-SNAPSHOT.jar server config.yml`
 
-## Visit
+## Client - visit
 
 > Open chrome, developer tool, Network
+
+### GET
+
+> http://localhost:8080/client/showContact?id=1
+
+```
+ID: 1
+First name: John
+Last name: Doe
+Phone: +123456789
+```
 
 ### POST
 
