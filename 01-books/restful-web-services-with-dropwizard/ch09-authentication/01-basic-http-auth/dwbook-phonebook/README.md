@@ -1,4 +1,4 @@
-# authentication - dwbook-phonebook
+# authentication-basic-http-auth - dwbook-phonebook
 
 maven-archetype-quickstart project
 
