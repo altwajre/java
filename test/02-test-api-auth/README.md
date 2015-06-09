@@ -1,4 +1,4 @@
-# ui-view - dwbook-phonebook
+# test-api-auth - dwbook-phonebook and testng
 
 maven-archetype-quickstart project
 
@@ -7,6 +7,35 @@ maven-archetype-quickstart project
 > `$ mysql.server start`
 
 > `$ mysql.server stop` when you are done
+
+## Server
+
+### Compile
+
+> `mvn package` or `mvn clean install`
+
+### Run the application
+
+> `java -jar target/dwbook-phonebook-1.0-SNAPSHOT.jar server config.yml`
+
+### Client - view
+
+#### Visit
+
+> http://localhost:8080/client/showContact?id=2
+
+```
+Contact (2)
+First Name	Jane
+Last Name	Doe
+Phone	+987654321
+```
+
+## Test - TestNG
+
+> In intellij, right click on test and select run test
+
+> `mvn package`
 
 ## Create database
 
@@ -42,24 +71,3 @@ CREATE TABLE IF NOT EXISTS `contact` (
 > `mysql> INSERT INTO `contact` VALUES (NULL, 'John', 'Doe', '+123456789'), (NULL, 'Jane', 'Doe', '+987654321');`
 
 > `mysql> select * from phonebook.contact;`
-
-## Compile
-
-> `mvn package` or `mvn clean install`
-
-## Run the application
-
-> `java -jar target/dwbook-phonebook-1.0-SNAPSHOT.jar server config.yml`
-
-## Client - view
-
-### Visit
-
-> http://localhost:8080/client/showContact?id=2
-
-```
-Contact (2)
-First Name	Jane
-Last Name	Doe
-Phone	+987654321
-```
