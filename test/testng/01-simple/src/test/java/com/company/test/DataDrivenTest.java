@@ -1,11 +1,10 @@
-package com.company;
+package com.company.test;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-@Test ()
-public class TestNGTest {
+public class DataDrivenTest {
     @DataProvider
     public Object[][] data() {
         return new String[][]{
@@ -15,7 +14,7 @@ public class TestNGTest {
 
     @Test(dataProvider = "data")
     public void test(String d) {
-        System.out.println(d);
+        System.out.println("# " + d);
         Assert.assertEquals("First", "First");
     }
 }

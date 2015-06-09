@@ -1,7 +1,0 @@
-<suite name="First Suite" verbose="1" >
-    <test name="First Test" >
-        <classes>
-            <class name="com.company.TestNGTest" />
-        </classes>
-    </test>
-</suite>
