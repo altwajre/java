@@ -31,6 +31,14 @@ Due to this, the final keyword will have to be removed from the declaration of e
 
 ## cURL HTTP requests
 
+### DELETE request
+
+> `$ curl http://localhost:8080/contact/all`
+
+> `$ curl -X DELETE http://localhost:8080/contact/3`
+
+> `$ curl -X GET http://localhost:8080/contact/3`
+
 ### GET request
 
 > `$ curl http://localhost:8080/contact/1`
