@@ -1,6 +1,13 @@
 # java
 java
 
+## Design Pattern
+
+> http://www.tutorialspoint.com/design_pattern/
+
+> https://github.com/iluwatar/java-design-patterns
+
+
 ## Intellij
 
 > https://www.jetbrains.com/idea/help/keyboard-shortcuts-you-cannot-miss.html
