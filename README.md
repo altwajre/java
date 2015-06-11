@@ -1,6 +1,12 @@
 # java
 java
 
+## Tutorials
+
+> https://docs.oracle.com/javase/tutorial/
+
+> https://docs.oracle.com/javase/tutorial/essential/index.html
+
 ## Design Pattern
 
 > http://www.tutorialspoint.com/design_pattern/
