@@ -2,13 +2,9 @@ package com.company.test;
 
 import org.apache.log4j.Logger;
 
-/**
- * Hello world!
- *
- */
-public class App 
+public class App
 {
-    final static Logger logger = Logger.getLogger(App.class);
+    final static Logger logger = Logger.getLogger("com.company.test");
 
     public static void main( String[] args ){
         App app = new App();
