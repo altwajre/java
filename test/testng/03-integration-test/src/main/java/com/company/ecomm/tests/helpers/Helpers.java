@@ -21,7 +21,4 @@ public class Helpers {
     public String getResponseBodyAsString(HttpResponse httpResponse) throws IOException {
         return EntityUtils.toString(httpResponse.getEntity());
     }
-
-
-
 }
