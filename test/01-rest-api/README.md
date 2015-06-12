@@ -49,7 +49,7 @@ Phone: +123456789
 
 ## Test - TestNg
 
-> `cd 02-testng`
+> `cd 02-jersey-rest-client`
 
 ### Run tests
 
