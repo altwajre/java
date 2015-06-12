@@ -17,6 +17,6 @@ public class Client {
     public URI uri;
 
     public Client() throws Exception{
-        this.accessKey = Global.MASTER_CREDS_DEFAULT.accessKey;
+//        this.accessKey = Global.MASTER_CREDS_DEFAULT.accessKey;
     }
 }
