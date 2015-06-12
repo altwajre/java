@@ -47,9 +47,25 @@ Last name: Doe
 Phone: +123456789
 ```
 
-## Test - TestNg
+## Test
+
+### Jersey Rest Client vs Apache HttpClient
+
+> http://stackoverflow.com/questions/15214252/is-jersey-rest-client-more-optimal-than-httpclient-for-calling-a-restful-service
+
+### Jersey Rest Client
 
 > `cd 02-jersey-rest-client`
+
+### Run tests
+
+> In intellij, right click on test and select run test
+
+> `mvn package`
+
+### Apache HttpClient
+
+> `cd 03-apache-httpclient`
 
 ### Run tests
 
