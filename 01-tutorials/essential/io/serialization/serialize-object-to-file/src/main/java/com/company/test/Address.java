@@ -11,12 +11,12 @@ public class Address implements Serializable {
         this.street = street;
     }
 
-    public void setCountry(String country){
-        this.country = country;
-    }
-
     public String getStreet(){
         return this.street;
+    }
+
+    public void setCountry(String country){
+        this.country = country;
     }
 
     public String getCountry(){
