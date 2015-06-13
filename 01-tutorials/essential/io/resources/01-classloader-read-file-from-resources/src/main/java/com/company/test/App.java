@@ -1,0 +1,26 @@
+package com.company.test;
+
+import org.json.JSONObject;
+
+import java.io.*;
+
+public class App
+{
+    public static void main( String[] args ) throws Exception {
+        StringBuilder result = new StringBuilder("");
+
+        // Get file from resources folder
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream("config/config.dev.json");
+
+        BufferedReader streamReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+        StringBuilder responseStrBuilder = new StringBuilder();
+
+        String inputStr;
+        while ((inputStr = streamReader.readLine()) != null)
+            responseStrBuilder.append(inputStr);
+        JSONObject config = new JSONObject(responseStrBuilder.toString());
+        System.out.println(config.get("url"));
+        System.out.println(config.toString());
+    }
+}
