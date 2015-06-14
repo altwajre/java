@@ -1,7 +1,11 @@
 # simple testng
 
+## Compile test
+
+> `mvn test-compile`
+
 ## Run tests
 
-> `mvn package`
+> `mvn test`
 
-> In intellij, right click on test and select run test
+> Or in intellij, right click on test and select run test
