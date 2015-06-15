@@ -2,7 +2,7 @@
 
 https://docs.oracle.com/javase/tutorial/reflect/class/classModifiers.html
 
-## Compile
+## Make package
 
 > `mvn package`
 

@@ -1,6 +1,6 @@
-# 01-retrieve-class
+# 03-discover-class
 
-https://docs.oracle.com/javase/tutorial/reflect/class/classNew.html
+https://docs.oracle.com/javase/tutorial/reflect/class/classMembers.html
 
 ## Make package
 
