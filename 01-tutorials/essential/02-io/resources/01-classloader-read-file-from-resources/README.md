@@ -1,6 +1,6 @@
 # 01-classloader-read-file-from-resources
 
-IntelliJ - open pom.xml will auto setup maven java project
+http://www.tutorialspoint.com/java/lang/classloader_getresourceasstream.htm
 
 ## Create resources folder
 
