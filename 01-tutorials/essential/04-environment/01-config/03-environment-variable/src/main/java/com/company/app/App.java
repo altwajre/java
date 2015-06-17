@@ -15,6 +15,7 @@ public class App
         System.out.println("System.getenv(\"PATH\") = ");
         System.out.println(System.getenv("PATH"));
 
+        // $ set TEST_ENV in terminal `export TEST_ENV=dev`
         System.out.println(System.getenv("TEST_ENV"));
     }
 }
