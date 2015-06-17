@@ -1,6 +1,6 @@
 # 03-retrieve-parse-method-modifier
 
-https://docs.oracle.com/javase/tutorial/reflect/member/methodInvocation.html
+https://docs.oracle.com/javase/tutorial/reflect/member/methodModifiers.html
 
 ## Make package
 
