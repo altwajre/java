@@ -13,8 +13,6 @@ import java.io.InputStreamReader;
 public class TestRunner {
     public static void main( String[] args ) throws Exception {
 
-
-
         TestNG testNG = new TestNG();
 
         testNG.setTestClasses(new Class[]{BeforeClassTest.class});
