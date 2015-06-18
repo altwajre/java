@@ -1,6 +1,22 @@
 # java
 java
 
+## KB
+
+> ClassNotFoundException - solution: add maven-shade-plugin
+
+```
+Problem:
+$ java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App
+Exception in thread "main" java.lang.NoClassDefFoundError: org/json/JSONObject
+	at com.company.test.App.main(App.java:22)
+Caused by: java.lang.ClassNotFoundException: org.json.JSONObject
+Solution: add following
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+```
+
 ## Tutorials
 
 > https://docs.oracle.com/javase/tutorial/
@@ -12,7 +28,6 @@ java
 > http://www.tutorialspoint.com/design_pattern/
 
 > https://github.com/iluwatar/java-design-patterns
-
 
 ## Intellij
 
