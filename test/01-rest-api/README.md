@@ -107,4 +107,3 @@ CREATE TABLE IF NOT EXISTS `contact` (
 > `mysql> INSERT INTO `contact` VALUES (NULL, 'John', 'Doe', '+123456789'), (NULL, 'Jane', 'Doe', '+987654321');`
 
 > `mysql> select * from phonebook.contact;`
-
