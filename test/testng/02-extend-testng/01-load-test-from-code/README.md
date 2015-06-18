@@ -1,4 +1,4 @@
-# 02-extends-testng
+# load-test-from-code
 
 ## Create package
 
