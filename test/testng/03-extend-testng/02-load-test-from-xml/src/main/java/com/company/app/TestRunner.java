@@ -13,7 +13,10 @@ public class TestRunner {
         TestNG testNG = new TestNG();
 
         List suites = Lists.newArrayList();
-        suites.add("src/main/java/testng.xml");
+//        suites.add("src/main/java/testng-class.xml");
+//        suites.add("src/main/java/testng-package.xml");
+        suites.add("src/main/java/testng-groups.xml");
+
         testNG.setTestSuites(suites);
 
         TestListenerAdapter listenerAdapter = new TestListenerAdapter();
