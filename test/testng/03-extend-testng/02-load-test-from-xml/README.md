@@ -20,3 +20,5 @@ http://testng.org/doc/javadocs/org/testng/TestNG.html
 > In intellij, Run, Run 'App'
 
 > `mvn test`
+
+> `java -cp target/app-1.0-SNAPSHOT.jar com.company.app.TestRunner`  <- does not work
