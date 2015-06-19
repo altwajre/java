@@ -18,4 +18,4 @@ Steps:
 
 > Run, Run 'App'
 
-> `java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App`  <- does not work
+> `java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App`
