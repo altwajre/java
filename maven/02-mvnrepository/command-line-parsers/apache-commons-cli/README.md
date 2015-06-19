@@ -8,7 +8,7 @@ https://commons.apache.org/proper/commons-cli/usage.html
 
 ## Run
 
-> `java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App`  <- does not work
+> `java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App`
 
 ## Run Application
 
