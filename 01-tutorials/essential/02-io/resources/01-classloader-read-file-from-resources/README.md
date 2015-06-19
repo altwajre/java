@@ -1,4 +1,4 @@
-# 01-classloader-read-file-from-resources
+# classloader-read-file-from-resources
 
 http://www.tutorialspoint.com/java/lang/classloader_getresourceasstream.htm
 

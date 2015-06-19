@@ -17,9 +17,9 @@ http://testng.org/doc/javadocs/org/testng/TestNG.html
 
 ## Run
 
-> `export TEST_ENV=dev; java -cp target/app-1.0-SNAPSHOT.jar com.company.app.TestRunner`
+> `export TEST_ENV=local; java -cp target/app-1.0-SNAPSHOT.jar com.company.app.TestRunner`
 
-> note: `export TEST_ENV=dev` <- set environment variable before running test
+> note: `export TEST_ENV=local` <- set environment variable before running test
 
 > `mvn test`
 
