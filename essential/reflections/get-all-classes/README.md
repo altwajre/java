@@ -8,7 +8,7 @@
 
 > In intellij, Run, Run 'App'
 
-> `java -cp target/app-1.0-SNAPSHOT.jar com.company.app.App`  <- does not work
+> `java -cp target/app-1.0-SNAPSHOT.jar com.company.app.App`
 
 output
 
