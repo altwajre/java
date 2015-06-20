@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.List;
 
 public class TestRunner {
-    public static void main( String[] args ) throws Exception {
+    public static void main( String[] args ) {
         initialize();
         runTest();
     }
