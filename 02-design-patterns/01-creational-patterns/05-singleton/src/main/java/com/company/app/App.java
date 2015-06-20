@@ -14,7 +14,7 @@ public class App
         public String getName() { return name; }
         public String getIp() { return ip; }
     }
-    static final class LoadBalancer{
+    static final class LoadBalancer{  // Singleton
         private static final LoadBalancer _instance = new LoadBalancer();
         private List<Server> _servers;
         private Random _random = new Random();
