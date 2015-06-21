@@ -1,8 +1,6 @@
 package com.company.app;
-
 import java.util.ArrayList;
 import java.util.List;
-
 public class App
 {
     interface IDataObject<T>{  // Implementor

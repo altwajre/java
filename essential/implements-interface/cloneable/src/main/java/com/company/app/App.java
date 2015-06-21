@@ -22,7 +22,7 @@ public class App
     public static void main( String[] args )
     {
         Person person = new Person("Tom");
-        Person clonePerson = person.clone();
-        System.out.println(clonePerson.getName());
+        Person clonedPerson = person.clone();
+        System.out.format("Cloned Person is %s\n", clonedPerson.getName());
     }
 }
