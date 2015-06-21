@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class App
 {
-    static class TreeNode{
+    static class TreeNode{  // Composite
         private List<TreeNode> children = new ArrayList<TreeNode>();
         public String Content;
         public TreeNode(String child){ this.Content = child; }
