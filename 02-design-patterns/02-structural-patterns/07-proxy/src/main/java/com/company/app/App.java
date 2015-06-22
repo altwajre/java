@@ -14,7 +14,7 @@ public class App
         public double mul(double x, double y) { return x * y; }
         public double div(double x, double y) { return x / y; }
     }
-    static class MathProxy implements IMath{
+    static class MathProxy implements IMath{  // Proxy Object
         private Math math = new Math();
         public double add(double x, double y) { return math.add(x, y); }
         public double sub(double x, double y) { return math.sub(x, y); }
