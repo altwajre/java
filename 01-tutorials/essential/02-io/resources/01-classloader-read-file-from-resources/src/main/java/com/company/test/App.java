@@ -20,7 +20,8 @@ public class App
         while ((inputStr = streamReader.readLine()) != null)
             responseStrBuilder.append(inputStr);
         JSONObject config = new JSONObject(responseStrBuilder.toString());
-        System.out.println(config.get("url"));
         System.out.println(config.toString());
+        System.out.println(config.get("test-settings"));
+        System.out.println(config.getJSONObject("test-settings").get("url"));
     }
 }

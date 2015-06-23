@@ -1,3 +1,5 @@
 {
-  "url": "http://sitecoreadmin.int.dev-godaddy.com"
+  "test-settings": {
+    "url": "http://sitecoreadmin.int.dev-godaddy.com"
+  }
 }
