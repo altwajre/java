@@ -1,4 +1,4 @@
-# 04-invoke-method
+# invoke method via declared methods 
 
 https://docs.oracle.com/javase/tutorial/reflect/member/methodInvocation.html
 
