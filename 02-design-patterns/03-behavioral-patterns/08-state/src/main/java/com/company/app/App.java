@@ -47,7 +47,7 @@ public class App
             }
         }
     }
-    static class SliverState extends State{
+    static class SliverState extends State{  // Concrete State
         public SliverState(State state){
             this(state.Balance, state.Account);
         }
@@ -117,7 +117,7 @@ public class App
             else if(this.Balance < lowerLimit){ this.Account.State = new SliverState(this); }
         }
     }
-    static class Account{
+    static class Account{  // Context
         private String owner;
         public State State;
         public Account(String owner){
