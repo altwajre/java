@@ -10,9 +10,9 @@
 
 > `$ sudo /usr/local/bin/mysql -u root` and enter password
 
-> `mysql> drop database phonebook`;
-
 > `mysql> drop table contact`;
+
+> `mysql> drop database phonebook`;
 
 > `mysql> CREATE DATABASE phonebook`;
 

@@ -24,12 +24,12 @@ public class App
             System.out.println("ShellSort list");
         }
     }
-    static class MergeSort implements ISortStrategy{
+    static class MergeSort implements ISortStrategy{  // Concrete Strategy
         public void sort(List<Student> list) {
             System.out.println("MergeSort list");
         }
     }
-    static class SortedList extends ArrayList<Student>{
+    static class SortedList extends ArrayList<Student>{  // Context
         public ISortStrategy SortStrategy;
         public void sortStudents(){
             this.SortStrategy.sort(this);
