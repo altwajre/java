@@ -20,3 +20,12 @@ maven-archetype-quickstart project
   content: "Hello, Stranger yml!"
 }
 ```
+
+> `http://localhost:8080/hello-world?name=Tom`
+
+```
+{
+  id: 2,
+  content: "Hello, Tom!"
+}
+```

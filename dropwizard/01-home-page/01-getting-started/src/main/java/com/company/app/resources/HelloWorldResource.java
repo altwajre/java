@@ -19,6 +19,7 @@ public class HelloWorldResource {
     private final AtomicLong counter;
 
     public HelloWorldResource(String template, String defaultName) {
+        System.out.println("#"+template);
         this.template = template;
         this.defaultName = defaultName;
         this.counter = new AtomicLong();

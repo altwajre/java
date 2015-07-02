@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.Length;
 
 public class Saying {
     private long id;
-    @Length(max = 3)
     private String content;
 
     public Saying() {
@@ -13,6 +12,7 @@ public class Saying {
     }
 
     public Saying(long id, String content) {
+        System.out.println("#"+content);
         this.id = id;
         this.content = content;
     }
