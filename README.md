@@ -60,6 +60,12 @@ install Intellij Community Edition
 
 ### Install Maven
 
+> `export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home`
+
+> `brew install maven`
+
+Or
+
 download `apache-maven-3.3.3-bin.zip`
 
 > https://maven.apache.org/download.cgi
