@@ -1,0 +1,3 @@
+messageQueue:
+  host: mq.example.com
+  port: 5673

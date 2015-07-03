@@ -1,0 +1,14 @@
+# config/dev.yml
+replicates:
+  - source: users
+    destination: _users
+    fields:
+      - id
+      - email
+      - created_at
+  - source: orders
+    destination: _orders
+    fields:
+      - id
+      - total
+      - quantity
