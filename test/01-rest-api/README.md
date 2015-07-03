@@ -1,5 +1,9 @@
 # rest-api app and testing
 
+## Install mysql on mac
+
+> `brew install mysql`
+
 ## Start mysql server
 
 > `mysql.server start`
@@ -10,15 +14,15 @@
 
 > `$ sudo /usr/local/bin/mysql -u root` and enter password
 
-> `mysql> drop table contact`;
+> `mysql> drop table contact;`
 
-> `mysql> drop database phonebook`;
+> `mysql> drop database phonebook;`
 
-> `mysql> CREATE DATABASE phonebook`;
+> `mysql> CREATE DATABASE phonebook;`
 
-> `mysql> CREATE USER 'phonebookuser'@'localhost' IDENTIFIED BY'phonebookpassword'`;
+> `mysql> CREATE USER 'phonebookuser'@'localhost' IDENTIFIED BY'phonebookpassword';`
 
-> `mysql> GRANT ALL ON phonebook.* TO 'phonebookuser'@'localhost'`;
+> `mysql> GRANT ALL ON phonebook.* TO 'phonebookuser'@'localhost';`
 
 > `mysql> USE phonebook;`
 
@@ -55,17 +59,19 @@ CREATE TABLE IF NOT EXISTS `contact` (
 
 ## Client
 
-### TestNG Client
+### Run Test
 
-> `cd 04-testng-client`
-
-### Make package
+#### 04-testng-client-json-config
 
 > `mvn package`
 
-### Run Test
-
 > `export TEST_ENV=local; java -cp target/app-1.0-SNAPSHOT.jar com.company.app.TestRunner`
+
+#### 05-testng-client-yaml-config
+
+> `mvn package`
+
+> `java -jar target/app-1.0-SNAPSHOT.jar config.local.yml`
 
 ==========================================================================================
 
