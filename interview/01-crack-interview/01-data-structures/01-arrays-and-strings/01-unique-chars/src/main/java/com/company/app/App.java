@@ -1,10 +1,10 @@
 package com.company.app;
 
 /*
-Implementing an algorithm to determine if a string has all unique characters.
+Q: Implementing an algorithm to determine if a string has all unique characters.
 What if you cannot use additional data structure?
 
-The time complexity for this code is O(n), where n is the length of the string. The space complexity is O(1).
+A: The time complexity for this code is O(n), where n is the length of the string. The space complexity is O(1).
  */
 public class App
 {
