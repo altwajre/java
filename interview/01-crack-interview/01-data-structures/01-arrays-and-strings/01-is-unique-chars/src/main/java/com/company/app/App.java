@@ -21,7 +21,7 @@ public class App
     }
     static boolean isUniqueChars(String str){
         if(str.length() > 256) return false;  // 256 possible unique characters
-        boolean[] char_set = new boolean[256];
+        boolean[] char_set = new boolean[256];  // ASCII has 256 chars, index from 0 to 255
         for(int i = 0; i < str.length(); i++){
             int val = str.charAt(i);  // convert char to int - 'a' => 97
             if(char_set[val]){  // Already found this char in string
