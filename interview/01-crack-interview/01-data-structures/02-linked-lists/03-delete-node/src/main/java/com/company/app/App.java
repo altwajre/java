@@ -12,10 +12,11 @@ public class App
     }
     public static void main( String[] args )
     {
-        Node head = createLinkedList();
+        int[] numbers = {1,2,3,4,5};
+        Node head = createLinkedList(numbers);
         printLinkedList(head);
 
-        Node middleNode = head.Next.Next;  // get the middle node
+        Node middleNode = head.Next.Next;  // get the middle node that is 3
         System.out.println(middleNode.Data);
         deleteNode(middleNode);
 
@@ -45,8 +46,7 @@ public class App
         System.out.println("");
     }
 
-    static Node createLinkedList() {
-        int[] numbers = {1,2,3,4,5};
+    static Node createLinkedList(int[] numbers) {
         Node head = new Node();
         Node current = head;
         for(int i = 0; i < numbers.length; i++){

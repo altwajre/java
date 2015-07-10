@@ -12,7 +12,7 @@ public class App
     }
     public static void main( String[] args )
     {
-        nthToLastRecursive();
+        nthToLastRecurse();
 
         nthToLastTest();
     }
@@ -48,10 +48,10 @@ public class App
         return p1;
     }
 
-    private static void nthToLastRecursive() {
+    private static void nthToLastRecurse() {
         Node head = createLinkedList();
         printLinkedList(head);
-        int result = nthToLastRecursive(head, 2);
+        int result = nthToLastRecurse(head, 2);
         System.out.println(result);
     }
 
@@ -60,11 +60,11 @@ public class App
       recurse through the linked list. when it hits the end, the method passes back a counter set to 0.
       Each parent call adds 1 to this counter. When the counter equals k.
      */
-    static int nthToLastRecursive(Node head, int k){
+    static int nthToLastRecurse(Node head, int k){
         if(head == null){
             return 0;
         }
-        int i = nthToLastRecursive(head.Next, k) + 1;
+        int i = nthToLastRecurse(head.Next, k) + 1;
         if(i == k){
             System.out.println(head.Data);
         }

@@ -12,7 +12,7 @@ public class App
     }
     public static void main( String[] args )
     {
-        addListsReverseOrderTest();
+        addListsReverseOrderTest();  // recursive call
 
         addListsTest();
     }

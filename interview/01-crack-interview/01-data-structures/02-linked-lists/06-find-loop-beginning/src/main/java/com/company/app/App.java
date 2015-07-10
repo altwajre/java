@@ -6,6 +6,7 @@ import java.util.List;
 /*
 Q: given a circular linked list, implement an algorithm which returns the node at the beginning of the loop.
 
+Note: we use n1 == n2 reference comparison to find the beginning node.
  */
 public class App 
 {
@@ -15,7 +16,8 @@ public class App
     }
     public static void main( String[] args )
     {
-        Node head = createCircularList(4);
+        int[] numbers = {1,2,3,4,5,6,7,8,9,10,11};
+        Node head = createCircularList(numbers, 4);
         printLinkedList(head);
         Node loopStartNode = findLoopBeginning(head);
         System.out.println("Found loop starting node: " + loopStartNode.Data);
@@ -56,8 +58,7 @@ public class App
         return fast;
     }
 
-    private static Node createCircularList(int loopStartPointIndex) {
-        int[] numbers = {1,2,3,4,5,6,7,8,9,10,11};
+    private static Node createCircularList(int[] numbers, int loopStartPointIndex) {
         Node head = new Node();
         Node current = head;
         for(int i = 0; i < numbers.length; i++){

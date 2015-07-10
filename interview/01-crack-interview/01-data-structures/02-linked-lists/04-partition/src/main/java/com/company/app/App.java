@@ -22,7 +22,8 @@ public class App
 
     private static void partitionWithLessVarTest() {
         System.out.println("#partitionWithLessVarTest");
-        Node head = createLinkedList();
+        int[] numbers = {1,2,3,4,5,6,7,8,9};
+        Node head = createLinkedList(numbers);
         printLinkedList(head);
         Node partitionList = partitionWithLessVar(head, 5);
         printLinkedList(partitionList);
@@ -64,7 +65,8 @@ public class App
 
     private static void partitionTest() {
         System.out.println("#partitionTest");
-        Node head = createLinkedList();
+        int[] numbers = {1,2,3,4,5,6,7,8,9};
+        Node head = createLinkedList(numbers);
         printLinkedList(head);
         Node partitionList = partition(head, 5);
         printLinkedList(partitionList);
@@ -121,8 +123,7 @@ public class App
         }
         System.out.println("");
     }
-    static Node createLinkedList() {
-        int[] numbers = {1,2,3,4,5,6,7,8,9};
+    static Node createLinkedList(int[] numbers) {
         shuffle(numbers);
         Node head = new Node();
         Node current = head;
@@ -143,6 +144,5 @@ public class App
             numbers[i] = numbers[randNum];
             numbers[randNum] = tmp;
         }
-
     }
 }
