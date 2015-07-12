@@ -1,4 +1,4 @@
-# array-as-three-stacks
+# array-as-three-stacks-fixed
 
 maven-archetype-quickstart project
 
