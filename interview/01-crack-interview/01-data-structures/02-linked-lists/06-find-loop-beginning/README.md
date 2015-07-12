@@ -1,4 +1,4 @@
-# find-loop-beginning
+# find-loop-beginning - Circular linked list
 
 maven-archetype-quickstart project
 
