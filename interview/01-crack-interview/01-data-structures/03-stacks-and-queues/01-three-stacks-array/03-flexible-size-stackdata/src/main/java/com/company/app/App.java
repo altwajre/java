@@ -65,7 +65,8 @@ public class App
             stack.capacity++;
         }
         // Shift elements in reverse order
-        for(int i = (stack.start + stack.capacity - 1) % totalSize;
+        int endIndex = (stack.start + stack.capacity - 1) % totalSize;
+        for(int i = endIndex;
                 stack.isWithinStack(i, totalSize);
                 i = previousElement(i)){
             buffer[i] = buffer[previousElement(i)];
