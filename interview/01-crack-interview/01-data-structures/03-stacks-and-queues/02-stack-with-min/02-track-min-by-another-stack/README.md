@@ -1,4 +1,4 @@
-# string-compression
+# track-min-by-another-stack
 
 maven-archetype-quickstart project
 
@@ -11,10 +11,5 @@ maven-archetype-quickstart project
 > `java -cp target/app-1.0-SNAPSHOT.jar com.company.app.App`
 
 ```
-$ java -cp target/app-1.0-SNAPSHOT.jar com.company.app.App
-a
-2
-6
-8
-a2b1c5a3
+5 5 3 3 3 5
 ```

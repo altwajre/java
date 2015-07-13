@@ -2,7 +2,7 @@
 
 maven-archetype-quickstart project
 
-## Compile
+## Build package
 
 > `mvn package` or `mvn clean install`
 
