@@ -12,8 +12,11 @@ divide the array in three equal parts and allow the individual stack to grow in 
  */
 public class App 
 {
-    static int stackSize = 10;
-    static int[] buffer = new int[stackSize * 3];
+    static int stackSize = 4;
+    static int numberOfStacks = 3;
+    static int totalSize = stackSize * numberOfStacks;
+    static int[] buffer = new int[totalSize];
+
     static int[] stackPointer = {-1,-1,-1};  // pointers to track top element
     // returns index of top of stack "stackNum", in absolute terms
     static int absTopOfStack(int stackNum){
@@ -46,9 +49,9 @@ public class App
     }
 
     public static void main( String[] args ) throws Exception {
-        int[] stackN1 = {1,2,3,4,5};
-        int[] stackN2 = {11,22,33,44,55};
-        int[] stackN3 = {111,222,333,444,555};
+        int[] stackN1 = {1,2,3,4};
+        int[] stackN2 = {11,22,33};
+        int[] stackN3 = {111,222,333};
         createStacks(stackN1, stackN2, stackN3);
         printStack();
         popStacks();

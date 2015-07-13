@@ -1,4 +1,4 @@
-# array-as-three-stacks-fixed
+# fixed-size
 
 maven-archetype-quickstart project
 
@@ -11,6 +11,6 @@ maven-archetype-quickstart project
 > `java -cp target/app-1.0-SNAPSHOT.jar com.company.app.App`
 
 ```
-1 2 3 4 5 0 0 0 0 0 11 22 33 44 55 0 0 0 0 0 111 222 333 444 555 0 0 0 0 0 
-1 2 3 4 0 0 0 0 0 0 11 22 33 44 0 0 0 0 0 0 111 222 333 444 0 0 0 0 0 0 
+1 2 3 4 11 22 33 0 111 222 333 0 
+1 2 3 0 11 22 0 0 111 222 0 0 
 ```
