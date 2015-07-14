@@ -1,5 +1,6 @@
 package com.company.app.test;
 
+import com.company.app.infrastructure.Global;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,7 @@ public class IntegrationTest {
         String relativePath = "src/selenium-driver/chromedriver";
         System.setProperty("webdriver.chrome.driver", relativePath);
         WebDriver driver = new ChromeDriver();
-        driver.get("http://www.google.com");
+        driver.get(Global.Config.getUrl());  // get url from yml config such as config.prod.yml
         WebElement element = driver.findElement(By.name("q"));
         element.sendKeys("Cheese!");
         element.submit();
