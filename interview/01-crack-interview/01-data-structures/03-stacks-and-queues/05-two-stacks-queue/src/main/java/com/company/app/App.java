@@ -5,6 +5,10 @@ import java.util.Stack;
 /*
 Q: implements a queue using two stacks
 
+A: stackNewest has the newest elements on the top and stackOldest has the oldest elements on top.
+When we dequeue an element, we want to remove the oldest element first, and so we dequeue from stackOldest.
+If stackOldest is empty, then we want to transfer all elements from stackNewest into this stack in reverse order.
+To insert an element, we push onto stackNewest, since it has the newest elements on top.
  */
 public class App 
 {
@@ -50,13 +54,13 @@ public class App
             return stackOldest.pop();  // pop the oldest item.
         }
     }
-    public static void main( String[] args )
-    {
+
+    public static void main( String[] args ) {
         int[] numbers = {1,2,3};
         MyQueue<Integer> queue = new MyQueue<Integer>();
         Stack<Integer> stackNewest = queue.getStackNewest();
         Stack<Integer> stackOldest = queue.getStackOldest();
-        for(int n : numbers){
+        for (int n : numbers){
             queue.add(n);
         }
         printStacks(stackNewest, stackOldest);
