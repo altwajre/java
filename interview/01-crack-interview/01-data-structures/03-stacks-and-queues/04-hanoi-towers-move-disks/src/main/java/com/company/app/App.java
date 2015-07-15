@@ -33,11 +33,10 @@ public class App
             System.out.println("Move disk " + top + " from " + getIndex() + " to " + destination.getIndex());
         }
         public void moveDisks(int n, Tower destination, Tower buffer){
-            if(n > 0){
-                moveDisks(n - 1, buffer, destination);
-                moveTopTo(destination);
-                buffer.moveDisks(n - 1, destination, this);
-            }
+            if(n == 0) return;
+            moveDisks(n - 1, buffer, destination);
+            moveTopTo(destination);
+            buffer.moveDisks(n - 1, destination, this);
         }
     }
     public static void main( String[] args )
@@ -77,6 +76,5 @@ public class App
         for(int i = disks.size() - 1; i >= 0; i--){
             System.out.println(disks.get(i));
         }
-        System.out.println("--done--");
     }
 }
