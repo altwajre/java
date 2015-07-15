@@ -3,6 +3,12 @@ package com.company.app;
 import java.util.Stack;
 
 /*
+Q: Towers of Hanoi, you have 3 towers and N disks of different sizes which can slide onto any tower.
+   The puzzle starts with disks sorted in ascending order of size from top to bottom.
+   1, Only one disk can be moved at a time
+   2, A disk is slid off the top of one tower onto the next rod.
+   3, A disk can only be placed on top of a larger disk.
+
  */
 public class App 
 {
