@@ -20,5 +20,6 @@ public class IntegrationTest {
         element.submit();
         System.out.println("#" + driver.getTitle());
         Assert.assertEquals(driver.getTitle(), "Google");
+//        driver.quit();  // uncomment out it to close browser
     }
 }
