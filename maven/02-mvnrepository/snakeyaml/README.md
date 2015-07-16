@@ -1,6 +1,6 @@
 # snakeyaml
 
-IntelliJ - open pom.xml will auto setup maven java project
+https://bitbucket.org/asomov/snakeyaml/wiki/Documentation
 
 ## Compile
 
