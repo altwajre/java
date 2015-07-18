@@ -11,6 +11,7 @@ maven-archetype-quickstart project
 > `java -cp target/app-1.0-SNAPSHOT.jar com.company.app.App`
 
 ```
+##testInsert
 ***in order***
 1 4 5 6 7 8 9 
 ***pre order***
@@ -20,5 +21,11 @@ maven-archetype-quickstart project
 ***dfs***
 7 8 9 5 6 4 1 
 ***bfs***
-7 5 8 4 6 9 1
+7 5 8 4 6 9 1 
+
+##testCreateMinimalBST
+***dfs***
+4 6 9 1 5 8 7 
+***bfs***
+4 5 6 7 8 1 9 
 ```

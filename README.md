@@ -1,35 +1,13 @@
 # java
 java
 
-## KB
-
-> ClassNotFoundException - solution: add maven-shade-plugin
-
-```
-Problem:
-$ java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App
-Exception in thread "main" java.lang.NoClassDefFoundError: org/json/JSONObject
-	at com.company.test.App.main(App.java:22)
-Caused by: java.lang.ClassNotFoundException: org.json.JSONObject
-Solution: add following
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-```
-
-## Tutorials
-
-> https://docs.oracle.com/javase/tutorial/
-
-> https://docs.oracle.com/javase/tutorial/essential/index.html
-
-## Design Pattern
-
-> http://www.tutorialspoint.com/design_pattern/
-
-> https://github.com/iluwatar/java-design-patterns
-
 ## Intellij
+
+### Open Java Project
+
+> Open porm.xml
+
+### References
 
 > https://www.jetbrains.com/idea/help/keyboard-shortcuts-you-cannot-miss.html
 
@@ -78,3 +56,31 @@ Optional: In the same dialog, add the MAVEN_OPTS environment variable in the use
 In the same dialog, make sure that JAVA_HOME exists in your user variables or in the system variables and it is set to the location of your JDK, e.g. C:\Program Files\Java\jdk1.7.0_51.
 Open a new command prompt (Winkey + R then type cmd) and run mvn --version to verify that it is correctly installed.
 ```
+
+## KB
+
+> ClassNotFoundException - solution: add maven-shade-plugin
+
+```
+Problem:
+$ java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App
+Exception in thread "main" java.lang.NoClassDefFoundError: org/json/JSONObject
+	at com.company.test.App.main(App.java:22)
+Caused by: java.lang.ClassNotFoundException: org.json.JSONObject
+Solution: add following
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+```
+
+## Tutorials
+
+> https://docs.oracle.com/javase/tutorial/
+
+> https://docs.oracle.com/javase/tutorial/essential/index.html
+
+## Design Pattern
+
+> http://www.tutorialspoint.com/design_pattern/
+
+> https://github.com/iluwatar/java-design-patterns

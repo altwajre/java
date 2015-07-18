@@ -12,8 +12,8 @@ maven-archetype-quickstart project
 
 ```
 Numbers:
-7 2 5 1 8 4 9 3 6 
-Root: 8
+1 2 3 4 5 6 7 8 9 
+Root: 5
 Bfs:
-8 2 9 7 5 4 3 1 6 
+5 2 7 1 3 6 8 4 9
 ```

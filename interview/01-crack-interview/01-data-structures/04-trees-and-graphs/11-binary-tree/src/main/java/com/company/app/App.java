@@ -14,6 +14,18 @@ public class App
     }
     static class BinaryTree{
         public Node root;
+        public void createMinimalBST(int arr[]){
+            root = createMinimalBST(arr, 0, arr.length - 1);
+        }
+        // create a binary search tree with minimal height
+        private Node createMinimalBST(int arr[], int start, int end){
+            if(end < start) return null;
+            int mid = (start + end) / 2;
+            Node node = new Node(arr[mid]);
+            node.left = createMinimalBST(arr, start, mid - 1);
+            node.right = createMinimalBST(arr, mid + 1, end);
+            return node;
+        }
         public void insert(Node node){
             if(node == null) return;
             if(root == null) root = node;
@@ -88,6 +100,24 @@ public class App
      */
     public static void main( String[] args )
     {
+        testInsert();
+        testCreateMinimalBST();
+    }
+
+    private static void testCreateMinimalBST() {
+        System.out.println("\n\n##testCreateMinimalBST");
+        int[] numbers = {7,5,8,4,1,6,9};
+        BinaryTree binaryTree = new BinaryTree();
+        binaryTree.createMinimalBST(numbers);
+        Node root = binaryTree.root;
+        System.out.println("***dfs***");
+        binaryTree.dfs(root);
+        System.out.println("\n***bfs***");
+        binaryTree.bfs(root);
+    }
+
+    private static void testInsert() {
+        System.out.println("##testInsert");
         int[] numbers = {7,5,8,4,1,6,9};
         BinaryTree binaryTree = new BinaryTree();
         for(int n : numbers){
