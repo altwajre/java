@@ -35,6 +35,7 @@ public class App
     {
         int[] numbers = {7,2,5,1,8,4,9,3,6};
         TreeNode root = createMinimalBST(numbers, 0, numbers.length - 1);
+        System.out.println("Numbers:");
         for(int n : numbers){
             System.out.print(n + " ");
         }
