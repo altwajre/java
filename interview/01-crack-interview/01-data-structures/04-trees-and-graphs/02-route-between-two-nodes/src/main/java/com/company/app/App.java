@@ -2,9 +2,16 @@ package com.company.app;
 
 import java.util.*;
 
+/*
+Q: Given a directed graph, find out whether there is a route between two nodes
+
+A: breath first search
+
+https://en.wikipedia.org/wiki/Directed_graph
+ */
 public class App
 {
-    static class Node{
+    static class Node{  // it is also vertice
         public int value;
         public boolean isVisited;
         public List<Node> adjacent;
