@@ -4,6 +4,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /*
+Q: check if a binary tree is a binary search tree
+
+A: min max solution
  */
 public class App 
 {
@@ -32,6 +35,7 @@ public class App
             if(tmp.right != null) queue.offer(tmp.right);
         }
     }
+    // Solution: min max
     static boolean checkBST(Node node, int min, int max){
         if(node == null) return true;
         if(node.data < min || node.data >= max){
