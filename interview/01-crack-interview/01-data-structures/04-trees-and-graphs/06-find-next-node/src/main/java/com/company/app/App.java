@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
+Q: find the 'next' node of a given node in a binary search tree.
+   assume that each node has a link to its parent.
+
  */
 public class App 
 {
@@ -31,6 +34,7 @@ public class App
         list.add(node);
         inOrder(node.right);
     }
+    // Solution:
     static Node findNext(Node node){
         if(node == null) return null;
         // Found right children -> return leftmost node of right subtree
