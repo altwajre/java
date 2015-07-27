@@ -1,4 +1,4 @@
-# testng-remotewebdriver
+# get-webdriver-from-config
 
 https://code.google.com/p/selenium/wiki/GettingStarted
 

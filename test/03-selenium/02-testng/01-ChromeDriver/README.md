@@ -1,4 +1,4 @@
-# selenium simple
+# ChromeDriver
 
 https://code.google.com/p/selenium/wiki/GettingStarted
 
