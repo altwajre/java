@@ -8,4 +8,4 @@
 
 > `mvn test`
 
-> Or in intellij, right click on test and select run test
+> Or in intellij, right click on test and select `debug` test

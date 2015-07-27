@@ -1,8 +1,8 @@
-# selenium simple
+# testng-remotewebdriver
 
 https://code.google.com/p/selenium/wiki/GettingStarted
 
-### Running the Selenium Server
+## Running the Selenium Server
 
 download the latest selenium-server-standalone from http://selenium-release.storage.googleapis.com/index.html
 
