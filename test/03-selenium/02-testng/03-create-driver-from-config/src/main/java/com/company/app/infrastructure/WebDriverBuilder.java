@@ -1,5 +1,6 @@
 package com.company.app.infrastructure;
 
+import com.sun.jdi.connect.spi.TransportService;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.remote.CapabilityType;
@@ -26,6 +27,7 @@ public class WebDriverBuilder {
         if (platType == "local") isLocal = true;
         else {
             cap = new DesiredCapabilities();
+            // platforms.yml driver key should map to Capability name such as CapabilityType.BROWSER_NAME
             for (Map.Entry<String, Object> property : driverProperties.entrySet()) {
                 String name = property.getKey().toString();
                 String value = property.getValue().toString();
@@ -53,7 +55,6 @@ public class WebDriverBuilder {
                 driver = new RemoteWebDriver(
                         url,
                         cap);
-
             }
 
 //            WebDriver driver = new HtmlUnitDriver();
