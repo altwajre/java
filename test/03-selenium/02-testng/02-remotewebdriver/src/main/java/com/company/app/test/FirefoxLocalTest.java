@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class IntegrationTest {
+public class FirefoxLocalTest {
     @Test(priority = 1)
     public void verifyTitle_test() throws MalformedURLException {
         WebDriver driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.firefox());

@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.Map;
 
 public class TestRunner
 {
@@ -43,7 +42,7 @@ public class TestRunner
     static void runTest() {
         TestNG testNG = new TestNG();
         List suites = Lists.newArrayList();
-        suites.add("all-tests.xml");  // Run all tests
+        suites.add("test-all.xml");  // Run all tests
         testNG.setTestSuites(suites);
         testNG.run();
     }

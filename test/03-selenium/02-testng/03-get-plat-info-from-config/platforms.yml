@@ -1,21 +1,21 @@
 platforms:
   mobile:
-    - browser: android
+    - browserName: android
       version: 4.4
       platform: Linux
       name: Samsung Galaxy S4 Emulator
       orientation: portrait
   desktop:
-    - browser: safari
+    - browserName: safari
       version: 6
       platform: OSX 10.8
 
-    - browser: chrome
+    - browserName: chrome
       version: 43.0
       platform: Windows 8.1
 
   tablet:
-    - browser: chrome
+    - browserName: chrome
       version: 43.0
       platform: Windows 8.1
       size: 800x600

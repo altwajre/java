@@ -1,0 +1,12 @@
+<suite name="">
+    <test name="Regression">
+        <packages>
+            <!-- test all tests -->
+            <package name="com.company.app.test" />
+        </packages>
+        <classes>
+            <!-- run only one test class-->
+            <!--<class name="com.company.app.test.CreateDriverFromConfig"/>-->
+        </classes>
+    </test>
+</suite>

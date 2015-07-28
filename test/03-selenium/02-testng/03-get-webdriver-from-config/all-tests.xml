@@ -1,7 +1,0 @@
-<suite name="">
-    <test name="Regression">
-        <packages>
-            <package name="com.company.app.test" />
-        </packages>
-    </test>
-</suite>
