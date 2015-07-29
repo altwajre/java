@@ -44,9 +44,7 @@ public abstract class IntegrationTestBase {
                 url = new URL(Consts.URL_SAUCELAB);
             }
 
-            WebDriver driver = new RemoteWebDriver(
-                    url,
-                    cap);
+            WebDriver driver = new RemoteWebDriver(url, cap);
             this.driver = driver;
         }
         catch(Exception e){
