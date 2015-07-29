@@ -2,6 +2,9 @@ package com.company.app.infrastructure;
 
 import java.util.Map;
 
+/*
+  A placeholder for driver information
+ */
 public class DriverInfo {
     private PlatformType platType;
     private Map<String, Object> driverProperties;
