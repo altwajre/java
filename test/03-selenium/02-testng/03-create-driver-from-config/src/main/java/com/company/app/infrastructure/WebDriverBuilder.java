@@ -1,6 +1,5 @@
 package com.company.app.infrastructure;
 
-import com.sun.jdi.connect.spi.TransportService;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.remote.CapabilityType;
@@ -47,9 +46,15 @@ public class WebDriverBuilder {
             WebDriver driver = null;
             if (isLocal) {
                 // need to launch selenium server to create firefox driver.
+//                driver = new RemoteWebDriver(
+//                        new URL("http://localhost:4444/wd/hub"),
+//                        DesiredCapabilities.firefox());
+
+                DesiredCapabilities localCap = new DesiredCapabilities();
+                localCap.setCapability("browserName", "firefox");
                 driver = new RemoteWebDriver(
                         new URL("http://localhost:4444/wd/hub"),
-                        DesiredCapabilities.firefox());
+                        localCap);
             } else {
                 URL url = new URL("http://" + Global.Config.getUsername() + ":" + Global.Config.getKey() + "@ondemand.saucelabs.com:80/wd/hub");
                 driver = new RemoteWebDriver(
