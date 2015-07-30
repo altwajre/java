@@ -5,7 +5,7 @@ import static java.lang.System.out;
 
 /*
 Q: Given two strings, write a method to decide if one is a permutation of the other.
-Two strings have same number of characters.
+Character set was ASCII. Two strings have same number of characters.
 
  */
 public class App 
@@ -17,6 +17,7 @@ public class App
     }
 
     private static void permutationSortTest() {
+        out.println("#permutationSortTest");
         out.println(permutationSort("abcd", "bdca"));  // true
         out.println(permutationSort("abcd", "bdcz"));  // false
         out.println(permutationSort("abcad", "abdca"));  // true
@@ -37,6 +38,7 @@ public class App
     }
 
     private static void permutationTest() {
+        out.println("#permutationTest");
         out.println(permutation("abcd", "bdca"));  // true
         out.println(permutation("abcd", "bdcz"));  // false
         out.println(permutation("abcad", "abdca"));  // true
@@ -45,6 +47,7 @@ public class App
     check if two strings have identical char counts
      */
     static boolean permutation(String s, String t){
+        if(s == t) return true;
         if(s.length() != t.length()){
             return false;
         }
