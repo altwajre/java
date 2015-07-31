@@ -20,8 +20,8 @@ public class Platforms {
     }
 
     public List<Map<String, Object>> getDriversFromPlatform(PlatformType platType) {
-        if (platforms.containsKey(platType)) {
-            return platforms.get(platType);
+        if (platforms.containsKey(platType.toString())) {
+            return platforms.get(platType.toString());
         } else {
             throw new RuntimeException("configuration file does not define platforms of type " + platType);
         }
