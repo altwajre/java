@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /*
   Q: compute all permutations of a string
+  permutations of abc are [abc, bac, bca, acb, cab, cba]
 
  */
 public class App 
