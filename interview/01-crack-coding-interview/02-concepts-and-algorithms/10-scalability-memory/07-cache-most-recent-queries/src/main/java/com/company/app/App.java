@@ -3,8 +3,8 @@ package com.company.app;
 import java.util.HashMap;
 
 /*
-  Q: Most Recently Used (MRU)
-     https://en.wikipedia.org/wiki/Cache_algorithms
+  Q: Cache the results of the most recent queries.
+     Most Recently Used (MRU): https://en.wikipedia.org/wiki/Cache_algorithms
 
   Solution:
    - A Linked list to move "fresh" items to the front.
