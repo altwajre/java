@@ -4,7 +4,6 @@ package com.company.app;
  Q: find location of a given string in interspersed with empty sorted strings.
     such as {"a", "", "", "b", "", "c", ""}
 
-
  */
 public class App 
 {

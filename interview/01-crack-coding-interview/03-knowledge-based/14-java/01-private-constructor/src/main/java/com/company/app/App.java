@@ -1,11 +1,17 @@
 package com.company.app;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 /*
- creational patterns - singleton
+  Q: in terms of inheritance, what is the effect of keeping a constructor private?
+
+  A: it ensures that no one outside of the class can directly instantiate the class
+     the only way to create an instance of the class is to provide a static public method
+     as using the Singleton pattern
  */
-public class App
+public class App 
 {
     static class Server{
         private String name;
@@ -21,7 +27,7 @@ public class App
         private static final LoadBalancer _instance = new LoadBalancer();
         private List<Server> _servers;
         private Random _random = new Random();
-        private LoadBalancer(){
+        private LoadBalancer(){ // NOTE: private constructor
             _servers = new ArrayList<Server>();
             _servers.add(new Server("ServerI", "120.14.220.18"));
             _servers.add(new Server("ServerII", "120.14.220.19"));
@@ -29,7 +35,7 @@ public class App
             _servers.add(new Server("ServerIV", "120.14.220.21"));
             _servers.add(new Server("ServerV", "120.14.220.22"));
         }
-        public static LoadBalancer getLoadBalancer(){ return _instance; }
+        public static LoadBalancer getLoadBalancer(){ return _instance; } // NOTE: static public method for creating object
         public Server NextServer(){
             int r = _random.nextInt(_servers.size());
             return _servers.get(r);
