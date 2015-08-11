@@ -4,11 +4,9 @@ package com.company.app;
  http://tutorials.jenkov.com/java-concurrency/race-conditions-and-critical-sections.html
 
  output: instead of 5, the value left in this.count will be the value written by the last thread to write its value.
- i: 0
- i: 1
  Counter.count before add : 0
- Counter.count before add : 3
- counter: 0
+ counter: 2
+ Counter.count before add : 2
 
  */
 public class App
@@ -23,26 +21,24 @@ public class App
             this.count = this.count + value;
         }
     }
-    static int i = 0;
     public static void main( String[] args )
     {
         final Counter counter = new Counter();
 
-        String threadName = "Thread";
+        String threadName = "Thread_1";
+        new Thread(threadName){
+            public void run(){
+                counter.add(2);
+            }
+        }.start();
 
-        while (i < 2){
-            System.out.println("i: " + i);
-            threadName = threadName + "_" + i;
-            Thread thread = new Thread(threadName){
-                public void run(){
-                    counter.add(i + 2);
-                }
-            };
-            thread.start();
-            i++;
-        }
+        threadName = "Thread_2";
+        new Thread(threadName){
+            public void run(){
+                counter.add(2);
+            }
+        }.start();
 
         System.out.println("counter: " + counter.getCount());
-
     }
 }
