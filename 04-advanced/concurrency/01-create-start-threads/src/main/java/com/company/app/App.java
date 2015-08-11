@@ -1,5 +1,9 @@
 package com.company.app;
 
+/*
+ http://tutorials.jenkov.com/java-concurrency/creating-and-starting-threads.html
+
+ */
 public class App
 {
     static class MyThread extends Thread{
@@ -16,13 +20,13 @@ public class App
     }
     public static void main( String[] args )
     {
-//        threadSubclassTest();  // MyThread running
-//        anonymousSubclassTest(); // Anonymous subclass thread Running
-//
-//        implementRunnableInterfaceTest(); // MyRunnable running; MyRunnable thread name: Thread-0
-//        anonymousRunnableTest(); // Anonymous Runnable running
-//
-//        anonymousSubclassThreadNameTest(); // Thread name: Anonymous Subclass
+        threadSubclassTest();  // MyThread running
+        anonymousSubclassTest(); // Anonymous subclass thread running
+
+        implementRunnableInterfaceTest(); // MyRunnable running; MyRunnable thread name: Thread-0
+        anonymousRunnableTest(); // Anonymous Runnable running
+
+        anonymousSubclassThreadNameTest(); // Thread name: Anonymous Subclass
 
         /*
         output:
@@ -30,9 +34,9 @@ public class App
         MyRunnable running
         MyRunnable thread name: Anonymous Runnable
          */
-//        anonymouseRunnableThreadNameTest();
-//
-//        currentThreadTest(); // main thread name: main
+        myRunnableThreadNameTest();
+
+        currentThreadTest(); // main thread name: main
 
         /*
         output:
@@ -66,7 +70,7 @@ public class App
         System.out.println("main thread name: " + Thread.currentThread().getName());
     }
 
-    private static void anonymouseRunnableThreadNameTest() {
+    private static void myRunnableThreadNameTest() {
         String threadName = "Anonymous Runnable";
         MyRunnable runnable = new MyRunnable();
         Thread thread = new Thread(runnable, threadName);
@@ -102,7 +106,7 @@ public class App
     private static void anonymousSubclassTest() {
         Thread thread = new Thread(){
             public void run(){
-                System.out.println("Anonymous subclass thread Running");
+                System.out.println("Anonymous subclass thread running");
             }
         };
         thread.start();
