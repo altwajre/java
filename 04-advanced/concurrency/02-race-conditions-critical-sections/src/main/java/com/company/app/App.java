@@ -21,8 +21,13 @@ public class App
             this.count = this.count + value;
         }
     }
+
     public static void main( String[] args )
     {
+        threadTest();
+    }
+
+    private static void threadTest() {
         final Counter counter = new Counter();
 
         String threadName = "Thread_1";
