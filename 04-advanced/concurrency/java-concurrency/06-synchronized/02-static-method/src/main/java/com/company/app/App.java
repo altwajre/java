@@ -29,34 +29,29 @@ Thread_2 - Counter.count : 19
 public class App
 {
     static class Counter {
-        protected long count = 0;
-        public long getCount() {
-            return count;
-        }
-        public synchronized void add(long value){ // critical section leads to race conditions
+        public static long count = 0;
+        public static synchronized void add(long value){ // synchronized critical section leads to race conditions
             String threadName = Thread.currentThread().getName();
             for(int i = 0; i < 10; i++){
-                System.out.println(threadName + " - Counter.count : " + this.count);
-                this.count += value;
+                System.out.println(threadName + " - Counter.count : " + count);
+                count += value;
             }
         }
     }
 
     public static void main( String[] args )
     {
-        final Counter counter = new Counter();
-
         String threadName = "Thread_1";
         new Thread(threadName){
             public void run(){
-                counter.add(1);
+                Counter.add(1);
             }
         }.start();
 
         threadName = "Thread_2";
         new Thread(threadName){
             public void run(){
-                counter.add(1);
+                Counter.add(1);
             }
         }.start();
 
@@ -65,6 +60,6 @@ public class App
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(Thread.currentThread().getName() + " - counter: " + counter.getCount());
+        System.out.println(Thread.currentThread().getName() + " - counter: " + Counter.count);
     }
 }
