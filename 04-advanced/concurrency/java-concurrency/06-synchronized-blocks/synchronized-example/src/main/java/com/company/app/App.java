@@ -1,7 +1,7 @@
 package com.company.app;
 
 /*
-http://tutorials.jenkov.com/java-concurrency/race-conditions-and-critical-sections.html
+http://tutorials.jenkov.com/java-concurrency/synchronized.html
 
 output:
 20
