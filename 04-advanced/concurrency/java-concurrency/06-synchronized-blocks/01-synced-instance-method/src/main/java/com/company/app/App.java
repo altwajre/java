@@ -3,7 +3,7 @@ package com.company.app;
 /*
 http://tutorials.jenkov.com/java-concurrency/synchronized.html
 
-output: one thread enter synchronized method at a time
+output: only one thread enter synchronized method at a time
 Thread_1 - Counter.count : 0
 Thread_1 - Counter.count : 1
 Thread_1 - Counter.count : 2
