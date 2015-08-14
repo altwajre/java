@@ -6,10 +6,11 @@ http://tutorials.jenkov.com/java-concurrency/thread-signaling.html
 output:
 Notify_Thread before notify; SharedSignal.isReady=false
 Notify_Thread after notify; SharedSignal.isReady=true
-Waiting_Thread got data; SharedSignal.isReady=true
+Waiting_Thread_1 got data; SharedSignal.isReady=true
+Waiting_Thread_2 got data; SharedSignal.isReady=true
 
  */
-public class App 
+public class App
 {
     static class MonitorObject{}
     static class SharedSignal { // wait and notify
@@ -24,7 +25,7 @@ public class App
         public void doNotify(){
             synchronized (monitorObject){
                 isReady = true;
-                monitorObject.notify();
+                monitorObject.notifyAll();  // notifyAll()
             }
         }
     }
@@ -42,7 +43,15 @@ public class App
                 System.out.println(threadName + " after notify; SharedSignal.isReady=" + sharedSignal.isReady);
             }
         }.start();
-        threadName = "Waiting_Thread";
+        threadName = "Waiting_Thread_1";
+        new Thread(threadName){
+            public void run(){
+                sharedSignal.doWait();
+                String threadName = Thread.currentThread().getName();
+                System.out.println(threadName + " got data; SharedSignal.isReady=" + sharedSignal.isReady);
+            }
+        }.start();
+        threadName = "Waiting_Thread_2";
         new Thread(threadName){
             public void run(){
                 sharedSignal.doWait();
