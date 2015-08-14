@@ -1,5 +1,11 @@
 package com.company.app;
 
+/*
+http://tutorials.jenkov.com/java-concurrency/race-conditions-and-critical-sections.html
+
+output:
+20
+ */
 public class App
 {
     static class Counter{
@@ -15,7 +21,7 @@ public class App
         }
         public void run(){
             for(int i = 0; i < 10; i++){
-                counter.add(i);
+                counter.add(1);
             }
         }
     }
@@ -26,11 +32,11 @@ public class App
         threadA.start();
         threadB.start();
 
-        threadA.join();
-        threadB.join();
-
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println(counter.count);
-
-
     }
 }
