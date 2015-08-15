@@ -15,9 +15,9 @@ Thread 1: parent.addChild(child); //locks parent
 
 Thread 2: child.setParent(parent); //locks child
           --> parent.addChildOnly()
-Thread_1 calls synchronized parent.addChild(child) will blocks other threads from access this method
+Thread_1 calls synchronized parent.addChild(child) will block other threads from access this method
 which locks the parent object for access from other threads
-Thread_2 calls synchronized child.setParent(parent) will blocks other threads from access this method
+Thread_2 calls synchronized child.setParent(parent) will block other threads from access this method
 which locks the child object for access from other threads
 
  */
