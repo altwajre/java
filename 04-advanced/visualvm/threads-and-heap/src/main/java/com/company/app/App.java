@@ -1,5 +1,9 @@
 package com.company.app;
 
+/*
+https://www.youtube.com/watch?v=igc5_JXHZDY&list=PLeLNWvESQ0GaUPY9Qh4uCiYR7haNFZgle
+
+ */
 public class App
 {
     static class IdleThread extends Thread{
@@ -29,12 +33,23 @@ public class App
 
     public static void main( String[] args )
     {
-        int nbThreadCreated = 0;
-        for(int i = 0; i < MAX_NB_THREADS; i++){
-            IdleThread thread = new IdleThread();
-            thread.setDaemon(true);
-
+        int threadCount = 0;
+        try{
+            for(int i = 0; i < MAX_NB_THREADS; i++){
+                IdleThread thread = new IdleThread();
+                thread.setDaemon(true);
+                thread.start();
+                threadCount++;
+            }
         }
-        System.out.println( "Hello World!" );
+        catch (Throwable e){
+            System.out.println("ERROR while creating new Java Thread: " + e.getMessage());
+            e.printStackTrace();
+        }
+        finally {
+            System.out.println("Java Thread Created: " + threadCount);
+            System.out.println("Java Heap Capacity " + (Runtime.getRuntime().maxMemory()/1024) + " MB");
+        }
+        System.out.println( "done!" );
     }
 }
