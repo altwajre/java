@@ -1,6 +1,14 @@
 # java
 java
 
+## Tools
+
+### Java VisualVM
+
+#### Mac
+
+> double click `jvisualvm` at `/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/bin` to open it
+
 ## Intellij
 
 ### Open Java Project
