@@ -92,3 +92,5 @@ Solution: add following
 > http://www.tutorialspoint.com/design_pattern/
 
 > https://github.com/iluwatar/java-design-patterns
+
+> https://sourcemaking.com/design_patterns
