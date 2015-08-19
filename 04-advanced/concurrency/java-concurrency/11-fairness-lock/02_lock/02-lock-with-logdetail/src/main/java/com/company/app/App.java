@@ -31,21 +31,29 @@ public class App
         Lock lock = new Lock();
         public void doSynchronized() throws InterruptedException {
             this.lock.lock();
-            // do a lot of work which takes a long time
-            if(count == 3) Thread.sleep(3000);
-            else Thread.sleep(duration);
-            count++;
-            this.lock.unlock();
+            try{
+                // do a lot of work which takes a long time
+                if(count == 3) Thread.sleep(3000);
+                else Thread.sleep(duration);
+                count++;
+            }
+            finally {
+                this.lock.unlock();
+            }
         }
     }
     static class Lock{
         private boolean isLocked = false;
         private Thread lockingThread = null;
-        public synchronized void lock() throws InterruptedException {
+        public synchronized void lock() {
             String threadName = Thread.currentThread().getName();
             while(isLocked){
                 System.out.println(" " + threadName + " wait()");
-                wait();
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             isLocked = true;
             lockingThread = Thread.currentThread();

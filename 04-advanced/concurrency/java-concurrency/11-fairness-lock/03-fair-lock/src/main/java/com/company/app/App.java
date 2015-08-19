@@ -3,29 +3,45 @@ package com.company.app;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+http://tutorials.jenkov.com/java-concurrency/starvation-and-fairness.html
+
+ */
 public class App
 {
+    static int safeArrayCount = 0;
+    static class ThreadSafeArrayList{
+        private final FairLock lock = new FairLock();
+        public final List<String> list = new ArrayList<String>();
+        public void set(String o){
+            lock.lock();
+            try {
+                safeArrayCount++;
+                list.add(o);
+                System.out.println("Adding element by thread " + Thread.currentThread().getName());
+            }
+            finally {
+                lock.unlock();
+            }
+        }
+    }
     static class QueueObject{
         private boolean isNotified = false;
         public synchronized void doWait() throws InterruptedException {
-            while(!isNotified){
-                this.wait();
-            }
+            while(!isNotified){ this.wait(); }
             this.isNotified = false;
         }
         public synchronized void doNotify(){
             this.isNotified = true;
             this.notify();
         }
-        public boolean equals(Object o){
-            return this == o;
-        }
+        public boolean equals(Object o){ return this == o; }
     }
     static class FairLock{
         private boolean isLocked = false;
         private Thread lockingThread = null;
         private List<QueueObject> waitingThreads = new ArrayList<QueueObject>();
-        public void lock() throws InterruptedException {
+        public void lock() {
             QueueObject queueObject = new QueueObject();
             boolean isLockedForThisThread = true;
             synchronized (this){
@@ -41,13 +57,11 @@ public class App
                         return;
                     }
                 }
-                try {
-                    queueObject.doWait();
-                } catch (InterruptedException e) {
-                    synchronized (this){
-                        waitingThreads.remove(queueObject);
-                    }
-                    throw e;
+                try { queueObject.doWait(); }
+                catch (InterruptedException e) {
+                    synchronized (this){ waitingThreads.remove(queueObject); }
+                    try { throw e; }
+                    catch (InterruptedException e1) { e1.printStackTrace(); }
                 }
             }
         }
@@ -57,13 +71,50 @@ public class App
             }
             isLocked = false;
             lockingThread = null;
-            if(waitingThreads.size() > 0){
-                waitingThreads.get(0).doNotify();
-            }
+            if(waitingThreads.size() > 0){ waitingThreads.get(0).doNotify(); }
         }
     }
+
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        final ThreadSafeArrayList threadSafeArrayList = new ThreadSafeArrayList();
+        Runnable runnable1 = new Runnable() {
+            public void run() {
+                while(safeArrayCount < 6){
+                    threadSafeArrayList.set(String.valueOf(safeArrayCount) + " " + Thread.currentThread().getName());
+                    try{
+                        Thread.sleep(100);
+                    }
+                    catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Runnable runnable2 = new Runnable() {
+            public void run() {
+                while (safeArrayCount < 6){
+                    threadSafeArrayList.set(String.valueOf(safeArrayCount) + " " + Thread.currentThread().getName());
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread thread1 = new Thread(runnable1, "runnable1");
+        Thread thread2 = new Thread(runnable2, "runnable2");
+        thread1.start();
+        thread2.start();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        for(String s : threadSafeArrayList.list){
+            System.out.print(s + "; ");
+        }
     }
 }
