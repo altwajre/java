@@ -40,12 +40,14 @@ public class App
     private static void waitThreads() {
         String threadName = "Waiting_Thread_";
         for(int i = 1; i <= 4; i++){
-            new Thread(threadName + i){
+            Thread thread = new Thread(threadName + i){
                 public void run(){
                     try { signal.doWait(); } catch (Exception e) {}
                     System.out.println("    " + Thread.currentThread().getName() + " finished");
                 }
-            }.start();
+            };
+            thread.setDaemon(true); // the worker thread terminates when the main thread terminates
+            thread.start();
         }
     }
     private static void notifyThreads() {
