@@ -2,17 +2,19 @@ package com.company.app;
 
 import java.util.Scanner;
 
-// https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html
-// A Scanner breaks its input into tokens using a delimiter pattern, which by default matches whitespace.
+/*
+https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html
+A Scanner breaks its input into tokens using a delimiter pattern, which by default matches whitespace.
+
+output:
+2 next(): a 1
+next(): a
+nextInt(): 1
+print whole string: a 1 b 2 c 3 d
+
+ */
 public class App
 {
-    /*
-    output:
-    2 next(): a 1
-    next(): a
-    nextInt(): 1
-    print whole string: a 1 b 2 c 3 d
-     */
     public static void main( String[] args )
     {
         String input = "a\n1  b     2\n   c     3   d";
