@@ -7,30 +7,35 @@ notify
 wait finished
 
  */
-public class App 
+public class App
 {
-    static class Singal{
+    static class Signal {
+        boolean isSignalled = false;
         public void doWait() throws InterruptedException {
             synchronized (this){
-                wait();
+                while(!isSignalled){
+                    wait();
+                }
+                isSignalled = false;
             }
         }
         public void doNotify(){
             synchronized (this){
                 notify();
+                isSignalled = true;
             }
         }
     }
     public static void main( String[] args )
     {
-        final Singal singal = new Singal();
+        final Signal signal = new Signal();
         Thread waitThread = new Thread(){
             public void run(){
                 System.out.println("wait");
                 try {
-                    singal.doWait();
+                    signal.doWait();
                 } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    e.printStackTrace();
                 }
                 System.out.println("wait finished");
             }
@@ -45,7 +50,7 @@ public class App
                     e.printStackTrace();
                 }
                 System.out.println("notify");
-                singal.doNotify();
+                signal.doNotify();
             }
         };
         notifyThread.start();

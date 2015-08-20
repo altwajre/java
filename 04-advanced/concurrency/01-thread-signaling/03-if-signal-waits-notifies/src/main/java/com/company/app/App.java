@@ -6,34 +6,38 @@ import java.util.Set;
 /*
 output:
 first_round_wait_thread_1 wait
-first_round_wait_thread_2 wait
 first_round_wait_thread_3 wait
+first_round_wait_thread_2 wait
   first_round_notify_thread_1 notify
   first_round_notify_thread_2 notify
     first_round_wait_thread_1 finished
-    first_round_wait_thread_2 finished
+    first_round_wait_thread_3 finished
 second_round_wait_thread_2 wait
-second_round_wait_thread_1 wait
 second_round_wait_thread_3 wait
+second_round_wait_thread_1 wait
   second_round_notify_thread_1 notify
   second_round_notify_thread_2 notify
-    first_round_wait_thread_3 finished
+    first_round_wait_thread_2 finished
     second_round_wait_thread_2 finished
 #remaining waiting threads: [second_round_wait_thread_3, second_round_wait_thread_1]
 
  */
-public class App
+public class App 
 {
     static class Signal{
+        boolean isSignalled = false;
         public void doWait() throws InterruptedException {
             synchronized (this){
-                System.out.println(Thread.currentThread().getName() + " wait");
-                wait();  // exception occurs when not using synchronized
+                if(!isSignalled){
+                    wait();
+                }
+                isSignalled = false; // clear the signal and continue running
             }
         }
         public void doNotify(){
             synchronized (this){
-                notify();  // exception occurs when not using synchronized
+                isSignalled = true;
+                notify();
             }
         }
     }
@@ -64,6 +68,7 @@ public class App
                     try {
                         Thread.sleep(duration);
                         set.add(Thread.currentThread().getName());
+                        System.out.println(Thread.currentThread().getName() + " wait");
                         signal.doWait();
                     } catch (Exception e) {}
                     set.remove(Thread.currentThread().getName());
