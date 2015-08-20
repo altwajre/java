@@ -25,8 +25,9 @@ public class App
             synchronized (lock2){
                 System.out.println("method1 do something");
             }
+            System.out.println("lock2 is unlocked");
         }
-        System.out.println("method1 finished");
+        System.out.println("lock1 is unlocked");
     }
     static void method2(){
         synchronized (lock2){
@@ -38,8 +39,9 @@ public class App
             synchronized (lock1){
                 System.out.println("method2 do something");
             }
+            System.out.println("lock1 is unlocked");
         }
-        System.out.println("method2 finished");
+        System.out.println("lock2 is unlocked");
     }
     public static void main( String[] args )
     {
