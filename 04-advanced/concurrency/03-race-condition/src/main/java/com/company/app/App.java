@@ -6,6 +6,10 @@ Race condition:
 1, both threads execution is interleaved
 2, count is 14 instead of 20 after 20 threads called increase()
 
+Solution:
+We can use synchronized or lock to block the critical section, only one thread can access at a time.
+See next 04-lock for more info.
+
 output:
 Thread_B_3 - count: 9
 Thread_A_1 - count: 14
@@ -36,10 +40,8 @@ public class App
     static class Counter{ // shared data
         public void increase(){
             try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                Thread.sleep(1000);  // add sleep(1000) to make it easy to reproduce the race condition
+            } catch (InterruptedException e) { }
             count++;
         }
     }
