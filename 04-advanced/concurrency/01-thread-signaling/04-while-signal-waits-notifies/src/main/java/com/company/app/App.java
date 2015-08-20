@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /*
+Spin lock
+
 output:
 first_round_wait_thread_1 wait
 first_round_wait_thread_3 wait
@@ -28,7 +30,7 @@ public class App
         boolean isSignalled = false;
         public void doWait() throws InterruptedException {
             synchronized (this){
-                while(!isSignalled){
+                while(!isSignalled){ // NOTE: spin lock
                     wait();
                 }
                 isSignalled = false;

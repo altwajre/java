@@ -1,6 +1,8 @@
 package com.company.app;
 
 /*
+Spin lock
+
 output:
 wait
 notify
@@ -13,7 +15,7 @@ public class App
         boolean isSignalled = false;
         public void doWait() throws InterruptedException {
             synchronized (this){
-                while(!isSignalled){
+                while(!isSignalled){ // NOTE: spin lock
                     wait();
                 }
                 isSignalled = false;
