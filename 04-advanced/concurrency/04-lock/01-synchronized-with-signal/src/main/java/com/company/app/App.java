@@ -1,6 +1,8 @@
 package com.company.app;
 
 /*
+synchronized will block the threads, only one thread can access a time.
+
 output:
 Thread_A_1 - count: 1
 Thread_B_10 - count: 2
