@@ -2,10 +2,9 @@ package com.company.app;
 
 /*
 Lock:
-1, only the first thread can access the critical section
-2, all other threads are waiting
-3, after the thread finish the work in critical section will notify one of waiting threads and let it get into critical section.
-4, repeat step 3 for all waiting threads
+- wait() and notify can signal between two threads
+- use while(isLocked) to wait, and the first thread does not need to wait to get into critical section,
+  other threads wait for notify from other threads
 
 output:
 Thread_A_2: lock wait
@@ -40,6 +39,7 @@ public class App
             } catch (InterruptedException e) { }
             count++;
             lock.unlock();
+            System.out.println("    " + Thread.currentThread().getName() + " finished; count: " + count);
         }
     }
     static class Lock{
@@ -69,11 +69,10 @@ public class App
         int threadCount = 3;
         final Counter counter = new Counter();
 
-        for(int i = 1; i <= threadCount; i++){
+        for(int i = 1; i <= threadCount; i++) {
             new Thread("Thread_A_" + i){
                 public void run(){
                     counter.increase();
-                    System.out.println("    " + Thread.currentThread().getName() + " finished; count: " + count);
                 }
             }.start();
         }
@@ -82,7 +81,6 @@ public class App
             new Thread("Thread_B_" + i){
                 public void run(){
                     counter.increase();
-                    System.out.println("    " + Thread.currentThread().getName() + " finished; count: " + count);
                 }
             }.start();
         }
