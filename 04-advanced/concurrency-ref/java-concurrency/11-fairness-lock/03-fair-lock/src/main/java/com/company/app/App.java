@@ -6,6 +6,11 @@ import java.util.List;
 /*
 http://tutorials.jenkov.com/java-concurrency/starvation-and-fairness.html
 
+Solution:
+Every thread calling lock() is now queued, and only the first thread in the queue is allowed to lock
+the FairLock instance if it is unlocked. All other threads are parked waiting until they reach the
+top of the queue.
+
  */
 public class App
 {
@@ -20,9 +25,7 @@ public class App
                 list.add(o);
                 System.out.println("Adding element by thread " + Thread.currentThread().getName());
             }
-            finally {
-                lock.unlock();
-            }
+            finally { lock.unlock(); }
         }
     }
     static class QueueObject{
@@ -44,9 +47,7 @@ public class App
         public void lock() {
             QueueObject queueObject = new QueueObject();
             boolean isLockedForThisThread = true;
-            synchronized (this){
-                waitingThreads.add(queueObject);
-            }
+            synchronized (this){ waitingThreads.add(queueObject); }
             while (isLockedForThisThread){
                 synchronized (this){
                     isLockedForThisThread = isLocked || waitingThreads.get(0) != queueObject;

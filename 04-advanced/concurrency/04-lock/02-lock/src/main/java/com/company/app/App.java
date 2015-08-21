@@ -31,8 +31,7 @@ public class App
     static int count = 0;
     static class Counter {
         Lock lock = new Lock();
-
-        public void increase(){
+        public void increment(){
             lock.lock();
             try {
                 Thread.sleep(100);
@@ -72,7 +71,7 @@ public class App
         for(int i = 1; i <= threadCount; i++) {
             new Thread("Thread_A_" + i){
                 public void run(){
-                    counter.increase();
+                    counter.increment();
                 }
             }.start();
         }
@@ -80,7 +79,7 @@ public class App
         for(int i = 1; i <= threadCount; i++){
             new Thread("Thread_B_" + i){
                 public void run(){
-                    counter.increase();
+                    counter.increment();
                 }
             }.start();
         }
