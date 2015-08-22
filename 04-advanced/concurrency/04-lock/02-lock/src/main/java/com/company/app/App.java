@@ -41,7 +41,7 @@ public class App
             System.out.println("    " + Thread.currentThread().getName() + " finished; count: " + count);
         }
     }
-    static class Lock{
+    static class Lock{  // wait and notify signal
         boolean isLocked = false;
         public void lock(){
             synchronized (this){

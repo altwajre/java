@@ -26,6 +26,7 @@ Thread_2 wait 3
         Thread_1 end
   Thread_2 enter synced 3
         Thread_2 end
+
  */
 public class App 
 {

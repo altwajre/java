@@ -14,8 +14,7 @@ public class App
         FairLock lock = new FairLock();
         public void increment(){
             lock.lock();
-            try {
-                Thread.sleep(100);
+            try { Thread.sleep(100);
             } catch (InterruptedException e) { }
             count++;
             lock.unlock();
@@ -26,8 +25,7 @@ public class App
         boolean isNotified = false;
         public synchronized void doWait(){
             while(!isNotified){
-                try {
-                    wait();
+                try { wait();
                 } catch (InterruptedException e) { }
             }
             isNotified = false;
@@ -46,14 +44,14 @@ public class App
             QueueObject queueObject = new QueueObject();
             boolean isLockedForThisThread = true;
             synchronized (this){
-                System.out.println(" "+Thread.currentThread().getName() + " offer");
+//                System.out.println(" "+Thread.currentThread().getName() + " offer");
                 waitingThreads.offer(queueObject);
                 list.add(Thread.currentThread().getName());
             }
             while(isLockedForThisThread){
-                System.out.println(" "+Thread.currentThread().getName() + " while()");
+//                System.out.println(" "+Thread.currentThread().getName() + " while()");
                 synchronized (this){
-                    System.out.println(" "+Thread.currentThread().getName() + " synced in while()");
+//                    System.out.println(" "+Thread.currentThread().getName() + " synced in while()");
                     boolean isLastItemInQueue = waitingThreads.peek() != queueObject;
                     // false||false=false;  false||true=true;  true||false=true;  true||true=true
                     isLockedForThisThread = isLocked || isLastItemInQueue;
@@ -86,14 +84,14 @@ public class App
     {
         int threadCount = 3;
         final Counter counter = new Counter();
-        for(int i = 0; i < threadCount; i++){
+        for(int i = 1; i <= threadCount; i++){
             new Thread("Thread_A_" + i){
                 public void run(){
                     counter.increment();
                 }
             }.start();
         }
-        for(int i = 0; i < threadCount; i++){
+        for(int i = 1; i <= threadCount; i++){
             new Thread("Thread_B_" + i){
                 public void run(){
                     counter.increment();
