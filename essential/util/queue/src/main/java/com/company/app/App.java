@@ -19,7 +19,7 @@ public class App
         queue.offer("Harry");
         System.out.println(queue);
 
-        String dequeueItem = queue.remove();
+        String dequeueItem = queue.poll();
         System.out.print("after dequeue item(" + dequeueItem + ") from queue; queue=");
         System.out.println(queue);
     }

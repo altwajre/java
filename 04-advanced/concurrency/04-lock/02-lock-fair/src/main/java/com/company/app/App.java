@@ -1,6 +1,8 @@
 package com.company.app;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /*
@@ -9,7 +11,7 @@ public class App
 {
     static int count = 0;
     static class Counter{
-        Lock lock = new Lock();
+        FairLock lock = new FairLock();
         public void increment(){
             lock.lock();
             try {
@@ -17,7 +19,7 @@ public class App
             } catch (InterruptedException e) { }
             count++;
             lock.unlock();
-            System.out.println(" "+Thread.currentThread().getName() + " increment finished; count: " + count);
+            System.out.println("  "+Thread.currentThread().getName() + " increment finished; count: " + count);
         }
     }
     static class QueueObject{  // wait and notify signal
@@ -35,6 +37,7 @@ public class App
             isNotified = true;
         }
     }
+    static List<String> list = new ArrayList<String>();
     static class FairLock{
         boolean isLocked = false;
         Thread lockingThread = null;
@@ -43,34 +46,40 @@ public class App
             QueueObject queueObject = new QueueObject();
             boolean isLockedForThisThread = true;
             synchronized (this){
+                System.out.println(" "+Thread.currentThread().getName() + " offer");
                 waitingThreads.offer(queueObject);
+                list.add(Thread.currentThread().getName());
             }
             while(isLockedForThisThread){
-
-            }
-        }
-    }
-
-
-    static class Lock{
-        boolean isLocked = false;
-        public void lock(){
-            synchronized (this){
-                while (isLocked){
-                    try {
-                        System.out.println(Thread.currentThread().getName() + " wait");
-                        wait();
-                    } catch (InterruptedException e) { }
+                System.out.println(" "+Thread.currentThread().getName() + " while()");
+                synchronized (this){
+                    System.out.println(" "+Thread.currentThread().getName() + " synced in while()");
+                    boolean isLastItemInQueue = waitingThreads.peek() != queueObject;
+                    // false||false=false;  false||true=true;  true||false=true;  true||true=true
+                    isLockedForThisThread = isLocked || isLastItemInQueue;
+                    if(!isLockedForThisThread){
+                        System.out.println(Thread.currentThread().getName() + " isLockedForThisThread=" + isLockedForThisThread
+                                + " isLocked=" + isLocked + " isLastItemInQueue=" + isLastItemInQueue);
+                        isLocked = true;
+                        waitingThreads.remove(queueObject);
+                        lockingThread = Thread.currentThread();
+                        return;
+                    }
                 }
-                isLocked = true;
+                System.out.println(Thread.currentThread().getName() + " doWait");
+                queueObject.doWait();
             }
         }
         public void unlock(){
-            synchronized (this){
-                System.out.println(" "+Thread.currentThread().getName() + " notify");
-                notify();
-                isLocked = false;
+            if(this.lockingThread != Thread.currentThread()){
+                throw new IllegalMonitorStateException("Calling thread has not locked this lock");
             }
+            if(waitingThreads.size() > 0){
+                System.out.println(" "+Thread.currentThread().getName() + " doNotify");
+                waitingThreads.peek().doNotify();
+            }
+            isLocked = false;
+            lockingThread = null;
         }
     }
     public static void main( String[] args )
@@ -91,5 +100,12 @@ public class App
                 }
             }.start();
         }
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(list);
     }
 }
