@@ -38,7 +38,7 @@ public class App
             count++;
         }
     }
-    static class Signal{
+    static class MonitorObject {
         public void doWait(){
             synchronized (this){
                 try {
@@ -54,10 +54,10 @@ public class App
     }
     public static void main( String[] args )
     {
-        final Signal signal = new Signal();
+        final MonitorObject monitorObject = new MonitorObject();
         Thread waitThread = new Thread(){
             public void run(){
-                signal.doWait();
+                monitorObject.doWait();
                 System.out.println("total count: " + count);
             }
         };
@@ -70,7 +70,7 @@ public class App
                 public void run(){
                     counter.increase();
                     System.out.println(Thread.currentThread().getName() + " - count: " + count);
-                    if(count == 20) signal.doNotify();
+                    if(count == 20) monitorObject.doNotify();
                 }
             }.start();
         }
@@ -79,7 +79,7 @@ public class App
                 public void run(){
                     counter.increase();
                     System.out.println(Thread.currentThread().getName() + " - count: " + count);
-                    if(count == 20) signal.doNotify();
+                    if(count == 20) monitorObject.doNotify();
                 }
             }.start();
         }

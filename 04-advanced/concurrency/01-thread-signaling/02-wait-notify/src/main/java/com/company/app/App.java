@@ -1,6 +1,8 @@
 package com.company.app;
 
 /*
+One wait-thread and one notify-thread by using one MonitorObject
+
 output:
 wait
 notify
@@ -9,7 +11,7 @@ wait finished
  */
 public class App 
 {
-    static class Singal{
+    static class MonitorObject {
         public void doWait() throws InterruptedException {
             synchronized (this){
                 wait();
@@ -23,12 +25,12 @@ public class App
     }
     public static void main( String[] args )
     {
-        final Singal singal = new Singal();
+        final MonitorObject monitorObject = new MonitorObject();
         Thread waitThread = new Thread(){
             public void run(){
                 System.out.println("wait");
                 try {
-                    singal.doWait();
+                    monitorObject.doWait();
                 } catch (InterruptedException e) {
                         e.printStackTrace();
                 }
@@ -45,7 +47,7 @@ public class App
                     e.printStackTrace();
                 }
                 System.out.println("notify");
-                singal.doNotify();
+                monitorObject.doNotify();
             }
         };
         notifyThread.start();

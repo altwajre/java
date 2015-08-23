@@ -4,6 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 /*
+Problem:
+1, if a thread calls notify() before the thread calls wait(), the waiting thread will miss signal,
+   so waiting thread may waiting forever.
+
+Solution:
+1, to avoid losing signals, add a member variable isNotified in the MonitorObject, so a thread will
+   only call wait() when isNotified=false ensure notify() will happen after wait()
+
 output:
 first_round_wait_thread_1 wait
 first_round_wait_thread_3 wait
@@ -24,24 +32,24 @@ second_round_wait_thread_1 wait
  */
 public class App 
 {
-    static class Signal{
-        boolean isSignalled = false;
+    static class MonitorObject {
+        boolean isNotified = false;
         public void doWait() throws InterruptedException {
             synchronized (this){
-                if(!isSignalled){
+                if(!isNotified){
                     wait();
                 }
-                isSignalled = false; // clear the signal and continue running
+                isNotified = false; // clear the signal and continue running
             }
         }
         public void doNotify(){
             synchronized (this){
-                isSignalled = true;
+                isNotified = true;
                 notify();
             }
         }
     }
-    static Signal signal = new Signal();
+    static MonitorObject monitorObject = new MonitorObject();
     static Set<String> set = new HashSet<String>();
     public static void main( String[] args ) throws InterruptedException {
         String threadName = "first_round_wait_thread_";
@@ -69,7 +77,7 @@ public class App
                         Thread.sleep(duration);
                         set.add(Thread.currentThread().getName());
                         System.out.println(Thread.currentThread().getName() + " wait");
-                        signal.doWait();
+                        monitorObject.doWait();
                     } catch (Exception e) {}
                     set.remove(Thread.currentThread().getName());
                     System.out.println("    " + Thread.currentThread().getName() + " finished");
@@ -85,7 +93,7 @@ public class App
                 public void run(){
                     try { Thread.sleep(duration); } catch (Exception e) {}
                     System.out.println("  " + Thread.currentThread().getName() + " notify");
-                    signal.doNotify();
+                    monitorObject.doNotify();
                 }
             }.start();
         }

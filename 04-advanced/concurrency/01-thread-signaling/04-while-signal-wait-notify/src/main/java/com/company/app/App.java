@@ -1,7 +1,13 @@
 package com.company.app;
 
 /*
-Spin lock
+while loop is a spin lock
+
+Problem: Spurious Wakeups
+1, it is possible for threads to wake up without notify()
+
+Solution:
+1, use while loop instead of if-statement to guard against spurious wakeup.
 
 output:
 wait
@@ -11,7 +17,7 @@ wait finished
  */
 public class App
 {
-    static class Signal {
+    static class MonitorObject {
         boolean isSignalled = false;
         public void doWait() throws InterruptedException {
             synchronized (this){
@@ -30,12 +36,12 @@ public class App
     }
     public static void main( String[] args )
     {
-        final Signal signal = new Signal();
+        final MonitorObject monitorObject = new MonitorObject();
         Thread waitThread = new Thread(){
             public void run(){
                 System.out.println("wait");
                 try {
-                    signal.doWait();
+                    monitorObject.doWait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -52,7 +58,7 @@ public class App
                     e.printStackTrace();
                 }
                 System.out.println("notify");
-                signal.doNotify();
+                monitorObject.doNotify();
             }
         };
         notifyThread.start();

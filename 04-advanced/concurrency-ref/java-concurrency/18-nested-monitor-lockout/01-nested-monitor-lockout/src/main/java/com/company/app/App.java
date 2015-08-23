@@ -1,10 +1,13 @@
 package com.company.app;
 
 /*
-Problem:
-1, in lock(), the inner monitorObject.wait() is holding the synchronization lock on "this" object, and it is waiting for
-   monitorObject.notify()
-2, however, in unlock(), no thread can enter synchronized(this) because "this" object is locked by lock()
+Problem: nested monitor lockout occurs
+1, in lock(), the inner monitorObject.wait() is holding the synchronization lock on "this" object,
+   and it is waiting for monitorObject.notify()
+2, in unlock(), no thread can enter synchronized(this) because "this" object is locked by lock()
+
+output:
+Thread_A_1 wait
 
  */
 public class App 

@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /*
+Multiple wait threads and notify threads by using one MonitorObject
+
 output:
 first_round_wait_thread_1 wait
 first_round_wait_thread_2 wait
@@ -24,7 +26,7 @@ second_round_wait_thread_3 wait
  */
 public class App
 {
-    static class Signal{
+    static class MonitorObject {
         public void doWait() throws InterruptedException {
             synchronized (this){
                 wait();  // exception occurs when not using synchronized
@@ -36,7 +38,7 @@ public class App
             }
         }
     }
-    static Signal signal = new Signal();
+    static MonitorObject monitorObject = new MonitorObject();
     static Set<String> set = new HashSet<String>();
     public static void main( String[] args ) throws InterruptedException {
         String threadName = "first_round_wait_thread_";
@@ -64,7 +66,7 @@ public class App
                         Thread.sleep(duration);
                         set.add(Thread.currentThread().getName());
                         System.out.println(Thread.currentThread().getName() + " wait");
-                        signal.doWait();
+                        monitorObject.doWait();
                     } catch (Exception e) {}
                     set.remove(Thread.currentThread().getName());
                     System.out.println("    " + Thread.currentThread().getName() + " finished");
@@ -80,7 +82,7 @@ public class App
                 public void run(){
                     try { Thread.sleep(duration); } catch (Exception e) {}
                     System.out.println("  " + Thread.currentThread().getName() + " notify");
-                    signal.doNotify();
+                    monitorObject.doNotify();
                 }
             }.start();
         }

@@ -4,7 +4,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 /*
-Spin lock
+while loop is a spin lock
+
+Problem: Spurious Wakeups
+1, it is possible for threads to wake up without notify()
+
+Solution:
+1, use while loop instead of if-statement to guard against spurious wakeup.
+
+output:
+wait
+notify
+wait finished
 
 output:
 first_round_wait_thread_1 wait
@@ -26,7 +37,7 @@ second_round_wait_thread_3 wait
  */
 public class App 
 {
-    static class Signal{
+    static class MonitorObject {
         boolean isSignalled = false;
         public void doWait() throws InterruptedException {
             synchronized (this){
@@ -43,7 +54,7 @@ public class App
             }
         }
     }
-    static Signal signal = new Signal();
+    static MonitorObject monitorObject = new MonitorObject();
     static Set<String> set = new HashSet<String>();
     public static void main( String[] args ) throws InterruptedException {
         String threadName = "first_round_wait_thread_";
@@ -71,7 +82,7 @@ public class App
                         Thread.sleep(duration);
                         set.add(Thread.currentThread().getName());
                         System.out.println(Thread.currentThread().getName() + " wait");
-                        signal.doWait();
+                        monitorObject.doWait();
                     } catch (Exception e) {}
                     set.remove(Thread.currentThread().getName());
                     System.out.println("    " + Thread.currentThread().getName() + " finished");
@@ -87,7 +98,7 @@ public class App
                 public void run(){
                     try { Thread.sleep(duration); } catch (Exception e) {}
                     System.out.println("  " + Thread.currentThread().getName() + " notify");
-                    signal.doNotify();
+                    monitorObject.doNotify();
                 }
             }.start();
         }

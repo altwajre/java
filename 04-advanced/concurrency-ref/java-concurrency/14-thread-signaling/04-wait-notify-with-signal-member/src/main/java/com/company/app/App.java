@@ -3,6 +3,14 @@ package com.company.app;
 /*
 http://tutorials.jenkov.com/java-concurrency/thread-signaling.html
 
+Problem:
+1, if a thread calls notify() before the thread calls wait(), the waiting thread will miss signal, so waiting thread may
+   waiting forever.
+
+Solution:
+1, to avoid losing signals, add a member variable isNotified in the MonitorObject, so a thread will only call wait()
+   when isNotified=false ensure notify() will happen after wait()
+
 output:
 Notify_Thread_1 before notify; SharedSignal.wasSignalled=false
 Notify_Thread_1 after notify; SharedSignal.wasSignalled=true
@@ -20,15 +28,14 @@ public class App
         public boolean wasSignalled = false;
         public void doWait(){
             synchronized (monitorObject){
-                if(!wasSignalled) {
+                if(!wasSignalled) {  // NOTE: wait() when wasSignalled=false
                     try {
                         monitorObject.wait();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                // clear signal and continue running.
-                wasSignalled = false;
+                wasSignalled = false;  // clear signal and continue running.
             }
         }
         public void doNotify(){
