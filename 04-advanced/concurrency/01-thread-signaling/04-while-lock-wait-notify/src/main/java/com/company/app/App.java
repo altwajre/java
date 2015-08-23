@@ -7,45 +7,46 @@ Problem: Spurious Wakeups
 1, it is possible for threads to wake up without notify()
 
 Solution:
-1, use while loop instead of if-statement to guard against spurious wakeup.
+1, use while loop instead of if-statement to guard against spurious wakeup to let go of the waiting thread
 
 output:
-wait
-notify
-wait finished
+lock
+unlock
+unlock finished
+lock finished
 
  */
 public class App
 {
-    static class MonitorObject {
-        boolean isSignalled = false;
-        public void doWait() throws InterruptedException {
+    static class Lock {
+        boolean isLocked = false;
+        public void lock() throws InterruptedException {
             synchronized (this){
-                while(!isSignalled){ // NOTE: spin lock
+                while(!isLocked){ // NOTE: spin lock
                     wait();
                 }
-                isSignalled = false;
+                isLocked = false;
             }
         }
-        public void doNotify(){
+        public void unlock(){
             synchronized (this){
                 notify();
-                isSignalled = true;
+                isLocked = true;
             }
         }
     }
     public static void main( String[] args )
     {
-        final MonitorObject monitorObject = new MonitorObject();
+        final Lock lock = new Lock();
         Thread waitThread = new Thread(){
             public void run(){
-                System.out.println("wait");
+                System.out.println("lock");
                 try {
-                    monitorObject.doWait();
+                    lock.lock();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("wait finished");
+                System.out.println("lock finished");
             }
         };
         waitThread.start();
@@ -57,8 +58,9 @@ public class App
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("notify");
-                monitorObject.doNotify();
+                System.out.println("unlock");
+                lock.unlock();
+                System.out.println("unlock finished");
             }
         };
         notifyThread.start();

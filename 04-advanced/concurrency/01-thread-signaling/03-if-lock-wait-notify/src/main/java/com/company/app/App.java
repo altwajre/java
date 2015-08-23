@@ -1,26 +1,37 @@
 package com.company.app;
 
 /*
-A lock-thread locks the Lock, and an unlock-thread unlock the Lock
+Problem:
+1, if a thread calls notify() before the thread calls wait(), the waiting thread will miss signal,
+   so waiting thread may waiting forever.
+
+Solution:
+1, to avoid losing signals, add a member variable isLocked in the Lock, so a thread will only call wait()
+   when isLocked=false ensure notify() will happen after wait()
 
 output:
 lock
 unlock
-unlockThread finished
-lockThread finished
+unlock finished
+lock finished
 
  */
 public class App 
 {
     static class Lock {
+        boolean isLocked = false;
         public void lock() throws InterruptedException {
             synchronized (this){
-                wait();
+                if(!isLocked){
+                    wait();
+                }
+                isLocked = false; // Clear the lock signal and continue running
             }
         }
         public void unlock(){
             synchronized (this){
                 notify();
+                isLocked = true;
             }
         }
     }
@@ -29,11 +40,13 @@ public class App
         final Lock lock = new Lock();
         Thread lockThread = new Thread(){
             public void run(){
-                System.out.println("lock");
                 try {
+                    System.out.println("lock");
                     lock.lock();
-                } catch (InterruptedException e) { }
-                System.out.println("lockThread finished");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("lock finished");
             }
         };
         lockThread.start();
@@ -47,7 +60,7 @@ public class App
                 }
                 System.out.println("unlock");
                 lock.unlock();
-                System.out.println("unlockThread finished");
+                System.out.println("unlock finished");
             }
         };
         unlockThread.start();
