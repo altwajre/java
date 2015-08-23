@@ -6,6 +6,10 @@ Problem: nested monitor lockout occurs
    and it is waiting for monitorObject.notify()
 2, in unlock(), no thread can enter synchronized(this) because "this" object is locked by lock()
 
+A nested monitor lockout occurs by two threads taking the locks in the same order.
+Thread_1 is holding a lock_A, and waits for a signal from Thread_2.
+Thread_2 needs the lock_A to send the signal to Thread_1.
+
 output:
 Thread_A_1 wait
 
