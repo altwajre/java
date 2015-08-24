@@ -45,7 +45,7 @@ Solution for slipped conditions
 Problem: missed signals
 1, we are using synchronized here
 
-Solution for missed signals
+Solution for missed signals (NOT YET implemented in the example below)
 1, implement doWait() and doNotify() in QueueObject to avoid missed signals. See fair-lock example in fairness lock.
 
 output:
@@ -54,25 +54,13 @@ output:
  */
 public class App
 {
-    static class QueueObject{
-        private boolean isNotified = false;
-        public synchronized void doWait() throws InterruptedException {
-            while(!isNotified){ this.wait(); }
-            this.isNotified = false;
-        }
-        public synchronized void doNotify(){
-            this.isNotified = true;
-            this.notify();
-        }
-        public boolean equals(Object o){ return this == o; }
-    }
     static class Lock{
         boolean isLocked = false;
         Set<String> isLockedList = new HashSet<String>();
         Thread lockingThread = null;
-        List<QueueObject> waitingThreads = new ArrayList<QueueObject>();
+        List<Object> waitingThreads = new ArrayList<Object>();
         public void lock() throws InterruptedException {
-            QueueObject queueObject = new QueueObject();
+            Object queueObject = new Object();
 
             synchronized (this){
                 waitingThreads.add(queueObject);
@@ -94,7 +82,7 @@ public class App
                 synchronized (queueObject){
                     if(mustWait){
                         try {
-                            queueObject.doWait();
+                            queueObject.wait();
                         } catch (InterruptedException e) {
                             waitingThreads.remove(queueObject);
                             throw e;
@@ -110,10 +98,10 @@ public class App
             isLocked = false;
             lockingThread = null;
             if(waitingThreads.size() > 0){
-                QueueObject queueObject = waitingThreads.get(0);
+                Object queueObject = waitingThreads.get(0);
                 synchronized (queueObject){
                     System.out.println(" " + Thread.currentThread().getName() + " notify");
-                    queueObject.doNotify();
+                    queueObject.notify();
                 }
             }
         }
