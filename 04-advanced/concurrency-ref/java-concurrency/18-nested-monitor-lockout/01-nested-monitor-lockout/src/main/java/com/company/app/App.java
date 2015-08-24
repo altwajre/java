@@ -1,6 +1,8 @@
 package com.company.app;
 
 /*
+http://tutorials.jenkov.com/java-concurrency/nested-monitor-lockout.html
+
 Problem: nested monitor lockout occurs
 1, in lock(), the inner monitorObject.wait() is holding the synchronization lock on "this" object,
    and it is waiting for monitorObject.notify()

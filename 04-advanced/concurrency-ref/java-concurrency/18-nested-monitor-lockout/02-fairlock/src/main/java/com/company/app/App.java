@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
+http://tutorials.jenkov.com/java-concurrency/nested-monitor-lockout.html
+
+A More Realistic Example of nested monitor lockout
+
 Problem: nested monitor lockout occurs
 1, in lock(), the inner queueObject.wait() is holding the synchronization lock on "this" object,
    and it output:
 Thread_A_1 wait
 is waiting for queueObject.notify()
 2, for unlock(), no thread can enter synchronized unlock() because "this" object is locked by lock()
-
 
  */
 public class App 
