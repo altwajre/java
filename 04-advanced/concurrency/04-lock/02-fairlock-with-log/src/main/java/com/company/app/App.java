@@ -7,26 +7,31 @@ For how to implement the FairLock, see Slipped Conditions realistic example at l
 http://tutorials.jenkov.com/java-concurrency/slipped-conditions.html
 
 output:
-Thread_A_3 doWait
-Thread_B_3 doWait
-Thread_A_2 doWait
-Thread_B_2 doWait
-Thread_B_1 doWait
- Thread_A_1 doNotify
+Thread_A_1 *isLocked = false
+Thread_A_1 (workerThreads.get(0) != queueObject) = false
+Thread_A_1 mustWait = false
+Thread_A_2 *isLocked = true
+Thread_A_2 (workerThreads.get(0) != queueObject) = false
+Thread_A_2 mustWait = true
+Thread_A_2 doWait; queueObject.count=2
+Thread_A_3 *isLocked = true
+Thread_A_3 (workerThreads.get(0) != queueObject) = true
+Thread_A_3 mustWait = true
+Thread_A_3 doWait; queueObject.count=3
+ Thread_A_1 doNotify; queueObject.count=2  ## run following three lines Thread_A_2 code because of while loop
+Thread_A_2 *isLocked = false
+Thread_A_2 (workerThreads.get(0) != queueObject) = false
+Thread_A_2 mustWait = false
   Thread_A_1 increment finished; count: 1
- Thread_A_3 doNotify
-  Thread_A_3 increment finished; count: 2
- Thread_B_1 doNotify
-  Thread_B_1 increment finished; count: 3
- Thread_B_2 doNotify
-  Thread_B_2 increment finished; count: 4
- Thread_A_2 doNotify
-  Thread_A_2 increment finished; count: 5
-  Thread_B_3 increment finished; count: 6
-[Thread_A_1, Thread_A_3, Thread_B_1, Thread_B_2, Thread_A_2, Thread_B_3]
+ Thread_A_2 doNotify; queueObject.count=3
+  Thread_A_2 increment finished; count: 2
+Thread_A_3 *isLocked = false
+Thread_A_3 (workerThreads.get(0) != queueObject) = false
+Thread_A_3 mustWait = false
+  Thread_A_3 increment finished; count: 3
 
  */
-public class App 
+public class App
 {
     static int count = 0;
     static class Counter{
@@ -40,7 +45,13 @@ public class App
             System.out.println("  "+Thread.currentThread().getName() + " increment finished; count: " + count);
         }
     }
+    static int objCount = 1;
     static class QueueObject{  // wait and notify signal
+        public QueueObject(int count){
+            this.count = count;
+            objCount++;
+        }
+        public int count;
         boolean isNotified = false;
         public synchronized void doWait(){
             while(!isNotified){
@@ -61,7 +72,7 @@ public class App
         Thread lockingThread = null;
         List<QueueObject> workerThreads = new ArrayList<QueueObject>();
         public void lock() throws InterruptedException {
-            QueueObject queueObject = new QueueObject();  // use wait and notify to avoid missed signal
+            QueueObject queueObject = new QueueObject(objCount);  // use wait and notify to avoid missed signal
             synchronized (this){
                 list.add(Thread.currentThread().getName());
                 workerThreads.add(queueObject);
@@ -80,6 +91,9 @@ public class App
                     2, set isLocked to true
                     3, set lockingThread to currentThread
                      */
+                    System.out.println(Thread.currentThread().getName()+ " *isLocked = "+isLocked);
+                    System.out.println(Thread.currentThread().getName() + " (workerThreads.get(0) != queueObject) = "+(workerThreads.get(0) != queueObject));
+                    System.out.println(Thread.currentThread().getName() + " mustWait = "+mustWait);
                     if(!mustWait){  // when mustWait is false,
                         if(workerThreads.size() > 0) workerThreads.remove(queueObject);
                         isLocked = true;
@@ -93,7 +107,7 @@ public class App
                  */
                 synchronized (queueObject){
                     if(mustWait){
-                        System.out.println(Thread.currentThread().getName() + " doWait");
+                        System.out.println(Thread.currentThread().getName() + " doWait; queueObject.count=" + queueObject.count);
                         queueObject.doWait();
                     }
                 }
@@ -108,7 +122,7 @@ public class App
             if(workerThreads.size() > 0){
                 QueueObject queueObject = workerThreads.get(0);
                 synchronized (queueObject){
-                    System.out.println(" " + Thread.currentThread().getName() + " doNotify");
+                    System.out.println(" " + Thread.currentThread().getName() + " doNotify; queueObject.count=" + queueObject.count);
                     queueObject.doNotify();
                 }
             }
@@ -117,31 +131,27 @@ public class App
     public static void main( String[] args )
     {
         final Counter counter = new Counter();
-        int threadCount = 3;
-        for(int i = 1; i <= threadCount; i++){
-            new Thread("Thread_A_" + i){
-                public void run(){
-                    try {
-                        counter.increment();
-                    } catch (InterruptedException e) { }
-                }
-            }.start();
-        }
-        for(int i = 1; i <= threadCount; i++){
-            new Thread("Thread_B_" + i){
-                public void run(){
-                    try {
-                        counter.increment();
-                    } catch (InterruptedException e) { }
-                }
-            }.start();
-        }
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println(list);
+        new Thread("Thread_A_" + 1){
+            public void run(){
+                try {
+                    counter.increment();
+                } catch (InterruptedException e) { }
+            }
+        }.start();
+        new Thread("Thread_A_" + 2){
+            public void run(){
+                try {
+                    counter.increment();
+                } catch (InterruptedException e) { }
+            }
+        }.start();
+        new Thread("Thread_A_" + 3){
+            public void run(){
+                try {
+                    counter.increment();
+                } catch (InterruptedException e) { }
+            }
+        }.start();
     }
 }
