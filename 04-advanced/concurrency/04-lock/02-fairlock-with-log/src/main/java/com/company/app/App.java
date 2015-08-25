@@ -124,14 +124,6 @@ public class App
                 }
             }
         }
-
-        private void printQueueObjects(String msg) {
-            System.out.print(msg + " QueueObjects: ");
-            for(QueueObject queueObj : queueObjects)
-                System.out.print("queueObject.id=" + queueObj.id + " ");
-            System.out.println("");
-        }
-
         public synchronized void unlock(){
             if(this.lockingThread != Thread.currentThread()){
                 throw new IllegalMonitorStateException("Calling thread has not locked this lock");
@@ -145,6 +137,12 @@ public class App
                     queueObject.doNotify();
                 }
             }
+        }
+        private void printQueueObjects(String msg) {
+            System.out.print(msg + " QueueObjects: ");
+            for(QueueObject queueObj : queueObjects)
+                System.out.print("queueObject.id=" + queueObj.id + " ");
+            System.out.println("");
         }
     }
     public static void main( String[] args )
