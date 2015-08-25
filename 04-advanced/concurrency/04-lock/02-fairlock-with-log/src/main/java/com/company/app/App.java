@@ -7,27 +7,33 @@ For how to implement the FairLock, see Slipped Conditions realistic example at l
 http://tutorials.jenkov.com/java-concurrency/slipped-conditions.html
 
 output:
+After added QueueObjects: queueObject.id=1
 Thread_A_1 *isLocked = false
-Thread_A_1 (workerThreads.get(0) != queueObject) = false
+Thread_A_1 (queueObjects.get(0) != queueObject) = false; queueObject.id=1
 Thread_A_1 mustWait = false
+After removed QueueObjects:
+After added QueueObjects: queueObject.id=2
 Thread_A_2 *isLocked = true
-Thread_A_2 (workerThreads.get(0) != queueObject) = false
+Thread_A_2 (queueObjects.get(0) != queueObject) = false; queueObject.id=2
 Thread_A_2 mustWait = true
-Thread_A_2 doWait; queueObject.count=2
+Thread_A_2 queueObject.id=2 doWait()
+After added QueueObjects: queueObject.id=2 queueObject.id=3
 Thread_A_3 *isLocked = true
-Thread_A_3 (workerThreads.get(0) != queueObject) = true
+Thread_A_3 (queueObjects.get(0) != queueObject) = true; queueObject.id=3
 Thread_A_3 mustWait = true
-Thread_A_3 doWait; queueObject.count=3
- Thread_A_1 doNotify; queueObject.count=2  ## run following three lines Thread_A_2 code because of while loop
-Thread_A_2 *isLocked = false
-Thread_A_2 (workerThreads.get(0) != queueObject) = false
-Thread_A_2 mustWait = false
+Thread_A_3 queueObject.id=3 doWait()
+ Thread_A_1 queueObject.id=2 doNotify()  ## run following three lines Thread_A_2 code because of while loop
   Thread_A_1 increment finished; count: 1
- Thread_A_2 doNotify; queueObject.count=3
+Thread_A_2 *isLocked = false
+Thread_A_2 (queueObjects.get(0) != queueObject) = false; queueObject.id=2
+Thread_A_2 mustWait = false
+After removed QueueObjects: queueObject.id=3
+ Thread_A_2 queueObject.id=3 doNotify()
   Thread_A_2 increment finished; count: 2
 Thread_A_3 *isLocked = false
-Thread_A_3 (workerThreads.get(0) != queueObject) = false
+Thread_A_3 (queueObjects.get(0) != queueObject) = false; queueObject.id=3
 Thread_A_3 mustWait = false
+After removed QueueObjects:
   Thread_A_3 increment finished; count: 3
 
  */
@@ -45,13 +51,13 @@ public class App
             System.out.println("  "+Thread.currentThread().getName() + " increment finished; count: " + count);
         }
     }
-    static int objCount = 1;
-    static class QueueObject{  // wait and notify signal
-        public QueueObject(int count){
-            this.count = count;
-            objCount++;
+    static int objId = 1;
+    static class QueueObject {  // wait and notify signal
+        public QueueObject(int id){
+            this.id = id;
+            objId++;
         }
-        public int count;
+        public int id;
         boolean isNotified = false;
         public synchronized void doWait(){
             while(!isNotified){
@@ -70,32 +76,37 @@ public class App
         boolean isLocked = false;
         Set<String> isLockedList = new HashSet<String>();
         Thread lockingThread = null;
-        List<QueueObject> workerThreads = new ArrayList<QueueObject>();
+        List<QueueObject> queueObjects = new ArrayList<QueueObject>();
         public void lock() throws InterruptedException {
-            QueueObject queueObject = new QueueObject(objCount);  // use wait and notify to avoid missed signal
+            QueueObject queueObject;
             synchronized (this){
                 list.add(Thread.currentThread().getName());
-                workerThreads.add(queueObject);
+                queueObject = new QueueObject(objId);  // use wait and notify to avoid missed signal
+                queueObjects.add(queueObject);  // ADD
+                printQueueObjects("After added");
             }
             boolean mustWait = true;
             while(mustWait){
                 synchronized (this){
                     isLockedList.add(Thread.currentThread().getName() + " isLocked=" + isLocked);
                     /*   must wait when following
+                         do not need to wait when the lock is unlocked, and only one worker thread waiting
                     1, isLocked=true or
-                    2, queueObject is not the first worker thread which means (workerThreads.get(0) != queueObject)=true
+                    2, queueObject is not the ONLY worker thread waiting means (queueObjects.get(0) != queueObject) = true
                      */
-                    mustWait = isLocked || workerThreads.get(0) != queueObject;
+                    mustWait = isLocked || queueObjects.get(0) != queueObject;
                     /*  if !mustWait which means we do not need to wait, so a thread can go in to do the work
-                    1, remove queueObject from workerThreads
+                    1, remove queueObject from queueObjects
                     2, set isLocked to true
                     3, set lockingThread to currentThread
                      */
                     System.out.println(Thread.currentThread().getName()+ " *isLocked = "+isLocked);
-                    System.out.println(Thread.currentThread().getName() + " (workerThreads.get(0) != queueObject) = "+(workerThreads.get(0) != queueObject));
+                    System.out.println(Thread.currentThread().getName() + " (queueObjects.get(0) != queueObject) = "
+                            + (queueObjects.get(0) != queueObject) + "; queueObject.id=" + queueObject.id);
                     System.out.println(Thread.currentThread().getName() + " mustWait = "+mustWait);
                     if(!mustWait){  // when mustWait is false,
-                        if(workerThreads.size() > 0) workerThreads.remove(queueObject);
+                        if(queueObjects.size() > 0) queueObjects.remove(queueObject);  // REMOVE
+                        printQueueObjects("After removed");
                         isLocked = true;
                         lockingThread = Thread.currentThread();
                         return; // no reason to continue when mustWait=false
@@ -107,22 +118,30 @@ public class App
                  */
                 synchronized (queueObject){
                     if(mustWait){
-                        System.out.println(Thread.currentThread().getName() + " doWait; queueObject.count=" + queueObject.count);
+                        System.out.println(Thread.currentThread().getName() + " queueObject.id=" + queueObject.id + " doWait()");
                         queueObject.doWait();
                     }
                 }
             }
         }
+
+        private void printQueueObjects(String msg) {
+            System.out.print(msg + " QueueObjects: ");
+            for(QueueObject queueObj : queueObjects)
+                System.out.print("queueObject.id=" + queueObj.id + " ");
+            System.out.println("");
+        }
+
         public synchronized void unlock(){
             if(this.lockingThread != Thread.currentThread()){
                 throw new IllegalMonitorStateException("Calling thread has not locked this lock");
             }
             isLocked = false;
             lockingThread = null;
-            if(workerThreads.size() > 0){
-                QueueObject queueObject = workerThreads.get(0);
+            if(queueObjects.size() > 0){
+                QueueObject queueObject = queueObjects.get(0);
                 synchronized (queueObject){
-                    System.out.println(" " + Thread.currentThread().getName() + " doNotify; queueObject.count=" + queueObject.count);
+                    System.out.println(" " + Thread.currentThread().getName() + " queueObject.id=" + queueObject.id + " doNotify()" );
                     queueObject.doNotify();
                 }
             }
