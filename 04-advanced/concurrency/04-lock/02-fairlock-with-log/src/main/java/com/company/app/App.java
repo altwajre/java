@@ -13,28 +13,29 @@ Thread_A_1 (queueObjects.get(0) != queueObject) = false; queueObject.id=1
 Thread_A_1 mustWait = false
 After removed QueueObjects:
 After added QueueObjects: queueObject.id=2
-Thread_A_2 *isLocked = true
-Thread_A_2 (queueObjects.get(0) != queueObject) = false; queueObject.id=2
-Thread_A_2 mustWait = true
-Thread_A_2 queueObject.id=2 doWait()
-After added QueueObjects: queueObject.id=2 queueObject.id=3
 Thread_A_3 *isLocked = true
-Thread_A_3 (queueObjects.get(0) != queueObject) = true; queueObject.id=3
+Thread_A_3 (queueObjects.get(0) != queueObject) = false; queueObject.id=2
 Thread_A_3 mustWait = true
-Thread_A_3 queueObject.id=3 doWait()
- Thread_A_1 queueObject.id=2 doNotify()  ## run following three lines Thread_A_2 code because of while loop
-  Thread_A_1 increment finished; count: 1
-Thread_A_2 *isLocked = false
-Thread_A_2 (queueObjects.get(0) != queueObject) = false; queueObject.id=2
-Thread_A_2 mustWait = false
-After removed QueueObjects: queueObject.id=3
- Thread_A_2 queueObject.id=3 doNotify()
-  Thread_A_2 increment finished; count: 2
+Thread_A_3 queueObject.id=2 doWait()
+After added QueueObjects: queueObject.id=2 queueObject.id=3
+Thread_A_2 *isLocked = true
+Thread_A_2 (queueObjects.get(0) != queueObject) = true; queueObject.id=3
+Thread_A_2 mustWait = true
+Thread_A_2 queueObject.id=3 doWait()
+ Thread_A_1 queueObject.id=2 doNotify()
 Thread_A_3 *isLocked = false
-Thread_A_3 (queueObjects.get(0) != queueObject) = false; queueObject.id=3
+  Thread_A_1 increment finished; count: 1
+Thread_A_3 (queueObjects.get(0) != queueObject) = false; queueObject.id=2
 Thread_A_3 mustWait = false
+After removed QueueObjects: queueObject.id=3
+ Thread_A_3 queueObject.id=3 doNotify()
+  Thread_A_3 increment finished; count: 2
+Thread_A_2 *isLocked = false
+Thread_A_2 (queueObjects.get(0) != queueObject) = false; queueObject.id=3
+Thread_A_2 mustWait = false
 After removed QueueObjects:
-  Thread_A_3 increment finished; count: 3
+  Thread_A_2 increment finished; count: 3
+3
 
  */
 public class App
@@ -148,27 +149,56 @@ public class App
     public static void main( String[] args )
     {
         final Counter counter = new Counter();
+        int threadCount = 3;
+        for(int i = 1; i <= threadCount; i++){
+            new Thread("Thread_A_" + i){
+                public void run(){
+                    try {
+                        counter.increment();
+                    } catch (InterruptedException e) { }
+                }
+            }.start();
+        }
+//        for(int i = 1; i <= threadCount; i++){
+//            new Thread("Thread_B_" + i){
+//                public void run(){
+//                    try {
+//                        counter.increment();
+//                    } catch (InterruptedException e) { }
+//                }
+//            }.start();
+//        }
 
-        new Thread("Thread_A_" + 1){
-            public void run(){
-                try {
-                    counter.increment();
-                } catch (InterruptedException e) { }
-            }
-        }.start();
-        new Thread("Thread_A_" + 2){
-            public void run(){
-                try {
-                    counter.increment();
-                } catch (InterruptedException e) { }
-            }
-        }.start();
-        new Thread("Thread_A_" + 3){
-            public void run(){
-                try {
-                    counter.increment();
-                } catch (InterruptedException e) { }
-            }
-        }.start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+        }
+
+        System.out.println(count);
+
+
+//        final Counter counter = new Counter();
+//
+//        new Thread("Thread_A_" + 1){
+//            public void run(){
+//                try {
+//                    counter.increment();
+//                } catch (InterruptedException e) { }
+//            }
+//        }.start();
+//        new Thread("Thread_A_" + 2){
+//            public void run(){
+//                try {
+//                    counter.increment();
+//                } catch (InterruptedException e) { }
+//            }
+//        }.start();
+//        new Thread("Thread_A_" + 3){
+//            public void run(){
+//                try {
+//                    counter.increment();
+//                } catch (InterruptedException e) { }
+//            }
+//        }.start();
     }
 }
