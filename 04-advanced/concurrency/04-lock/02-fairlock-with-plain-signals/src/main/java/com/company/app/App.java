@@ -40,8 +40,8 @@ Thread_A_2 removed signals: signal.id=3
  */
 public class App 
 {
-    static int count;
     static class Counter{
+        public int count = 0;
         Lock lock = new Lock();
         public void increment(){
             lock.lock();
@@ -56,7 +56,6 @@ public class App
     static class Signal {
         public Signal(int id){
             this.id = id;
-            idCount++;
         }
         public int id;
     }
@@ -66,7 +65,7 @@ public class App
         public void lock(){
             Signal signal;
             synchronized (this){
-                signal = new Signal(idCount);
+                signal = new Signal(idCount++);
                 signals.add(signal);
                 System.out.println(Thread.currentThread().getName() + " added signals: signal.id=" + signal.id);
             }
@@ -132,6 +131,6 @@ public class App
         } catch (InterruptedException e) {
         }
 
-        System.out.println(count);
+        System.out.println(counter.count);
     }
 }

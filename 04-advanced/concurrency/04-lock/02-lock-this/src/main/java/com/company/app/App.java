@@ -28,8 +28,8 @@ Thread_B_3: lock wait
  */
 public class App 
 {
-    static int count = 0;
     static class Counter {
+        public int count = 0;
         Lock lock = new Lock();
         public void increment(){
             lock.lock();

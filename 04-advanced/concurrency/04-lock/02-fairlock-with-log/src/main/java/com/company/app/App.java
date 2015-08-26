@@ -40,8 +40,8 @@ After removed QueueObjects:
  */
 public class App
 {
-    static int count = 0;
     static class Counter{
+        public int count = 0;
         FairLock lock = new FairLock();
         public void increment() throws InterruptedException {
             lock.lock();
@@ -56,7 +56,6 @@ public class App
     static class QueueObject {  // wait and notify signal
         public QueueObject(int id){
             this.id = id;
-            objId++;
         }
         public int id;
         boolean isNotified = false;
@@ -82,7 +81,7 @@ public class App
             QueueObject queueObject;
             synchronized (this){
                 list.add(Thread.currentThread().getName());
-                queueObject = new QueueObject(objId);  // use wait and notify to avoid missed signal
+                queueObject = new QueueObject(objId++);  // use wait and notify to avoid missed signal
                 queueObjects.add(queueObject);  // ADD
                 printQueueObjects("After added");
             }
@@ -174,7 +173,7 @@ public class App
         } catch (InterruptedException e) {
         }
 
-        System.out.println(count);
+        System.out.println(counter.count);
 
 
 //        final Counter counter = new Counter();

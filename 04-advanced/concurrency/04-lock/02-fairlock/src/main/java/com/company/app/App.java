@@ -28,8 +28,8 @@ Thread_B_1 doWait
  */
 public class App 
 {
-    static int count = 0;
     static class Counter{
+        public int count = 0;
         FairLock lock = new FairLock();
         public void increment() throws InterruptedException {
             lock.lock();

@@ -9,8 +9,8 @@ output:
  */
 public class App 
 {
-    static int count = 0;
     static class Counter{
+        public int count = 0;
         Lock lock = new Lock();
         public void increment(){
             lock.lock();
@@ -64,6 +64,6 @@ public class App
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) { }
-        System.out.println(count);
+        System.out.println(counter.count);
     }
 }
