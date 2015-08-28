@@ -12,6 +12,20 @@ lockWrite()
 lockRead()
 1, wait while(writers > 0 || writeRequests > 0)
 
+Problem:
+The ReadWriteLock class shown earlier is not reentrant. If a thread that has write access requests it again,
+it will block because there is already one writer - itself. Furthermore, consider this case:
+
+1, Thread 1 gets read access.
+2, Thread 2 requests write access but is blocked because there is one reader.
+3, Thread 1 re-requests read access (re-enters the block), but is blocked because there is a write request.
+
+In this situation the previous ReadWriteLock would lock up - a situation similar to deadlock.
+No threads requesting neither read nor write access would be granted so.
+
+To make the ReadWriteLock reentrant it is necessary to make a few changes. Reentrance for readers and writers
+will be dealt with separately.
+
 
 output:
 Thread_1 lockWrite(); readers=0; writers=0; writeRequests=1
