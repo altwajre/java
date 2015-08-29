@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
+http://tutorials.jenkov.com/java-concurrency/read-write-locks.html
+https://www.youtube.com/watch?v=nmCfNtK_NzA
+
 Solution:
 lockWrite()
 1, writeRequests++

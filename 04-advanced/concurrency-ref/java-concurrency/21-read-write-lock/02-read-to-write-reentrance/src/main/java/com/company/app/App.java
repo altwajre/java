@@ -3,9 +3,10 @@ package com.company.app;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Hello world!
- *
+/*
+http://tutorials.jenkov.com/java-concurrency/read-write-locks.html
+https://www.youtube.com/watch?v=nmCfNtK_NzA
+
  */
 public class App
 {
