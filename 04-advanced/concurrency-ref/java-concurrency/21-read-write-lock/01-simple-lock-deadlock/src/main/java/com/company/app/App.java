@@ -12,48 +12,42 @@ lockWrite()
 lockRead()
 1, wait while(writers > 0 || writeRequests > 0)
 
+Problem:
+The ReadWriteLock class shown earlier is not reentrant. If a thread that has write access requests it again,
+it will block because there is already one writer - itself. Furthermore, consider this case:
+
+1, Thread 1 gets read access.
+2, Thread 2 requests write access but is blocked because there is one reader.
+3, Thread 1 re-requests read access (re-enters the block), but is blocked because there is a write request.
+
+In this situation the previous ReadWriteLock would lock up - a situation similar to deadlock.
+No threads requesting neither read nor write access would be granted so.
+
+To make the ReadWriteLock reentrant it is necessary to make a few changes. Reentrance for readers and writers
+will be dealt with separately.
+
 output:
-Thread_1 lockWrite(); readers=0; writers=0; writeRequests=1
-Thread_1 lockWrite() exit while loop
-Thread_2 lockWrite(); readers=0; writers=1; writeRequests=1
-Thread_2 lockWrite() within while loop; readers=0; writers=1; writeRequests=1
-Thread_2 write wait
-  Thread_3 lockRead(); readers=0; writers=1; writeRequests=1
-  Thread_3 lockRead() within while loop; readers=0; writers=1; writeRequests=1
-  Thread_3 read wait
-Thread_4 lockWrite(); readers=0; writers=1; writeRequests=2
-Thread_4 lockWrite() within while loop; readers=0; writers=1; writeRequests=2
-Thread_4 write wait
-  Thread_5 lockRead(); readers=0; writers=1; writeRequests=2
-  Thread_5 lockRead() within while loop; readers=0; writers=1; writeRequests=2
-  Thread_5 read wait
-Thread_1 after lockWrite - add 1
-Thread_1 write notifyAll
-  Thread_5 lockRead() within while loop; readers=0; writers=0; writeRequests=2
-  Thread_5 read wait
-Thread_4 lockWrite() exit while loop
-  Thread_3 lockRead() within while loop; readers=0; writers=1; writeRequests=1
-  Thread_3 read wait
-Thread_2 lockWrite() within while loop; readers=0; writers=1; writeRequests=1
-Thread_2 write wait
-Thread_4 after lockWrite - add 4
-Thread_4 write notifyAll
-Thread_2 lockWrite() exit while loop
-  Thread_3 lockRead() within while loop; readers=0; writers=1; writeRequests=0
-  Thread_3 read wait
-  Thread_5 lockRead() within while loop; readers=0; writers=1; writeRequests=0
-  Thread_5 read wait
-Thread_2 after lockWrite - add 2
-Thread_2 write notifyAll
-Thread_5 lockRead() exit while loop
-Thread_3 lockRead() exit while loop
-  Thread_5 after lockRead - get 0
-  Thread_5 read notifyAll
-  Thread_3 after lockRead - get 1
-  Thread_3 read notifyAll
+Exception in thread "main" java.lang.IllegalThreadStateException
+	at java.lang.Thread.start(Thread.java:705)
+  Thread_read lockRead(); readers=0; writers=0; writeRequests=0
+	at com.company.app.App.main(App.java:120)
+Thread_read lockRead() exit while loop
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+Thread_write lockWrite(); readers=1; writers=0; writeRequests=1
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+Thread_write lockWrite() within while loop; readers=1; writers=0; writeRequests=1
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+Thread_write write wait
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:140)
+  Thread_read after lockRead - get 1
+  Thread_read read notifyAll
+Thread_write lockWrite() exit while loop
+Thread_write after lockWrite - add 11
+Thread_write write notifyAll
 
  */
-public class App 
+public class App
 {
     static class ReadWriteLock{
         int readers = 0;
@@ -96,10 +90,15 @@ public class App
             notifyAll();
         }
     }
-    static class ThreadSafeArrayList<T>{
+    static class ThreadSafeArrayList{
         ReadWriteLock readWriteLock = new ReadWriteLock();
-        List<T> list = new ArrayList<T>();
-        public void add(T t) throws InterruptedException {
+        List<Integer> list = new ArrayList<Integer>();
+        public ThreadSafeArrayList(){ // NOTE: pre-populated data
+            for(int i = 1; i <= 3; i++){
+                list.add(i);
+            }
+        }
+        public void add(Integer t) throws InterruptedException {
             readWriteLock.lockWrite();
             try{
                 Thread.sleep(1000);
@@ -108,7 +107,7 @@ public class App
             }
             finally { readWriteLock.unlockWrite(); }
         }
-        public T get(int i) throws InterruptedException {
+        public Integer get(int i) throws InterruptedException {
             readWriteLock.lockRead();
             try{
                 Thread.sleep(1000);
@@ -119,35 +118,25 @@ public class App
         }
     }
     public static void main( String[] args ) {
-        final ThreadSafeArrayList<Integer> threadSafeArrayList = new ThreadSafeArrayList<Integer>();
-        new Thread("Thread_1"){
-            public void run(){
-                try { threadSafeArrayList.add(1); } catch (InterruptedException e) { }
-            }
-        }.start();
+        final ThreadSafeArrayList threadSafeArrayList = new ThreadSafeArrayList();
 
-        new Thread("Thread_2"){
-            public void run(){
-                try { threadSafeArrayList.add(2); } catch (InterruptedException e) { }
-            }
-        }.start();
-
-        new Thread("Thread_3"){
+        // 1, Thread 1 gets read access
+        Thread readThread = new Thread("Thread_read"){
             public void run(){
                 try { threadSafeArrayList.get(1); } catch (InterruptedException e) { }
             }
-        }.start();
+        };
+        readThread.start();
 
-        new Thread("Thread_4"){
+        // 2, Thread 2 requests write access but is blocked because there is one reader
+        Thread writeThread = new Thread("Thread_write"){
             public void run(){
-                try { threadSafeArrayList.add(4); } catch (InterruptedException e) { }
+                try { threadSafeArrayList.add(11); } catch (InterruptedException e) { }
             }
-        }.start();
+        };
+        writeThread.start();
 
-        new Thread("Thread_5"){
-            public void run(){
-                try { threadSafeArrayList.get(0); } catch (InterruptedException e) { }
-            }
-        }.start();
+        // 3, Thread 1 re-requests read access (re-enters the block), but is blocked because there is a write request.
+        readThread.start();
     }
 }
