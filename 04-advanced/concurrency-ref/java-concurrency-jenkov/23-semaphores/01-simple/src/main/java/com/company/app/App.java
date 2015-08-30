@@ -1,9 +1,11 @@
 package com.company.app;
 
 /*
+http://tutorials.jenkov.com/java-concurrency/semaphores.html
+
 Two threads signaling each other using a Semaphore
 
-It is like Stop-Light lets a car pass it one at a time
+For example, like Stop-Light lets a car pass it one at a time
 1, The Car thread that has many cars waiting on the Stop-Light thread
 2, For the Stop-Light thread, each green signal lets a car that is in front of the Stop-Light pass and then becomes RED
 
@@ -63,7 +65,7 @@ public class App
                     semaphore.release();  // wait
                     try {
                         System.out.println(threadName + ": start going");
-                        Thread.sleep(10);
+                        Thread.sleep(10);  // do something
                         System.out.println(threadName + ": pass Stop-Light");
                     } catch (InterruptedException e) { }
                 }
@@ -75,11 +77,11 @@ public class App
                 while(true){  // do something, then signal
                     try {
                         System.out.println("\n" + Thread.currentThread().getName() + ": RED; ticking");
-                        Thread.sleep(1000);
+                        Thread.sleep(1000);  // do something
                     } catch (InterruptedException e) { }
                     System.out.println(Thread.currentThread().getName() + ": GREEN; notify");
                     semaphore.take();  // notify
-                    try { Thread.sleep(15);
+                    try { Thread.sleep(15);  // do something
                     } catch (InterruptedException e) { }
                 }
             }
