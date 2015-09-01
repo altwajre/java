@@ -67,7 +67,26 @@ Open a new command prompt (Winkey + R then type cmd) and run mvn --version to ve
 
 ## KB
 
-> ClassNotFoundException - solution: add maven-shade-plugin
+### Error: source release 8 requires target release 1.8
+
+Solution: add following plugin to maven pom.xml
+```
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+```
+
+### ClassNotFoundException - solution: add maven-shade-plugin
 
 ```
 Problem:
