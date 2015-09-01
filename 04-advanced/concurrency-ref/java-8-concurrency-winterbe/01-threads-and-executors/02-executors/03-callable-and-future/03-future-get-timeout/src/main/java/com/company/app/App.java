@@ -3,6 +3,8 @@ package com.company.app;
 import java.util.concurrent.*;
 
 /*
+http://winterbe.com/posts/2015/04/07/java8-concurrency-tutorial-thread-executor-examples/
+
 future.get() will block and wait until the underlying callable has been terminated.
 If a callable runs forever, your application will be unresponsive. You can passing a timeout to address the issue.
 
