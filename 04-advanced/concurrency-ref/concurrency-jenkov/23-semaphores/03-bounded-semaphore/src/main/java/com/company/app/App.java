@@ -1,34 +1,33 @@
 package com.company.app;
 
 /*
-checkout http://winterbe.com/posts/2015/04/30/java8-concurrency-tutorial-synchronized-locks-examples/
+http://tutorials.jenkov.com/java-concurrency/semaphores.html
 
 output:
-  Thread_Take_1: take() notify; Semaphore.signals=1
-Thread_Take_1: main() semaphore acquired; Semaphore.signals=1
-  Thread_Take_2: take() notify; Semaphore.signals=2
-Thread_Take_2: main() semaphore acquired; Semaphore.signals=2
-Thread_Take_3: take() wait; Semaphore.signals=2
-Thread_Take_4: take() wait; Semaphore.signals=2
-Thread_Take_5: take() wait; Semaphore.signals=2
-Thread_Take_1: main() semaphore acquired; finished task
-  Thread_Take_1: release() notify; Semaphore.signals=1
-  Thread_Take_3: take() notify; Semaphore.signals=2
-Thread_Take_3: main() semaphore acquired; Semaphore.signals=2
-Thread_Take_4: take() wait; Semaphore.signals=2
-Thread_Take_2: main() semaphore acquired; finished task
-  Thread_Take_2: release() notify; Semaphore.signals=1
-  Thread_Take_5: take() notify; Semaphore.signals=2
-Thread_Take_5: main() semaphore acquired; Semaphore.signals=2
-Thread_Take_4: take() wait; Semaphore.signals=2
-Thread_Take_3: main() semaphore acquired; finished task
-  Thread_Take_3: release() notify; Semaphore.signals=1
-  Thread_Take_4: take() notify; Semaphore.signals=2
-Thread_Take_4: main() semaphore acquired; Semaphore.signals=2
-Thread_Take_5: main() semaphore acquired; finished task
-  Thread_Take_5: release() notify; Semaphore.signals=1
-Thread_Take_4: main() semaphore acquired; finished task
-  Thread_Take_4: release() notify; Semaphore.signals=0
+  Thread_1: take() notify; Semaphore.signals=1
+Thread_1: main() semaphore acquired; Semaphore.signals=1
+  Thread_4: take() notify; Semaphore.signals=2
+Thread_4: main() semaphore acquired; Semaphore.signals=2
+Thread_3: take() wait; Semaphore.signals=2
+Thread_2: take() wait; Semaphore.signals=2
+Thread_5: take() wait; Semaphore.signals=2
+Thread_1: main() semaphore acquired; finished task
+  Thread_1: release() notify; Semaphore.signals=1
+Thread_4: main() semaphore acquired; finished task
+  Thread_4: release() notify; Semaphore.signals=0
+  Thread_3: take() notify; Semaphore.signals=1
+Thread_3: main() semaphore acquired; Semaphore.signals=1
+  Thread_5: take() notify; Semaphore.signals=2
+Thread_5: main() semaphore acquired; Semaphore.signals=2
+Thread_2: take() wait; Semaphore.signals=2
+Thread_5: main() semaphore acquired; finished task
+Thread_3: main() semaphore acquired; finished task
+  Thread_5: release() notify; Semaphore.signals=1
+  Thread_2: take() notify; Semaphore.signals=2
+Thread_2: main() semaphore acquired; Semaphore.signals=2
+  Thread_3: release() notify; Semaphore.signals=1
+Thread_2: main() semaphore acquired; finished task
+  Thread_2: release() notify; Semaphore.signals=0
 
  */
 public class App 
@@ -66,7 +65,7 @@ public class App
     {
         final BoundedSemaphore semaphore = new BoundedSemaphore(2);
         for(int i = 1; i <= 5; i++){
-            Thread takeThread = new Thread("Thread_Take_" + i){
+            new Thread("Thread_" + i){
                 public void run(){
                     String threadName = Thread.currentThread().getName();
                     try{
@@ -81,8 +80,7 @@ public class App
                         semaphore.release();
                     }
                 }
-            };
-            takeThread.start();
+            }.start();
         }
     }
 }
