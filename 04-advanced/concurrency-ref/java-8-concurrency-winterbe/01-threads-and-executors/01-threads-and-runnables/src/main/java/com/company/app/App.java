@@ -15,7 +15,9 @@ public class App
             System.out.println(threadName + ": before sleep");
             try {
                 TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) { }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println(threadName + ": after sleep");
         };
         task.run();

@@ -1,6 +1,8 @@
 package com.company.app;
 
 /*
+http://tutorials.jenkov.com/java-concurrency/thread-signaling.html
+
 A lock-thread locks the Lock, and an unlock-thread unlock the Lock
 
 output:

@@ -6,18 +6,26 @@ import java.util.List;
 /*
 http://tutorials.jenkov.com/java-concurrency/blocking-queues.html
 
+Usage:
+A thread produces objects, which another thread consumes the objects.
+
 A blocking queue is a queue that blocks when you try to dequeue from it and the queue is empty, or if you try to
 enqueue items to it and the queue is already full. A thread trying to dequeue from an empty queue is blocked until
 some other thread inserts an item into the queue. A thread trying to enqueue an item in a full queue is blocked until
 some other thread makes space in the queue, either by dequeuing one or more items or clearing the queue completely.
 
+wait when enqueue item to full queue
+wait when dequeue item from empty queue
+
 output:
-queue.size()=0
-queue.size()=2
-1
-2
-3
-4
+Thread-0: Producer.run()
+Thread-1: Consumer.run()
+Thread-1: Consumer.run() queue.size()=0
+Thread-1: Consumer.run() queue.size()=2
+Thread-1: Consumer.run() queue.dequeue()=1
+Thread-1: Consumer.run() queue.dequeue()=2
+Thread-1: Consumer.run() queue.dequeue()=3
+Thread-1: Consumer.run() queue.dequeue()=4
 
  */
 public class App 
@@ -29,6 +37,7 @@ public class App
         }
         public void run() {
             try {
+                System.out.println(Thread.currentThread().getName() + ": Producer.run()");
                 Thread.sleep(10);
                 queue.enqueue("1");
                 queue.enqueue("2");
@@ -46,15 +55,17 @@ public class App
             this.queue = queue;
         }
         public void run() {
+            String threadName = Thread.currentThread().getName();
             try {
-                System.out.println("queue.size()=" + queue.size());
+                System.out.println(threadName + ": Consumer.run()");
+                System.out.println(threadName+": Consumer.run() queue.size()=" + queue.size());
                 Thread.sleep(50);
-                System.out.println("queue.size()=" + queue.size());
+                System.out.println(threadName + ": Consumer.run() queue.size()=" + queue.size());
                 Thread.sleep(1000);
-                System.out.println(queue.dequeue());
-                System.out.println(queue.dequeue());
-                System.out.println(queue.dequeue());
-                System.out.println(queue.dequeue());
+                System.out.println(threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
+                System.out.println(threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
+                System.out.println(threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
+                System.out.println(threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -73,9 +84,11 @@ public class App
             while (this.queue.size() == this.limit){
                 try {
                     wait();
-                } catch (InterruptedException e) { }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            if(this.queue.size() == 0){
+            if(this.queue.size() == 0){  // notify items that wait for enqueue
                 notifyAll();
             }
             this.queue.add(item);
@@ -84,9 +97,11 @@ public class App
             while(this.queue.size() == 0){
                 try {
                     wait();
-                } catch (InterruptedException e) { }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            if(this.queue.size() == this.limit){
+            if(this.queue.size() == this.limit){  // notify items that wait for dequeue
                 notifyAll();
             }
             return this.queue.remove(0);
