@@ -3,6 +3,8 @@ package com.company.app;
 /*
 http://tutorials.jenkov.com/java-concurrency/semaphores.html
 
+take() method blocks if the number of signals is equal to the upper bound.
+
 output:
   Thread_1: take() notify; Semaphore.signals=1
 Thread_1: main() semaphore acquired; Semaphore.signals=1

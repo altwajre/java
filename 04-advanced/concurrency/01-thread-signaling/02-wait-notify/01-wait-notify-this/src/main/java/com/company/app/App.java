@@ -3,6 +3,8 @@ package com.company.app;
 /*
 http://tutorials.jenkov.com/java-concurrency/thread-signaling.html
 
+A thread that calls wait() on any object becomes inactive until another thread calls notify() on that object.
+
 A lock-thread locks the Lock, and an unlock-thread unlock the Lock
 
 output:

@@ -19,13 +19,17 @@ wait when dequeue item from empty queue
 
 output:
 Thread-0: Producer.run()
-Thread-1: Consumer.run()
-Thread-1: Consumer.run() queue.size()=0
-Thread-1: Consumer.run() queue.size()=2
-Thread-1: Consumer.run() queue.dequeue()=1
-Thread-1: Consumer.run() queue.dequeue()=2
-Thread-1: Consumer.run() queue.dequeue()=3
-Thread-1: Consumer.run() queue.dequeue()=4
+  Thread-1: Consumer.run()
+  Thread-1: Consumer.run() queue.size()=0
+Thread-0: Producer.run() queue.enqueue('1')
+Thread-0: Producer.run() queue.enqueue('2')
+Thread-0: Producer.run() queue.enqueue('3')
+  Thread-1: Consumer.run() queue.size()=2
+  Thread-1: Consumer.run() queue.dequeue()=1
+  Thread-1: Consumer.run() queue.dequeue()=2
+  Thread-1: Consumer.run() queue.dequeue()=3
+Thread-0: Producer.run() queue.enqueue('4')
+  Thread-1: Consumer.run() queue.dequeue()=4
 
  */
 public class App 
@@ -36,13 +40,18 @@ public class App
             this.queue = queue;
         }
         public void run() {
+            String threadName = Thread.currentThread().getName();
             try {
-                System.out.println(Thread.currentThread().getName() + ": Producer.run()");
+                System.out.println(threadName + ": Producer.run()");
                 Thread.sleep(10);
+                System.out.println(threadName + ": Producer.run() queue.enqueue('1')");
                 queue.enqueue("1");
+                System.out.println(threadName + ": Producer.run() queue.enqueue('2')");
                 queue.enqueue("2");
+                System.out.println(threadName + ": Producer.run() queue.enqueue('3')");
                 queue.enqueue("3");
                 Thread.sleep(2000);
+                System.out.println(threadName + ": Producer.run() queue.enqueue('4')");
                 queue.enqueue("4");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -57,15 +66,15 @@ public class App
         public void run() {
             String threadName = Thread.currentThread().getName();
             try {
-                System.out.println(threadName + ": Consumer.run()");
-                System.out.println(threadName+": Consumer.run() queue.size()=" + queue.size());
+                System.out.println("  "+threadName + ": Consumer.run()");
+                System.out.println("  "+threadName+": Consumer.run() queue.size()=" + queue.size());
                 Thread.sleep(50);
-                System.out.println(threadName + ": Consumer.run() queue.size()=" + queue.size());
+                System.out.println("  "+threadName + ": Consumer.run() queue.size()=" + queue.size());
                 Thread.sleep(1000);
-                System.out.println(threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
-                System.out.println(threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
-                System.out.println(threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
-                System.out.println(threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
+                System.out.println("  "+threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
+                System.out.println("  "+threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
+                System.out.println("  "+threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
+                System.out.println("  "+threadName + ": Consumer.run() queue.dequeue()=" + queue.dequeue());
             } catch (Exception e) {
                 e.printStackTrace();
             }
