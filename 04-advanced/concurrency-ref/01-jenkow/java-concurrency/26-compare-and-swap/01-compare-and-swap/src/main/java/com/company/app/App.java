@@ -7,6 +7,11 @@ import java.util.concurrent.TimeUnit;
 /*
 http://tutorials.jenkov.com/java-concurrency/compare-and-swap.html
 
+To work properly in a multithreaded application, "check then act" operations must be atomic which means
+both the "check" and "act" actions are executed as an atomic (non-dividable) block of code. Any thread that
+starts executing the block will finish executing the block without interference from other threads. No other
+threads can execute the atomic block at the same time.
+
 output:
 pool-1-thread-1; locked=false
 attempt to shutdown executor
@@ -21,8 +26,8 @@ public class App
         private boolean locked = false;
         public synchronized boolean lock(){
             System.out.println(Thread.currentThread().getName() + "; locked=" + locked);
-            if(!locked){
-                locked = true;
+            if(!locked){  // check
+                locked = true;  // then act
                 return true;
             }
             return false;
