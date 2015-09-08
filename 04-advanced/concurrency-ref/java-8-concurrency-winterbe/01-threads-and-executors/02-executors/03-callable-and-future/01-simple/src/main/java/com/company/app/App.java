@@ -45,6 +45,9 @@ public class App
         System.out.println("future done? " + future.isDone());
         System.out.println("result: " + result);
 
+        stop(executor);
+    }
+    static void stop(ExecutorService executor){
         try{
             System.out.println("attempt to shutdown executor");
             executor.shutdown();

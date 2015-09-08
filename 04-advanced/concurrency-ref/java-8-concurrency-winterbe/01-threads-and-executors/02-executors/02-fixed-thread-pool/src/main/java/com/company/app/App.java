@@ -53,11 +53,13 @@ public class App
             System.out.println(threadName + ": after sleep 10 seconds");
         });
 
+        stop(executor);
+    }
+    static void stop(ExecutorService executor){
         try{
-            TimeUnit.MILLISECONDS.sleep(10);
             System.out.println("attempt to shutdown executor");
             executor.shutdown();
-            executor.awaitTermination(3, TimeUnit.SECONDS);
+            executor.awaitTermination(4, TimeUnit.SECONDS);
         }
         catch (InterruptedException e){
             System.err.println("tasks interrupted");

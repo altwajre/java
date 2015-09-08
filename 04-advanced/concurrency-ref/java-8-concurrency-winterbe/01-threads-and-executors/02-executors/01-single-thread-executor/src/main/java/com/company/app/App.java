@@ -28,6 +28,9 @@ public class App
             System.out.println(threadName + ": after sleep 2 seconds");
         });
 
+        stop(executor);
+    }
+    static void stop(ExecutorService executor){
         try{
             System.out.println("attempt to shutdown executor");
             executor.shutdown();

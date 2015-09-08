@@ -5,6 +5,13 @@ import java.util.concurrent.TimeUnit;
 /*
 http://winterbe.com/posts/2015/04/07/java8-concurrency-tutorial-thread-executor-examples/
 
+output:
+main: before sleep
+main: after sleep
+Done!
+Thread-0: before sleep
+Thread-0: after sleep
+
  */
 public class App 
 {
@@ -20,9 +27,10 @@ public class App
             }
             System.out.println(threadName + ": after sleep");
         };
-        task.run();
 
-        Thread thread = new Thread(task);
+        task.run();  // Run task directly
+
+        Thread thread = new Thread(task);  // Run task in a Thread
         thread.start();
 
         System.out.println("Done!");
