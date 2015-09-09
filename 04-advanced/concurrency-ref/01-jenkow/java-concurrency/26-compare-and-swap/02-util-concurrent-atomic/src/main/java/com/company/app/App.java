@@ -3,51 +3,48 @@ package com.company.app;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /*
 http://tutorials.jenkov.com/java-concurrency/compare-and-swap.html
 
-To work properly in a multithreaded application, "check then act" operations must be atomic which means
-both the "check" and "act" actions are executed as an atomic (non-dividable) block of code. Any thread that
-starts executing the block will finish executing the block without interference from other threads. No other
-threads can execute the atomic block at the same time.
+compareAndSet() will compare the value of the AtomicBoolean instance to an expected value, and if it has the
+expected value, it swaps the value with a new value.
+
+In this case, it compares the value of locked to false and if it is false, it sets the new value of the
+AtomicBoolean to true.
+
+The compareAndSet() returns true if the value was swapped, and false if not.
 
 output:
 true
 false
-false
 attempt to shutdown executor
+false
 shutdown finished
 
  */
 public class App 
 {
     static class MyLock{
-        private boolean locked = false;
-        public synchronized boolean lock(){
-            if(!locked){  // check
-                locked = true;  // then act
-                return true;
-            }
-            return false;
+        private AtomicBoolean locked = new AtomicBoolean(false);
+        public boolean lock(){
+            return locked.compareAndSet(false, true);
         }
     }
     public static void main( String[] args )
     {
         MyLock lock = new MyLock();
-
         ExecutorService executor = Executors.newFixedThreadPool(3);
-
         Runnable task = () -> {
             System.out.println(lock.lock());
         };
-
         executor.submit(task);
         executor.submit(task);
         executor.submit(task);
-
         stop(executor);
     }
+
     static void stop(ExecutorService executor){
         try{
             System.out.println("attempt to shutdown executor");
