@@ -3,6 +3,9 @@ package com.company.app;
 /*
 http://tutorials.jenkov.com/java-concurrency/semaphores.html
 
+A Semaphore is a thread synchronization construct that can be used either to send signals
+between threads to avoid missed signals, or guard a critical section as a lock.
+
 take() method blocks if the number of signals is equal to the upper bound.
 
 output:
