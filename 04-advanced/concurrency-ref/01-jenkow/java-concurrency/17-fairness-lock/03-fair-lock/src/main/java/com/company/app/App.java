@@ -11,6 +11,15 @@ Every thread calling lock() is now queued, and only the first thread in the queu
 the FairLock instance if it is unlocked. All other threads are parked waiting until they reach the
 top of the queue.
 
+output:
+Adding element by thread runnable2
+Adding element by thread runnable1
+Adding element by thread runnable2
+Adding element by thread runnable1
+Adding element by thread runnable1
+Adding element by thread runnable2
+0 runnable2; 0 runnable1; 2 runnable2; 2 runnable1; 4 runnable1; 4 runnable2;
+
  */
 public class App
 {
@@ -18,7 +27,7 @@ public class App
     static class ThreadSafeArrayList{
         private final FairLock lock = new FairLock();
         public final List<String> list = new ArrayList<String>();
-        public void set(String o){
+        public void add(String o){
             lock.lock();
             try {
                 safeArrayCount++;
@@ -82,7 +91,7 @@ public class App
         Runnable runnable1 = new Runnable() {
             public void run() {
                 while(safeArrayCount < 6){
-                    threadSafeArrayList.set(String.valueOf(safeArrayCount) + " " + Thread.currentThread().getName());
+                    threadSafeArrayList.add(String.valueOf(safeArrayCount) + " " + Thread.currentThread().getName());
                     try{
                         Thread.sleep(100);
                     }
@@ -95,7 +104,7 @@ public class App
         Runnable runnable2 = new Runnable() {
             public void run() {
                 while (safeArrayCount < 6){
-                    threadSafeArrayList.set(String.valueOf(safeArrayCount) + " " + Thread.currentThread().getName());
+                    threadSafeArrayList.add(String.valueOf(safeArrayCount) + " " + Thread.currentThread().getName());
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
