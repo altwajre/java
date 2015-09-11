@@ -19,11 +19,11 @@ pool-1-thread-5 finished; count=5
 shutdown finished
 
  */
-public class App 
+public class App
 {
     static class Counter {
         public int count = 0;
-        ReentrantLock lock = new ReentrantLock(false);  // by default it is not a FairLock
+        ReentrantLock lock = new ReentrantLock(true);  // set true in constructor to make it a FairLock
         public void increment(){
             lock.lock();
             try {
