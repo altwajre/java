@@ -51,7 +51,9 @@ public class App
                     if(mustWait){
                         try {
                             lockObj.wait();  // other threads need to wait
-                        } catch (InterruptedException e) {  }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
