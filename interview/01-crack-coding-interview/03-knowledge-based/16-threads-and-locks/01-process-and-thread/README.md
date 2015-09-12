@@ -2,6 +2,8 @@
 
 https://docs.oracle.com/javase/tutorial/essential/concurrency/procthread.html
 
+http://tutorials.jenkov.com/java-concurrency/index.html
+
 > Processes and threads are related to each other but are fundamentally different.
 > A process can be thought of as an instance of a program in execution. 
 > A process is an independent entity to which system resources (e.g., CPU time and memory) are allocated. 
