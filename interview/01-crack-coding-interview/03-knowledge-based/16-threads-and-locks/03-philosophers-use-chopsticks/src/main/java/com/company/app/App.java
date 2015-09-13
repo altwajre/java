@@ -112,7 +112,7 @@ public class App
     }
     static class Person extends Thread{
         private final int maxPause = 100;
-        private int bites = 10;
+        private int bites = 10; // number of times try to eat
         private Chopstick left;
         private Chopstick right;
         private int index;

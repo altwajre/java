@@ -8,7 +8,11 @@ import java.util.List;
 /*
 http://tutorials.jenkov.com/java-concurrency/deadlock.html
 
-deadlock occurs when run the program
+A deadlock is when two or more threads are blocked waiting to obtain locks that some of the other threads in the
+deadlock are holding. Deadlock can occur when multiple threads need the same locks at the same time, but obtain them
+in different order.
+
+deadlock occurs when run the program below
 
 Thread 1: parent.addChild(child); //locks parent
           --> child.setParentOnly(parent);
