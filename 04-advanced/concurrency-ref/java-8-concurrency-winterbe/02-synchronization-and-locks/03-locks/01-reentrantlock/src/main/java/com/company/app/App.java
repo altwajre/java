@@ -80,9 +80,9 @@ public class App
             System.out.println("shutdown finished");
         }
     }
-    static void sleep(int seconds){
+    static void sleep(int milliseconds){
         try {
-            TimeUnit.MILLISECONDS.sleep(seconds);
+            TimeUnit.MILLISECONDS.sleep(milliseconds);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
