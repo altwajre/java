@@ -33,6 +33,7 @@ public class App
         // Join "this" to "node", checking to make sure that it doesn't create a cycle
         public void joinTo(LockNode node){ children.add(node); }
         public void remove(LockNode node){ children.remove(node); }
+        // Check for a cycle by doing a depth first search
         public boolean hasCycle(Hashtable<Integer, Boolean> touchedNodes){
             VisitState[] visited = new VisitState[maxLocks];
             for(int i = 0; i < maxLocks; i++){ visited[i] = VisitState.FRESH; }
@@ -59,7 +60,7 @@ public class App
     static class LockFactory{
         private static LockFactory instance;
         private int numberOfLocks = 5; // default
-        private LockNode[] locks;
+        public LockNode[] locks;
         // Maps from a process or owner to the order that the owner claimed it would call the locks in
         private Hashtable<Integer, LinkedList<LockNode>> lockOrder;
         private LockFactory(int count){
@@ -127,16 +128,20 @@ public class App
     }
     public static void main( String[] args )
     {
-        int[] res1 = {1,2,3,4};
-        int[] res2 = {1,5,4,1};
-        int[] res3 = {1,4,5};
-        LockFactory.initialize(10);
-        LockFactory lf = LockFactory.getInstance();
-        System.out.println(lf.declare(1, res1));
-        System.out.println(lf.declare(2, res2));
-        System.out.println(lf.declare(3, res3));
-        System.out.println(lf.getLock(1, 1));
-        System.out.println(lf.getLock(1, 2));
-        System.out.println(lf.getLock(2, 4));
+        int[] resourcesInOrder1 = {1,2,3,4};  // Thread A locks 1, 2, 3, 4
+        int[] resourcesInOrder2 = {1,5,4,1};  // Thread B locks 1, 5, 4, 1
+        int[] resourcesInOrder3 = {1,4,5};  // Thread C locks 1, 4, 5
+        LockFactory.initialize(10);  // create 10 locks (LockNodes)
+        LockFactory lockfactory = LockFactory.getInstance();
+
+        int ownerId1 = 1;
+        int ownerId2 = 2;
+        int ownerId3 = 3;
+        System.out.println(lockfactory.declare(ownerId1, resourcesInOrder1));
+        System.out.println(lockfactory.declare(ownerId2, resourcesInOrder2));
+        System.out.println(lockfactory.declare(ownerId3, resourcesInOrder3));
+        System.out.println(lockfactory.getLock(1, 1));
+        System.out.println(lockfactory.getLock(1, 2));
+        System.out.println(lockfactory.getLock(2, 4));
     }
 }
