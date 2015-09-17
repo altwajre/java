@@ -5,13 +5,17 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-/**
- * Hello world!
- *
+/*
+
+output:
+#noCycleTest
+ node1.hasCycle()=false
+#cycleTest
+ node1.hasCycle()=true
+
  */
 public class App 
 {
-    public enum VisitState{FRESH, VISITING, VISITED};
     static class Node{
         public Node(int id){
             this.id = id;

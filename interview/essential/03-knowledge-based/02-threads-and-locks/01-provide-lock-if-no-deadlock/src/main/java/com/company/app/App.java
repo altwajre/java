@@ -40,10 +40,10 @@ public class App
             this.id = id;
         }
         public int id;
-        private boolean isLocked = false;
+        boolean isLocked = false;
         public void lock(){
-            synchronized (this){
-                while(isLocked){
+            synchronized (this) {
+                while (isLocked) {
                     try {
                         wait();
                     } catch (InterruptedException e) {
@@ -60,165 +60,103 @@ public class App
             }
         }
     }
-    public enum VisitState {
-        FRESH, VISITING, VISITED
-    };
+    public enum VisitState{ FRESH, VISITING, VISITED };
     static class LockNode {
-        private ArrayList<LockNode> children;
+        public LockNode(int lockId, int maxLocks){
+            this.lockId = lockId;
+            this.maxLocks = maxLocks;
+        }
         public int lockId;
         private Lock lock;
-        private int maxLocks;
-
-        public LockNode(int id, int max) {
-            lockId = id;
-            children = new ArrayList<LockNode>();
-            maxLocks = max;
-        }
-
-        /* Join "this" to "node", checking to make sure that it doesn't create a cycle */
-        public void joinTo(LockNode node) {
+        public int maxLocks;
+        public ArrayList<LockNode> children = new ArrayList<LockNode>();
+        public void connect(LockNode node){
             children.add(node);
         }
-
-        public void remove(LockNode node) {
+        public void remove(LockNode node){
             children.remove(node);
         }
-
-        /* Check for a cycle by doing a depth-first-search. */
-        public boolean hasCycle(Hashtable<Integer, Boolean> touchedNodes) {
-            VisitState[] visited = new VisitState[maxLocks];
-            for (int i = 0; i < maxLocks; i++) {
-                visited[i] = VisitState.FRESH;
+        public boolean hasCycle(){
+            VisitState[] visitStates = new VisitState[maxLocks];
+            for(int i = 0; i < maxLocks; i++){
+                visitStates[i] = VisitState.FRESH;
             }
-            return hasCycle(visited, touchedNodes);
+            return hasCycle(visitStates);
         }
-
-        private boolean hasCycle(VisitState[] visited, Hashtable<Integer, Boolean> touchedNodes) {
-            if (touchedNodes.containsKey(lockId)) {
-                touchedNodes.put(lockId, true);
-            }
-
-            if (visited[lockId] == VisitState.VISITING) {
-                return true;
-            } else if (visited[lockId] == VisitState.FRESH) {
-                visited[lockId] = VisitState.VISITING;
-                for (LockNode n : children) {
-                    if (n.hasCycle(visited, touchedNodes)) {
-                        return true;
-                    }
+        public boolean hasCycle(VisitState[] visitStates){
+            if(visitStates[lockId] == VisitState.VISITING) return true;
+            else if(visitStates[lockId] == VisitState.FRESH){
+                visitStates[lockId] = VisitState.VISITING;
+                for(LockNode lockNode : children){
+                    if(lockNode.hasCycle(visitStates)) return true;
                 }
-                visited[lockId] = VisitState.VISITED;
+                visitStates[lockId] = VisitState.VISITED;
             }
             return false;
         }
-
-        public Lock getLock() {
-            if (lock == null) {
+        public Lock getLock(){
+            if(lock == null){
                 lock = new Lock(lockId);
             }
             return lock;
         }
-
-        public int getId() {
-            return lockId;
-        }
     }
-    static class LockFactory {
+    static class LockFactory{
         private static LockFactory instance;
-
-        private int numberOfLocks = 5; /* default */
-        private LockNode[] locks;
-
-        /* Maps from a process or owner to the order that the owner claimed it would call the locks in */
-        private Hashtable<Integer, LinkedList<LockNode>> lockOrder;
-
-        private LockFactory(int count) {
-            numberOfLocks = count;
-            locks = new LockNode[numberOfLocks];
-            lockOrder = new Hashtable<Integer, LinkedList<LockNode>>();
-            for (int i = 0; i < numberOfLocks; i++) {
+        public LockNode[] locks;
+        private Hashtable<Integer, LinkedList<LockNode>> lockOrderHashtable;
+        private LockFactory(int count){
+            locks = new LockNode[count];
+            lockOrderHashtable = new Hashtable<Integer, LinkedList<LockNode>>();
+            for(int i = 0; i < count; i++){
                 locks[i] = new LockNode(i, count);
             }
         }
-
-        public static LockFactory getInstance() {
+        public static LockFactory getInstance(){
             return instance;
         }
-
-        public static LockFactory initialize(int count) {
-            if (instance == null) {
+        public static LockFactory initialize(int count){
+            if(instance == null){
                 instance = new LockFactory(count);
             }
             return instance;
         }
-
-        public boolean hasCycle(Hashtable<Integer, Boolean> touchedNodes, int[] resourcesInOrder) {
-		/* check for a cycle */
-//            for (int resource : resourcesInOrder) {
-//                if (touchedNodes.get(resource) == false) {
-//                    LockNode n = locks[resource];
-//                    if (n.hasCycle(touchedNodes)) {
-//                        return true;
-//                    }
-//                }
-//            }
-
-            // we just need to use the first node to check hasCycle
-            LockNode n = locks[resourcesInOrder[0]];
-            if (n.hasCycle(touchedNodes)) {
+        public boolean hasCycle(int[] resourcesInOrder){
+            LockNode lockNode = locks[resourcesInOrder[0]];
+            if(lockNode.hasCycle()){
                 return true;
             }
             return false;
         }
-
-        /* To prevent deadlocks, force the processes to declare upfront what order they will
-         * need the locks in. Verify that this order does not create a deadlock (a cycle in a directed graph)
-         */
-        public boolean declare(int ownerId, int[] resourcesInOrder) {
-            Hashtable<Integer, Boolean> touchedNodes = new Hashtable<Integer, Boolean>();
-
-		/* add nodes to graph */
-            int index = 1;
-            touchedNodes.put(resourcesInOrder[0], false);
-            for (index = 1; index < resourcesInOrder.length; index++) {
-                LockNode prev = locks[resourcesInOrder[index - 1]];
-                LockNode curr = locks[resourcesInOrder[index]];
-                prev.joinTo(curr);
-                touchedNodes.put(resourcesInOrder[index], false);
+        public boolean declare(int ownerId, int[] resourcesInOrder){
+            for(int i = 1; i < resourcesInOrder.length; i++){
+                LockNode prev = locks[resourcesInOrder[i - 1]];
+                LockNode curr = locks[resourcesInOrder[i]];
+                prev.connect(curr);
             }
-
-		/* if we created a cycle, destroy this resource list and return false */
-            if (hasCycle(touchedNodes, resourcesInOrder)) {
-                for (int j = 1; j < resourcesInOrder.length; j++) {
-                    LockNode p = locks[resourcesInOrder[j - 1]];
-                    LockNode c = locks[resourcesInOrder[j]];
-                    p.remove(c);
+            // if we created a cycle, destroy this resource list and return false
+            if(hasCycle(resourcesInOrder)){
+                for(int i = 1; i < resourcesInOrder.length; i++){
+                    LockNode prev = locks[resourcesInOrder[i - 1]];
+                    LockNode curr = locks[resourcesInOrder[i]];
+                    prev.remove(curr);
                 }
                 return false;
             }
-
-		/* No cycles detected. Save the order that was declared, so that we can verify that the
-		 * process is really calling the locks in the order it said it would. */
+            // get the lock, verifying first that the process is really calling the locks in the order
             LinkedList<LockNode> list = new LinkedList<LockNode>();
-            for (int i = 0; i < resourcesInOrder.length; i++) {
+            for(int i = 0; i < resourcesInOrder.length; i++){
                 LockNode resource = locks[resourcesInOrder[i]];
                 list.add(resource);
             }
-            lockOrder.put(ownerId, list);
-
+            lockOrderHashtable.put(ownerId, list);
             return true;
         }
-
-        /* Get the lock, verifying first that the process is really calling the locks in the order
-         * it said it would. */
-        public Lock getLock(int ownerId, int resourceID) {
-            LinkedList<LockNode> list = lockOrder.get(ownerId);
-            if (list == null) {
-                return null;
-            }
-
+        public Lock getLock(int ownerId, int resourceId){
+            LinkedList<LockNode> list = lockOrderHashtable.get(ownerId);
+            if(list == null) return null;
             LockNode head = list.getFirst();
-            if (head.getId() == resourceID) {
+            if(head.lockId == resourceId){
                 list.removeFirst();
                 return head.getLock();
             }
@@ -230,7 +168,6 @@ public class App
         testNoCycle();
         testHasCycle();
     }
-
     private static void testNoCycle() {
         System.out.println("#testNoCycle");
         int[] resourcesInOrder1 = {1,2,3,4};  // Thread A locks 1, 2, 3, 4
@@ -252,7 +189,6 @@ public class App
         System.out.println("getLock(3, 1): lockId="+lockfactory.getLock(3, 1).id);
         System.out.println("getLock(3, 3): lockId="+lockfactory.getLock(3, 3).id);
     }
-
     private static void testHasCycle() {
         System.out.println("#testHasCycle");
         int[] resourcesInOrder1 = {1,2,3,4};  // Thread A locks 1, 2, 3, 4
