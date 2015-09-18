@@ -25,6 +25,23 @@ No threads requesting neither read nor write access would be granted so.
 To make the ReadWriteLock reentrant it is necessary to make a few changes. Reentrance for readers and writers
 will be dealt with separately.
 
+output:
+  Thread_Read_1 lockRead(); readers=0; writers=0; writeRequests=0
+Thread_Read_1 lockRead() exit while loop
+  Thread_Read_2 lockRead(); readers=1; writers=0; writeRequests=0
+Thread_Read_2 lockRead() exit while loop
+Thread_Write_1 lockWrite(); readers=2; writers=0; writeRequests=1
+Thread_Write_1 lockWrite() within while loop; readers=2; writers=0; writeRequests=1
+Thread_Write_1 write wait
+  Thread_Read_1 read notifyAll
+0
+Thread_Write_1 lockWrite() within while loop; readers=1; writers=0; writeRequests=1
+Thread_Write_1 write wait
+  Thread_Read_2 read notifyAll
+0
+Thread_Write_1 lockWrite() exit while loop
+Thread_Write_1 write notifyAll
+
  */
 public class App 
 {
