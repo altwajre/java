@@ -2,6 +2,7 @@ package com.company.app;
 
 /*
 Lock another object inside of Lock of "this"
+Note: A lock in Java is owned by the same thread which locked it, so we need Lock.lockingThread member.
 
 output:
 6
@@ -25,6 +26,7 @@ public class App
     static class Lock{
         QueueObject queueObject = new QueueObject();
         boolean isLocked = false;
+        Thread lockingThread;
         public void lock(){
             synchronized (queueObject){  // NOTE: lock queueObject
                 while(isLocked){
@@ -33,10 +35,14 @@ public class App
                     } catch (InterruptedException e) { }
                 }
                 isLocked = true;
+                lockingThread = Thread.currentThread();
             }
         }
         public void unlock(){
             synchronized (queueObject){   // NOTE: lock queueObject
+                if(lockingThread != Thread.currentThread()){
+                    throw new IllegalMonitorStateException("Calling thread has not locked this lock");
+                }
                 queueObject.notify();
                 isLocked = false;
             }

@@ -1,7 +1,8 @@
 package com.company.app;
 
 /*
-Lock:
+
+Lock: A lock in Java is owned by the same thread which locked it, so we need Lock.lockingThread member.
 - wait() and notify can signal between two threads
 - use while(isLocked) to wait, and the first thread does not need to wait to get into critical section,
   other threads wait for notify from other threads
@@ -43,20 +44,24 @@ public class App
     }
     static class Lock{  // wait and notify signal
         boolean isLocked = false;
+        Thread lockingThread;
         public void lock(){
             synchronized (this){
                 while(isLocked){
                     try {
                         System.out.println(Thread.currentThread().getName() + ": lock wait");
                         wait();
-//                        System.out.println(Thread.currentThread().getName() + ": lock after wait");
                     } catch (InterruptedException e) { }
                 }
                 isLocked = true;
+                lockingThread = Thread.currentThread();
             }
         }
         public void unlock(){
             synchronized (this){
+                if(lockingThread != Thread.currentThread()){
+                    throw new IllegalMonitorStateException("Calling thread has not locked this lock");
+                }
                 System.out.println("  " + Thread.currentThread().getName() + ": unlock notify");
                 notify();
                 isLocked = false;
