@@ -47,7 +47,7 @@ public class App
                 try {
                     System.out.println(threadName + ": take() wait; Semaphore.signals=" + signals);
                     wait();
-                } catch (InterruptedException e) { }
+                } catch (InterruptedException e) { e.printStackTrace(); }
             }
             signals++;
             System.out.println("  "+threadName + ": take() notify; Semaphore.signals=" + signals);
