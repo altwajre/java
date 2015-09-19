@@ -5,6 +5,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /*
+
+Question - problem:
 Suppose we have the following code:
 public class Foo {
   public Foo(){...}

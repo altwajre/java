@@ -6,6 +6,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /*
+
+Question - problem:
 Suppose we have the following code:
 public class Foo {
   public Foo(){...}
