@@ -13,7 +13,7 @@ java
 
 ### Open Java Project
 
-> Open porm.xml
+> Open pom.xml
 
 ### References
 
