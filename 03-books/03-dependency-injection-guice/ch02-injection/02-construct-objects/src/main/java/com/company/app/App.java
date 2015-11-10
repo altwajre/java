@@ -1,6 +1,5 @@
 package com.company.app;
 
-
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 
