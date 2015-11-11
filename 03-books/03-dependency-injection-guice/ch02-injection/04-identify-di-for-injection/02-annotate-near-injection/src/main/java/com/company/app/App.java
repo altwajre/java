@@ -44,6 +44,7 @@ public class App
     public @interface English {}
     @BindingAnnotation @Target({ FIELD, PARAMETER, METHOD }) @Retention(RUNTIME)
     public @interface French {}
+    //# binding services to combinatorial keys - annotatedWith(English.class)
     static class SpellingModule extends AbstractModule{
         @Override
         protected void configure() {
