@@ -56,11 +56,6 @@ class Client{
 // Abstract Factory
 public class App
 {
-    /*
-    output:
-    ProductB1 interacts with ProductA1
-    ProductB2 interacts with ProductA2
-     */
     public static void main( String[] args )
     {
         AbstractFactory factory1 = new ConcreteFactory1();
@@ -72,3 +67,8 @@ public class App
         client2.Run();
     }
 }
+/*
+output:
+ProductB1 interacts with ProductA1
+ProductB2 interacts with ProductA2
+ */

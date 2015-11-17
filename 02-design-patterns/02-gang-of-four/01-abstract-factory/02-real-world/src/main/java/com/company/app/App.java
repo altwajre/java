@@ -58,11 +58,6 @@ class AnimalWorld{
 // Abstract Factory
 public class App
 {
-    /*
-    output:
-    Lion eats Wildebeest
-    Wolf eats Bison
-     */
     public static void main( String[] args )
     {
         ContinentFactory africa = new AfricaFactory();
@@ -73,3 +68,8 @@ public class App
         world.RunFoodChain();
     }
 }
+/*
+output:
+Lion eats Wildebeest
+Wolf eats Bison
+ */
