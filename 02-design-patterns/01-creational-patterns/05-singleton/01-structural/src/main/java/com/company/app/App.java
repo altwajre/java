@@ -1,0 +1,34 @@
+package com.company.app;
+
+class Singleton{
+    private static Singleton instance;
+    protected Singleton(){
+
+    }
+    public static Singleton Instance(){
+        // Uses lazy initialization.
+        // Note: this is not thread safe.
+        if(instance == null){
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+public class App
+{
+    public static void main( String[] args )
+    {
+        Singleton s1 = Singleton.Instance();
+        Singleton s2 = Singleton.Instance();
+        if(s1 == s2){
+            System.out.printf("Object are the same instance");
+        }
+        else{
+            System.out.printf("Object are NOT the same instance");
+        }
+    }
+}
+/*
+output:
+Object are the same instance
+ */
