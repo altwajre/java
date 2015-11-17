@@ -1,30 +1,31 @@
 package com.company.app;
 import java.util.HashMap;
-public class App
-{
-    // interface Cloneable is abstract Prototype
-    static class Color implements Cloneable{  // Concrete Prototype
-        private int _red;
-        private int _green;
-        private int _blue;
-        public Color(int red, int green, int blue){
-            this._red = red;
-            this._green = green;
-            this._blue = blue;
-        }
-        public Color clone(){
-            System.out.format("Cloning color RGB: %s,%s,%s\n", _red, _green, _blue);
-            try{
-                return (Color) super.clone();
-            } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
-                throw new RuntimeException();
-            }
-        }
-        public String toString(){
-            return "RGB: " + _red + "," + _green + "," + _blue;
+
+// interface Cloneable is abstract Prototype
+class Color implements Cloneable{  // Concrete Prototype
+    private int _red;
+    private int _green;
+    private int _blue;
+    public Color(int red, int green, int blue){
+        this._red = red;
+        this._green = green;
+        this._blue = blue;
+    }
+    public Color clone(){
+        System.out.format("Cloning color RGB: %s,%s,%s\n", _red, _green, _blue);
+        try{
+            return (Color) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
         }
     }
+    public String toString(){
+        return "RGB: " + _red + "," + _green + "," + _blue;
+    }
+}
+public class App
+{
     public static void main( String[] args )
     {
         // Prototype Client - ColorManager
@@ -46,3 +47,12 @@ public class App
         System.out.println(clonedColor3);
     }
 }
+/*
+output:
+Cloning color RGB: 255,0,0
+RGB: 255,0,0
+Cloning color RGB: 128,211,128
+RGB: 128,211,128
+Cloning color RGB: 211,34,20
+RGB: 211,34,20
+ */
