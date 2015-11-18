@@ -60,6 +60,9 @@ public class App
     }
 }
 /*
+Definition
+Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
+
 output:
 Lion eats Cow
 Wolf eats Horse
