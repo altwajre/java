@@ -6,46 +6,49 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 class Receipt{
-    public static Receipt forSuccessfulCharge(double amount) { return new Receipt(); }
-    public static Receipt forDeclinedCharge(String msg) { return new Receipt(); }
-    public static Receipt forSystemFailure(String message) { return new Receipt(); }
-    public boolean hasSuccessfulCharge() { return true; }
-    public double getAmountOfCharge() { return 100; }
 }
-class PizzaOrder{
-    private double amount;
-    public PizzaOrder(double amount){this.amount = amount;}
-    public double getAmount(){ return amount; }
+class Order{
 }
-class CreditCard{ public CreditCard(String cardNumber, Integer month, Integer year){ } }
-class CreditCardProcessor{
-    public ChargeResult charge(CreditCard creditCard, double amount){ return new ChargeResult(); }
+class PizzaOrder extends Order{
 }
-class PaypalCreditCardProcessor extends CreditCardProcessor{}
 interface TransactionLog{
-    void logChargeResult(Object result);
-    void logConnectionException(Exception e);
+    void log();
 }
 class DatabaseTransactionLog implements TransactionLog{
-    public void logChargeResult(Object result) { }
-    public void logConnectionException(Exception e) { }
-}
-class MySqlDatabaseDatabaseTransactionLog extends DatabaseTransactionLog{}
-class ChargeResult{
-    public boolean wasSucessful() { return true; }
-    public String getDeclineMessage() { return ""; }
+    public void log() {
+        System.out.println(this.getClass().getName());
+    }
 }
 interface BillingService{
-    Receipt chargeOrder(PizzaOrder order, CreditCard creditCard);
+    Receipt chargeOrder(PizzaOrder order);
+    void print();
 }
 //# map interfaces to implementations
 class BillingModule extends AbstractModule{
     @Override
     protected void configure() {
-        // map interface TransactionLog to implementation DatabaseTransactionLog
         bind(TransactionLog.class).to(DatabaseTransactionLog.class);
-        // link DatabaseTransactionLog class to a subclass MySqlDatabaseDatabaseTransactionLog
-        bind(DatabaseTransactionLog.class).to(MySqlDatabaseDatabaseTransactionLog.class);
+        bind(BillingService.class).to(RealBillingService.class);
+        bind(Order.class).to(PizzaOrder.class);
+    }
+}
+class RealBillingService implements BillingService{
+    private final TransactionLog transactionLog;
+    private PizzaOrder order;
+    //# add @Inject to RealBillingService's constructor
+    //# Guice will inspect the annotated constructor, and lookup values for each parameter.
+    @Inject // constructor inject
+    public RealBillingService(TransactionLog transactionLog){
+        this.transactionLog = transactionLog;
+    }
+    @Inject // method inject
+    public Receipt chargeOrder(PizzaOrder order) {
+        this.order = order;
+        return null;
+    }
+    public void print(){
+        this.transactionLog.log();
+        System.out.println(order.getClass().getSimpleName());
     }
 }
 public class App
@@ -53,13 +56,16 @@ public class App
     public static void main( String[] args )
     {
         Injector injector = Guice.createInjector(new BillingModule());
-        TransactionLog transactionLog = injector.getInstance(TransactionLog.class);
-        System.out.println(transactionLog.getClass().getName());
+        BillingService billingService = injector.getInstance(BillingService.class);
+        System.out.println(billingService.getClass().getName());
+        billingService.print();
     }
 }
 /*
 https://github.com/google/guice/wiki/LinkedBindings
 
 output:
-com.company.app.App$MySqlDatabaseDatabaseTransactionLog
+com.company.app.RealBillingService
+com.company.app.DatabaseTransactionLog
+PizzaOrder
  */
