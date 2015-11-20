@@ -30,6 +30,7 @@ class XmlModule extends AbstractModule {
         bind(Logger.class).to(XmlLogger.class);
     }
 }
+
 public class App
 {
     public static void main( String[] args )
