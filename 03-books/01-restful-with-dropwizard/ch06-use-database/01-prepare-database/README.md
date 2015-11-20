@@ -1,5 +1,11 @@
 # prepare-database
 
+## Installation
+
+> `brew update`, `brew doctor`, `brew upgrade`
+
+> `brew install mysql`
+
 ## Start Server
 
 > `mysql.server start`
