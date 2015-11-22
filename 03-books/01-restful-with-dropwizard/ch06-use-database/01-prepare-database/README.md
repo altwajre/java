@@ -10,23 +10,33 @@
 
 > `mysql.server start`
 
+> `mysql.server stop` when you are done
+
+## Open mysql
+
+> `sudo /usr/local/bin/mysql -u root` and enter `password` <-- need it when `CREATE DATABASE tmp;`
+
+> `mysql` <-- works for SELECT statement
+
 ## Create database
 
-> `$ sudo /usr/local/bin/mysql -u root` and enter password
+> `mysql> SHOW DATABASES;`
 
-> `mysql> drop database phonebook`;
+> `mysql> SHOW TABLES;`
 
-> `mysql> drop table contact`;
+> `mysql> drop database phonebook;`
 
-> `mysql> CREATE DATABASE phonebook`;
+> `mysql> drop table contact;`
 
-> `mysql> CREATE USER 'phonebookuser'@'localhost' IDENTIFIED BY'phonebookpassword'`;
+> `mysql> CREATE DATABASE phonebook;`
 
-> `mysql> GRANT ALL ON phonebook.* TO 'phonebookuser'@'localhost'`;
+> `mysql> CREATE USER 'phonebookuser'@'localhost' IDENTIFIED BY'phonebookpassword';`
+
+> `mysql> GRANT ALL ON phonebook.* TO 'phonebookuser'@'localhost';`
 
 > `mysql> USE phonebook;`
 
-> create table
+### Create table
 
 ```
 CREATE TABLE IF NOT EXISTS `contact` (
