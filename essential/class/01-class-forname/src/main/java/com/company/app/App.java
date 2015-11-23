@@ -44,5 +44,20 @@ public class App
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+
+        System.out.println("\n*** new a Class has static - static should not invoked");
+        MyClass myClass2 = new MyClass();
+        myClass2.print();
     }
 }
+/*
+output:
+MyClass.static block1
+MyClass.static block2
+constructor
+MyClass.print()
+
+*** new a Class has static - static should not invoked
+constructor
+MyClass.print()
+ */
