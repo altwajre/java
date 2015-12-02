@@ -1,28 +1,7 @@
 # java
 java
 
-## Tools
-
-### Java VisualVM
-
-#### Mac
-
-> double click `jvisualvm` at `/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/bin` to open it
-
-## Intellij
-
-### Open Java Project
-
-> Open pom.xml
-
-### References
-
-> https://www.jetbrains.com/idea/help/keyboard-shortcuts-you-cannot-miss.html
-
-```
-Shortcut	Description
-Alt Enter	Show the list of available intention actions.
-```
+# Install Java
 
 ## Windows
 
@@ -34,15 +13,44 @@ download JDK `Windows x64`
 
 > http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
-### Install IDE
+## MAC
 
-(optional) install NetBeans IDE
+### brew install java
+
+> brew tap caskroom/cask
+
+> brew install brew-cask
+
+> brew cask install java
+
+### install NetBeans IDE that comes with java
 
 > https://netbeans.org/features/index.html
+
+### Install IDE
+
+#### Intellij
 
 install Intellij Community Edition
 
 > https://www.jetbrains.com/idea/
+
+setup SDK
+
+> path is `/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home`
+
+Open Java Project
+
+> Open pom.xml
+
+References
+
+> https://www.jetbrains.com/idea/help/keyboard-shortcuts-you-cannot-miss.html
+
+```
+Shortcut	Description
+Alt Enter	Show the list of available intention actions.
+```
 
 ### Install Maven
 
@@ -113,3 +121,11 @@ Solution: add following
 > https://github.com/iluwatar/java-design-patterns
 
 > https://sourcemaking.com/design_patterns
+
+## Tools
+
+### Java VisualVM
+
+#### Mac
+
+> double click `jvisualvm` at `/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home/bin` to open it
