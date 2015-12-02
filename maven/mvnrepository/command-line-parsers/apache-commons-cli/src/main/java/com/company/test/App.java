@@ -8,6 +8,8 @@ public class App
         // create Options object
         Options options = new Options();
 
+        Option help = new Option( "help", "print help message" );
+        options.addOption(help);
         // add t option
         options.addOption("t", false, "display current time");
 
@@ -19,8 +21,12 @@ public class App
             if(cmd.hasOption("t")) {
                 System.out.println("date and time");
             }
+            else if(cmd.hasOption("help")){
+                HelpFormatter formatter = new HelpFormatter();
+                formatter.printHelp( "ant", options );
+            }
             else{
-                System.out.println("date");
+                System.out.println("default behavior");
             }
         }
         catch (Exception e){
