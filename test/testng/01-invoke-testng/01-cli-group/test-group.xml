@@ -2,8 +2,8 @@
     <test name="Regression">
         <groups>
             <run>
-                <include name="smoke"/>
-                <exclude name="broken"/>
+                <include name="only"/>
+                <exclude name="pending"/>
             </run>
         </groups>
         <packages>

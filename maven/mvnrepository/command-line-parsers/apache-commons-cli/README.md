@@ -12,14 +12,48 @@ https://commons.apache.org/proper/commons-cli/usage.html
 
 ```
 Output:
-default behavior
+out.print default behavior
 ```
 
 > `java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App -t`
 
 ```
 Output:
-date and time
+out.print date and time
+```
+
+> `java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App -p`
+
+> or `java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App -print`
+
+```
+Output:
+org.apache.commons.cli.MissingArgumentException: Missing argument for option: p
+usage: ant
+ -help              print help message
+ -p,--print <arg>   print message
+ -t                 display current time
+```
+
+> `java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App -p=hello`
+
+```
+Output:
+hello
+```
+
+> `java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App -p="hello world"`
+
+```
+Output:
+hello world
+```
+
+> `java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App -p=dev.config`
+
+```
+Output:
+dev.config
 ```
 
 > `java -cp target/test-1.0-SNAPSHOT.jar com.company.test.App -help`
@@ -27,8 +61,9 @@ date and time
 ```
 Output:
 usage: ant
- -help   print help message
- -t      display current time
+ -a,--all   test all
+ -help      print help message
+ -t         display current time
  ```
 
 ## Run Application
