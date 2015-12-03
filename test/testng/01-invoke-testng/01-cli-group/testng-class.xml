@@ -1,0 +1,8 @@
+<suite name="">
+    <test name="Regression">
+        <classes>
+            <class name="com.company.app.test.MyTest"/>
+            <!--<class name="com.company.app.test.BeforeMethodTest"/>-->
+        </classes>
+    </test>
+</suite>
