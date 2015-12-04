@@ -1,0 +1,13 @@
+<suite name="">
+    <test name="Regression">
+        <groups>
+            <run>
+                <include name="only"/>
+                <exclude name="pending"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.company.app.test" />
+        </packages>
+    </test>
+</suite>

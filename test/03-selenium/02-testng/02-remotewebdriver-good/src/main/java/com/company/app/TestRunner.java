@@ -34,7 +34,8 @@ public class TestRunner
     static void runTest() {
         TestNG testNG = new TestNG();
         List suites = Lists.newArrayList();
-        suites.add("test-all.xml");  // Run all tests
+//        suites.add("test-all.xml");  // Run all tests
+        suites.add("test-group.xml");  // Run group tests
         testNG.setTestSuites(suites);
         testNG.run();
     }
