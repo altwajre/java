@@ -11,7 +11,7 @@ public class SimpleTest {
     @DataProvider
     public static Object[][] dataMethod(){
         String[][] data = new String[][]{
-                new String[]{"one", "o"}, new String[]{"two", "t"}
+                {"one", "o"}, {"two", "t"}
         };
         return data;
     }
@@ -26,6 +26,13 @@ public class SimpleTest {
     }
     @Test
     public void testMethod(){
-        System.out.println("testMethod parameter value is: " + param + " " + s);
+        System.out.println("testMethod() - param=" + param + " s=" + s);
     }
 }
+/*
+output:
+Before SimpleTest class executed.
+testMethod() - param=one s=o
+Before SimpleTest class executed.
+testMethod() - param=two s=t
+ */
