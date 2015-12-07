@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="UI Integration Tests" verbose="10" parallel="instances" thread-count="8">
+    <test name="Regression" parallel="instances" group-by-instances="false">
+        <groups>
+            <run>
+                <include name="debug"/>
+                <exclude name="pending"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.company.test.testcase" />
+        </packages>
+    </test>
+</suite>

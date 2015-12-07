@@ -29,6 +29,41 @@ public class App
      */
     private static void twoDimensional() {
         System.out.println("\n\ntwoDimensional");
+
+        String platfroms[] = {"chrome", "ie"};
+        String modules[] = {"a", "b", "c"};
+        String data8[][] = new String[6][2];
+
+        int pIndex = -1;
+        int mIndex = 0;
+        for(int i = 0; i < platfroms.length * modules.length; i++){
+            if(i % modules.length == 0){
+                pIndex++;
+            }
+            if(mIndex == modules.length){
+                mIndex = 0;
+            }
+            data8[i][0] = platfroms[pIndex];
+            data8[i][1] = modules[mIndex];
+            mIndex++;
+        }
+
+        for(int i = 0; i < 6; i++){
+            for(int j = 0; j < 2; j++){
+                System.out.print(data8[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        /*
+        chrome a
+        chrome b
+        chrome c
+        ie a
+        ie b
+        ie c
+         */
+
         int board[][] = {{1,2,3},{4,5,6},{7,8,9}};
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
