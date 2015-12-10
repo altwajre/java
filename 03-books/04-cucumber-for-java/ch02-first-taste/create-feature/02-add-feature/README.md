@@ -2,38 +2,71 @@
 
 ## 01-no-features-found/README.md
 
-## download cucumber jars
+## Add feature
 
-> download following jars from the public Maven repository at http://search.maven.org/
-
-```
-cucumber-core
-cucumber-java
-cucumber-jvm-deps
-gherkin
-```
+> add `features/checkout.feature`
 
 ## Run Test
 
-> `java -cp "jars/*" cucumber.api.cli.Main -p pretty .` `-cp` is `classpath`, `entry-point` is `cucumber.api.cli.Main`
+> `./cucumber`
 
 ```
-Output: since we haven't written any feature files yet, so no features found
-No features found at [.]
-0 Scenarios
-0 Steps
+Output: by default step definitions use snake case
+Feature: Checkout
+  Scenario: Checkout a banana              # features/checkout.feature:2
+    Given the price of a "banana" is 40c
+    When I checkout 1 "banana"
+    Then the total price should be 40ccode
+1 Scenarios (1 undefined)
+3 Steps (3 undefined)
 0m0.000s
+You can implement missing steps with the snippets below:
+@Given("^the price of a \"([^\"]*)\" is (\\d+)c$")
+public void the_price_of_a_is_c(String arg1, int arg2) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+@When("^I checkout (\\d+) \"([^\"]*)\"$")
+public void i_checkout(int arg1, String arg2) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+@Then("^the total price should be (\\d+)ccode$")
+public void the_total_price_should_be_ccode(int arg1) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
 ```
 
-## Shell script
+### camel case step definitions
 
-### Create shell script
+> `java -cp "jars/*" cucumber.api.cli.Main -p pretty --snippets camelcase features`
 
-> create `cucumber` at project root, and add `java -cp "jars/*" cucumber.api.cli.Main -p pretty .` to it
-
-> make cucumber file executable `chmod u+x cucumber`
-
-### Run shell script
-
-> `./cucumber` at project root
+```
+Output:
+Feature: Checkout
+  Scenario: Checkout a banana              # checkout.feature:2
+    Given the price of a "banana" is 40c
+    When I checkout 1 "banana"
+    Then the total price should be 40ccode
+1 Scenarios (1 undefined)
+3 Steps (3 undefined)
+0m0.000s
+You can implement missing steps with the snippets below:
+@Given("^the price of a \"([^\"]*)\" is (\\d+)c$")
+public void thePriceOfAIsC(String arg1, int arg2) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+@When("^I checkout (\\d+) \"([^\"]*)\"$")
+public void iCheckout(int arg1, String arg2) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+@Then("^the total price should be (\\d+)ccode$")
+public void theTotalPriceShouldBeCcode(int arg1) throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+```
 
