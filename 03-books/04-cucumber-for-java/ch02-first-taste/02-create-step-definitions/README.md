@@ -1,4 +1,4 @@
-# 02-add-feature
+# 02-create-step-definitions
 
 ## README.md - previous steps
 

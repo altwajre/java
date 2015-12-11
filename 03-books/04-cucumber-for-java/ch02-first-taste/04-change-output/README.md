@@ -1,4 +1,4 @@
-# 03-implement-step-definition
+# 04-change-output
 
 ## README.md - previous steps
 
@@ -8,9 +8,13 @@
 
 > `02-create-step-definitions/README.md`
 
-## Implement step definition
+> `03-implement-step-definition/README.md`
 
-> `step_definitions/CheckoutSteps.java` - implement CheckoutSteps.thePriceOfAIsC()
+## Change Output
+
+### Update cucumber
+
+> `cucumber` - `-p progress`
 
 ## Run Test
 
@@ -18,17 +22,10 @@
 
 ```
 Output:
-Feature: Checkout
-  Scenario: Checkout a banana              # checkout.feature:2
-    Given the price of a "banana" is 40c   # CheckoutSteps.thePriceOfAIsC(String,int)
-    When I checkout 1 "banana"             # CheckoutSteps.iCheckout(int,String)
-      cucumber.api.PendingException: TODO: implement me
-      	at step_definitions.CheckoutSteps.iCheckout(CheckoutSteps.java:23)
-      	at ✽.When I checkout 1 "banana"(checkout.feature:4)      
-    Then the total price should be 40ccode
+.PU
 1 Scenarios (1 undefined)
 3 Steps (1 pending, 1 undefined, 1 passed)
-0m0.079s
+0m0.073s
 cucumber.api.PendingException: TODO: implement me
 	at step_definitions.CheckoutSteps.iCheckout(CheckoutSteps.java:23)
 	at ✽.When I checkout 1 "banana"(checkout.feature:4)
