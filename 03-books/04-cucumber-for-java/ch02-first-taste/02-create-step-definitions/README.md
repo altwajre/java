@@ -14,7 +14,14 @@
 
 > add `step_definitions/CheckoutSteps.java`
 
-> update `cucumber`
+> update `cucumber` - `java -cp "jars/*:."`
+
+```
+mac and linux
+1, : is separator
+2, added the current directory "." to the classpath
+3, added -g step_definitions to tell Cucumber the step definitions that will "glue" the steps in feature file 
+```
 
 ## Run Test
 
