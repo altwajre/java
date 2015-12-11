@@ -12,7 +12,13 @@
 
 > `04-change-output/README.md`
 
-## Change Output
+## Add implementation
+
+> `implementation/Checkout.java`
+
+## Update Test
+
+> `step_definitions/CheckoutSteps.java` - `CheckoutSteps.iCheckout()`
 
 ## Run Test
 
