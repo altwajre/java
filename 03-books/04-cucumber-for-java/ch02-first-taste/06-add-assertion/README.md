@@ -1,5 +1,7 @@
 # 06-add-assertion
 
+> make the test fail first
+
 ## README.md - previous steps
 
 > `01-create-feature/01-no-features-found/README.md`
