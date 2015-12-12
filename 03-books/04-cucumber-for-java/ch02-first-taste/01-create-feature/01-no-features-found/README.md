@@ -13,7 +13,7 @@ gherkin
 
 ## Run Test
 
-> `java -cp "jars/*" cucumber.api.cli.Main -p pretty .` `-cp` is `classpath`, `entry-point` is `cucumber.api.cli.Main`
+> `java -cp "jars/*" cucumber.api.cli.Main -p pretty .` - `-cp` is `classpath`, `entry-point` is `cucumber.api.cli.Main`
 
 ```
 Output: since we haven't written any feature files yet, so no features found
