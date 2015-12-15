@@ -96,4 +96,9 @@ public class App
 /*
 output:
 Default service, Complementary service, Armed service
+
+note:
+checkout following:
+essential/class/02-anonymous-class
+01-tutorials/01-learn-java/03-classes-and-objects/anonymous-classes
  */
