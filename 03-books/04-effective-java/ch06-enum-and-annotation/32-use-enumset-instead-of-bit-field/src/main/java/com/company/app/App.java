@@ -3,6 +3,7 @@ package com.company.app;
 import java.util.EnumSet;
 import java.util.Set;
 
+// EnumSet - a modern replacement for bit fields
 enum Style{
     BOLD, ITALIC, UNDERLINE, STRIKETHROUGH
 }
