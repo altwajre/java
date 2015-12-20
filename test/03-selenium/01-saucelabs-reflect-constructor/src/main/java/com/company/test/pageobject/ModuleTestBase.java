@@ -19,6 +19,10 @@ public class ModuleTestBase {
         System.out.println(moduleTestKey);
 
         try {
+            /*
+             If the appropriate constructor has no parameters, then you don’t even need to use java.lang.reflect;
+             the Class.newInstance method provides the required functionality.
+             */
             Class<?> clazz = Consts.MODULE_TESTS.get(moduleTestKey);
             if(clazz == null){
                 return;
