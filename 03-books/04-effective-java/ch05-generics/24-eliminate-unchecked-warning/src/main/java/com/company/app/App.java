@@ -34,7 +34,7 @@ public class App<T>
     }
     public static void main( String[] args )
     {
-        Set<String> strings = new HashSet(); // Information:java: uses unchecked or unsafe operations.
+        Set<String> strings = new HashSet(); // Compile warning: Information:java: uses unchecked or unsafe operations.
 //        Set<String> strings = new HashSet<String>(); // Add type (String) parameter
     }
 }
