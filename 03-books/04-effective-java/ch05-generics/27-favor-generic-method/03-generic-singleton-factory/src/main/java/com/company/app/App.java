@@ -27,6 +27,8 @@ public class App
             System.out.println(sameString.apply(s));
         }
 
+        // The abstract class Number is the superclass of classes BigDecimal, BigInteger, Byte, Double, Float, Integer,
+        // Long and Short.
         Number[] numbers = {1, 2.0, 3L};
         UnaryFunction<Number> sameNumber = identityFunction();
         for(Number n : numbers){
