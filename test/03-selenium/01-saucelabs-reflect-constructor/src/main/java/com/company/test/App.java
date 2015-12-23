@@ -16,8 +16,8 @@ import java.util.List;
 
 public class App
 {
-    private static String configPath = "config.dev.yml";
-    private static String testngXmlPath = "test-group.xml";
+    private static String configFilePath = "config.dev.yml";
+    private static String testGroupFilePath = "test-group.xml";
     private static boolean isHelp = false;
     public static void main( String[] args ) throws IOException {
         parseArgs(args);
@@ -48,13 +48,13 @@ public class App
                 if(commandLine.hasOption("c")){
                     String optValue = commandLine.getOptionValue("c");
                     if(optValue != null){
-                        configPath = optValue;
+                        configFilePath = optValue;
                     }
                 }
                 if(commandLine.hasOption("t")){
                     String optValue = commandLine.getOptionValue("t");
                     if(optValue != null){
-                        testngXmlPath = optValue;
+                        testGroupFilePath = optValue;
                     }
                 }
                 if(commandLine.hasOption("l")){
@@ -69,7 +69,7 @@ public class App
 
     static void initialize() throws IOException {
         Yaml configYaml = new Yaml();
-        InputStream in = Files.newInputStream(Paths.get(configPath));
+        InputStream in = Files.newInputStream(Paths.get(configFilePath));
         Configuration config = configYaml.loadAs(in, Configuration.class);
         Global.Config = config;
         System.out.println(Global.Config.getUrl());
@@ -84,7 +84,7 @@ public class App
     static void runTest() {
         TestNG testNG = new TestNG();
         List<String> suites = new ArrayList<String>();
-        suites.add(testngXmlPath);
+        suites.add(testGroupFilePath);
         testNG.setTestSuites(suites);
 
         testNG.run();

@@ -35,7 +35,7 @@ public class App
             System.err.println("Class not found.");
             System.exit(1);
         }
-        // Instantiate the class
+        // Instantiate the class with interface access; Set is interface
         Set<String> s = null;
         try {
             s = (Set<String>) cl.newInstance();

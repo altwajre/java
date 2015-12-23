@@ -27,8 +27,13 @@ public class App
 {
     public static void main( String[] args )
     {
-//        defaultConstructor();
+        defaultConstructor();
 
+        constructorHasParam();
+    }
+
+    private static void constructorHasParam() {
+        System.out.println("# constructorHasParam");
         try {
             Class<?> clazz = Class.forName("com.company.app.Book");
             Constructor<?> ctor = clazz.getConstructor(String.class);
@@ -42,6 +47,7 @@ public class App
     }
 
     private static void defaultConstructor() {
+        System.out.println("# defaultConstructor");
         try {
             Class<?> clazz = Class.forName("com.company.app.Person");
             Object object = clazz.newInstance();
@@ -51,3 +57,11 @@ public class App
         }
     }
 }
+/*
+output:
+# defaultConstructor
+Person
+# constructorHasParam
+Book
+book name=Tom
+ */
