@@ -3,6 +3,7 @@ package com.company.app;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// Streams are an update to the Java API that lets you manipulate collections of data in a declarative way.
 enum Type {MEAT, FISH, OTHER}
 class Dish{
     private final String name;
