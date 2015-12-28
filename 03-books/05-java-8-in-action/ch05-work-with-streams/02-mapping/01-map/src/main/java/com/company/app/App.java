@@ -58,10 +58,24 @@ public class App
         List<String> dishNames = Dish.menu.stream()
                 .map(Dish::getName) // method reference - instance method of type
                 .collect(Collectors.toList());
-        System.out.println(dishNames);
+        System.out.println(dishNames); // [pork, beef, chicken, french fries, rice, season fruit, pizza, prawns, salmon]
+
+        List<Integer> dishNameLengths = Dish.menu.stream()
+                .map(Dish::getName)
+                .map(String::length)
+                .collect(Collectors.toList());
+        System.out.println(dishNameLengths); // [4, 4, 7, 12, 4, 12, 5, 6, 6]
+
+        List<String> words = Arrays.asList("Tom", "Dick", "Harry");
+        List<Integer> wordLengths = words.stream()
+                .map(String::length)
+                .collect(Collectors.toList());
+        System.out.println(wordLengths); // [3, 4, 5]
     }
 }
 /*
 output:
 [pork, beef, chicken, french fries, rice, season fruit, pizza, prawns, salmon]
+[4, 4, 7, 12, 4, 12, 5, 6, 6]
+[3, 4, 5]
  */
