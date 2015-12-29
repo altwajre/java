@@ -6,7 +6,12 @@ import java.util.function.Predicate;
 
 import static java.util.Comparator.comparing;
 
-// method reference - instance method of Type;
+/*
+ method reference - instance method of Type;
+lambda and method reference equivalents
+ (Apple a) -> a.getWeight() - Apple::getWeight  <- instance method of Type
+ (str, i) -> str.substring(i) - String::substring  <- instance method of Type
+*/
 class Apple{
     private Integer weight = 0;
     private String color = "";
@@ -34,6 +39,8 @@ Use case: A boolean expression
 public interface Predicate<T>{
   boolean test(T t);
 }
+lambda and method reference equivalents
+ (Apple a) -> a.isTrue() - Apple::isTrue  <- instance method of Type
  */
         // lambda
         // true
