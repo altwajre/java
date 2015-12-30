@@ -19,14 +19,16 @@ public class App
     }
     public static void main( String[] args )
     {
-        forEach(Arrays.asList(1,2,3,4,5), (Integer i) -> System.out.println(i));
+        forEach(Arrays.asList(1,2,3,4,5), (Integer i) -> System.out.print(i + " "));
+
+        System.out.println("\n#stream forEach()");
+        Arrays.asList(1,2,3,4,5).stream()
+                .forEach(System.out::print);
     }
 }
 /*
 output:
-1
-2
-3
-4
-5
+1 2 3 4 5
+#stream forEach()
+12345
  */
