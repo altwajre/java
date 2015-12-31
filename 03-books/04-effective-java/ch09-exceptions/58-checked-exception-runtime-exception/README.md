@@ -1,5 +1,7 @@
 # Use checked exceptions for recoverable conditions and runtime exceptions for programming errors
 
+http://beginnersbook.com/2013/04/java-checked-unchecked-exceptions-with-examples/
+
 ## Checked exceptions
 
 ```
