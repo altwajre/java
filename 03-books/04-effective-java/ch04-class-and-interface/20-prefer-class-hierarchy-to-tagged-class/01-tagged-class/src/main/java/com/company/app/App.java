@@ -1,6 +1,7 @@
 package com.company.app;
 
 // Tagged class - vastly inferior to a class hierarchy!
+// Compare it with class hierarchy example to see the difference
 class Figure{
     enum Shape{RECTANGLE, CIRCLE};
     // Tag field - the shape of this figure
@@ -31,7 +32,6 @@ class Figure{
                 throw new AssertionError();
         }
     }
-
 }
 public class App
 {
