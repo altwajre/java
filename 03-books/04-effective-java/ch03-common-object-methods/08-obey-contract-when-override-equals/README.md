@@ -32,3 +32,18 @@ The equals method implements an equivalence relation. It is:
   - For any non-null reference value x, x.equals(null) must return false.
 ```
 
+### Recipe for a hight-quality equals method
+
+```
+1, Use the == operator to check if the argument is a reference to this object
+2, Use the instanceof operator to check if the argument has the correct type
+3, Cast the argument to the correct type
+4, For each "significant" field in the class, check if that field of the argument matches the corresponding field of
+   this object
+5, When you are finished writing your equals method, ask yourself three questions: Is it symmetric? Is it transitive?
+   Is it consistent?
+Final caveats
+- Always override hashCode when you override equals
+- Don't try to be too clever
+- Don't substitute another type for Object in the equals declaration
+```
