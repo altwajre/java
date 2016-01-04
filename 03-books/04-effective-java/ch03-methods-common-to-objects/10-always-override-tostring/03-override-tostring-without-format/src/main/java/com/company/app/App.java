@@ -14,6 +14,9 @@ final class PhoneNumber{
     private final short lineNumber;
 
     PhoneNumber(int areaCode, int prefix, int lineNumber) {
+        rangeCheck(areaCode, 999, "area code");
+        rangeCheck(prefix, 999, "prefix");
+        rangeCheck(lineNumber, 9999, "line number");
         this.areaCode = (short) areaCode;
         this.prefix = (short) prefix;
         this.lineNumber = (short) lineNumber;

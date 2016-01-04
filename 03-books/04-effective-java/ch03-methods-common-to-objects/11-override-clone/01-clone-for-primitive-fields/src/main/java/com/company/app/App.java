@@ -3,11 +3,18 @@ package com.company.app;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
-While it isn't as important as obeying the equals and hashCode contracts, providing a good toString implementation makes
-your class much more pleasant to use.
- */
-final class PhoneNumber{
+class Person{
+    protected void overrideProtected(){
+        System.out.println("Person.overrideProtected()");
+    }
+}
+class Student extends Person{
+    @Override
+    public void overrideProtected() {
+        System.out.println("Student.overrideProtected() to be public");
+    }
+}
+final class PhoneNumber implements Cloneable {
     private final short areaCode;
     private final short prefix;
     private final short lineNumber;
@@ -54,17 +61,34 @@ final class PhoneNumber{
     public String toString(){
         return String.format("(%03d) %03d-%04d", areaCode, prefix, lineNumber);
     }
+    @Override
+    public PhoneNumber clone(){
+        try{
+            return (PhoneNumber) super.clone();
+        }
+        catch (CloneNotSupportedException e){
+            throw new AssertionError(); // Can't happen
+        }
+    }
 }
 public class App
 {
     public static void main( String[] args )
     {
+        PhoneNumber pn = new PhoneNumber(707,867, 5309);
         Map<PhoneNumber, String> m = new HashMap<>();
-        m.put(new PhoneNumber(707, 867, 5309), "Jenny");
-        System.out.println(m);
+        m.put(pn, "Jenny");
+        PhoneNumber clonedPn = pn.clone();
+        System.out.println(clonedPn.getClass().getSimpleName());
+        System.out.println(m.get(pn.clone())); // clone()
+
+        // Override protected
+        new Student().overrideProtected();
     }
 }
 /*
 output:
-{(707) 867-5309=Jenny}
+PhoneNumber
+Jenny
+Student.overrideProtected() to be public
  */
