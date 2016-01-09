@@ -10,6 +10,9 @@ public class App
         url = url.replaceFirst("www.", "www." + env + "-");
         url = url.replaceFirst(".com", ".com" + queryString);
         System.out.println(url);
-
     }
 }
+/*
+output:
+https://www.test-godaddy.com/?ci=13931&iphoneview=1
+ */
