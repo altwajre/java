@@ -28,3 +28,10 @@ If an object created locally never escape the method it was created in, it is th
         localObject.setName("Other name");
     }
 ```
+
+#### The Thread Control Escape Rule
+
+```
+If a resource is created, used and disposed within the control of the same thread, and never escapes the control of this
+thread, the use of that resource is thread safe.
+```
