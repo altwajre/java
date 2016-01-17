@@ -7,18 +7,6 @@ import java.util.concurrent.TimeUnit;
 
 /*
 http://winterbe.com/posts/2015/04/07/java8-concurrency-tutorial-thread-executor-examples/
-
-output:
-pool-1-thread-1: before sleep 1 seconds
-pool-1-thread-2: before sleep 2 seconds
-pool-1-thread-3: before sleep 10 seconds
-attempt to shutdown executor
-pool-1-thread-1: after sleep 1 seconds
-pool-1-thread-2: after sleep 2 seconds
-shutdown finished
-pool-1-thread-3: after sleep 10 seconds
-cancel non-finished tasks
-
  */
 public class App 
 {
@@ -73,3 +61,15 @@ public class App
         }
     }
 }
+/*
+output:
+pool-1-thread-1: before sleep 1 seconds
+pool-1-thread-2: before sleep 2 seconds
+pool-1-thread-3: before sleep 10 seconds
+attempt to shutdown executor
+pool-1-thread-1: after sleep 1 seconds
+pool-1-thread-2: after sleep 2 seconds
+shutdown finished
+pool-1-thread-3: after sleep 10 seconds
+cancel non-finished tasks
+ */

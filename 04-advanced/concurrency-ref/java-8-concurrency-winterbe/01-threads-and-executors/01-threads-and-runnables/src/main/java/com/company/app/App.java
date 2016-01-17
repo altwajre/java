@@ -4,14 +4,6 @@ import java.util.concurrent.TimeUnit;
 
 /*
 http://winterbe.com/posts/2015/04/07/java8-concurrency-tutorial-thread-executor-examples/
-
-output:
-main: before sleep
-main: after sleep
-Done!
-Thread-0: before sleep
-Thread-0: after sleep
-
  */
 public class App 
 {
@@ -36,3 +28,11 @@ public class App
         System.out.println("Done!");
     }
 }
+/*
+output:
+main: before sleep
+main: after sleep
+Done!
+Thread-0: before sleep
+Thread-0: after sleep
+ */

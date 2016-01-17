@@ -1,8 +1,8 @@
-## Thread safety and Immutability
+# Thread safety and Immutability
 
-### Thread safe
+## Thread safe
 
-#### Immutability
+### Immutability
 
 ```
 ImmutableObject is thread safe:
@@ -31,7 +31,7 @@ Notice how the add() method returns a new ImmutableValue instance with the resul
 adding the value to itself.
 ```
 
-#### synchronized reference to immutable object
+### synchronized reference to immutable object
 
 ```
 To make the Calculator class thread safe you could have declared the getValue(), setValue(), and add() methods
@@ -48,9 +48,9 @@ class Calculator {
 }
 ```
 
-### Not thread safe
+## Not thread safe
 
-#### Reference to immutable object
+### Reference to immutable object
 
 ```
 The reference to an immutable object may not be thread safe.

@@ -1,8 +1,8 @@
-## Thread safety and Shared Resources
+# Thread safety and Shared Resources
 
-### Thread safe
+## Thread safe
 
-#### Local Primitive Variables
+### Local Primitive Variables
 
 ```
 Local variables are stored in each thread's own stack. That means that local variables are never shared between threads. 
@@ -14,7 +14,7 @@ That also means that all local primitive variables are thread safe.
     }
 ```
 
-#### Local Object References
+### Local Object References
 
 ```
 Local references to objects are a bit different. The reference itself is not shared. The object referenced is not stored
@@ -29,7 +29,7 @@ If an object created locally never escape the method it was created in, it is th
     }
 ```
 
-#### The Thread Control Escape Rule
+### The Thread Control Escape Rule
 
 ```
 If a resource is created, used and disposed within the control of the same thread, and never escapes the control of this
