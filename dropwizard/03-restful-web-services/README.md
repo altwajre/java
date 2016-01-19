@@ -14,6 +14,12 @@ maven-archetype-quickstart project
 
 > `java -jar target/hello-world-0.0.1-SNAPSHOT.jar server hello-world.yml`
 
+### Intellij
+
+#### Configuration - program arguments
+
+> On configurations dialog, `Program arguments`, enter `server hello-world.yml`, click `OK`
+
 ### Visit
 
 > http://localhost:8080/hello-world
