@@ -2,10 +2,6 @@
 
 https://leetcode.com/
 
-## Cracking the Coding Interview - ctci github
-
-https://github.com/gaylemcd/ctci
-
 ## Passing objects to a method
 
 > http://www.dreamincode.net/forums/topic/236550-passing-objects-to-a-method/

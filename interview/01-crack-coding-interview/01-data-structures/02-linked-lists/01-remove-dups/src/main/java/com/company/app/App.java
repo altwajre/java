@@ -5,12 +5,12 @@ import java.util.Hashtable;
 /*
 remove duplicates from an unordered linked list
  */
-public class App 
+class Node{
+    public int Data;
+    public Node Next;
+}
+public class App
 {
-    static class Node{
-        public int Data;
-        public Node Next;
-    }
     public static void main( String[] args )
     {
         deleteDupsTest();
@@ -43,8 +43,8 @@ public class App
         }
     }
 
-    private static void deleteDupsWithoutBufferTest() {
-        System.out.println("#deleteDupsWithoutBufferTest");
+    static void deleteDupsWithoutBufferTest() {
+        System.out.println("\n#deleteDupsWithoutBufferTest");
         Node head = createlinkedList();
         printLinkedList(head);
         deleteDupsWithoutBuffer(head);
@@ -85,7 +85,7 @@ public class App
         int[] numbers = {7, 2, 3, 3, 4, 5, 5};
         Node head = new Node();
         Node current = head;
-        for(int i = 0; i < numbers.length; i ++){
+        for(int i = 0; i < numbers.length; i++){
             current.Data = numbers[i];
             if(i != numbers.length - 1){
                 current.Next = new Node();
@@ -95,3 +95,20 @@ public class App
         return head;
     }
 }
+/*
+output:
+#deleteDupsTest
+#createlinkedList
+#printLinkedList
+7->2->3->3->4->5->5->null
+#deleteDups
+#printLinkedList
+7->2->3->4->5->null
+
+#deleteDupsWithoutBufferTest
+#createlinkedList
+#printLinkedList
+7->2->3->3->4->5->5->null
+#printLinkedList
+7->2->3->4->5->null
+ */
