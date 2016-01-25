@@ -1,5 +1,7 @@
 package com.company.app;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 class Request{
     private String name;
     public Request(String name){
@@ -25,23 +27,18 @@ class Response{
     }
 }
 /*
-When an object has state,
-It is NOT thread safe - race condition
-While the increment operation, count++, may look like a single action because of its compact syntax, it is not atomic,
-which means that it does not execute as a single, indivisible operation. Instead, it is a shorthand for a sequence of
-three discrete operations: fetch the current value, add one to it, and write the new value back. This is an example of
-a read-modify-write operation, in which the resulting state is derived from the previous state.
+By replacing the long counter with an AtomicLong, we ensure that all actions that access the counter state are atomic.
  */
-class UnsafeCountingFactorizer{
-    private long count = 0;
+class CountingFactorizer {
+    private final AtomicLong count = new AtomicLong(0);
     public long getCount(){
-        return count;
+        return count.get();
     }
     public void service(Request req, Response resp){
         try {
             Thread.sleep(1000);  // add sleep(1000) to make it easy to reproduce the race condition
         } catch (InterruptedException e) { }
-        count++;
+        count.incrementAndGet();
         String name = req.getName();
         resp.setName("modified " + name);
     }
@@ -50,7 +47,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        final UnsafeCountingFactorizer factorizer = new UnsafeCountingFactorizer();
+        final CountingFactorizer factorizer = new CountingFactorizer();
 
         for(int i = 0; i < 10; i++){
             new Thread("Thread_" + i){
@@ -71,18 +68,16 @@ public class App
     }
 }
 /*
-The final count is 4 instead of 10 because the race condition.
-
 output:
-Thread_9 - count: 3
-Thread_6 - count: 3
-Thread_7 - count: 3
-Thread_0 - count: 3
-Thread_1 - count: 3
-Thread_8 - count: 3
-Thread_3 - count: 3
-Thread_4 - count: 3
-Thread_2 - count: 3
-Thread_5 - count: 4
-factorizer.getCount(): 4
+Thread_5 - count: 7
+Thread_8 - count: 5
+Thread_2 - count: 4
+Thread_4 - count: 6
+Thread_6 - count: 5
+Thread_7 - count: 9
+Thread_3 - count: 10
+Thread_1 - count: 4
+Thread_9 - count: 9
+Thread_0 - count: 5
+factorizer.getCount(): 10
  */
