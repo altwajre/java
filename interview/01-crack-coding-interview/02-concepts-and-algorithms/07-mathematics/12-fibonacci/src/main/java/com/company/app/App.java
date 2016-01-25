@@ -2,14 +2,14 @@ package com.company.app;
 
 public class App
 {
-    static int fibonacciRecusion(int number){
+    static int recursion(int number){
         if(number == 1 || number == 2){
             return 1;
         }
-        return fibonacciRecusion(number - 1) + fibonacciRecusion(number - 2);
+        return recursion(number - 1) + recursion(number - 2);
     }
 
-    static void fibonacciLoop(int numberOfTerms){
+    static void iteration(int numberOfTerms){
         int first = 0;
         int second = 1;
         int next;
@@ -22,24 +22,10 @@ public class App
             second = next;
         }
     }
+
+    static int number = 9;
     public static void main( String[] args )
     {
-        testFibonacciRecusion();
-
-        testFibonacciLoop();
-    }
-
-    static int number = 8;
-    /*
-      output:
-      fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
-      index:     0  1  2  3  4  5  6  7   8   9
-     */
-    private static void testFibonacciLoop() {
-        System.out.println("#For loop " + number +  ": ");
-        fibonacciLoop(number);
-    }
-
     /*
                                                        (9)r34
                                                 (8)r21  +  (7)r13
@@ -55,8 +41,22 @@ public class App
       fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
       index:     0  1  2  3  4  5  6  7   8   9
      */
-    private static void testFibonacciRecusion() {
-        System.out.println("#Recusion " + number + ": ");
-        System.out.println(fibonacciRecusion(number));
+        System.out.println("#Recursion " + number + ": ");
+        System.out.println(recursion(number));
+
+    /*
+      output:
+      fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+      index:     0  1  2  3  4  5  6  7   8   9
+     */
+        System.out.println("#Iteration " + number +  ": ");
+        iteration(number);
     }
 }
+/*
+output:
+#Recursion 9:
+34
+#Iteration 9:
+fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+ */

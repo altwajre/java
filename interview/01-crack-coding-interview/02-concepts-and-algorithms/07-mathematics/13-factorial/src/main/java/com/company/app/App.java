@@ -16,6 +16,10 @@ public class App
     }
     public static void main( String[] args )
     {
-        System.out.println("7!: " + factorial(7));
+        System.out.println("4!: " + factorial(4));
     }
 }
+/*
+output:
+4!: 24
+ */
