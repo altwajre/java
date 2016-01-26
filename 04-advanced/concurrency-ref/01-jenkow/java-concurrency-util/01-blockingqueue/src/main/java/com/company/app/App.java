@@ -17,55 +17,54 @@ takes an object out of the queue.
 The consuming thread keeps taking objects out of the blocking queue, and processes them. If the consuming thread
 tries to take an object out of an empty queue, the consuming thread is blocked until a producing thread puts
 an object into the queue.
-
-output:
-queue.size()=0
-queue.size()=2
-1
-2
-3
-4
-
  */
+class Producer implements Runnable{
+    protected BlockingQueue queue = null;
+    public Producer(BlockingQueue queue){
+        this.queue = queue;
+    }
+    public void run() {
+        try {
+            System.out.println("Producer started queue.size()=" + queue.size());
+            Thread.sleep(10);
+            queue.put("1");
+            System.out.println("Producer after put 1 queue.size()=" + queue.size());
+            queue.put("2");
+            System.out.println("Producer after put 2 queue.size()=" + queue.size());
+            queue.put("3");
+            System.out.println("Producer after put 3 queue.size()=" + queue.size());
+            Thread.sleep(2000);
+            queue.put("4");
+            System.out.println("Producer after put 4 queue.size()=" + queue.size());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+class Consumer implements Runnable{
+    protected BlockingQueue queue = null;
+    public Consumer(BlockingQueue queue){
+        this.queue = queue;
+    }
+    public void run() {
+        try {
+            System.out.println("  Consumer started queue.size()=" + queue.size());
+            Thread.sleep(50);
+            System.out.println("  Consumer after sleep(50) queue.size()=" + queue.size());
+            System.out.println(queue.take());
+            System.out.println("  Consumer after take 1 queue.size()=" + queue.size());
+            System.out.println(queue.take());
+            System.out.println("  Consumer after take 2 queue.size()=" + queue.size());
+            System.out.println(queue.take());
+            System.out.println("  Consumer after take 3 queue.size()=" + queue.size());
+            System.out.println(queue.take());
+            System.out.println("  Consumer after take 4 queue.size()=" + queue.size());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
 public class App {
-    static class Producer implements Runnable{
-        protected BlockingQueue queue = null;
-        public Producer(BlockingQueue queue){
-            this.queue = queue;
-        }
-        public void run() {
-            try {
-                Thread.sleep(10);
-                queue.put("1");
-                queue.put("2");
-                queue.put("3");
-                Thread.sleep(2000);
-                queue.put("4");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    static class Consumer implements Runnable{
-        protected BlockingQueue queue = null;
-        public Consumer(BlockingQueue queue){
-            this.queue = queue;
-        }
-        public void run() {
-            try {
-                System.out.println("queue.size()=" + queue.size());
-                Thread.sleep(50);
-                System.out.println("queue.size()=" + queue.size());
-                Thread.sleep(1000);
-                System.out.println(queue.take());
-                System.out.println(queue.take());
-                System.out.println(queue.take());
-                System.out.println(queue.take());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     public static void main( String[] args ) throws InterruptedException {
         BlockingQueue queue = new ArrayBlockingQueue(2);
         Producer producer = new Producer(queue);
@@ -75,3 +74,21 @@ public class App {
         new Thread(consumer).start();
     }
 }
+/*
+output:
+Producer started queue.size()=0
+  Consumer started queue.size()=0
+Producer after put 1 queue.size()=1
+Producer after put 2 queue.size()=2
+  Consumer after sleep(50) queue.size()=2
+1
+  Consumer after take 1 queue.size()=1
+Producer after put 3 queue.size()=2
+2
+  Consumer after take 2 queue.size()=1
+3
+  Consumer after take 3 queue.size()=0
+Producer after put 4 queue.size()=1
+4
+  Consumer after take 4 queue.size()=0
+ */
