@@ -3,6 +3,10 @@ package com.company.app;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/*
+checkout http://tutorials.jenkov.com/java-concurrency/java-memory-model.html
+to see how method is called within a thread.
+ */
 class DriverInfo{
     public DriverInfo(String info){
         this.Info = info;
