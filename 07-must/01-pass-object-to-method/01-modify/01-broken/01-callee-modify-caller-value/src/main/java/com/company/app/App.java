@@ -16,7 +16,7 @@ public class App
 caller  callee
      \ /
      [1] -> [2] -> [3] -> null
-    BROKEN: When using "callee" to change data ".data=11", it will affect "caller" which means "caller.Data" is "11".
+    BROKEN: When using "callee" to change data ".Data=11", it will affect "caller" which means "caller.Data" is "11".
 caller  callee
      \ /
      [11] -> [2] -> [3] -> null
