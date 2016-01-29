@@ -5,54 +5,32 @@ http://tutorials.jenkov.com/java-concurrency/semaphores.html
 
 Two threads signaling each other using a Semaphore
 
+Mutex (Just 1 thread):
+Mutexes are typically used to serialise access to a section of re-entrant code that cannot be executed concurrently by
+more than one thread. A mutex object only allows one thread into a controlled section, forcing other threads which
+attempt to gain access to that section to wait until the first thread has exited from that section.
+
 For example, like Stop-Light lets a car pass it one at a time
 1, The Car thread that has many cars waiting on the Stop-Light thread
 2, For the Stop-Light thread, each green signal lets a car that is in front of the Stop-Light pass and then becomes RED
-
-output:
-Thread_Car__1: wait
-
-Thread_StopLight: RED; ticking
-Thread_StopLight: GREEN; notify
-Thread_Car__1: start going
-Thread_Car__1: pass Stop-Light
-Thread_Car__2: wait
-
-Thread_StopLight: RED; ticking
-Thread_StopLight: GREEN; notify
-Thread_Car__2: start going
-Thread_Car__2: pass Stop-Light
-Thread_Car__3: wait
-
-Thread_StopLight: RED; ticking
-Thread_StopLight: GREEN; notify
-Thread_Car__3: start going
-Thread_Car__3: pass Stop-Light
-Thread_Car__4: wait
-
-Thread_StopLight: RED; ticking
-Thread_StopLight: GREEN; notify
-Thread_Car__4: start going
-Thread_Car__4: pass Stop-Light
-
  */
-public class App 
-{
-    static class Semaphore{
-        boolean signal = false;
-        public synchronized void take(){
-            this.signal = true;
-            this.notify();
-        }
-        public synchronized void release(){
-            while(!this.signal){
-                try {
-                    wait();
-                } catch (InterruptedException e) { }
-            }
-            this.signal = false;
-        }
+class Semaphore{
+    boolean signal = false;
+    public synchronized void take(){
+        this.signal = true;
+        this.notify();
     }
+    public synchronized void release(){
+        while(!this.signal){
+            try {
+                wait();
+            } catch (InterruptedException e) { }
+        }
+        this.signal = false;
+    }
+}
+public class App
+{
     static int count = 1;
     public static void main( String[] args )
     {
@@ -89,3 +67,30 @@ public class App
         stopLightThread.start();
     }
 }
+/*
+output:
+Thread_Car__1: wait
+
+Thread_StopLight: RED; ticking
+Thread_StopLight: GREEN; notify
+Thread_Car__1: start going
+Thread_Car__1: pass Stop-Light
+Thread_Car__2: wait
+
+Thread_StopLight: RED; ticking
+Thread_StopLight: GREEN; notify
+Thread_Car__2: start going
+Thread_Car__2: pass Stop-Light
+Thread_Car__3: wait
+
+Thread_StopLight: RED; ticking
+Thread_StopLight: GREEN; notify
+Thread_Car__3: start going
+Thread_Car__3: pass Stop-Light
+Thread_Car__4: wait
+
+Thread_StopLight: RED; ticking
+Thread_StopLight: GREEN; notify
+Thread_Car__4: start going
+Thread_Car__4: pass Stop-Light
+ */
