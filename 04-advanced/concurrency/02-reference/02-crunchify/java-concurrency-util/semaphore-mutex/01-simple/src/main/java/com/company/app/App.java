@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.concurrent.Semaphore;
 
 /*
+http://crunchify.com/what-is-java-semaphore-and-mutex-java-concurrency-multithread-explained-with-example/
+
 Mutex (Just 1 thread):
 Mutexes are typically used to serialise access to a section of re-entrant code that cannot be executed concurrently by
 more than one thread. A mutex object only allows one thread into a controlled section, forcing other threads which
