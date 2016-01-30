@@ -3,6 +3,8 @@ package com.company.app;
 import java.util.concurrent.Semaphore;
 
 /*
+Compare it with 01-jenkow, java-concurrency, 23-semaphores, 01-mutex, http://tutorials.jenkov.com/java-concurrency/semaphores.html
+
 Semaphore.acquire(); // wait - Acquires a permit from this semaphore, blocking until one is available
 Semaphore.release(); // notify - Releases a permit
 
