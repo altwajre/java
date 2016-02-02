@@ -20,16 +20,17 @@ public class App
     }
 
     private static void testAdding() {
+        System.out.println("#testAdding");
         AtomicInteger atomicInteger = new AtomicInteger(8);
         int getFirstValue = atomicInteger.getAndAdd(10);
-        System.out.println("#getFirstValue="+getFirstValue);
+        System.out.println("getFirstValue="+getFirstValue);
         int value = atomicInteger.get();
-        System.out.println("#value="+value);
+        System.out.println("value="+value);
 
         int getLastValue = atomicInteger.addAndGet(10);
-        System.out.println("#getLastValue="+getLastValue);
+        System.out.println("getLastValue="+getLastValue);
         value = atomicInteger.get();
-        System.out.println("#value="+value);
+        System.out.println("value="+value);
     }
 
     private static void testCompareAndSet() {
@@ -79,4 +80,9 @@ newValue=789
 #testCompareAndSet
 wasNewValueSet=true
 value=789
+#testAdding
+getFirstValue=8
+value=18
+getLastValue=28
+value=28
  */
