@@ -16,6 +16,20 @@ public class App
         testSetValue();
         testGetAndSet();
         testCompareAndSet();
+        testAdding();
+    }
+
+    private static void testAdding() {
+        AtomicInteger atomicInteger = new AtomicInteger(8);
+        int getFirstValue = atomicInteger.getAndAdd(10);
+        System.out.println("#getFirstValue="+getFirstValue);
+        int value = atomicInteger.get();
+        System.out.println("#value="+value);
+
+        int getLastValue = atomicInteger.addAndGet(10);
+        System.out.println("#getLastValue="+getLastValue);
+        value = atomicInteger.get();
+        System.out.println("#value="+value);
     }
 
     private static void testCompareAndSet() {
