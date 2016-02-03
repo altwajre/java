@@ -37,12 +37,41 @@ class StatelessFactorizer{
     public void service(Request req, Response resp){
         String name = req.getName();
         resp.setName("modified " + name);
+        System.out.println(Thread.currentThread().getName() + ": " + req.getName() + ", " + resp.getName());
     }
 }
 public class App
 {
     public static void main( String[] args )
     {
+        final StatelessFactorizer factorizer = new StatelessFactorizer();
+        for(int i = 0; i < 10; i++){
+            new Thread("Thread_" + i){
+                public void run(){
+                    factorizer.service(new Request("request"), new Response("response"));
+                }
+            }.start();
+        }
 
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("#done");
     }
 }
+/*
+output:
+Thread_9: request, modified request
+Thread_1: request, modified request
+Thread_6: request, modified request
+Thread_5: request, modified request
+Thread_0: request, modified request
+Thread_7: request, modified request
+Thread_4: request, modified request
+Thread_8: request, modified request
+Thread_2: request, modified request
+Thread_3: request, modified request
+#done
+ */
