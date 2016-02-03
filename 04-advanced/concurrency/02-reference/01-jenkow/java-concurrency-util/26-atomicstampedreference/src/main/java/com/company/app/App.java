@@ -2,6 +2,10 @@ package com.company.app;
 
 import java.util.concurrent.atomic.AtomicStampedReference;
 
+/*
+http://tutorials.jenkov.com/java-util-concurrent/atomicstampedreference.html
+
+ */
 public class App
 {
     public static void main( String[] args )

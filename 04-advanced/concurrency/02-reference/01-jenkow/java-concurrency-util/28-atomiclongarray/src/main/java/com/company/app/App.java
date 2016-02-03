@@ -2,6 +2,10 @@ package com.company.app;
 
 import java.util.concurrent.atomic.AtomicLongArray;
 
+/*
+http://tutorials.jenkov.com/java-util-concurrent/atomiclong.html
+
+ */
 public class App
 {
     public static void main( String[] args )
