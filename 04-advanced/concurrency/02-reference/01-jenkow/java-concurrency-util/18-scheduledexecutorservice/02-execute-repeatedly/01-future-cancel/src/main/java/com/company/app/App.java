@@ -10,27 +10,30 @@ of time in between each execution.
  */
 public class App
 {
+    static int count = 1;
     public static void main( String[] args )
     {
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
-        ScheduledFuture future = scheduledExecutorService.schedule(new Callable<Object>() {
+        ScheduledFuture future = scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             @Override
-            public Object call() throws Exception {
-                System.out.println("Executed!");
-                return "Called";
+            public void run() {
+                System.out.println(Thread.currentThread().getName() + " executed_"+count++);
             }
-        }, 2, TimeUnit.SECONDS);
+        }, 1, 1, TimeUnit.SECONDS);
+
         try {
-            System.out.println("result="+future.get());
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }scheduledExecutorService.shutdown();
+        }
+
+        future.cancel(false);
+        scheduledExecutorService.shutdown();
     }
 }
 /*
 output:
-Executed!
-result=Called
+pool-1-thread-1 executed_1
+pool-1-thread-1 executed_2
+pool-1-thread-2 executed_3
  */
