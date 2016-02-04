@@ -5,6 +5,8 @@ import java.util.Scanner;
 /*
 Not Shared Between Threads
 
+https://www.youtube.com/watch?v=_aNO6x8HXZ0&index=2&list=PLBB24CFB073F1048E
+
 When the state variable running is NOT volatile, it may cache the value locally because it thought it's not shared
 between threads.
 The process.shutdown() in the main thread won't work if state variable running is cached locally because it will be
