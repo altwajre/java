@@ -3,10 +3,10 @@ package com.company.app;
 import java.util.concurrent.atomic.AtomicLong;
 
 /*
-Thread Safe only for the atomic variable, but doesn't benefit client code because client code can not get a
-reliable CountingFactorizer.count like 1, 2, 3 ...
+Listing 2.5. Servlet that Attempts to Cache its Last Result without Adequate Atomicity. Don't do this.
 
-Listing 2.4. Servlet that Counts Requests Using AtomicLong.
+Unfortunately, this approach does not work. Even though the atomic references are individually thread-safe,
+UnsafeCachingFactorizer has race conditions that could make it produce the wrong answer.
  */
 class Request{
     private String name;
@@ -32,21 +32,18 @@ class Response{
         this.name = name;
     }
 }
-/*
-Thread Safe because AtomicLong is used.
-
-By replacing the long counter with an AtomicLong, we ensure that all actions that access the counter state are atomic.
- */
-class CountingFactorizer {
+class UnsafeCachingFactorizer {
     private final AtomicLong count = new AtomicLong(0);
+    private final AtomicLong lastCount = new AtomicLong();
     public long getCount(){
         return count.get();
     }
+    public long getLastCount() {return lastCount.get(); }
     public void service(Request req, Response resp){
         try { Thread.sleep(1000);  // add sleep(1000) to make it easy to reproduce the race condition
         } catch (InterruptedException e) { }
+        lastCount.set(count.get());
         count.incrementAndGet();
-        System.out.println(Thread.currentThread().getName() + " - count: " + count.get());
         String name = req.getName();
         resp.setName("modified " + name);
     }
@@ -55,29 +52,30 @@ public class App
 {
     public static void main( String[] args )
     {
-        final CountingFactorizer factorizer = new CountingFactorizer();
+        final UnsafeCachingFactorizer factorizer = new UnsafeCachingFactorizer();
         for(int i = 0; i < 10; i++){
             new Thread("Thread_" + i){
                 public void run(){
                     factorizer.service(new Request("Tom"), new Response(""));
+                    System.out.println(Thread.currentThread().getName() + " - count: " + factorizer.getCount());
                 }
             }.start();
         }
         try { Thread.sleep(1500); } catch (InterruptedException e) { e.printStackTrace(); }
-        System.out.println("factorizer.getCount(): " + factorizer.getCount());
+        System.out.println("factorizer.getCount=" + factorizer.getCount() + ", factorizer.getLastCount=" + factorizer.getLastCount());
     }
 }
 /*
 output:
-Thread_5 - count: 7
-Thread_8 - count: 5
-Thread_2 - count: 4
-Thread_4 - count: 6
-Thread_6 - count: 5
+Thread_3 - count: 9
+Thread_6 - count: 10
+Thread_4 - count: 9
+Thread_2 - count: 9
+Thread_0 - count: 9
+Thread_5 - count: 10
+Thread_9 - count: 10
+Thread_8 - count: 9
 Thread_7 - count: 9
-Thread_3 - count: 10
-Thread_1 - count: 4
-Thread_9 - count: 9
-Thread_0 - count: 5
-factorizer.getCount(): 10
+Thread_1 - count: 9
+factorizer.getCount=10, factorizer.getLastCount=0
  */
