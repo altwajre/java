@@ -5,6 +5,7 @@
 **/*.class
 **/.DS_Store
 **/node_modules/
+**/out/
 
 # Java
 **/target/
