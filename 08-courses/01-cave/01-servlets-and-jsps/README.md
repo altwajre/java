@@ -14,3 +14,5 @@ https://www.youtube.com/watch?v=licQZlIenAk
 5, on the bottom of `Configurations` dialog, click `Fix`, select `Artifacts`, click `+`, `Web App: Exploded`, click `From Modules...`, select the correct module and click `OK`, click `Apply`, `Ok`
 6, right click on `.jsp` file under web folder and click `Run`
 
+## Eclipse
+http://courses.caveofprogramming.com/courses/servlets-and-jsps-creating-web-applications-with-java
