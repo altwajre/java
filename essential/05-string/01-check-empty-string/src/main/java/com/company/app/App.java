@@ -13,7 +13,6 @@ public class App
         String string5 = "Hi";
 
         System.out.printf("'%s' is empty? %s", string1, Strings.isNullOrEmpty(string1));
-        System.out.printf("\n'%s' is not empty? %s", string1, Strings.isNullOrEmpty(string1));
 
         System.out.printf("\n\n'\\t\\r\\n' is empty? %s", string2, Strings.isNullOrEmpty(string2));
         System.out.printf("\n'\\t\\r\\n' is not empty? %s", string2, Strings.isNullOrEmpty(string2));
@@ -31,7 +30,6 @@ public class App
 /*
 output:
 '' is empty? true
-'' is not empty? true
 
 '\t\r\n' is empty?
 
