@@ -37,16 +37,6 @@ public class Sender {
         }
     }
 
-    public void send(String exchange, String type, String message) {
-        try {
-            channel.exchangeDeclare(exchange, type);
-
-            channel.basicPublish(exchange, "", null, message.getBytes());
-        } catch (IOException e) {
-            LOGGER.error(e.getMessage(), e);
-        }
-    }
-
     public void destroy() {
         try {
             if (connection != null) {
