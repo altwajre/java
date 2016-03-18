@@ -4,6 +4,7 @@
 **/*.log
 **/*.class
 **/.DS_Store
+**/.gradle
 **/node_modules/
 **/out/
 

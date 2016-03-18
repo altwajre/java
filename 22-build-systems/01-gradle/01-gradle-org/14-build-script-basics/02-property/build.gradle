@@ -1,0 +1,7 @@
+ext.person = 'Dolly'
+
+task hello {
+    doLast {
+        println "Hello, $person!"
+    }
+}
