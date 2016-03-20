@@ -1,0 +1,21 @@
+// $ gradle hello
+ext.person = 'Dolly'
+
+task hello {
+    doLast {
+        println "Hello, $person!"
+    }
+}
+
+task hi(dependsOn: 'hello') << {
+    println 'Hello, World!'
+}
+
+// Adding extra properties to a task
+task myTask{
+    ext.myProperty = "myValue"
+}
+
+task printTaskProperties << {
+    println myTask.myProperty
+}

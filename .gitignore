@@ -1,10 +1,12 @@
 # Files to ignore
-.idea
+**/.idea
 **/*.iml
 **/*.log
 **/*.class
 **/.DS_Store
 **/.gradle
+**/build/
+**/gradle/
 **/node_modules/
 **/out/
 

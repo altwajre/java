@@ -2,10 +2,15 @@
 http://sdkman.io/install.html
 
 # groovy
-http://groovy-lang.org/install.html#_homebrew
+## installation
+`$ sdk install groovy`
 
 # gradle
-installation
+## installation
 http://sdkman.io/usage.html
 
+`$ sdk install gradle`
+
+## docs
+https://docs.gradle.org/current/release-notes
 

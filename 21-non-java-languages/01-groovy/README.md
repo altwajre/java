@@ -2,4 +2,11 @@
 http://sdkman.io/install.html
 
 # groovy
-http://groovy-lang.org/install.html#_homebrew
+## installation
+`$ sdk install groovy`
+
+home directory
+`/Users/whan/.sdkman/candidates/groovy/current`
+
+## interactive console
+`groovyConsole`

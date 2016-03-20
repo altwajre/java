@@ -15,6 +15,11 @@ download JDK `Windows x64`
 
 ## MAC
 
+### Path
+
+Edit Path Env
+`touch ~/.bash_profile; open ~/.bash_profile`
+
 ### brew install java
 
 > brew tap caskroom/cask
