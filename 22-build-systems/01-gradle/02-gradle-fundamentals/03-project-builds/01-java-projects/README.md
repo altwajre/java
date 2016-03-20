@@ -15,3 +15,6 @@ https://docs.gradle.org/current/userguide/build_init_plugin.html
 `$ tree build`
 `$ open build/reports/tests/index.html` - open test report
 `$ gradle properties`
+
+## java plugin
+https://docs.gradle.org/current/userguide/java_plugin.html

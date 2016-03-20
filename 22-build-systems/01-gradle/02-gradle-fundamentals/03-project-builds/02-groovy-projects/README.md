@@ -12,3 +12,6 @@ https://docs.gradle.org/current/userguide/build_init_plugin.html
 
 `$ gradle build`
 `$ open build/reports/tests/index.html` - open test report
+
+## groovy plugin
+https://docs.gradle.org/current/userguide/groovy_plugin.html
