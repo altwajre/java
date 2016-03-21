@@ -1,4 +1,4 @@
-# sdkman
+# installation sdkman
 http://sdkman.io/install.html
 
 # groovy
