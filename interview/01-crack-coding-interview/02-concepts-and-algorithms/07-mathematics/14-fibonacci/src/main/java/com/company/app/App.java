@@ -2,13 +2,33 @@ package com.company.app;
 
 public class App
 {
-    static int recursion(int number){
-        if(number == 1 || number == 2){
+    /*
+                                                       (9)r34
+                                                (8)r21  +  (7)r13
+                                         (7)r13  +  (6)r8
+                                  (6)r8  +  (5)r5
+                            (5)r5  +  (4)r3
+                     (4)r3  +  (3)r2
+               (3)r2  +   (2)r1
+         (2)r1  +  (1)r1
+      output:
+      34
+      because
+      fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+      index:     0  1  2  3  4  5  6  7   8   9
+     */
+    static int recursion(int numberOfTerms){
+        if(numberOfTerms == 1 || numberOfTerms == 2){
             return 1;
         }
-        return recursion(number - 1) + recursion(number - 2);
+        return recursion(numberOfTerms - 1) + recursion(numberOfTerms - 2);
     }
 
+    /*
+      output:
+      fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+      index:     0  1  2  3  4  5  6  7   8   9
+     */
     static void iteration(int numberOfTerms){
         int first = 0;
         int second = 1;
@@ -26,29 +46,9 @@ public class App
     static int number = 9;
     public static void main( String[] args )
     {
-    /*
-                                                       (9)r34
-                                                (8)r21  +  (7)r13
-                                         (7)r13  +  (6)r8
-                                  (6)r8  +  (5)r5
-                            (5)r5  +  (4)r3
-                     (4)r3  +  (3)r2
-               (3)r2  +   (2)r1
-         (2)r1  +  (1)r1
-      output:
-      34
-      because
-      fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
-      index:     0  1  2  3  4  5  6  7   8   9
-     */
         System.out.println("#Recursion " + number + ": ");
         System.out.println(recursion(number));
 
-    /*
-      output:
-      fibonacci: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
-      index:     0  1  2  3  4  5  6  7   8   9
-     */
         System.out.println("#Iteration " + number +  ": ");
         iteration(number);
     }
