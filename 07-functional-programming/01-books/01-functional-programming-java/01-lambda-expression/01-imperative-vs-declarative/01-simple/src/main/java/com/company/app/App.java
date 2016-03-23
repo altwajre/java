@@ -30,3 +30,10 @@ public class App
         findTomDeclarative(names);
     }
 }
+/*
+output:
+findTomImperative
+Found Tom?: true
+findTomDeclarative
+Found Tom?: true
+ */

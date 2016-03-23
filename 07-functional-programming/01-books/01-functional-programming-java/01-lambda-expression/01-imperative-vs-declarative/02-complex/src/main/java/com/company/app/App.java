@@ -31,15 +31,6 @@ public class App {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         System.out.println("Total of discounted prices: " + totalOfDiscountedPrices);
     }
-    public static void main(String[] args) {
-        System.out.println("imperative");
-        imperative();
-        System.out.println("functional");
-        functional();
-
-        testStreamReduce();
-    }
-
     private static void testStreamReduce() {
         List<BigDecimal> numbers = Arrays.asList(
                 new BigDecimal("1"), new BigDecimal("2"), new BigDecimal("3"));
@@ -64,4 +55,30 @@ public class App {
         } );
         System.out.println(sum);
     }
+    public static void main(String[] args) {
+        System.out.println("imperative");
+        imperative();
+        System.out.println("functional");
+        functional();
+
+        testStreamReduce();
+    }
 }
+/*
+output:
+imperative
+Total of discounted prices: 67.5
+functional
+Total of discounted prices: 67.5
+6
+10
+x=0
+y=1
+x=1
+y=2
+x=3
+y=3
+x=6
+y=4
+10
+ */
