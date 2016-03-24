@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 public class App
 {
-    static List<String> names = Arrays.asList("Tom", "Dick", "Harry");
+    final static List<String> names = Arrays.asList("Tom", "Dick", "Harry");
     static void imperative(List<String> names){
         System.out.print("  for loop: ");
         for(int i = 0; i < names.size(); i++){
