@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -46,20 +45,12 @@ class StockUtil{
         return stock1.price.compareTo(stock2.price) > 0 ? stock1 : stock2;
     }
 }
-// https://www.youtube.com/watch?v=bcjSe0xCHbE
 public class App
 {
-    public static final List<String> symbols = Arrays.asList(
+    static final List<String> symbols = Arrays.asList(
             "AMD", "HPQ", "IBM", "TXN", "VMW", "XRX", "AAPL", "ADBE",
             "AMZN", "CRAY", "CSCO", "SNE", "GOOG", "INTC", "INTU",
             "MSFT", "ORCL", "TIBX", "VRSN", "YHOO");
-
-    /*
-    Functional Style Benefits:
-    1, ability to parallelize for free
-    2, use function composition and higher-order functions
-    3, avoid mutability
-     */
     static void functionalStyle(final Stream<String> symbols){
         final StockInfo highPriced = symbols
                 .map(StockUtil::getPrice)
@@ -68,43 +59,38 @@ public class App
                 .get();
         System.out.println("High priced under $500 is " + highPriced);
     }
-
+    private static void parallelStreamTest() {
+        long startTime = System.nanoTime();
+        functionalStyle(symbols.parallelStream());
+        long estimatedTime = System.nanoTime() - startTime;
+        System.out.println(TimeUnit.MILLISECONDS.convert(estimatedTime, TimeUnit.NANOSECONDS) + " milliseconds");
+    }
     public static void main( String[] args )
     {
-        System.out.println("#imperativeStyle");
-        imperativeStyle();
-
-        System.out.println("#functionalStyle");
+        /*
+        The slowest involves a call to the web service, incurs a network delay, and has to perform the operation 20 times
+        - once for each ticker symbol.
+        However, we don’t have to wait for Yahoo to respond to the price for one ticker symbol before we send out the
+        request for the next. Web services are quite capable of handling multiple requests concurrently.
+         */
+        System.out.println("#parallelStreamTest <- FAST");
+        parallelStreamTest();
+        System.out.println("#streamTest <- SLOW");
+        streamTest();
+    }
+    private static void streamTest() {
         long startTime = System.nanoTime();
         functionalStyle(symbols.stream());
         long estimatedTime = System.nanoTime() - startTime;
         System.out.println(TimeUnit.MILLISECONDS.convert(estimatedTime, TimeUnit.NANOSECONDS) + " milliseconds");
     }
-
-    private static void imperativeStyle() {
-        final List<StockInfo> stocks = new ArrayList<>();
-        for(String symbol : symbols){
-            stocks.add(StockUtil.getPrice(symbol));
-        }
-        final List<StockInfo> stocksPriceUnder500 = new ArrayList<>();
-        final Predicate<StockInfo> isPriceLessThan500 = StockUtil.isPriceLessThan(500);
-        for (StockInfo stock : stocks){
-            if(isPriceLessThan500.test(stock)){
-                stocksPriceUnder500.add(stock);
-            }
-        }
-        StockInfo highPriced = new StockInfo("", BigDecimal.ZERO);
-        for(StockInfo stock : stocksPriceUnder500){
-            highPriced = StockUtil.pickHigh(highPriced, stock);
-        }
-        System.out.println("High priced under $500 is " + highPriced);
-    }
 }
 /*
 output:
-#imperativeStyle
+#parallelStreamTest <- FAST
 High priced under $500 is ticker: IBM price: 149.330
-#functionalStyle
+844 milliseconds
+#streamTest <- SLOW
 High priced under $500 is ticker: IBM price: 149.330
-4714 milliseconds
+4853 milliseconds
  */
