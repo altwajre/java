@@ -85,6 +85,7 @@ public class App
 {
     public static void main( String[] args )
     {
+        // Run TeacherTest in test package
         Teacher teacher = new Teacher();
         System.out.println(teacher.calculatePercent(new BigDecimal("90"), 2));
     }
