@@ -9,6 +9,25 @@ It may only be a flat object with no dependencies of its own.
 Or it may be an object with large graph of interconnected dependencies, which themselves have dependencise, and so on.
 ```
 
+## Separating infrastructure and application logic
+
+### Infrastructure logic - dependency injectors
+
+Focused components with code only to deal with their primary business purpose
+
+- Rendering a web page
+- Sending email
+- Purchasing stock
+
+The infrastructure logic is essential to application, it is important to distinguish it from the application logic.
+
+### Application logic
+
+Logic for constructing and assembling object graphs, obtaining connections to databases, setting up network sockets, or
+crunching text through spellcheckers is all peripheral to the core purpose of the application.
+
+Injectors assemble clients and services as per configuration, into comprehensive applications.
+
 ## injection
 
 ### Construct objects with di
