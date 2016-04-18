@@ -70,6 +70,8 @@ public class App
     }
 }
 /*
+https://github.com/google/guice/wiki/BindingAnnotations
+
 output:
 #FrenchSpellChecker.check()
  */
