@@ -50,19 +50,29 @@ class SpellingModule extends AbstractModule{
         bind(SpellChecker.class).annotatedWith(French.class).to(FrenchSpellChecker.class);
     }
 }
+//# LOOK HERE
+class SpellCheckerClient{
+    private SpellChecker spellChecker;
+    @Inject  //# annotate near injection below
+    public SpellCheckerClient(@French SpellChecker spellChecker){
+        this.spellChecker = spellChecker;
+    }
+    public boolean check(String text){
+        spellChecker.check("hi");
+        return false;
+    }
+}
 public class App
 {
     public static void main( String[] args )
     {
-        //# using Key.get()
         Guice.createInjector(new SpellingModule())
-                .getInstance(Key.get(SpellChecker.class, English.class))
-                .check("Hello!");
+                .getInstance(SpellCheckerClient.class).check("hi");
     }
 }
 /*
 https://github.com/google/guice/wiki/BindingAnnotations
 
 output:
-#EnglishSpellChecker.check()
+#FrenchSpellChecker.check()
  */
