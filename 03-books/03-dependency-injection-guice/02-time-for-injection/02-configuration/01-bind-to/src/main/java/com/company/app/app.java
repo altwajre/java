@@ -24,9 +24,10 @@ class SortModule extends AbstractModule{
         bind(SortStrategy.class).to(QuickSort.class); // Service binding
     }
 }
-public class app {
+public class App {
     public static void main(String[] args){
-        SortStrategy sortStrategy = Guice.createInjector(new SortModule()).getInstance(SortStrategy.class);
+        SortStrategy sortStrategy = Guice.createInjector(new SortModule())
+                .getInstance(SortStrategy.class);
         sortStrategy.sort(null);
     }
 }
