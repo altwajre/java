@@ -17,12 +17,15 @@
 
 package c4;
 
-class SimpleBookCatalog implements BookCatalog {
-
-  public SimpleBookCatalog(Library mock) {
+class SimpleBookCatalog implements BookCatalog{
+  final Library mock;
+  public SimpleBookCatalog(Library mock){
+    this.mock = mock;
   }
-
   public Book search(String criteria) {
-    return null;  //To change body of implemented methods use File | Settings | File Templates.
+    mock.findByAuthor(criteria);
+    mock.findByKeyword(criteria);
+    mock.findByTitle(criteria);
+    return null; //To change body of implemented methods use File | Settings | File Templates.
   }
 }

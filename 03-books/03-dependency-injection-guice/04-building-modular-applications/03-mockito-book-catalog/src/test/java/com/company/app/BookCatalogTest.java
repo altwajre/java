@@ -1,7 +1,8 @@
 package com.company.app;
 
 import org.junit.Test;
-import static org.easymock.EasyMock.*;
+import static org.mockito.Mockito.*;
+import static org.junit.Assert.*;
 
 class Book{
     final String name;
@@ -29,18 +30,22 @@ interface Library{
     Book findByAuthor(String title);
     Book findByIsbn(String title);
     Book findByKeyword(String criteria);
+    String foo(String msg);
 }
 public class BookCatalogTest {
     @Test
     public final void freeFormBookSearch(){
-        Library mock = createStrictMock(Library.class);
+        Library mock = mock(Library.class);
         String criteria = "dependency injection";
-        expect(mock.findByAuthor(criteria)).andReturn(null);
-        expect(mock.findByKeyword(criteria)).andReturn(null);
+        when(mock.findByAuthor(criteria)).thenReturn(null);
+        when(mock.findByKeyword(criteria)).thenReturn(null);
         Book di = new Book("dependency injection");
-        expect(mock.findByTitle(criteria)).andReturn(di);
-        replay(mock);
+        when(mock.findByTitle(criteria)).thenReturn(di);
+
         new SimpleBookCatalog(mock).search(criteria);
-        verify(mock);
+
+        verify(mock).findByAuthor(criteria);
+        verify(mock).findByKeyword(criteria);
+        verify(mock).findByTitle(criteria);
     }
 }
