@@ -1,5 +1,7 @@
 # binding annotations
 
+https://github.com/google/guice/wiki/BindingAnnotations
+
 We’ve already seen that a service generally has some kind of identify, whether an arbitrary string identifier, the
 class it belongs to, or some other combinatorial key.
 

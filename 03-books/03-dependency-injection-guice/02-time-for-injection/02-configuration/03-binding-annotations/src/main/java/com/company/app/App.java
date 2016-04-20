@@ -44,7 +44,7 @@ class SpellingModule extends AbstractModule{
         bind(SpellChecker.class).annotatedWith(French.class).to(FrenchSpellChecker.class);
     }
 }
-// inline annotation - inject EnglishSpellChecker
+// type checked annotation - inject EnglishSpellChecker
 class EnglishEditor{
     final SpellChecker spellChecker;
     @Inject // using inline annotation to inject EnglishSpellChecker
