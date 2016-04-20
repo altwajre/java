@@ -3,7 +3,10 @@
 We’ve already seen that a service generally has some kind of identify, whether an arbitrary string identifier, the
 class it belongs to, or some other combinatorial key.
 
-## inline annotation
+## Type checked annotation
+
+http://blog.muhuk.com/2015/05/28/using_guice_effectively.html#.VxcZ4eYrJTY
+
 @English - public EnglishEditor(@English SpellChecker spellChecker) {
 
 ```
