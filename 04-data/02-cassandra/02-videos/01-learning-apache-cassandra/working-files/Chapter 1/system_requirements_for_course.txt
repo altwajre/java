@@ -1,0 +1,8 @@
+As we will be using virtual machine images to create a cluster, you will need a computer that is relatively high spec in order to do the hands-on exercises. Specifically, the computer needs to have the following:
+
+64-bit operating system (Mac, Windows, or Linux)
+8GB (or more) of RAM
+30GB (or more) of free hard drive space
+Latest version of VMware Player installed and working 
+A way to unzip files
+Acrobat Reader (or equivalent, for viewing a PDF file)

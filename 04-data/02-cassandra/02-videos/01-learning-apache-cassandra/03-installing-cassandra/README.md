@@ -5,8 +5,8 @@ $ cd ~
 $ mkdir cassandra
 $ cd cassandra/
 $ mv ~/Downloads/apache-cassandra-2.0.7-bin.tar.gz .
-$ cd ~/cassandra/apache-cassandra-2.0.7
 $ tar -xvzf apache-cassandra-2.0.7-bin.tar.gz  <- unzip
+$ cd ~/cassandra/apache-cassandra-2.0.7
 $ sudo mkdir /var/lib/cassandra
 $ sudo mkdir /var/log/cassandra
 $ sudo chown -R $USER:$GROUP /var/lib/cassandra

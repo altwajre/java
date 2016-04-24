@@ -15,7 +15,6 @@ CREATE KEYSPACE vehicle_tracker WITH replication = {
   'replication_factor': '1'
 };
 cqlsh> DROP KEYSPACE vehicle_tracker; <- delete database: recreate the vehicle_tracker if you deleted it
-
 ```
 
 ## Lab
