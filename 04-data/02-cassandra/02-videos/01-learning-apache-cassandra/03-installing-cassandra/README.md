@@ -11,10 +11,6 @@ $ sudo mkdir /var/lib/cassandra
 $ sudo mkdir /var/log/cassandra
 $ sudo chown -R $USER:$GROUP /var/lib/cassandra
 $ sudo chown -R $USER:$GROUP /var/log/cassandra
-$ bin/cassandra <- start cassandra in background
-$ ps aux | grep cass  <- kill cassandra other terminal
-vm1    16164
-$ kill 16164
 $ bin/cassandra -f <- start cassandra in foreground
 ctrl+c to shutdown
 ~/cassandra/apache-cassandra-2.0.7$ bin/nodetool status
@@ -46,3 +42,9 @@ $ vim system.log
 ~/cassandra/apache-cassandra-2.0.7$ vim log4j-server.properties
 ```
 
+```
+$ bin/cassandra <- start cassandra in background
+$ ps aux | grep cass  <- kill cassandra other terminal
+vm1    16164
+$ kill 16164
+```

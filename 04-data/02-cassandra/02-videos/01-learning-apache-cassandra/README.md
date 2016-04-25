@@ -14,6 +14,9 @@ http://examples.oreilly.com/0636920036210/
 
 https://www.vmware.com/products/fusion/fusion-evaluation.html
 
+## VM
+
+unzip /Users/whan/Documents/vms/vmware/Learning Apache Cassandra - Working Files/Chapter 1/Virtual Machine 1.zip
+vm is at /Users/whan/Documents/vms/vmware/Learning Apache Cassandra - Working Files/Chapter 1/Virtual Machine 1.vmwarevm
 vm password: ubuntu
 
-vms are at Documents/vms/vmware/Learning Apache Cassandra - Working Files
