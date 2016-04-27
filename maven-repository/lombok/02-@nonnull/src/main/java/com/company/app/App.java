@@ -29,6 +29,7 @@ public class App {
 }
 /*
 https://projectlombok.org/features/NonNull.html
+Annotation named @NonNull on a field as a signal to generate a null-check.
 
 output:
 Exception in thread "main" java.lang.NullPointerException
