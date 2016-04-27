@@ -49,7 +49,9 @@ public class ContactResource {
         // Store the new contact
         int newContactId = contactDao.createContact(contact.getFirstName(),
                 contact.getLastName(), contact.getPhone());
-        return Response.created(new URI(String.valueOf(newContactId))).build();
+        URI uri = new URI(String.valueOf(newContactId));
+        Response response = Response.created(uri).build();
+        return response;
     }
 
     @PUT

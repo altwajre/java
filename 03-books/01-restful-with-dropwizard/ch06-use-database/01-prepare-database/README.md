@@ -8,6 +8,8 @@
 
 ## Start Server
 
+> `sudo /usr/local/mysql/bin/mysqld -u root` <-- ### START SERVER ###
+
 > `mysql.server start`
 
 > `mysql.server stop` when you are done
@@ -29,6 +31,16 @@
 > `mysql> drop table contact;`
 
 > `mysql> CREATE DATABASE phonebook;`
+
+> if you have Access denied for user error, do following
+
+```
+$ sudo /usr/local/mysql/bin/mysql -u root -pabc  <- password is "abc"; -p is option
+re-add local user
+mysql> DROP USER 'whan'@'localhost';  <- drop user
+mysql> CREATE USER 'whan'@'localhost'; <- run it if local-user is not in user list
+mysql> GRANT ALL ON cookbook.* TO 'whan'@'localhost';  <- Grant user to cookbook database
+```
 
 > `mysql> CREATE USER 'phonebookuser'@'localhost' IDENTIFIED BY'phonebookpassword';`
 
