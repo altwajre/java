@@ -19,6 +19,7 @@ public class App {
         DataExample dataExample = new DataExample("Tom", 8);
         System.out.println("name: " + dataExample.getName());
         System.out.println("score: " + dataExample.getScore());
+        System.out.println(dataExample);
     }
 }
 /*
@@ -29,4 +30,5 @@ on the class (except that no constructor will be generated if any explicitly wri
 output:
 name: Tom
 score: 8.0
+DataExample(name=Tom, age=0, score=8.0, tags=null)
  */
