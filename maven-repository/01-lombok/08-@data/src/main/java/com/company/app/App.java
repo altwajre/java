@@ -23,6 +23,7 @@ public class App {
     }
 }
 /*
+https://projectlombok.org/features/Data.html
 
 @Data is like having implicit @Getter, @Setter, @ToString, @EqualsAndHashCode and @RequiredArgsConstructor annotations
 on the class (except that no constructor will be generated if any explicitly written constructor exists).
