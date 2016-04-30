@@ -23,6 +23,12 @@ public class App {
 /*
 https://projectlombok.org/features/Builder.html
 
+The @Builder annotation produces complex builder APIs for your class.
+@Builder lets you automatically produce the code required to have your class be instantiable with code such as:
+Person.builder().name(“Tom”).age(8).build();
+
+The @Singular annotation treats that
+
 output:
 BuilderExample(name=Tom, age=10, occupations=[])
  */
