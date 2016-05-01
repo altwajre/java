@@ -75,12 +75,39 @@ download `apache-maven-3.3.3-bin.zip`
 
 ```
 Windows
-Unzip the distribution archive, i.e. apache-maven-3.3.3-bin.zip to the directory you wish to install Maven 3.3.3. These instructions assume you chose C:\Program Files\Apache Software Foundation. The subdirectory apache-maven-3.3.3 will be created from the archive.
-Add the unpacked distribution's bin directory to your user PATH environment variable by opening up the system properties (WinKey + Pause), selecting the "Advanced" tab, and the "Environment Variables" button, then adding or selecting the PATH variable in the user variables with the value C:\Program Files\Apache Software Foundation\apache-maven-3.3.3\bin.
-Optional: In the same dialog, add the MAVEN_OPTS environment variable in the user variables to specify JVM properties, e.g. the value -Xms256m -Xmx512m. This environment variable can be used to supply extra options to Maven.
-In the same dialog, make sure that JAVA_HOME exists in your user variables or in the system variables and it is set to the location of your JDK, e.g. C:\Program Files\Java\jdk1.7.0_51.
+Unzip the distribution archive, i.e. apache-maven-3.3.3-bin.zip to the directory you wish to install Maven 3.3.3. These
+instructions assume you chose C:\Program Files\Apache Software Foundation. The subdirectory apache-maven-3.3.3 will be
+created from the archive.
+Add the unpacked distribution's bin directory to your user PATH environment variable by opening up the system properties
+(WinKey + Pause), selecting the "Advanced" tab, and the "Environment Variables" button, then adding or selecting the
+PATH variable in the user variables with the value C:\Program Files\Apache Software Foundation\apache-maven-3.3.3\bin.
+Optional: In the same dialog, add the MAVEN_OPTS environment variable in the user variables to specify JVM properties,
+e.g. the value -Xms256m -Xmx512m. This environment variable can be used to supply extra options to Maven.
+In the same dialog, make sure that JAVA_HOME exists in your user variables or in the system variables and it is set to
+the location of your JDK, e.g. C:\Program Files\Java\jdk1.7.0_51.
 Open a new command prompt (Winkey + R then type cmd) and run mvn --version to verify that it is correctly installed.
 ```
+
+## JVM
+
+The Java Virtual Machine is a software virtual machine that runs compiled Java code. Because compiled Java code is
+merely bytecode, the JVM is responsible for compiling that bytecode to machine code before running it. The JVM also
+takes care of memory management so that application code doesn't have to.
+
+https://www.youtube.com/watch?v=XjNwyXx2os8
+
+## JDK
+
+The Java Development Kit was and remains the piece of software Java developers use to create Java applications. It
+contains a Java language compiler, a documentation generator, tools for working with native code, and (typically) the
+Java source code for the platform to enable debugging platform classes.
+
+## JRE
+
+The Java Runtime Environment, is the piece of software end users download to run compiled Java applications. It includes
+a JVM but does not contain any of the development tools bundled in the JDK. However, the JDK does contain a JRE.
+
+https://www.youtube.com/watch?v=yLkrw34VMNo
 
 ## KB
 
