@@ -8,9 +8,9 @@ https://www.youtube.com/watch?v=fWATrhZcCNI
 
 1, Create a new `Dynamic Web Project` named `webapp`, next, check `Generate web.xml`
 
-2, Right click on project, Configure, `Convert to Maven Project`, Packaging: war, Finish
+2, Convert to Maven project - Right click on project, Configure, `Convert to Maven Project`, Packaging: war, Finish
 
-3, Add following to pom.xml
+3, pom.xml - Add following
 
 ```
     <dependencies>
@@ -23,7 +23,7 @@ https://www.youtube.com/watch?v=fWATrhZcCNI
     </dependencies>
 ```
 
-4, Add following HelloServlet.java to `Java Resources/src`
+4, Servlet - Add following HelloServlet.java to `Java Resources/src`
 
 ```
 package webapp;
@@ -45,7 +45,7 @@ public class HelloServlet extends HttpServlet {
 }
 ```
 
-5, Add following to `WebContent/WEB-INF/web.xml`
+5, Configuring Deployment - Add following to `WebContent/WEB-INF/web.xml`
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -62,6 +62,6 @@ public class HelloServlet extends HttpServlet {
 </web-app>
 ```
 
-6, Right click on webapp project, Run As, Run on Server, Finish, Restart server
+6, Server - Right click on webapp project, Run As, Run on Server, Finish, Restart server
 
-7, Go to http://localhost:8080/webapp/greeting
+7, Client - Go to http://localhost:8080/webapp/greeting
