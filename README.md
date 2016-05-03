@@ -61,6 +61,12 @@ Shortcut	Description
 Alt Enter	Show the list of available intention actions.
 ```
 
+#### Eclipse
+
+Maven project
+
+https://www.youtube.com/watch?v=uv9tXFrTLtI
+
 ### Install Maven
 
 > `export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home`
