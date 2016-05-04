@@ -12,4 +12,14 @@ public class HelloServlet extends HttpServlet {
 			throws IOException{
 		response.getWriter().println("Hello, World!");
 	}
+	@Override
+	public void init() throws ServletException
+	{
+		System.out.println("Servlet " + this.getServletName() + " has started.");
+	}
+	@Override
+	public void destroy()
+	{
+		System.out.println("Servlet " + this.getServletName() + " has stopped.");
+	}
 }
