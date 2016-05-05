@@ -1,6 +1,23 @@
 # java
 java
 
+## brew
+
+http://brew.sh/
+
+> `brew update`, `brew doctor`, `brew upgrade`
+
+If we have following error when run `brew update`
+```
+LMDV-WHAN:01-protocol-buffers whan$ brew update
+Error: /usr/local must be writable!
+```
+
+Run `sudo chown -R $USER:admin /usr/local` as below
+```
+LMDV-WHAN:01-protocol-buffers whan$ sudo chown -R $USER:admin /usr/local
+```
+
 ## jenkins
 
 ### localhost
