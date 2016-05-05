@@ -2,7 +2,11 @@
 
 https://developers.google.com/protocol-buffers/
 
-## Java Tutorial
+## Installation
+
+> `$ brew install protobuf`
+
+## Java proto Tutorial
 
 https://developers.google.com/protocol-buffers/docs/javatutorial
 
