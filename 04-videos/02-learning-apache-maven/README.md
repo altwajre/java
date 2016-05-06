@@ -6,3 +6,6 @@ https://www.safaribooksonline.com/library/view/learning-apache-maven/97817713736
 
 https://github.com/Pygator/SafariLearn
 
+## Predefined maven properties
+
+https://github.com/cko/predefined_maven_properties/blob/master/README.md
