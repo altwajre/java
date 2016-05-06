@@ -33,3 +33,7 @@ Choose io.paradoxical:dropwizard-api version:
 2: 1.0
 Choose a number: 2:
 ```
+
+- `/Users/whan/.m2/repository` - local repository
+
+- `/usr/local/Cellar/maven/3.3.9/libexec/conf/settings.xml` - default maven settings.xml
