@@ -5,7 +5,6 @@ import java.util.List;
 abstract class Stock{  // abstract Subject
     private String symbol;
     private double price;
-
     private List<IInvestor> investors = new ArrayList<IInvestor>();
     public Stock(String symbol, double price){
         this.symbol = symbol;
@@ -38,6 +37,7 @@ class Investor implements IInvestor{  // Concrete Observer
     public Investor(String name){ this.name = name; }
     public Stock getStock() { return stock; }
     public void setStock(Stock stock) { this.stock = stock; }
+    @Override
     public void update(Stock stock) {
         System.out.format("Notified %s of %s's change to %s\n", name, stock.getSymbol(), stock.getPrice());
     }
