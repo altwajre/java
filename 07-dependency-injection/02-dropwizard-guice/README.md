@@ -1,5 +1,9 @@
-# guice
+# dropwizard guice
 
-> https://github.com/google/guice
+http://www.codingricky.com/dropwizard-and-guice-integration/
 
-> https://github.com/google/guice/wiki/Motivation
+## Run App
+
+> `$ mvn clean install`
+
+> `$ java -jar target/DropWizardGuice-1.0-SNAPSHOT.jar server config.yml`
