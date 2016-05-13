@@ -51,8 +51,10 @@ download JDK `Windows x64`
 
 ### Path
 
-Edit Path Env
-`touch ~/.bash_profile; open ~/.bash_profile`
+Edit Path Environment
+
+- `$ atom ~/.bash_profile`
+- `touch ~/.bash_profile; open ~/.bash_profile`
 
 ### brew install java
 
