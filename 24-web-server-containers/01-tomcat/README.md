@@ -23,7 +23,9 @@ add following to `conf/web.xml`
 
 ## Start Server
 
-Tomcat whan$ bin/startup.sh
+location: `/Library/Tomcat/`
+
+Tomcat whan$ bin/startup.sh - if it doesn't work, shutdown and startup again
 
 Tomcat whan$ bin/shutdown.sh
 
