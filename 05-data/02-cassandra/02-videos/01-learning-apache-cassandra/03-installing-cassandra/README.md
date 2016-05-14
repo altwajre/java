@@ -1,4 +1,4 @@
-# Installing Cassandra
+# Installing Cassandra - ubuntu; mac is similar
 
 ```
 $ cd ~

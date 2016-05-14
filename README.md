@@ -54,7 +54,8 @@ download JDK `Windows x64`
 Edit Path Environment
 
 - `$ atom ~/.bash_profile`
-- `touch ~/.bash_profile; open ~/.bash_profile`
+- `$ touch ~/.bash_profile; open ~/.bash_profile`
+- `export ORGANIZATION="Tony's Pizza"` - set environment variable
 
 ### brew install java
 
