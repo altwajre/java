@@ -10,7 +10,7 @@ https://spring.io/projects
 
 http://projects.spring.io/spring-boot/
 
-### Create sprint boot project
+### Create sprint boot project - demo
 
 - launch STS IDE
 - File, New Spring Starter Project, next, check `Web` under Web, click finish
@@ -35,6 +35,10 @@ public class HelloSpring {
 ```
 - right click on `demo` project, `Run As`, `Spring Boot App`
 - go to http://localhost:8080/ - output: Hello, Spring!
+
+#### import project
+
+right click `Package Explorer`, click `Import...`, expand `Maven`, select `Existing Maven Projects`, browse project
 
 ## Tomcat
 ### Start Server
