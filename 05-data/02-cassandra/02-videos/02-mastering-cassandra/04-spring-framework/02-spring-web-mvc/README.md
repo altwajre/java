@@ -1,12 +1,19 @@
 # The Spring Web MVC
 
-## spring mvc
-
 http://docs.spring.io/autorepo/docs/spring/3.2.x/spring-framework-reference/html/mvc.html
 
 ## mvc project
 
 - New, Spring Starter Project, name="spring-mvc", next, check `web`, click finish
+- add embed tomcat to pom.xml
+```
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+```
+
 - add a WebController.java
 ```
 package com.example.controller;
@@ -29,7 +36,7 @@ public class WebController {
 	}
 }
 ```
-- add "index.jsp" and "about.jsp" under `src/main/webapp/WEB-INF/jsp`
+- add "index.jsp" and "about.jsp" under `src/main/webapp/WEB-INF/jsp`, right click `jsp`, select `Other`, `Web`, `JSP File`
 > index
 ```
 <title>Index</title>
@@ -56,4 +63,6 @@ spring.mvc.view.suffix: .jsp
 
 ## Run App
 
-Right click the project icon, `Run As`, `Spring Boot App`
+- right click the project icon, `Run As`, `Spring Boot App`
+
+- go to http://localhost:8080/ and http://localhost:8080/about
