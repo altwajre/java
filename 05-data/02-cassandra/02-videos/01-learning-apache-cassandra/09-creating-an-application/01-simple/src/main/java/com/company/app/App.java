@@ -11,7 +11,7 @@ public class App
     {
         queryString();
 
-        queryBuilder();
+//        queryBuilder();
     }
 
     private static void queryBuilder() {
