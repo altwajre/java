@@ -2,7 +2,7 @@
 
 http://square.github.io/retrofit/
 
-## Run App
+## Run App - it works on Intellij Ultimate
 
 App.main() - arg: server
 
