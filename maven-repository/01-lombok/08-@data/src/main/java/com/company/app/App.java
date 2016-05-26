@@ -20,6 +20,7 @@ public class App {
         System.out.println("name: " + dataExample.getName());
         System.out.println("score: " + dataExample.getScore());
         System.out.println(dataExample);
+
     }
 }
 /*
