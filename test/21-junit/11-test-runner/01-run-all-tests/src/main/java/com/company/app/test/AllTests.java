@@ -1,5 +1,7 @@
-package com.company.app;
+package com.company.app.test;
 
+import com.company.app.test.MyMathTest;
+import com.company.app.test.TaxTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 

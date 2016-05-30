@@ -1,8 +1,8 @@
-package com.company.app;
+package com.company.app.test;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 class MyMath{
     public int add(int x, int y){

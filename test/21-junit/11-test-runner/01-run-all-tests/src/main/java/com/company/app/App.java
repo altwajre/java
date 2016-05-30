@@ -1,5 +1,6 @@
 package com.company.app;
 
+import com.company.app.test.AllTests;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 
@@ -24,6 +25,6 @@ public class App
 
 output:
 These Tax Test cases failed
-add_test(com.company.app.MyMathTest): expected:<4> but was:<3>
-calc_tax_test(com.company.app.TaxTest): expected:<9.0> but was:<8.0>
+add_test(com.company.app.test.MyMathTest): expected:<4> but was:<3>
+calc_tax_test(com.company.app.test.TaxTest): expected:<9.0> but was:<8.0>
  */
