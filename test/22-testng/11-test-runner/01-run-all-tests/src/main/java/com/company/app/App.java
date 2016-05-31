@@ -14,6 +14,5 @@ public class App
         suites.add("test-all.xml");  // Run all tests
         testNG.setTestSuites(suites);
         testNG.run();
-
     }
 }

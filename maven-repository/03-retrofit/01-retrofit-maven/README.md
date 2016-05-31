@@ -4,9 +4,13 @@ http://square.github.io/retrofit/
 
 ## Run App - it works on Intellij Ultimate
 
-App.main() - arg: server
+### Server
 
-ServiceClientApp.main()
+> ServerApp.main() - http://localhost:8080/contact/all
+
+### Client
+
+> ServiceClientApp.main()
 
 output:
 WPF
