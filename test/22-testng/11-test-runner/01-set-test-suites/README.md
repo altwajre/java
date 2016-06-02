@@ -1,4 +1,4 @@
-# run all test - from command line
+# set test suites - run all tesets from command line
 
 ## pom.xml Package up the application into a big fat jar
 
@@ -45,7 +45,7 @@
 
 ## Compile
 
-> `mvn clean install`
+> `mvn package`
 
 ## Run
 
