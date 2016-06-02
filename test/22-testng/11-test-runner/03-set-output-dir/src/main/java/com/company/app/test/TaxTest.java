@@ -19,3 +19,4 @@ public class TaxTest {
         assertEquals(expected, actual, 0);
     }
 }
+
