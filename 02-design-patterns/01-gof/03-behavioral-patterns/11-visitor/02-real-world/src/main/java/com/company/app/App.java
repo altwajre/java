@@ -1,7 +1,10 @@
 package com.company.app;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-
+/*
+The Visitor pattern in which two objects traverse a list of Employees and performs the same operation on each Employee.
+the two visitor objects define different operations - one adjusts vacation and the other income.
+ */
 abstract class Visitor{  // abstract Visitor
     public void reflectiveVisit(IElement element){
         Class[] params = new Class[1];
@@ -11,6 +14,7 @@ abstract class Visitor{  // abstract Visitor
             method.invoke(this, new Object[]{element});
         } catch (Exception e) {
 //                e.printStackTrace();  // do nothing when unable to find method for the element type
+            System.out.println(e);
         }
     }
 }

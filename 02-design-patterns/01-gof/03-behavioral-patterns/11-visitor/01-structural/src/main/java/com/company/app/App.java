@@ -2,6 +2,11 @@ package com.company.app;
 
 import java.util.ArrayList;
 
+/*
+The Visitor pattern in which an object traverses an object structure and performs the same operation on each node in
+this structure. Different visitor objects define different operations.
+
+ */
 abstract class Visitor{
     public abstract void visitConcreteElementA(ConcreteElementA concreteElementA);
     public abstract void visitConcreteElementB(ConcreteElementB concreteElementB);
