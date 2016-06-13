@@ -43,6 +43,7 @@ public class App
 
         stop(executor);
     }
+
     static void stop(ExecutorService executor){
         try{
             System.out.println("attempt to shutdown executor");
