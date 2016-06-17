@@ -9,8 +9,8 @@ import java.util.Map;
 
 public interface ServiceClient {
     @GET("topics")
-    Call<Map<Integer, TestTopic>> getTopics();
+    Call<Map<Integer, TopicRequest>> getTopics();
 
     @POST("topics")
-    Call<TestTopic> createTopic(@Body TestTopic testTopic);
+    Call<TopicRequest> createTopic(@Body TopicRequest topicRequest);
 }

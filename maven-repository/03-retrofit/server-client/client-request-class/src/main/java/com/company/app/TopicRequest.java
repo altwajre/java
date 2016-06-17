@@ -5,10 +5,10 @@ test class for server side Topic:
  - the class name can be different
  - the fields should be the same
  */
-public class TestTopic {
+public class TopicRequest {
     private int id;
     private String name;
-    public TestTopic(){
+    public TopicRequest(){
     }
 
     public int getId() {
@@ -29,6 +29,6 @@ public class TestTopic {
 
     @Override
     public String toString(){
-        return String.format("TestTopic{id=%s, name=%s}", id, name);
+        return String.format("TopicRequest{id=%s, name=%s}", id, name);
     }
 }
