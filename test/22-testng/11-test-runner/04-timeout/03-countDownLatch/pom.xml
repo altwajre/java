@@ -1,10 +1,37 @@
-# set xml suites - run all tests from command line
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-## pom.xml Package up the application into a big fat jar
+  <groupId>com.company.app</groupId>
+  <artifactId>app</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-```
+  <name>app</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>6.9.9</version>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
@@ -39,33 +66,14 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
-```
-
-## Compile
-
-> `mvn clean package`
-
-## Run
-
-> `$ java -jar target/app-1.0-SNAPSHOT.jar`
-
-output:
-
-```
-[TestNG] Running:
-  /Users/whan/Desktop/github/java-repo/7-2/java/test/22-testng/11-test-runner/01-run-all-tests/test-all.xml
-
-
-===============================================
-test-all
-Total tests run: 2, Failures: 1, Skips: 0
-===============================================
-```
-
-test result:
-
-```
-open ./test-output/index.html
-```
+</project>
