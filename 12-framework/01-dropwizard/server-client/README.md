@@ -17,10 +17,10 @@
 
 ## client
  
-### request class
+### jersey
 
 > run `App.main()`
 
-### hashmap
+### retrofit
 
 > run `App.main()`
