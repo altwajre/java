@@ -1,5 +1,7 @@
 # Java 8 in Action
 
+https://www.safaribooksonline.com/library/view/java-8-in/9781617291999/
+
 ## Source code
 
 > https://github.com/java8/Java8InAction

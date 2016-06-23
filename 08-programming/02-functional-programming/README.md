@@ -23,8 +23,6 @@
 - a method or constructor reference
 
 
-
-
 # references
 https://en.wikipedia.org/wiki/Functional_programming
 
