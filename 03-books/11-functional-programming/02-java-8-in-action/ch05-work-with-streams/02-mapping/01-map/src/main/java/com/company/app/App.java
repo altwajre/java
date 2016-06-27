@@ -6,8 +6,7 @@ import java.util.stream.Collectors;
 
 /*
 A common data processing idiom is to select information from certain objects.
-Streams support the map() method which takes a function as argument. The function is applied to each element, mapping it
-into a new element.
+map() method takes a function as argument. The function is applied to each element, mapping it into a new element.
 
 Use case: Select/extract from an object
 public interface Function<T, R>{

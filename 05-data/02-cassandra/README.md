@@ -14,3 +14,12 @@ $ bin/cassandra -f <- start cassandra in foreground
 ctrl+c to shutdown
 $ bin/cqlsh
 ```
+
+## DevCenter - data management
+
+http://www.datastax.com/products/datastax-devcenter-and-development-tools#DataStax-DevCenter
+
+```
+hosts: localhost
+port: 9042
+```

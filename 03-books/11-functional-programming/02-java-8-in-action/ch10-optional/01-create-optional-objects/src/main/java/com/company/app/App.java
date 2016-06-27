@@ -37,16 +37,10 @@ public class App
         optionalFromNull();
     }
 
-    private static void optionalFromNull() {
-        System.out.println("# optionalFromNull");
-        Car car = new Car("car-2");
-        Optional<Car> optCar = Optional.ofNullable(car);
+    private static void emptyOptional() {
+        System.out.println("# emptyOptional");
+        Optional<Car> optCar = Optional.empty();
         System.out.println(optCar);
-        System.out.println(optCar.get());
-
-        Car nullCar = null;
-        Optional<Car> optNullCar = Optional.ofNullable(nullCar);
-        System.out.println(optNullCar);
     }
 
     private static void optionalFromNonNullValue() {
@@ -61,9 +55,27 @@ public class App
 //        Optional<Car> optNullCar = Optional.of(nullCar);
     }
 
-    private static void emptyOptional() {
-        System.out.println("# emptyOptional");
-        Optional<Car> optCar = Optional.empty();
+    private static void optionalFromNull() {
+        System.out.println("# optionalFromNull");
+        Car car = new Car("car-2");
+        Optional<Car> optCar = Optional.ofNullable(car);
         System.out.println(optCar);
+        System.out.println(optCar.get());
+
+        Car nullCar = null;
+        Optional<Car> optNullCar = Optional.ofNullable(nullCar);
+        System.out.println(optNullCar);
     }
 }
+/*
+output:
+# emptyOptional
+Optional.empty
+# optionalFromNonNullValue
+Optional[car-1]
+car-1
+# optionalFromNull
+Optional[car-2]
+car-2
+Optional.empty
+ */
