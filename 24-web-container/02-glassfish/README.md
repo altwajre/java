@@ -1,18 +1,14 @@
-# Professional Java for Web Applications
+# glassfish
 
-## Tomcat
- 
-### Start Server
+## download
 
-location: `/Library/Tomcat/`
+https://glassfish.java.net/download.html
 
-Tomcat whan$ bin/startup.sh - if it doesn't work, shutdown and startup again
-
-Tomcat whan$ bin/shutdown.sh
-
-Tomcat homepage is at http://localhost:8080/
+move glassfish4 to `/Users/whan/glassfish4`
 
 ## Eclipse
+
+install glassish4 plugin
 
 ### Create maven Dynamic Web Project
 
@@ -20,7 +16,7 @@ https://www.youtube.com/watch?v=fWATrhZcCNI
 
 1, `File`, `New`, `Project...`, expand `Web`, select `Dynamic Web Project` 
 
-2, `Project name` webapp, `Target runtime` Apache Tomcat v9.0, `Next`, `Next`, check `Generate web.xml deployment descriptor`, `Finish`
+2, `Project name:` webapp, `Target runtime` GlassFish 4, `Next`, `Next`, check `Generate web.xml deployment descriptor`, `Finish`
 
 3, Convert to Maven project - Right click on project, `Configure`, `Convert to Maven Project`, `Group Id:` com.company, `Packaging:` war, `Finish`
 
