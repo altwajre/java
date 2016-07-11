@@ -11,6 +11,7 @@
 **/gradle/
 **/node_modules/
 **/out/
+**/temp.txt
 
 # Java
 **/target/
