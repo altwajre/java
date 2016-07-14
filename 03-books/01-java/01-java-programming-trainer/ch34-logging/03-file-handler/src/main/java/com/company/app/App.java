@@ -11,6 +11,9 @@ public class App
 
     public static void main( String[] args )
     {
+        // use method below to turn off the parent console log
+        //logger.setUseParentHandlers(false);
+
         FileHandler fileHandler;
         try{
             fileHandler = new FileHandler("logs/helloWorld.log");

@@ -1,21 +1,41 @@
 package com.company.app;
 
-import org.apache.commons.io.IOUtils;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
-import java.io.InputStream;
+import javax.xml.soap.*;
+import java.io.ByteArrayOutputStream;
 
-public class App
+/**
+ * Hello world!
+ *
+ */
+public class App 
 {
-    public static void main( String[] args ) throws IOException {
-        ClassLoader classLoader = App.class.getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("data.xml");
-        String requestData = IOUtils.toString(inputStream, "UTF-8");
+    public static void main( String[] args ) throws Exception {
+        MessageFactory mf = MessageFactory.newInstance();
+        SOAPMessage request = mf.createMessage();
+
+        SOAPPart part = request.getSOAPPart();
+
+        SOAPEnvelope env = part.getEnvelope();
+
+        env.addNamespaceDeclaration("S", "http://schemas.xmlsoap.org/soap/envelope/");
+        env.addNamespaceDeclaration("SOAP-ENV", "http://schemas.xmlsoap.org/soap/envelope/");
+        SOAPBody body = env.getBody();
+        SOAPElement tag = body.addChildElement("getText");
+        tag.addNamespaceDeclaration("ns2", "http://soap/");
+        SOAPElement arg0 = tag.addChildElement("arg0");
+        arg0.addTextNode("tom");
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        request.writeTo(stream);
+        String requestx = new String(stream.toByteArray(), "utf-8");
+
+
+        String requestData = "";
 
         Client client = ClientBuilder.newClient();
         Response response = client.target("http://localhost:8080/soap/DemoService?wsdl")
@@ -28,8 +48,3 @@ public class App
         System.out.println(responseBody);
     }
 }
-/*
-output:
-InboundJaxrsResponse{context=ClientResponse{method=POST, uri=http://localhost:8080/soap/DemoService?wsdl, status=200, reason=OK}}
-<?xml version='1.0' encoding='UTF-8'?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body><ns2:getTextResponse xmlns:ns2="http://soap/"><return>Hello tom from soap</return></ns2:getTextResponse></S:Body></S:Envelope>
- */

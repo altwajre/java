@@ -18,5 +18,3 @@ Select database - use ifinances;
 copy /source-code/Chapter 1/InfiniteFinancesSchema.sql to Query 1 window
 click "Execute" button, click refresh, you will see schemas is built under ifinances
 ```
-
-
