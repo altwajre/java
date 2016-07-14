@@ -8,11 +8,7 @@ import javax.ws.rs.core.Response;
 import javax.xml.soap.*;
 import java.io.ByteArrayOutputStream;
 
-/**
- * Hello world!
- *
- */
-public class App 
+public class App
 {
     public static void main( String[] args ) throws Exception {
         MessageFactory mf = MessageFactory.newInstance();
@@ -32,10 +28,7 @@ public class App
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         request.writeTo(stream);
-        String requestx = new String(stream.toByteArray(), "utf-8");
-
-
-        String requestData = "";
+        String requestData = new String(stream.toByteArray(), "utf-8");
 
         Client client = ClientBuilder.newClient();
         Response response = client.target("http://localhost:8080/soap/DemoService?wsdl")
