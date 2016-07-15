@@ -1,4 +1,4 @@
-# @column annotations
+# @column
 
 ## Project
 resources
