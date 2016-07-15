@@ -1,6 +1,11 @@
-package com.company.app.data.entities;
+package com.company.app.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
@@ -8,32 +13,33 @@ import java.util.Date;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="USER_ID")
+    @Column(name = "USER_ID")
     private Long userId;
 
-    @Column(name="FIRST_NAME")
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name="LAST_NAME")
+    @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name="BIRTH_DATE")
+    @Column(name = "BIRTH_DATE")
     private Date birthDate;
 
-    @Column(name="EMAIL_ADDRESS")
+    @Column(name = "EMAIL_ADDRESS")
     private String emailAddress;
 
-    @Column(name="LAST_UPDATED_DATE")
+    @Column(name = "LAST_UPDATED_DATE")
     private Date lastUpdatedDate;
 
-    @Column(name="LAST_UPDATED_BY")
+    @Column(name = "LAST_UPDATED_BY")
     private String lastUpdatedBy;
 
-    @Column(name="CREATED_DATE")
+    @Column(name = "CREATED_DATE")
     private Date createdDate;
 
-    @Column(name="CREATED_BY")
+    @Column(name = "CREATED_BY")
     private String createdBy;
+
 
     public Long getUserId() {
         return userId;
