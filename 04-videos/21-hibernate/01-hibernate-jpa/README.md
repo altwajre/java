@@ -23,3 +23,18 @@ mysql> DROP USER 'whan'@'localhost';  <- drop user
 mysql> CREATE USER 'whan'@'localhost'; <- run it if local-user is not in user list
 mysql> GRANT ALL ON cookbook.* TO 'whan'@'localhost';  <- Grant user to cookbook database
 ```
+
+## Workbench
+
+database connection
+
+```
+ifinances
+```
+
+select from one of tables
+
+```
+use ifinances;
+select * from FINANCES_USER;
+```

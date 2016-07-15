@@ -26,3 +26,12 @@ resources
 hibernate.cfg.xml
 hibernate.properties
 ```
+
+## Workbench
+
+verify the inserted record
+
+```
+use ifinances;
+select * from FINANCES_USER;
+```
