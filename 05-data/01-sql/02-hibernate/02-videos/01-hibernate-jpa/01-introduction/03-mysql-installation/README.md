@@ -1,6 +1,6 @@
 # MySQL Installation
 
-## MySQLWorkbench
+## MySQL Workbench
 
 ```
 click "Create a new Schema" button, Name: ifinances, click "Apply" and "Finish"
