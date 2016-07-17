@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class App
 {
     public static void main( String[] args ) throws Exception {
-        Class.forName("com.mysql.jdbc.Driver");
+//        Class.forName("com.mysql.jdbc.Driver");
 
         String sqlQuery = "SELECT * FROM SUPPLIERS";
 

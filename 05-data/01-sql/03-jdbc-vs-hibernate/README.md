@@ -9,6 +9,8 @@ http://docs.oracle.com/javase/tutorial/jdbc/basics/index.html
 
 http://www.mindfiresolutions.com/mindfire/Java_Hibernate_JDBC.pdf
 
+http://www.sickenger.com/2013/02/hibernate-just-stop-it/
+
 ## Workbench
 
 verify the inserted record
