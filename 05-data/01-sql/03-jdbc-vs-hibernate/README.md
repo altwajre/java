@@ -8,3 +8,12 @@ http://docs.oracle.com/javase/tutorial/jdbc/basics/index.html
 ## jdbc vs hibernate
 
 http://www.mindfiresolutions.com/mindfire/Java_Hibernate_JDBC.pdf
+
+## Workbench
+
+verify the inserted record
+
+```
+use ifinances;
+select * from FINANCES_USER;
+```

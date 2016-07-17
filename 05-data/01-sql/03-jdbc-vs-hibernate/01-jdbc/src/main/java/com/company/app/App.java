@@ -13,6 +13,7 @@ public class App
         Class.forName("com.mysql.jdbc.Driver");
 
         String sqlQuery = "SELECT * FROM finances_user";
+
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ifinances", "infinite", "skills");
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlQuery);
