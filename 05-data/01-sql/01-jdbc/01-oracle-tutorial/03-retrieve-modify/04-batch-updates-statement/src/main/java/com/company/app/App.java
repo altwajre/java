@@ -4,28 +4,32 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Arrays;
 
+// Using Statement Objects for Batch Updates
 public class App
 {
     public static void main( String[] args ) throws Exception {
         String dbName = "oraclejbdc";
-        float percentage = 0.8f;
 
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/oraclejbdc", "root", "abc");
-        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-        String query = "SELECT * FROM " + dbName + ".COFFEES";
-        ResultSet updateResultSet = statement.executeQuery(query);
+        connection.setAutoCommit(false);
 
-        while (updateResultSet.next()){
-            float price = updateResultSet.getFloat("PRICE");
-            if(price == 7.99f){
-                System.out.println("update price: " + price);
-                updateResultSet.updateFloat("PRICE", price * percentage);
-                updateResultSet.updateRow();
-            }
-        }
+        Statement statement = connection.createStatement();
+
+        statement.addBatch("INSERT INTO COFFEES VALUES('Amaretto', 49, 1.99, 0, 0)");
+        statement.addBatch("INSERT INTO COFFEES VALUES('Hazelnut', 49, 1.99, 0, 0)");
+        statement.addBatch("INSERT INTO COFFEES VALUES('Amaretto_decaf', 49, 1.99, 0, 0)");
+        statement.addBatch("INSERT INTO COFFEES VALUES('Hazelnut_decaf', 49, 1.99, 0, 0)");
+
+        int[] updateCounts = statement.executeBatch();
+        System.out.println(Arrays.toString(updateCounts));
+        connection.commit();
+
+        String query = "SELECT * FROM " + dbName + ".COFFEES";
 
         ResultSet resultSet = statement.executeQuery(query);
+
         while (resultSet.next()){
             String coffeeName = resultSet.getString(1);
             int supplierID = resultSet.getInt(2);
@@ -38,18 +42,23 @@ public class App
         }
 
         statement.close();
+        connection.setAutoCommit(true);
         connection.close();
     }
 }
 /*
 output:
-update price: 7.99
+[1, 1, 1, 1]
+Amarette	49	1.99	0	0
+Amaretto_decaf	49	1.99	0	0
 Colombian	101	6.39	0	0
 Colombian_Decaf	101	8.99	0	0
 Espresso	150	9.99	0	0
 French_Roast	49	8.99	0	0
 French_Roast_Decaf	49	9.99	0	0
+Hazelnut	49	1.99	0	0
+Hazelnut_decaf	49	1.99	0	0
 
-NOTE: run following SQL statement in Workbench after finish test run
-UPDATE COFFEES SET PRICE = 7.99 WHERE COF_NAME = 'Colombian';
+NOTE: run below in workbench after finished test run
+DELETE FROM COFFEES WHERE PRICE = 1.99;
  */
