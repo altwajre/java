@@ -6,10 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-// Overview of Prepared Statements
+// Committing Transactions
 public class App
 {
-    public static void main( String[] args ) throws Exception {
+    public static void main( String[] args )throws Exception {
         String dbName = "oraclejbdc";
 
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/oraclejbdc", "root", "abc");
@@ -45,10 +45,10 @@ public class App
                     "\t" + price + "\t" + sales +
                     "\t" + total);
         }
+        statement.close();
 
         updateSales.close();
         updateTotal.close();
-        statement.close();
         connection.setAutoCommit(true);
         connection.close();
     }

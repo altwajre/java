@@ -8,15 +8,13 @@ import java.sql.Statement;
 public class App
 {
     public static void main( String[] args ) throws Exception {
-        String dbName = "oraclejbdc";
 
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/oraclejbdc", "root", "abc");
         Statement statement = connection.createStatement();
-        String query =
-                "select COF_NAME, SUP_ID, PRICE, " +
-                        "SALES, TOTAL " +
-                        "from " + dbName + ".COFFEES";
+
+        String query = "SELECT COF_NAME, SUP_ID, PRICE, SALES, TOTAL FROM COFFEES";
         ResultSet resultSet = statement.executeQuery(query);
+
         while (resultSet.next()){
             String coffeeName = resultSet.getString("COF_NAME");
             int supplierID = resultSet.getInt("SUP_ID");
