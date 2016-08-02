@@ -1,0 +1,18 @@
+# Files to ignore
+.idea
+.DS_Store
+*.class
+.classpath
+.project
+.gradle/
+.settings/
+classes/
+build/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# TestNG
+test-output/
