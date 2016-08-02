@@ -12,41 +12,54 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class TestRunner {
-    static boolean hasHelp = false;
-    static String testngXmlPath = "test-all.xml";
 
-    public static void main(String... args) throws ParseException {
-        parse(args);
+    static class TestOption {
+        private boolean hasHelp;
+        private String testngXmlPath;
 
-        runTest();
+        public TestOption() {
+        }
+
+        public TestOption(boolean hasHelp, String testngXmlPath) {
+            this.hasHelp = hasHelp;
+            this.testngXmlPath = testngXmlPath;
+        }
     }
 
-    static void parse(String... args) throws ParseException {
+    public static void main(String... args) throws ParseException {
+        TestOption testOption = new TestOption(false, "test-all.xml");
+
+        parse(testOption, args);
+
+        runTest(testOption);
+    }
+
+    static void parse(TestOption testOption, String... args) throws ParseException {
         Options options = new Options();
         String helpOpt = "h";
         String testngOpt = "t";
         options.addOption(helpOpt, "help", false, "display usage");
-        options.addOption(testngOpt, "testng", true, "testng xml file");
+        options.addOption(testngOpt, "testng", true, "testng suite xml file");
 
         CommandLineParser commandLineParser = new DefaultParser();
 
         CommandLine commandLine = commandLineParser.parse(options, args);
         if (commandLine.hasOption(helpOpt)) {
             new HelpFormatter().printHelp("ant", options);
-            hasHelp = true;
+            testOption.hasHelp = true;
         } else {
             if (commandLine.hasOption(testngOpt)) {
-                testngXmlPath = commandLine.getOptionValue(testngOpt);
+                testOption.testngXmlPath = commandLine.getOptionValue(testngOpt);
             }
         }
     }
 
-    static void runTest() {
-        if(hasHelp) return;
+    static void runTest(TestOption testOption) {
+        if (testOption.hasHelp) return;
 
         TestNG testNG = new TestNG();
         List<String> suites = new ArrayList<>();
-        suites.add(testngXmlPath);
+        suites.add(testOption.testngXmlPath);
         testNG.setTestSuites(suites);
         testNG.run();
     }
