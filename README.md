@@ -47,6 +47,10 @@ download JDK `Windows x64`
 
 > http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
+### JDK path
+
+> `C:\Program Files\Java\jdk1.8.0_102`
+
 ## MAC
 
 ### Path
