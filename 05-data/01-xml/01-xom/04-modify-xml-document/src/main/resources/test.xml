@@ -1,0 +1,6 @@
+<people>
+    <person id="123">
+        <name>Tom</name>
+        <age>10</age>
+    </person>
+</people>
