@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 public class App
@@ -15,6 +16,15 @@ public class App
         Map mapJson = new ObjectMapper().readValue(inputStream, Map.class);
         System.out.println("# Map Json");
         System.out.println(mapJson);
+
+        System.out.println("## Cast json array to List");
+        List items = (List)mapJson.get("items");
+        System.out.println(items);
+
+        System.out.println("## Get first item of json array");
+        Map item = (Map)items.get(0);
+        System.out.println(item);
+        System.out.println(item.get("id"));
 
         JSONObject jsonObject = new JSONObject(mapJson);
         System.out.println("# JSONObject");
