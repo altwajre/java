@@ -118,4 +118,11 @@ public class AssertjTest {
                 .extracting(c -> c.getRace())
                 .contains(Race.HOBBIT, Race.ELF, Race.MAN);
     }
+
+    // test contains
+    @Test
+    public void contains_test(){
+        String s1 = "This is awesome!";
+        assertThat(s1).contains("awesome");
+    }
 }
