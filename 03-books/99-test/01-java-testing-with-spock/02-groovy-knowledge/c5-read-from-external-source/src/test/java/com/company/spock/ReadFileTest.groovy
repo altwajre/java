@@ -55,14 +55,4 @@ class ReadFileTest extends Specification {
         then:
         jsonRoot
     }
-
-    def "curl"() {
-        when:
-        def response = "curl -X GET http://localhost:8080/hello-world".execute()
-        def jsonRoot = new JsonSlurper().parseText(response.text)
-        println jsonRoot.content
-
-        then:
-        response
-    }
 }
