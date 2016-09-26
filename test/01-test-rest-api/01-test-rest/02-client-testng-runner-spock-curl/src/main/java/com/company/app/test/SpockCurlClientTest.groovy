@@ -10,11 +10,12 @@ class SpockCurlClientTest extends Specification {
     def "curl GET test"() {
         when:
         def response = "curl -X GET http://localhost:8080/hello-world".execute()
-        def jsonRoot = new JsonSlurper().parseText(response.text)
-        println jsonRoot.content
+        def root = new JsonSlurper().parseText(response.text)
+        println root.content
 
         then:
-        response
+        root.id > 0
+        root.content == 'Hello, Stranger yml!'
     }
 
 }
