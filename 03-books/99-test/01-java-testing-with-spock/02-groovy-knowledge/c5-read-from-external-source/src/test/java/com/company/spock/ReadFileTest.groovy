@@ -1,5 +1,6 @@
 package com.company.spock
 
+import groovy.json.JsonSlurper
 import spock.lang.Specification
 
 class ReadFileTest extends Specification {
@@ -37,5 +38,31 @@ class ReadFileTest extends Specification {
 
         then:
         xmlRoot
+    }
+
+    def "Reading JSON in Groovy"(){
+        when:
+        def jsonRoot = new JsonSlurper().parse(new File('src/test/resources/employee-data.json')) // Creating the JsonSlurper object
+        assert jsonRoot.staff.department.name == "sales" // Accessing json field
+        assert jsonRoot.staff.department.employee.size() == 2 // Checking the size of JSon array
+        assert jsonRoot.staff.department.employee[0].firstName == "Orlando" // Accessing first element of the array
+        assert jsonRoot.staff.department.employee[0].lastName == "Boren"
+        assert jsonRoot.staff.department.employee[0].age == "24"
+        assert jsonRoot.staff.department.employee[1].firstName == "Diana" // Accessing second element of the array
+        assert jsonRoot.staff.department.employee[1].lastName == "Colgan"
+        assert jsonRoot.staff.department.employee[1].age == "28"
+
+        then:
+        jsonRoot
+    }
+
+    def "curl"() {
+        when:
+        def response = "curl -X GET http://localhost:8080/hello-world".execute()
+        def jsonRoot = new JsonSlurper().parseText(response.text)
+        println jsonRoot.content
+
+        then:
+        response
     }
 }
