@@ -1,5 +1,8 @@
 # installation sdkman
+http://groovy-lang.org/
 http://sdkman.io/install.html
+
+$ groovy -version
 
 # groovy
 ## installation
