@@ -15,6 +15,7 @@ class BasketWeightSpec extends Specification {
 
     // 4.2.1 Explaining the feature examined
     def "4.15 - test method describes - A basket with one product has equal weight"(){ // Full English text
+        given: "an empty basket and a TV"
         Product tv = new Product(name: "bravia", price: 1200, weight: 18)
         Basket basket = new Basket()
 
@@ -26,8 +27,8 @@ class BasketWeightSpec extends Specification {
     }
 
     // 4.2.2 Marking the class under test - @Subject
-    def "4.16 marking class under test - A basket with two products weights as their sum"(){
-        given: "an mepty basket"
+    def "4.16 -  marking class under test - A basket with two products weights as their sum"(){
+        given: "an empty basket"
         @Subject  // The subject of this test is the Basket class
         Basket basket = new Basket()
 
