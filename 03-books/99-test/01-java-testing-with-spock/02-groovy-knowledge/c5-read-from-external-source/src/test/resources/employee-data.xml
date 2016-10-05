@@ -1,4 +1,4 @@
-<staff>
+<staff ID="123">
     <department name="sales">
         <employee>
             <firstName>Orlando</firstName>

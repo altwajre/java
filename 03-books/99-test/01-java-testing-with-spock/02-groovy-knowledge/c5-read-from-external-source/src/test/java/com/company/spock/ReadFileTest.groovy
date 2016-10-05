@@ -29,6 +29,7 @@ class ReadFileTest extends Specification {
         when:
 
         def xmlRoot = new XmlSlurper().parse('src/test/resources/employee-data.xml') // Creating the XmlSlurper object
+        println xmlRoot.@ID
         assert xmlRoot.department.size() == 1 // Checking the number of children XML nodes
         assert xmlRoot.department.@name == "sales" // Accessing an XML attribute
         assert xmlRoot.department.employee.size() == 2 // Checking the number of children XML nodes

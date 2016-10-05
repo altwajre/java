@@ -3,6 +3,18 @@
 Code
 https://github.com/kkapelon/java-testing-with-spock
 
+## Run Tests
+
+**Command line**
+```
+$ gradle test
+```
+
+**Test Report**
+```
+build/reports/tests/index.html
+```
+
 ## Mock / Stub
 
 **stub**
