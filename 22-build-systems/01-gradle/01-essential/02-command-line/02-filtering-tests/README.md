@@ -42,6 +42,12 @@ $ gradle test --tests com.company.spock.smoke.*
 $ gradle test --tests com.company.spock.stress.*
 ```
 
+*run smoke and security*
+
+```
+$ gradle test --tests com.company.spock.smoke.* --tests com.company.spock.security.*
+```
+
 **test report**
 
 ```
