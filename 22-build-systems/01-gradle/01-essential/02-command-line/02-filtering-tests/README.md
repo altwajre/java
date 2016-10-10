@@ -27,7 +27,7 @@ src/test/groovy
 **run test in command line**
 
 ```
-$ gradle test
+$ gradle clean test
 ```
 
 *run smoke only*
