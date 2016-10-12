@@ -36,6 +36,7 @@ public class App
                 map.remove(tail.bookID);
                 tail = tail.prev;
                 tail.next = null;
+                size--;
             }
         }
         public Node get(int bookID){
