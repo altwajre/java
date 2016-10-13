@@ -10,11 +10,12 @@ public class App
 {
     public static void main( String[] args )
     {
-        String template = "The ${animal} jumped over the ${target}.";
+        String template = "The ${animal} jumped over the /${target}${old}";
 
         Map<String, String> valuesMap = new HashMap<>();
         valuesMap.put("animal", "quick brown fox");
         valuesMap.put("target", "lazy dog");
+        valuesMap.put("old", "new");
         StrSubstitutor substitutor = new StrSubstitutor(valuesMap);
         String result = substitutor.replace(template);
         System.out.println(result);
