@@ -16,5 +16,17 @@
       "currencyId": "CAD",
       "marketId": "en-CA"
     }
+    {
+      "currencyId": null,
+      "marketId": "zh-SG"
+    },
+    {
+      "currencyId": "SGD",
+      "marketId": null
+    },
+    {
+      "currencyId": "SGD",
+      "marketId": "zh-SG"
+    }
   ]
 }
