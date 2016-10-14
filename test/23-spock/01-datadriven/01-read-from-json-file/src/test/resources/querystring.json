@@ -1,0 +1,20 @@
+{
+  "querystring": [
+    {
+      "currencyId": null,
+      "marketId": null
+    },
+    {
+      "currencyId": null,
+      "marketId": "en-CA"
+    },
+    {
+      "currencyId": "CAD",
+      "marketId": null
+    },
+    {
+      "currencyId": "CAD",
+      "marketId": "en-CA"
+    }
+  ]
+}
