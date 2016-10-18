@@ -1,7 +1,6 @@
-package com.company.app.core;
+package com.company.app.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.validator.constraints.Length;
 
 public class Saying {
     private long id;

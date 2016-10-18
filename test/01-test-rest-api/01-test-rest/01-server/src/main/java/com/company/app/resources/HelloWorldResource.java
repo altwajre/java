@@ -1,7 +1,7 @@
 package com.company.app.resources;
 
 import com.codahale.metrics.annotation.Timed;
-import com.company.app.core.Saying;
+import com.company.app.model.Saying;
 import com.google.common.base.Optional;
 
 import javax.ws.rs.GET;
