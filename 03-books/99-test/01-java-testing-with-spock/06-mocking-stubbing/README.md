@@ -1,4 +1,5 @@
 # Mocking and stubbing
+mocks are a superset of stubs.
 
 **Stub**
 A stub is a fake class that comes with preprogrammed return values.
