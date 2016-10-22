@@ -2,12 +2,15 @@ package com.company.app;
 
 import rx.Observable;
 import rx.Observer;
+import rx.Subscriber;
 import rx.Subscription;
 import rx.functions.Func1;
 import rx.functions.Func2;
 import rx.observables.ConnectableObservable;
 import rx.schedulers.Schedulers;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
 import java.util.concurrent.CountDownLatch;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,11 +23,11 @@ public class App {
         private double sum;
         private Subscription subscription = null;
 
-        public ReactiveSum(Observable<Double> a, Observable<Double> b){
+        public ReactiveSum(Observable<Double> a, Observable<Double> b) {
             this.sum = 0;
         }
 
-        private void subscribe(Observable<Double> a, Observable<Double> b){
+        private void subscribe(Observable<Double> a, Observable<Double> b) {
             this.subscription = Observable.combineLatest(a, b, new Func2<Double, Double, Double>() {
                 @Override
                 public Double call(Double a, Double b) {
@@ -62,8 +65,7 @@ public class App {
         }
     }
 
-    public static Observable<Double> varStream(final String varName,
-                                               Observable<String> input) {
+    public static Observable<Double> varStream(final String varName, Observable<String> input) {
         final Pattern pattern = Pattern.compile("^\\s*" + varName
                 + "\\s*[:|=]\\s*(-?\\d+\\.?\\d*)$");
 
@@ -89,10 +91,22 @@ public class App {
             }
         });
     }
-    public static void main(String... args){
+
+    public static ConnectableObservable<String> from(final InputStream stream){
+        return null;
+    }
+
+    public static ConnectableObservable<String> from(final BufferedReader reader){
+        return Observable.create((Subscriber<? super String> subscriber) -> {
+
+        }).publish();
+    }
+
+    public static void main(String... args) {
         System.out.println("Reactive Sum. Type 'a: <number>' and 'b: <number>' to try ti");
 
         ConnectableObservable<String> input = CreateObservable.from(System.in);
     }
+
 
 }
