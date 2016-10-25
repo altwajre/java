@@ -10,11 +10,7 @@ abstract class Subject{
     public void detach(Observer observer){
         observers.remove(observer);
     }
-    public void notifyChange(){
-        for(Observer o : observers){
-            o.update();
-        }
-    }
+    public void notifyChange(){ this.observers.forEach(o -> o.update()); }
 }
 class ConcreteSubject extends Subject{
     private String subjectState;
