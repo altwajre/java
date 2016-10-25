@@ -52,34 +52,34 @@ public class CreateObservablesTest {
 
     @Test
     public void loadDocumentsInParallelTest() {
-        Map<String, Observable<String>> bucket = new HashMap<>();
-        bucket.put("doc1", Observable.just("document 1"));
-        bucket.put("doc2", Observable.just("document 2"));
-        bucket.put("doc3", Observable.just("document 3"));
+        Map<String, Observable<MyDocument>> bucket = new HashMap<>();
+        bucket.put("doc1", Observable.just(new MyDocument("document 1")));
+        bucket.put("doc2", Observable.just(new MyDocument("document 2")));
+        bucket.put("doc3", Observable.just(new MyDocument("document 3")));
 
         System.out.println("# Loads 3 documents in parallel");
         Observable
                 .just("doc1", "doc2", "doc3")
-                .flatMap(new Func1<String, Observable<String>>() {
+                .flatMap(new Func1<String, Observable<MyDocument>>() {
                     @Override
-                    public Observable<String> call(String id) {
+                    public Observable<MyDocument> call(String id) {
                         System.out.println(Thread.currentThread().getName());
                         return bucket.get(id);
                     }
-                }).subscribe(new Action1<String>() {
+                }).subscribe(new Action1<MyDocument>() {
             @Override
-            public void call(String document) {
-                System.out.println(Thread.currentThread().getName() + " got: " + document);
+            public void call(MyDocument document) {
+                System.out.println(Thread.currentThread().getName() + " got: " + document.getName());
             }
         });
 
         System.out.println("# Loads one document");
         bucket
                 .get("doc1")
-                .subscribe(new Action1<String>() {
+                .subscribe(new Action1<MyDocument>() {
                     @Override
-                    public void call(String s) {
-                        System.out.println(Thread.currentThread().getName() + " got: " + s);
+                    public void call(MyDocument document) {
+                        System.out.println(Thread.currentThread().getName() + " got: " + document.getName());
                     }
                 });
     }
