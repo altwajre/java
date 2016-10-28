@@ -1,5 +1,7 @@
 # Groovy Programming Fundamentals
 
+https://www.safaribooksonline.com/library/view/groovy-programming-fundamentals/9781491926253/
+
 http://www.groovy-lang.org/
 
 Groovy home
