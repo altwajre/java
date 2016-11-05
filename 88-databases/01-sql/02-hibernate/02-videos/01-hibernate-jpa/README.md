@@ -19,9 +19,9 @@ https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/
 ```
 $ sudo /usr/local/mysql/bin/mysql -u root -pabc  <- password is "abc"; -p is option
 re-add local user
-mysql> DROP USER 'whan'@'localhost';  <- drop user
-mysql> CREATE USER 'whan'@'localhost'; <- run it if local-user is not in user list
-mysql> GRANT ALL ON cookbook.* TO 'whan'@'localhost';  <- Grant user to cookbook database
+mysql> DROP USER 'user'@'localhost';  <- drop user
+mysql> CREATE USER 'user'@'localhost'; <- run it if local-user is not in user list
+mysql> GRANT ALL ON cookbook.* TO 'user'@'localhost';  <- Grant user to cookbook database
 ```
 
 ## Workbench
