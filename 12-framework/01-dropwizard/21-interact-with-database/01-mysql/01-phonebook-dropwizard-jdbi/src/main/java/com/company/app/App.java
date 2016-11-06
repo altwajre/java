@@ -2,6 +2,7 @@ package com.company.app;
 
 import com.company.app.resources.ContactResource;
 import io.dropwizard.Application;
+import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -24,7 +25,8 @@ public class App extends Application<PhonebookConfiguration>
 
         // Create a DBI factory and build a JDBI instance
         final DBIFactory factory = new DBIFactory();
-        final DBI jdbi = factory.build(e, c.getDataSourceFactory(), "mysql");
+        DataSourceFactory dataSourceFactory = c.getDataSourceFactory();
+        final DBI jdbi = factory.build(e, dataSourceFactory, "mysql");
         // Add the resource to the environment
         e.jersey().register(new ContactResource(jdbi));
     }
