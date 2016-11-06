@@ -8,11 +8,11 @@ https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/
 
 ### Command line
 
-> `sudo /usr/local/mysql/bin/mysqld -u root` <-- ### START SERVER ###
+> `sudo /usr/local/mysql/bin/mysqld -u root` <- # START SERVER #
 
 > `sudo /usr/local/mysql/support-files/mysql.server start`
 
-> `sudo /usr/local/mysql/support-files/mysql.server stop`
+> `sudo /usr/local/mysql/support-files/mysql.server stop` <- # STOP SERVER #
 
 > if you have Access denied for user error, do following
 

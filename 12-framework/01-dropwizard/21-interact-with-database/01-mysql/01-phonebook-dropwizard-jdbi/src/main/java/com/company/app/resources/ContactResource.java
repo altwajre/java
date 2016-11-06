@@ -1,7 +1,7 @@
-package com.dwbook.phonebook.resources;
+package com.company.app.resources;
 
-import com.dwbook.phonebook.dao.ContactDAO;
-import com.dwbook.phonebook.representations.Contact;
+import com.company.app.dao.ContactDao;
+import com.company.app.models.Contact;
 import org.skife.jdbi.v2.DBI;
 
 import javax.ws.rs.*;
@@ -11,13 +11,14 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Iterator;
 
+
 @Path("/contact")
 @Produces(MediaType.APPLICATION_JSON)
 public class ContactResource {
 
-    private final ContactDAO contactDao;
+    private final ContactDao contactDao;
     public ContactResource(DBI jdbi){
-        contactDao = jdbi.onDemand(ContactDAO.class);
+        contactDao = jdbi.onDemand(ContactDao.class);
     }
 
     @GET
