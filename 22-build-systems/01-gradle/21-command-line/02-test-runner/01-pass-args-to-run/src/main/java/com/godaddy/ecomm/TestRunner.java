@@ -27,6 +27,7 @@ public final class TestRunner {
     }
 
     public static void main(String... args) throws ParseException {
+        System.out.println("#TestRunner.main()");
         TestOption testOption = new TestOption(false, "test-all.xml");
 
         parse(testOption, args);
