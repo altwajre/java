@@ -1,5 +1,6 @@
 package com.company.app;
 
+import com.company.app.resources.CarsResource;
 import com.company.app.resources.ContactsResource;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
@@ -19,7 +20,7 @@ public class App extends Application<Configuration> {
     public void run(Configuration configuration, Environment e) throws Exception {
         // Add the resource to the environment
         e.jersey().register(new ContactsResource());
-
+        e.jersey().register(new CarsResource());
     }
 
 }

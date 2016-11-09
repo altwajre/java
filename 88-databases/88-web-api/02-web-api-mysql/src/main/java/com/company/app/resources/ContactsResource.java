@@ -23,7 +23,7 @@ public class ContactsResource {
     private final ContactDao contactDao;
 
     public ContactsResource(){
-        contactDao = new ContactDaoImpl();
+        this.contactDao = new ContactDaoImpl();
     }
 
     @GET
@@ -55,9 +55,9 @@ public class ContactsResource {
     @DELETE
     @Path("/{id}")
     public Response deleteContact(@PathParam("id") int id){
-        Contact toDeletedContact = contactDao.getContact(id);
-        contactDao.deleteContact(toDeletedContact);
-        return Response.ok(toDeletedContact).build();
+        Contact contact = contactDao.getContact(id);
+        contactDao.deleteContact(contact);
+        return Response.ok(contact).build();
     }
 
 }
