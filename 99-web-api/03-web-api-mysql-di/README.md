@@ -1,5 +1,46 @@
 # Web Api in-memory
 
+## Guice Dependency Injection
+
+> Create a module to provide DataSourceConfig
+
+```
+public class EcommModule extends AbstractModule {
+    @Override
+    protected void configure() {
+    }
+
+    @Provides
+    public DataSourceConfig provideConfig(EcommConfiguration ecommConfiguration) {
+        return ecommConfiguration.getDataSourceConfig();
+    }
+}
+```
+
+> Add App.initialize() to bootstrap dependency injection
+
+```
+    @Override
+    public void initialize(Bootstrap<EcommConfiguration> bootstrap) {
+        GuiceBundle<EcommConfiguration> guiceBundle = GuiceBundle.<EcommConfiguration>newBuilder()
+                .addModule(new EcommModule())
+                .setConfigClass(EcommConfiguration.class)
+                .enableAutoConfig(getClass().getPackage().getName())
+                .build();
+        bootstrap.addBundle(guiceBundle);
+    }
+```
+
+> Add @Inject to resource constructor ContactsResource.ContactsResource()
+
+```
+    @Inject
+    public ContactsResource(DataSourceConfig config){
+        this.contactDao = new ContactDaoImpl(config);
+    }
+
+```
+
 ## MySql
 
 > Start MySql Server: `sudo /usr/local/mysql/bin/mysqld -u root`

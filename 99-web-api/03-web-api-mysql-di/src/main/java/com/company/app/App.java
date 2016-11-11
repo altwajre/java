@@ -27,11 +27,6 @@ public class App extends Application<EcommConfiguration> {
 
     @Override
     public void run(EcommConfiguration c, Environment e) throws Exception {
-//        DataSourceConfig dataSourceConfig = c.getDataSourceConfig();
-//
-//        // Add the resource to the environment
-//        e.jersey().register(new ContactsResource(dataSourceConfig));
-//        e.jersey().register(new CarsResource(dataSourceConfig));
     }
 
 }
