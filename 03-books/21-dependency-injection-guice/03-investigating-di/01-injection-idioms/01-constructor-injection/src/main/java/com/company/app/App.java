@@ -4,7 +4,9 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 
 class SpellChecker{
-    public void check(String text){}
+    public void check(String text) {
+        System.out.println("#SpellChecker.check() text=" + text);
+    }
 }
 class Emailer{
     private SpellChecker spellChecker;
@@ -28,4 +30,5 @@ public class App
 /*
 output:
 #Emailer.send()
+#SpellChecker.check() text=hello
  */

@@ -8,11 +8,13 @@
 
 ## Start Server
 
-> `sudo /usr/local/mysql/bin/mysqld -u root` <-- ### START SERVER ###
+> `sudo /usr/local/mysql/bin/mysqld -u root` <- # START SERVER #
+
+> `sudo /usr/local/mysql/support-files/mysql.server stop`<- # STOP SERVER #
 
 > `mysql.server start`
 
-> `mysql.server stop` when you are done
+> `mysql.server stop`
 
 ## Open mysql
 

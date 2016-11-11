@@ -1,5 +1,11 @@
 # Web Api in-memory
 
+## MySql
+
+> Start MySql Server: `sudo /usr/local/mysql/bin/mysqld -u root`
+
+> Stop MySql Server: `sudo /usr/local/mysql/support-files/mysql.server stop`
+
 ## SQL Code
 
 ContactDaoImpl.java
@@ -79,4 +85,3 @@ Launch App with Program args: server
 **DELETE**
 
 > `curl -X DELETE "http://localhost:8080/cars/4"`
-

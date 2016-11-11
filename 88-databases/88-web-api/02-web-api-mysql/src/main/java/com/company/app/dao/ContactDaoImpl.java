@@ -1,5 +1,6 @@
 package com.company.app.dao;
 
+import com.company.app.DataSourceConfig;
 import com.company.app.models.Contact;
 import com.mysql.jdbc.Statement;
 
@@ -12,22 +13,29 @@ import java.util.List;
 
 public class ContactDaoImpl implements ContactDao {
 
-    Connection conn = DatabaseAccess.getConnection();
+    DataSourceConfig config;
+
+    public ContactDaoImpl(DataSourceConfig config){
+        this.config = config;
+    }
 
     @Override
     public List<Contact> getContacts() {
         List<Contact> contacts = new ArrayList<>();
-        try {
-            PreparedStatement select = conn.prepareStatement("SELECT id, name FROM webapi.contact");
+        try (Connection conn = DataSource.createConnection(this.config);
+             PreparedStatement select = conn.prepareStatement("SELECT id, name FROM webapi.contact")
+        ) {
             select.executeQuery();
-            ResultSet resultSet = select.getResultSet();
-            while (resultSet.next()){
-                int id = resultSet.getInt(1);
-                String name = resultSet.getString(2);
-                Contact contact = new Contact();
-                contact.setId(id);
-                contact.setName(name);
-                contacts.add(contact);
+
+            try(ResultSet resultSet = select.getResultSet()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt(1);
+                    String name = resultSet.getString(2);
+                    Contact contact = new Contact();
+                    contact.setId(id);
+                    contact.setName(name);
+                    contacts.add(contact);
+                }
             }
 
         } catch (SQLException e) {
@@ -39,15 +47,18 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public Contact getContact(int id) {
         Contact contact = null;
-        try {
-            PreparedStatement select = conn.prepareStatement("SELECT id, name FROM webapi.contact WHERE id = ?");
+        try (Connection conn = DataSource.createConnection(this.config);
+             PreparedStatement select = conn.prepareStatement("SELECT id, name FROM webapi.contact WHERE id = ?")
+        ) {
             select.setInt(1, id);
             select.executeQuery();
-            ResultSet resultSet = select.getResultSet();
-            if (resultSet.next()){
-                contact = new Contact();
-                contact.setId(resultSet.getInt(1));
-                contact.setName(resultSet.getString(2));
+
+            try (ResultSet resultSet = select.getResultSet()) {
+                if (resultSet.next()) {
+                    contact = new Contact();
+                    contact.setId(resultSet.getInt(1));
+                    contact.setName(resultSet.getString(2));
+                }
             }
 
         } catch (SQLException e) {
@@ -59,20 +70,19 @@ public class ContactDaoImpl implements ContactDao {
 
     @Override
     public int createContact(Contact contact) {
-        try {
-            PreparedStatement insert = conn.prepareStatement(
-                    "INSERT INTO webapi.contact (name) VALUES (?)",
-                    Statement.RETURN_GENERATED_KEYS);
+        try (Connection conn = DataSource.createConnection(this.config);
+             PreparedStatement insert = conn.prepareStatement("INSERT INTO webapi.contact (name) VALUES (?)",
+                     Statement.RETURN_GENERATED_KEYS)
+        ) {
             insert.setString(1, contact.getName());
             int affectedRows = insert.executeUpdate();
-            if(affectedRows == 0){
+            if (affectedRows == 0) {
                 throw new SQLException("Create failed, no rows affected");
             }
-            try(ResultSet generatedKeys = insert.getGeneratedKeys()){
-                if(generatedKeys.next()){
+            try (ResultSet generatedKeys = insert.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
                     return generatedKeys.getInt(1);
-                }
-                else{
+                } else {
                     throw new SQLException("Creating failed, no ID obtained");
                 }
             }
@@ -84,13 +94,14 @@ public class ContactDaoImpl implements ContactDao {
 
     @Override
     public void updateContact(Contact contact) {
-        try {
-            PreparedStatement update = conn.prepareStatement("UPDATE webapi.contact SET name = ? WHERE id = ?");
+        try (Connection conn = DataSource.createConnection(this.config);
+             PreparedStatement update = conn.prepareStatement("UPDATE webapi.contact SET name = ? WHERE id = ?")
+        ) {
             update.setString(1, contact.getName());
             update.setInt(2, contact.getId());
 
             int affectedRows = update.executeUpdate();
-            if(affectedRows == 0){
+            if (affectedRows == 0) {
                 throw new SQLException("Create failed, no rows affected");
             }
 
@@ -101,12 +112,13 @@ public class ContactDaoImpl implements ContactDao {
 
     @Override
     public void deleteContact(Contact contact) {
-        try {
-            PreparedStatement delete = conn.prepareStatement("DELETE FROM webapi.contact WHERE id = ?");
+        try (Connection conn = DataSource.createConnection(this.config);
+             PreparedStatement delete = conn.prepareStatement("DELETE FROM webapi.contact WHERE id = ?")
+        ) {
             delete.setInt(1, contact.getId());
 
             int affectedRows = delete.executeUpdate();
-            if(affectedRows == 0){
+            if (affectedRows == 0) {
                 throw new SQLException("Create failed, no rows affected");
             }
 

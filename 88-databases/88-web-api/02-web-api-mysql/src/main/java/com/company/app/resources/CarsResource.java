@@ -1,5 +1,6 @@
 package com.company.app.resources;
 
+import com.company.app.DataSourceConfig;
 import com.company.app.dao.CarDao;
 import com.company.app.dao.CarDaoImpl;
 import com.company.app.models.Car;
@@ -22,8 +23,8 @@ import java.util.List;
 public class CarsResource {
     private final CarDao carDao;
 
-    public CarsResource(){
-        this.carDao = new CarDaoImpl();
+    public CarsResource(DataSourceConfig config){
+        this.carDao = new CarDaoImpl(config);
     }
 
     @GET

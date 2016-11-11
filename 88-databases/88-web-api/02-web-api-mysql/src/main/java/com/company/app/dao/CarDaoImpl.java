@@ -1,5 +1,6 @@
 package com.company.app.dao;
 
+import com.company.app.DataSourceConfig;
 import com.company.app.models.Car;
 import com.mysql.jdbc.Statement;
 
@@ -12,22 +13,29 @@ import java.util.List;
 
 public class CarDaoImpl implements CarDao {
 
-    Connection conn = DatabaseAccess.getConnection();
+    DataSourceConfig config;
+
+    public CarDaoImpl(DataSourceConfig config){
+        this.config = config;
+    }
 
     @Override
     public List<Car> getCars() {
         List<Car> cars = new ArrayList<>();
-        try {
-            PreparedStatement select = conn.prepareStatement("SELECT id, make FROM webapi.car");
+        try (Connection conn = DataSource.createConnection(this.config);
+             PreparedStatement select = conn.prepareStatement("SELECT id, make FROM webapi.car")
+        ) {
             select.executeQuery();
-            ResultSet resultSet = select.getResultSet();
-            while (resultSet.next()){
-                int id = resultSet.getInt(1);
-                String make = resultSet.getString(2);
-                Car car = new Car();
-                car.setId(id);
-                car.setMake(make);
-                cars.add(car);
+
+            try(ResultSet resultSet = select.getResultSet()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt(1);
+                    String make = resultSet.getString(2);
+                    Car car = new Car();
+                    car.setId(id);
+                    car.setMake(make);
+                    cars.add(car);
+                }
             }
 
         } catch (SQLException e) {
@@ -39,15 +47,18 @@ public class CarDaoImpl implements CarDao {
     @Override
     public Car getCar(int id) {
         Car car = null;
-        try {
-            PreparedStatement select = conn.prepareStatement("SELECT id, make FROM webapi.car WHERE id = ?");
+        try (Connection conn = DataSource.createConnection(this.config);
+             PreparedStatement select = conn.prepareStatement("SELECT id, make FROM webapi.car WHERE id = ?")
+        ) {
             select.setInt(1, id);
             select.executeQuery();
-            ResultSet resultSet = select.getResultSet();
-            if (resultSet.next()){
-                car = new Car();
-                car.setId(resultSet.getInt(1));
-                car.setMake(resultSet.getString(2));
+
+            try(ResultSet resultSet = select.getResultSet()) {
+                if (resultSet.next()) {
+                    car = new Car();
+                    car.setId(resultSet.getInt(1));
+                    car.setMake(resultSet.getString(2));
+                }
             }
 
         } catch (SQLException e) {
@@ -59,15 +70,17 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public int createCar(Car car) {
-        try {
-            PreparedStatement insert = conn.prepareStatement(
-                    "INSERT INTO webapi.car (make) VALUES (?)",
-                    Statement.RETURN_GENERATED_KEYS);
+        try (Connection conn = DataSource.createConnection(this.config);
+             PreparedStatement insert = conn.prepareStatement(
+                     "INSERT INTO webapi.car (make) VALUES (?)",
+                     Statement.RETURN_GENERATED_KEYS)
+        ) {
             insert.setString(1, car.getMake());
             int affectedRows = insert.executeUpdate();
             if(affectedRows == 0){
                 throw new SQLException("Create failed, no rows affected");
             }
+
             try(ResultSet generatedKeys = insert.getGeneratedKeys()){
                 if(generatedKeys.next()){
                     return generatedKeys.getInt(1);
@@ -84,8 +97,9 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public void updateCar(Car car) {
-        try {
-            PreparedStatement update = conn.prepareStatement("UPDATE webapi.car SET make = ? WHERE id = ?");
+        try (Connection conn = DataSource.createConnection(this.config);
+             PreparedStatement update = conn.prepareStatement("UPDATE webapi.car SET make = ? WHERE id = ?")
+        ) {
             update.setString(1, car.getMake());
             update.setInt(2, car.getId());
 
@@ -101,8 +115,9 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public void deleteCar(Car car) {
-        try {
-            PreparedStatement delete = conn.prepareStatement("DELETE FROM webapi.car WHERE id = ?");
+        try (Connection conn = DataSource.createConnection(this.config);
+             PreparedStatement delete = conn.prepareStatement("DELETE FROM webapi.car WHERE id = ?")
+        ) {
             delete.setInt(1, car.getId());
 
             int affectedRows = delete.executeUpdate();

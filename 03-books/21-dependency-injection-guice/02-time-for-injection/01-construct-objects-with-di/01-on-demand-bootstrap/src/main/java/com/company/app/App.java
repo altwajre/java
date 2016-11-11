@@ -4,7 +4,9 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 
 class SpellChecker{
-    public void check(String text) { }
+    public void check(String text) {
+        System.out.println("#SpellChecker.check() text=" + text);
+    }
 }
 class Emailer{
     private SpellChecker spellChecker; // Dependencies wired via constructor
@@ -34,4 +36,5 @@ before it is ready to use.
 
 output:
 #Emailer.send()
+#SpellChecker.check() text=Hello
  */

@@ -1,5 +1,6 @@
 package com.company.app.resources;
 
+import com.company.app.DataSourceConfig;
 import com.company.app.dao.ContactDao;
 import com.company.app.dao.ContactDaoImpl;
 import com.company.app.models.Contact;
@@ -22,8 +23,8 @@ import java.util.List;
 public class ContactsResource {
     private final ContactDao contactDao;
 
-    public ContactsResource(){
-        this.contactDao = new ContactDaoImpl();
+    public ContactsResource(DataSourceConfig config){
+        this.contactDao = new ContactDaoImpl(config);
     }
 
     @GET
