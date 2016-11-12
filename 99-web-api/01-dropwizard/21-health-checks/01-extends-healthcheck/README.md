@@ -1,5 +1,7 @@
 # extends HealthCheck example
 
+http://www.dropwizard.io/1.0.3/docs/getting-started.html#creating-a-health-check
+
 ## Code
 
 1, Create Health-Check target
