@@ -11,6 +11,7 @@ Launch App with Program args: server
 #### Client - cURL
 
 **GET All**
+
 > `$ curl http://localhost:8080/contacts`
 
 ```
