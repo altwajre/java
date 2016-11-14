@@ -19,4 +19,3 @@ https://www.vmware.com/products/fusion/fusion-evaluation.html
 unzip /Users/whan/Documents/vms/vmware/Learning Apache Cassandra - Working Files/Chapter 1/Virtual Machine 1.zip
 vm is at /Users/whan/Documents/vms/vmware/Learning Apache Cassandra - Working Files/Chapter 1/Virtual Machine 1.vmwarevm
 vm password: ubuntu
-
