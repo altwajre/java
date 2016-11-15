@@ -1,10 +1,17 @@
-# Navigating between files
+# Navigating in editor
 
 ## Shortcuts
 
+### Search Everywhere
+
+| Action            | PC shortcut       | Mac shortcut      |
+|-------------------|-------------------|-------------------|
+| Search Everywhere | Press Shift twice | Press Shift twice |
+
+### Navigating between files
+
 | Action                       | PC shortcut           | Mac shortcut    |
 |------------------------------|-----------------------|-----------------|
-| Switch tab (opened files)    | Ctrl + Tab            | cmd + Tab       |
 | View recent files            | Ctrl + E              | cmd + E         |
 | View recently modified files | Ctrl + Shift + E      | cmd + Shift + E |
 | Navigate to a file           | Ctrl + Shift + N      | cmd + Shift + O |
@@ -17,32 +24,11 @@
 | Place a bookmark             | F11                   | F3              |
 | Show bookmarks               | Shift + F11           | cmd + F3        |
 
+### Navigating within a single file
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+| Action                         | PC shortcut | Mac shortcut |
+|--------------------------------|-------------|--------------|
+| Go to a line                   | Ctrl + G    | cmd + L      |
+| Check the file structure       | Ctrl + F12  | cmd + F12    |
+| Navigate to next error/warning | F2          | F2           |
+| Navigate to prev error/warning | Shift + F2  | Shift + F2   |
