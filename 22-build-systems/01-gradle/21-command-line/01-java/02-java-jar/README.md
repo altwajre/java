@@ -15,6 +15,10 @@ jar {
 }
 ```
 
+## build
+
+- `$ gradle build`
+
 ## run
 
 **no arg**
