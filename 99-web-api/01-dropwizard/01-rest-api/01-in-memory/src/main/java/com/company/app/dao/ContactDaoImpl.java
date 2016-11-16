@@ -12,11 +12,11 @@ public class ContactDaoImpl implements ContactDao {
 
     public ContactDaoImpl(){
         students = new HashMap<>();
-        Contact tom = new Contact(0, "Tom");
+        Contact tom = new Contact(1, "Tom");
         students.put(tom.getId(), tom);
-        Contact dick = new Contact(1, "Dick");
+        Contact dick = new Contact(2, "Dick");
         students.put(dick.getId(), dick);
-        Contact harry = new Contact(2, "Harry");
+        Contact harry = new Contact(3, "Harry");
         students.put(harry.getId(), harry);
     }
 

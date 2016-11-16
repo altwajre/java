@@ -11,6 +11,7 @@
 
 Settings | Editor | General | Postfix Completion - `cmd + ,` and search `Postfix Completion`
 
+```
 assert - assert expr
 cast - ((SomeType)expr)
 field -  myField = expr
@@ -32,6 +33,7 @@ sout - System.out.println(expr)
 synchronized - synchronized(expr)
 try - try { expr } catch (Exception e)
 var - T name = expr
+```
 
 ## Search Everywhere
 

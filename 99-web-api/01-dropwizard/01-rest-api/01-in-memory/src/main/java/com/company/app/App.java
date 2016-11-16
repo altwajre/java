@@ -3,7 +3,7 @@ package com.company.app;
 import com.company.app.dao.ContactDao;
 import com.company.app.dao.ContactDaoImpl;
 import com.company.app.model.Contact;
-import com.company.app.resource.ContactsResource;
+import com.company.app.resource.ContactResource;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Environment;
@@ -23,7 +23,7 @@ public class App extends Application<Configuration> {
     @Override
     public void run(Configuration configuration, Environment e) throws Exception {
         // Add the resource to the environment
-        e.jersey().register(new ContactsResource());
+        e.jersey().register(new ContactResource());
 
     }
 

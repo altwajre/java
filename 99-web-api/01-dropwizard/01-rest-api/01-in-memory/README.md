@@ -20,7 +20,7 @@ Launch App with Program args: server
 
 **GET**
 
-> `$ curl http://localhost:8080/contacts/1`
+> `$ curl http://localhost:8080/contacts/2`
 
 ```
 {"id":1,"name":"Dick"}
@@ -28,11 +28,11 @@ Launch App with Program args: server
 
 **POST**
 
-> `$ curl -X POST -H "Content-Type: application/json" -d '{"id": 3, "name": "Will"}' "http://localhost:8080/contacts"`
+> `$ curl -X POST -H "Content-Type: application/json" -d '{"id": 4, "name": "Will"}' "http://localhost:8080/contacts"`
 
 **PUT**
 
-> `curl -X PUT -H "Content-Type: application/json" -d '{"id": 0, "name": "Will"}' "http://localhost:8080/contacts/0"`
+> `curl -X PUT -H "Content-Type: application/json" -d '{"id": 1, "name": "Will"}' "http://localhost:8080/contacts/1"`
 
 ```
 {"id":0,"name":"Will"}
@@ -40,4 +40,4 @@ Launch App with Program args: server
 
 **DELETE**
 
-> `curl -X DELETE "http://localhost:8080/contacts/3"`
+> `curl -X DELETE "http://localhost:8080/contacts/4"`

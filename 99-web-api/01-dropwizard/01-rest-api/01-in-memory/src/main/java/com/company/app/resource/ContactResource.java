@@ -19,10 +19,10 @@ import java.util.List;
 
 @Path("/contacts")
 @Produces(MediaType.APPLICATION_JSON)
-public class ContactsResource {
+public class ContactResource {
     private final ContactDao contactDao;
 
-    public ContactsResource(){
+    public ContactResource(){
         contactDao = new ContactDaoImpl();
     }
 
