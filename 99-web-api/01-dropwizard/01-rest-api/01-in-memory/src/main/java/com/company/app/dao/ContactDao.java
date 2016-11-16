@@ -1,6 +1,6 @@
 package com.company.app.dao;
 
-import com.company.app.models.Contact;
+import com.company.app.model.Contact;
 
 import java.util.List;
 

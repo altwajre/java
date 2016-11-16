@@ -2,8 +2,8 @@ package com.company.app;
 
 import com.company.app.dao.ContactDao;
 import com.company.app.dao.ContactDaoImpl;
-import com.company.app.models.Contact;
-import com.company.app.resources.ContactsResource;
+import com.company.app.model.Contact;
+import com.company.app.resource.ContactsResource;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Environment;
@@ -17,7 +17,7 @@ public class App extends Application<Configuration> {
 
     public static void main(String... args) throws Exception {
 //        contactDaoImplTest();
-        new App().run(args);
+        new App().run("server");
     }
 
     @Override

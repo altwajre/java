@@ -1,8 +1,8 @@
-package com.company.app.resources;
+package com.company.app.resource;
 
 import com.company.app.dao.ContactDao;
 import com.company.app.dao.ContactDaoImpl;
-import com.company.app.models.Contact;
+import com.company.app.model.Contact;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
