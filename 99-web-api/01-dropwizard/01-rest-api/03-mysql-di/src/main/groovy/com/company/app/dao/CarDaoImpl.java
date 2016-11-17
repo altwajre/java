@@ -1,7 +1,7 @@
 package com.company.app.dao;
 
 import com.company.app.DataSourceConfig;
-import com.company.app.models.Car;
+import com.company.app.model.Car;
 import com.mysql.jdbc.Statement;
 
 import java.sql.Connection;

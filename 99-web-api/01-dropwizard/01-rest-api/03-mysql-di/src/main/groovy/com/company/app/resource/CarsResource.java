@@ -1,9 +1,10 @@
-package com.company.app.resources;
+package com.company.app.resource;
 
 import com.company.app.DataSourceConfig;
 import com.company.app.dao.CarDao;
 import com.company.app.dao.CarDaoImpl;
-import com.company.app.models.Car;
+import com.company.app.model.Car;
+import com.company.app.repository.CarRepository;
 import com.google.inject.Inject;
 
 import javax.ws.rs.DELETE;
@@ -23,23 +24,33 @@ import java.util.List;
 @Produces(MediaType.APPLICATION_JSON)
 public class CarsResource {
     private final CarDao carDao;
+    private final CarRepository carRepository;
 
     @Inject
     public CarsResource(DataSourceConfig config){
         this.carDao = new CarDaoImpl(config);
+        this.carRepository = new CarRepository(config);
     }
 
     @GET
     public Response getCars(){
-        List<Car> cars = carDao.getCars();
+//        List<Car> cars = carDao.getCars();
+        List<Car> cars = carRepository.getCars("BMW");
         return Response.ok(cars).build();
     }
 
     @GET
     @Path("/{id}")
-    public Response getCar(@PathParam("id") int id){
+    public Response getCarById(@PathParam("id") int id){
         Car car = carDao.getCar(id);
         return Response.ok(car).build();
+    }
+
+    @GET
+    @Path("/make/{make}")
+    public Response getCarByMake(@PathParam("make") String make){
+        List<Car> cars = carRepository.getCars(make);
+        return Response.ok(cars).build();
     }
 
     @POST

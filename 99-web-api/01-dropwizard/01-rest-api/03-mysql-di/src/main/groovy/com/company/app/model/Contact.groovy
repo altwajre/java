@@ -1,4 +1,4 @@
-package com.company.app.models
+package com.company.app.model
 
 class Contact {
     Contact(){

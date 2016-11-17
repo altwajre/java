@@ -53,17 +53,22 @@ ContactDaoImpl.java
 
 ## Run the App
 
-### Intellij
+### Server
 
-#### Server
+#### Intellij
 
-Launch App with Program args: server
+> Launch App with Program args: server config.dev.yml
 
-#### Client - cURL
+#### Command line
 
-##### Contact
+> `$ gradle clean run -PappArgs="['server','config.dev.yml']"`
+
+### Client - cURL
+
+#### Contact
 
 **GET All**
+
 > `$ curl http://localhost:8080/contacts`
 
 ```
@@ -94,9 +99,12 @@ Launch App with Program args: server
 
 > `curl -X DELETE "http://localhost:8080/contacts/4"`
 
-##### Car
+#### Car
+
+##### Dao
 
 **GET All**
+
 > `$ curl http://localhost:8080/cars`
 
 ```
@@ -126,3 +134,80 @@ Launch App with Program args: server
 **DELETE**
 
 > `curl -X DELETE "http://localhost:8080/cars/4"`
+
+## Stored Procedure
+
+### SQL
+
+```
+DROP PROCEDURE IF EXISTS get_car_by_make;
+
+DELIMITER //
+CREATE PROCEDURE get_car_by_make(IN make VARCHAR(40))
+BEGIN
+  SELECT * FROM webapi.car WHERE car.make = make;
+END //
+DELIMITER ;
+
+CALL get_car_by_make('bmw');
+```
+
+### Code
+
+**Repository**
+
+```
+public class CarRepository {
+    DataSourceConfig config;
+
+    public CarRepository(DataSourceConfig config){
+        this.config = config;
+    }
+
+    public List<Car> getCars(String make) {
+        List<Car> cars = new ArrayList<>();
+        try (Connection conn = DataSource.createConnection(this.config);
+             CallableStatement callableStatement = conn.prepareCall("call get_car_by_make(?)")
+        ) {
+            callableStatement.setString(1, make);
+            callableStatement.executeQuery();
+
+            try(ResultSet resultSet = callableStatement.getResultSet()) {
+                if (resultSet.next()) {
+                    int id = resultSet.getInt(1);
+                    String _make = resultSet.getString(2);
+                    Car car = new Car();
+                    car.setId(id);
+                    car.setMake(_make);
+                    cars.add(car);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cars;
+    }
+
+}
+```
+
+**Dropwizard resource**
+
+```
+public class CarsResource {
+...
+    @GET
+    @Path("/make/{make}")
+    public Response getCarByMake(@PathParam("make") String make){
+        List<Car> cars = carRepository.getCars(make);
+        return Response.ok(cars).build();
+    }
+...
+}
+```
+
+### Client
+
+> `$ curl http://localhost:8080/cars/make/bmw`

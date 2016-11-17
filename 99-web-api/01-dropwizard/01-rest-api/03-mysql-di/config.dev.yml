@@ -2,4 +2,4 @@ dataSourceConfig:
   driverClass: com.mysql.jdbc.Driver
   user: webapiuser
   password: webapipassword
-  url: jdbc:mysql://localhost/webapi
+  url: jdbc:mysql://localhost/webapi?noAccessToProcedureBodies=true

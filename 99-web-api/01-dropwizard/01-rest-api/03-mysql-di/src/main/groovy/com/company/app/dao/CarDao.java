@@ -1,6 +1,6 @@
 package com.company.app.dao;
 
-import com.company.app.models.Car;
+import com.company.app.model.Car;
 
 import java.util.List;
 

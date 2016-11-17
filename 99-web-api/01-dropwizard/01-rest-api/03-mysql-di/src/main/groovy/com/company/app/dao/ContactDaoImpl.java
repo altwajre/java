@@ -1,7 +1,7 @@
 package com.company.app.dao;
 
 import com.company.app.DataSourceConfig;
-import com.company.app.models.Contact;
+import com.company.app.model.Contact;
 import com.mysql.jdbc.Statement;
 
 import java.sql.Connection;
