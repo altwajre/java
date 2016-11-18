@@ -22,20 +22,19 @@ import java.util.List;
 
 @Path("/cars")
 @Produces(MediaType.APPLICATION_JSON)
-public class CarsResource {
+public class CarResource {
     private final CarDao carDao;
     private final CarRepository carRepository;
 
     @Inject
-    public CarsResource(DataSourceConfig config){
+    public CarResource(DataSourceConfig config){
         this.carDao = new CarDaoImpl(config);
         this.carRepository = new CarRepository(config);
     }
 
     @GET
     public Response getCars(){
-//        List<Car> cars = carDao.getCars();
-        List<Car> cars = carRepository.getCars("BMW");
+        List<Car> cars = carDao.getCars();
         return Response.ok(cars).build();
     }
 

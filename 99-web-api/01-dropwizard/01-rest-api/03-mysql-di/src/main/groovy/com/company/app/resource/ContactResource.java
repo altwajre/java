@@ -21,11 +21,11 @@ import java.util.List;
 
 @Path("/contacts")
 @Produces(MediaType.APPLICATION_JSON)
-public class ContactsResource {
+public class ContactResource {
     private final ContactDao contactDao;
 
     @Inject
-    public ContactsResource(DataSourceConfig config){
+    public ContactResource(DataSourceConfig config){
         this.contactDao = new ContactDaoImpl(config);
     }
 
