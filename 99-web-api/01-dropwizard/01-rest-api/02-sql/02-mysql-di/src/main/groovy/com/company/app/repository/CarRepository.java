@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// Repository for stored procedure data access
 public class CarRepository {
     DataSourceConfig config;
 
