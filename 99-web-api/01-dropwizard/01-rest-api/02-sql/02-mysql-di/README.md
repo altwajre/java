@@ -49,7 +49,7 @@ public class EcommModule extends AbstractModule {
 
 ## SQL Code
 
-ContactDaoImpl.java
+webapi.sql
 
 ## Run the App
 
