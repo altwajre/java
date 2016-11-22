@@ -6,4 +6,6 @@ https://www.safaribooksonline.com/library/view/cassandra-the-definitive/97814919
 
 https://github.com/jeffreyscarpenter/cassandra-guide
 
+**clients**
+
 https://github.com/jeffreyscarpenter/cassandra-guide/tree/master/cassandra-tdg/src/com/cassandraguide/clients
