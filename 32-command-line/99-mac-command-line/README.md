@@ -7,4 +7,3 @@ http://ss64.com/osx/  - mac command line
 ## Common
 
 > `$ find . -name 'README.md'`
-
