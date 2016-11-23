@@ -11,6 +11,7 @@ import com.datastax.driver.core.querybuilder.Select;
 
 import static com.datastax.driver.core.querybuilder.QueryBuilder.eq;
 
+// It is for cases where there is variation in the query structure (such as optional parameters)
 public class App {
 
     public static void main(String... args){
