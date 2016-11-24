@@ -8,7 +8,7 @@ import com.datastax.driver.core.SimpleStatement;
 
 // SimpleStatement is designed for creating ad-hoc queries
 public class App {
-    public static void main(String... args){
+    public static void main(String... args) {
 
         Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1")
                 //.withCredentials("jeff", "i6XJsj!k#9")
@@ -18,11 +18,11 @@ public class App {
         Session session = cluster.connect("hotel");
 
         // create a Hotel ID
-        String id = "AZ123";
+        String hotelId = "AZ123";
 
         // create parameterized INSERT statement
         SimpleStatement hotelInsert = new SimpleStatement("INSERT INTO hotels (id, name, phone) VALUES (?, ?, ?)",
-                id, "Super Hotel at WestWorld", "1-888-999-9999");
+                hotelId, "Super Hotel at WestWorld", "1-888-999-9999");
 
         ResultSet hotelInsertResult = session.execute(hotelInsert);
 
@@ -33,7 +33,7 @@ public class App {
         System.out.println(hotelInsertResult.getExecutionInfo().getIncomingPayload());
 
 
-        SimpleStatement  hotelSelect = new SimpleStatement("SELECT * FROM hotels WHERE id=?", id);
+        SimpleStatement hotelSelect = new SimpleStatement("SELECT * FROM hotels WHERE id=?", hotelId);
         hotelSelect.enableTracing();
 
         ResultSet hotelSelectResult = session.execute(hotelSelect);
@@ -47,7 +47,7 @@ public class App {
         System.out.println(hotelSelectResult.getExecutionInfo().getQueryTrace());
 
         System.out.println("# Print hotels");
-        for(Row row : hotelSelectResult){
+        for (Row row : hotelSelectResult) {
             System.out.format("hotel_id: %s, name: %s, phone: %s\n",
                     row.getString("id"), row.getString("name"), row.getString("phone"));
         }

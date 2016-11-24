@@ -8,6 +8,9 @@ import com.datastax.driver.core.SimpleStatement;
 import com.datastax.driver.core.querybuilder.Batch;
 import com.datastax.driver.core.querybuilder.Insert;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
+import com.datastax.driver.core.querybuilder.Select;
+
+import static com.datastax.driver.core.querybuilder.QueryBuilder.eq;
 
 // QueryBuilder.batch() is another way for batch statement
 public class App {
@@ -50,20 +53,22 @@ public class App {
         System.out.println(hotelInsertResult.getExecutionInfo());
         System.out.println(hotelInsertResult.getExecutionInfo().getIncomingPayload());
 
+        Select.Where hotelSelectBuilt = QueryBuilder.select()
+                .all()
+                .from("hotels")
+                .where(eq("id", hotelId));
 
-        SimpleStatement hotelSelect = new SimpleStatement("SELECT * FROM hotels WHERE id=?", hotelId);
-        hotelSelect.enableTracing();
-
-        ResultSet hotelSelectResult = session.execute(hotelSelect);
+        ResultSet hotelSelectResult = session.execute(hotelSelectBuilt);
 
         System.out.println("# Print hotels");
-        for (Row row : hotelSelectResult) {
-            System.out.format("hotel_id: %s, name: %s, phone: %s\n",
-                    row.getString("id"), row.getString("name"), row.getString("phone"));
-        }
+        hotelSelectResult.forEach(r -> System.out.format("hotel_id: %s, name: %s, phone: %s\n",
+                r.getString("id"), r.getString("name"), r.getString("phone")));
 
-        SimpleStatement hotelsByPoiSelect = new SimpleStatement("SELECT * FROM hotels_by_poi");
-        ResultSet hotelsByPoiResult = session.execute(hotelsByPoiSelect);
+        Select hotelsByPoiSelectBuilt = QueryBuilder.select()
+                .all()
+                .from("hotels_by_poi");
+
+        ResultSet hotelsByPoiResult = session.execute(hotelsByPoiSelectBuilt);
 
         System.out.println("# Print hotels by poi");
         hotelsByPoiResult.forEach(r -> System.out.format("poi_name: %s, hotel_id: %s, name: %s, phone: %s\n",
