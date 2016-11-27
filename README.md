@@ -56,7 +56,7 @@ install Intellij Community Edition
 
 > https://www.jetbrains.com/idea/
 
-setup SDK
+setup SDK - Java Home
 
 > path is `/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home`
 
