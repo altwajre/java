@@ -9,3 +9,11 @@ Username: osboxes
 Password: osboxes.org
 Root Account Password: osboxes.org
 ```
+
+*root user*
+
+```
+$ su -
+Password: 
+[root@osboxes ~]# 
+```
