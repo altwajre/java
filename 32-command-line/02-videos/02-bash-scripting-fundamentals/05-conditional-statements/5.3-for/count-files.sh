@@ -2,14 +2,6 @@
 
 # script that counts files in a directory
 
-#$ bash count-files.sh
-#which directory do you want to count?
-#. <- count current directory
-
-#$ bash count-files.sh
-#which directory do you want to count?
-#/etc
-
 echo which directory do you want to count?
 read DIR
 cd $DIR
@@ -20,3 +12,11 @@ do
   COUNTER=$((COUNTER+1))
   echo I have counted $COUNTER files in this diretory
 done
+
+#$ bash count-files.sh
+#which directory do you want to count?
+#. <- count current directory
+
+#$ bash count-files.sh
+#which directory do you want to count?
+#/etc
