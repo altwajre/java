@@ -14,4 +14,5 @@ Primary TEST-COMMAND expression examples
 | [ -d FILE ]   | True if FILE exists and is a directory.     |
 | [ -f FILE ]   | True if FILE exists and is a regular file.  |
 | [ -h FILE ]   | True if FILE exists and is a symbolic link. |	
+| [ -n STRING ] | True if the length of "STRING" is non-zero. |
 | [ -z STRING ] | True of the length if "STRING" is zero.     |
