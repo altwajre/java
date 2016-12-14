@@ -1,6 +1,9 @@
-# installation sdkman
-http://sdkman.io/install.html
-
 # scala
-http://brewformulas.org/Scala
+
+http://scala-lang.org/
+
 It is a functional programming
+
+## Installation
+
+> `$ brew install scala`
