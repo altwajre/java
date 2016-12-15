@@ -1,4 +1,4 @@
-println("Hello world!")
+println("Hello, world!")
 
 // $ scala IntroScript.scala
-// Hello world!
+// Hello, world!
