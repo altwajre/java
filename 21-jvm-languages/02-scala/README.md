@@ -8,7 +8,7 @@ It is a functional programming
 
 > `$ brew install scala`
 
-## Interactive shell
+## Interactive shell (REPL)
 
 ```
 $ scala
