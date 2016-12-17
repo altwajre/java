@@ -4,3 +4,9 @@
 - AnyVal is the parent of the primitive types
 - AnyRef is the same as java.lang.Object in Java
 - AnyRef is the parent of all classes written in Java and Scala
+
+```
+        - scala.Any -
+        |           |
+ scala.AnyVal    scala.AnyRef
+```
