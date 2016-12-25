@@ -1,4 +1,4 @@
-# SBT
+# SBT - Simple Build Tool
 
 ## Installation
 
