@@ -1,5 +1,7 @@
 # SBT - Simple Build Tool
 
+http://www.scala-sbt.org/1.0/docs/index.html
+
 ## Installation
 
 ```
