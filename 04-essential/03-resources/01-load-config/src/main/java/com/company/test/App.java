@@ -25,3 +25,9 @@ public class App
         System.out.println(config.getJSONObject("test-settings").get("url"));
     }
 }
+/*
+output:
+{"test-settings":{"url":"http://sitecoreadmin.int.dev-godaddy.com"}}
+{"url":"http://sitecoreadmin.int.dev-godaddy.com"}
+http://sitecoreadmin.int.dev-godaddy.com
+ */

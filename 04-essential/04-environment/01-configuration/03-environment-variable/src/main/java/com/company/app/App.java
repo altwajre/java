@@ -19,3 +19,8 @@ public class App
         System.out.println(System.getenv("TEST_ENV"));
     }
 }
+/*
+Output:
+...
+dev
+ */

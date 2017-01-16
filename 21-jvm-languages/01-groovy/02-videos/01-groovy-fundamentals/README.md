@@ -25,5 +25,3 @@ home directory
 
 interactive console
 `groovyConsole`
-
-
