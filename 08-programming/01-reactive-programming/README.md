@@ -20,3 +20,7 @@ Observable.create(pub -> {
     System.out.println(sub);
 });
 ```
+
+**Java 8 streams vs rxJava**
+
+http://stackoverflow.com/questions/30216979/difference-between-java-8-streams-and-rxjava-observables
