@@ -3,7 +3,7 @@ package com.company.app;
 import java.util.ArrayList;
 import java.util.List;
 
-abstract class Stock{ // abstract 'Subject' = 'Publisher'
+abstract class Stock{ // abstract 'Observable', 'Publisher', 'Producer', 'Subject'
     private String symbol;
     private double price;
     private List<IInvestor> investors = new ArrayList<>();
@@ -11,7 +11,7 @@ abstract class Stock{ // abstract 'Subject' = 'Publisher'
         this.symbol = symbol;
         this.price = price;
     }
-    public void attach(IInvestor investor) {investors.add(investor);}
+    public void attach(IInvestor investor) {investors.add(investor);} // 'Observable.subscribe(Subscriber)'
     public void detach(IInvestor investor) {investors.remove(investor);}
     private void notifyChange(){
         investors.forEach(i -> i.update(this));
@@ -29,15 +29,15 @@ abstract class Stock{ // abstract 'Subject' = 'Publisher'
         return symbol;
     }
 }
-class IBM extends Stock{ // concrete 'Subject' = 'Publisher'
+class IBM extends Stock{ // concrete 'Observable', 'Publisher', 'Producer', 'Subject'
     public IBM(String symbol, double price) {
         super(symbol, price);
     }
 }
-interface IInvestor{ // interface 'Observer' = 'Subscriber"
+interface IInvestor{ // interface 'Subscriber', 'Observer'
     void update(Stock stock);
 }
-class Investor implements IInvestor{ // concrete 'Observer' = 'Subscriber'
+class Investor implements IInvestor{ // concrete 'Subscriber', 'Observer'
     private String name;
     private Stock stock;
     public Investor(String name){this.name = name;}
