@@ -6,6 +6,7 @@ import rx.subscriptions.Subscriptions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,8 +14,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class App
-{
+public class App {
     public static <T> Subscription subscribePrint(Observable<T> observable,
                                                   String name) {
         return observable.subscribe(
@@ -31,7 +31,7 @@ public class App
                 }, () -> System.out.println(name + " ended!"));
     }
 
-    static Observable<Path> listFolder(Path dir, String glob){
+    static Observable<Path> listFolder(Path dir, String glob) {
         return Observable.create(subscriber -> {
             try {
                 DirectoryStream<Path> stream = Files.newDirectoryStream(dir, glob);
@@ -53,6 +53,12 @@ public class App
         return Observable.create(subscriber -> {
             try {
                 BufferedReader reader = Files.newBufferedReader(path);
+
+// Note the use of the Subscriber.add() operator to add a new Subscription instance to the subscriber,
+// created using the Subscriptions.create() operator. This method creates a Subscription instance using an action.
+// This action will be executed when the Subscription instance is unsubscribed,
+// which means when the Subscriber instance is unsubscribed in this case.
+// So this is similar to putting the closing of the stream in the final block.
                 subscriber.add(Subscriptions.create(() -> {
                     try {
                         reader.close();
@@ -60,30 +66,52 @@ public class App
                         e.printStackTrace();
                     }
                 }));
+
                 String line = null;
-                while((line = reader.readLine()) != null && !subscriber.isUnsubscribed()){
+                while ((line = reader.readLine()) != null && !subscriber.isUnsubscribed()) {
                     subscriber.onNext(line);
                 }
-                if(!subscriber.isUnsubscribed()){
+                if (!subscriber.isUnsubscribed()) {
                     subscriber.onCompleted();
                 }
             } catch (IOException e) {
-                if(!subscriber.isUnsubscribed()){
+                if (!subscriber.isUnsubscribed()) {
                     subscriber.onError(e);
                 }
             }
         });
     }
 
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
 
-//        test_func();
+        test_func();
 
-//        test_onnext_onerror_oncompleted();
+        test_onnext_onerror_oncompleted();
 
         test_func1_func2();
 
+        test_flatmapIterable();
+
     }
+
+    private static void test_flatmapIterable() {
+        Observable<? extends Serializable> flatMapIterable = Observable
+                .just(
+                        Arrays.asList(2, 4),
+                        Arrays.asList("two", "four")
+                )
+                .flatMapIterable(l -> l);
+
+        subscribePrint(flatMapIterable, "flatMapIterable");
+    }
+/*
+output:
+main|flatMapIterable : 2
+main|flatMapIterable : 4
+main|flatMapIterable : two
+main|flatMapIterable : four
+flatMapIterable ended!
+ */
 
     private static void test_func1_func2() {
         System.out.println("#test_func1_func2");

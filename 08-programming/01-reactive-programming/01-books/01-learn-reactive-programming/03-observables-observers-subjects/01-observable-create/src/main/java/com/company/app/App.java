@@ -2,6 +2,7 @@ package com.company.app;
 
 import rx.Observable;
 import rx.Subscription;
+import rx.subscriptions.Subscriptions;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -32,21 +33,21 @@ public class App
     public static void main( String[] args )
     {
 
-        test_observable_from();
-
-        test_observable_just();
-
-        test_observable_interval();
-
-        test_observable_timer();
-
-        test_observable_error();
-
-        test_observable_empty();
-
-        test_observable_never();
-
-        test_observable_range();
+//        test_observable_from();
+//
+//        test_observable_just();
+//
+//        test_observable_interval();
+//
+//        test_observable_timer();
+//
+//        test_observable_error();
+//
+//        test_observable_empty();
+//
+//        test_observable_never();
+//
+//        test_observable_range();
 
         test_observable_create();
 
@@ -59,10 +60,25 @@ public class App
 
         Observable<Object> pub = Observable.create(subscriber -> {
             try {
-                list.forEach(s -> subscriber.onNext(s));
-                subscriber.onCompleted();
+// Note the use of the Subscriber.add() operator to add a new Subscription instance to the subscriber,
+// created using the Subscriptions.create() operator. This method creates a Subscription instance using an action.
+// This action will be executed when the Subscription instance is unsubscribed,
+// which means when the Subscriber instance is unsubscribed in this case.
+// So this is similar to putting the closing of the stream in the final block.
+                subscriber.add(Subscriptions.create(() -> System.out.println("*Cleanup")));
+
+                list.forEach(s -> {
+                    if(!subscriber.isUnsubscribed()){
+                        subscriber.onNext(s);
+                    }
+                });
+                if(!subscriber.isUnsubscribed()){
+                    subscriber.onCompleted();
+                }
             } catch (Exception e) {
-                subscriber.onError(e);
+                if(!subscriber.isUnsubscribed()){
+                    subscriber.onError(e);
+                }
             }
         });
 
@@ -79,8 +95,9 @@ output:
 Tom
 Dick
 Harry
+*Cleanup
 *Subscriber_2
-Tom, Dick, Harry,
+Tom, Dick, Harry, *Cleanup
  */
 
     private static void test_observable_range() {
@@ -89,7 +106,7 @@ Tom, Dick, Harry,
         final String name = "Range Observable";
 
         Observable
-                .range(1, 3)
+                .range(2, 3)
                 .subscribe(
                         (v) -> System.out.println(name + " : " + v),
                         (e) -> {
@@ -108,9 +125,9 @@ Tom, Dick, Harry,
 /*
 output:
 #test_observable_range
-Range Observable : 1
 Range Observable : 2
 Range Observable : 3
+Range Observable : 4
 Range Observable ended!
  */
 
