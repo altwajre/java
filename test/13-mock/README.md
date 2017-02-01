@@ -1,2 +1,0 @@
-## Mockito
-http://mockito.org/
