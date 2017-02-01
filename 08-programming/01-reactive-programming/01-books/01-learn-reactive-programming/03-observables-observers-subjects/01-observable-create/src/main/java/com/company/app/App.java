@@ -28,31 +28,6 @@ class User{
 
 public class App
 {
-    static <T> Subscription subscribePrint(Observable<T> observable, String name){
-        return observable.subscribe(
-                (v) -> System.out.println(name + " : " + v),
-                (e) -> {
-                    System.err.println("Error from " + name + ":");
-                    System.err.println(e.getMessage());
-                },
-                () -> System.out.println(name + " ended!")
-        );
-    }
-
-    static <T> Observable<T> fromIterable(final Iterable<T> iterable){
-        return Observable.create(sub -> {
-           try{
-               Iterator<T> iterator = iterable.iterator();
-               while(iterator.hasNext()) {
-                   sub.onNext(iterator.next());
-               }
-               sub.onCompleted();
-           }
-           catch (Exception e){
-               sub.onError(e);
-           }
-        });
-    }
 
     public static void main( String[] args )
     {
@@ -81,7 +56,16 @@ public class App
         System.out.println("#test_observable_create");
 
         List<String> list = Arrays.asList("Tom", "Dick", "Harry");
-        Observable<String> pub = fromIterable(list);
+
+        Observable<Object> pub = Observable.create(subscriber -> {
+            try {
+                list.forEach(s -> subscriber.onNext(s));
+                subscriber.onCompleted();
+            } catch (Exception e) {
+                subscriber.onError(e);
+            }
+        });
+
         System.out.println("*Subscriber_1");
         pub.subscribe(System.out::println);
 

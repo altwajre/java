@@ -48,6 +48,7 @@ public class App
             }
         });
     }
+
     static Observable<String> from(final Path path) {
         return Observable.create(subscriber -> {
             try {
@@ -73,18 +74,71 @@ public class App
             }
         });
     }
+
     public static void main( String[] args ) {
+
+//        test_func();
+
+//        test_onnext_onerror_oncompleted();
+
+        test_func1_func2();
+
+    }
+
+    private static void test_func1_func2() {
+        System.out.println("#test_func1_func2");
+        Observable<Integer> flatMapped = Observable
+                .just(5, 432)
+                .flatMap(
+                        v -> Observable.range(v, 2),
+                        (x, y) -> x + y // x=v, y=Observable.range(v, 2)
+                );
+        subscribePrint(flatMapped, "flatMap");
+    }
+/*
+output:
+#test_func1_func2
+main|flatMap : 10
+main|flatMap : 11
+main|flatMap : 864
+main|flatMap : 865
+flatMap ended!
+ */
+
+    private static void test_onnext_onerror_oncompleted() {
+        System.out.println("#test_onnext_onerror_oncompleted");
+        Observable<Integer> flatMapped = Observable
+                .just(-1, 0, 1)
+                .map(v -> 2 / v)
+                .flatMap(
+                        v -> Observable.just(v),
+                        e -> Observable.just(0),
+                        () -> Observable.just(42)
+                );
+
+        subscribePrint(flatMapped, "flatMap");
+    }
+/*
+output:
+#test_onnext_onerror_oncompleted
+main|flatMap : -2
+main|flatMap : 0
+flatMap ended!
+ */
+
+    private static void test_func() {
+        System.out.println("#test_func");
         Observable<String> filesObservable = listFolder(Paths.get("src", "main", "resources"), "{foo.txt,lorem.txt}")
                 .flatMap(path -> from(path));
 
         subscribePrint(filesObservable, "FS");
-
     }
-}
 /*
 output:
+#test_func
 main|FS : foo_1
 main|FS : foo_2
 main|FS : lorem_1
 main|FS : lorem_2
  */
+}
