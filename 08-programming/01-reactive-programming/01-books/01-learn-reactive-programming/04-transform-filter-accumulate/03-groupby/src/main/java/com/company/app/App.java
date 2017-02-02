@@ -22,7 +22,7 @@ public class App
 
     public static void main( String[] args )
     {
-//        test_group_keyselector();
+        test_group_keyselector();
 
         test_group_keyselector_elementselector();
     }
