@@ -33,21 +33,21 @@ public class App
     public static void main( String[] args )
     {
 
-//        test_observable_from();
-//
-//        test_observable_just();
-//
-//        test_observable_interval();
-//
-//        test_observable_timer();
-//
-//        test_observable_error();
-//
-//        test_observable_empty();
-//
-//        test_observable_never();
-//
-//        test_observable_range();
+        test_observable_from();
+
+        test_observable_just();
+
+        test_observable_interval();
+
+        test_observable_timer();
+
+        test_observable_error();
+
+        test_observable_empty();
+
+        test_observable_never();
+
+        test_observable_range();
 
         test_observable_create();
 

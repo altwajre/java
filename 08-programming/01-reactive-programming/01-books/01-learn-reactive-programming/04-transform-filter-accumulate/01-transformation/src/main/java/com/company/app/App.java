@@ -26,7 +26,6 @@ public class App
                 () -> System.out.println(name + " ended!"));
     }
 
-
     public static void main( String[] args )
     {
         Observable<String> mapped = Observable
