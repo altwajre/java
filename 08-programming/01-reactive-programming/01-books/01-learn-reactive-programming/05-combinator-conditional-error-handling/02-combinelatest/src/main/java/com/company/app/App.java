@@ -29,13 +29,13 @@ public class App
                         (value, i) -> value
                 );
 
-        Observable<String> combined = Observable
+        Observable<String> combineLatest = Observable
                 .combineLatest(
                         greetings, names, punctuation,
                         (greeting, name, puntuation) -> greeting + " " + name + puntuation
                 );
 
-        combined.subscribe(
+        combineLatest.subscribe(
                 v -> System.out.println(v),
                 e -> System.err.println(e),
                 () -> System.out.println("Completed!")

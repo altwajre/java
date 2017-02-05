@@ -9,7 +9,7 @@ public class App
     public static void main( String[] args )
     {
         Observable<String> greetings = Observable
-                .just("Hello", "Hi", "Howdy", "Yo")
+                .just("Hello", "Hi")
                 .zipWith(
                         Observable.interval(100L, TimeUnit.MILLISECONDS),
                         (value, i) -> value
@@ -29,10 +29,18 @@ public class App
                         (value, i) -> value
                 );
 
-        Observable<String> merge = Observable
-                .merge(greetings, names, punctuation);
+        test_concat(greetings, names, punctuation);
 
-        merge.subscribe(
+        test_startwith(greetings, names, punctuation);
+    }
+
+    private static void test_startwith(Observable<String> greetings, Observable<String> names, Observable<String> punctuation) {
+        System.out.println("#test_startwith");
+        Observable<String> observable = punctuation
+                .startWith(names)
+                .startWith(greetings);
+
+        observable.subscribe(
                 v -> System.out.println(v),
                 e -> System.err.println(e),
                 () -> System.out.println("Completed!")
@@ -44,17 +52,46 @@ public class App
             e.printStackTrace();
         }
     }
-}
 /*
 output:
+#test_startwith
 Hello
-.
-Tom
 Hi
-?
+Tom
 Dick
-Howdy
+.
+?
 !
-Yo
 Completed!
  */
+
+    private static void test_concat(Observable<String> greetings, Observable<String> names, Observable<String> punctuation) {
+        System.out.println("#test_concat");
+        Observable<String> concat = Observable
+                .concat(greetings, names, punctuation);
+
+        concat.subscribe(
+                v -> System.out.println(v),
+                e -> System.err.println(e),
+                () -> System.out.println("Completed!")
+        );
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+/*
+output:
+#test_concat
+Hello
+Hi
+Tom
+Dick
+.
+?
+!
+Completed!
+ */
+}
