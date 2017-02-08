@@ -10,7 +10,6 @@ public class App
 
     public static void main( String[] args )
     {
-
         // Note: rx request() takes some time to end the program which is ok.
         Observable<String> observable = Rx.newClient(RxObservableInvoker.class)
                 .target("http://localhost:8080/contacts")
