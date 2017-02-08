@@ -1,5 +1,6 @@
 package com.company.app;
 
+import java.util.HashSet;
 import java.util.Hashtable;
 
 /*
@@ -27,19 +28,34 @@ public class App
     /*
     the solution takes O(N) space, and O(N) time, where N is the number of elements.
      */
-    static void deleteDups(Node head){
+    static void deleteDupsByHashtable(Node current){
         System.out.println("#deleteDups");
         Hashtable hashtable = new Hashtable();
         Node previous = null;
-        while(head != null){
-            if(hashtable.containsKey(head.Data)){
-                previous.Next = head.Next;
+        while(current != null){
+            if(hashtable.containsKey(current.Data)){
+                previous.Next = current.Next;
             }
             else{
-                hashtable.put(head.Data, true);
-                previous = head;
+                hashtable.put(current.Data, true);
+                previous = current;
             }
-            head = head.Next;
+            current = current.Next;
+        }
+    }
+
+    static void deleteDups(Node head){
+        HashSet<Integer> set = new HashSet<Integer>();
+
+        Node current = head;
+        set.add(current.Data);
+
+        while(current.Next != null){
+            if(set.add(current.Next.Data)){ // able to add
+                current = current.Next;
+            }else{// fail to add
+                current.Next = current.Next.Next;
+            }
         }
     }
 
@@ -82,7 +98,7 @@ public class App
     }
     static Node createlinkedList() {
         System.out.println("#createlinkedList");
-        int[] numbers = {7, 2, 3, 3, 4, 5, 5};
+        int[] numbers = {7, 2, 3, 2, 3, 4, 5, 5};
         Node head = new Node();
         Node current = head;
         for(int i = 0; i < numbers.length; i++){
