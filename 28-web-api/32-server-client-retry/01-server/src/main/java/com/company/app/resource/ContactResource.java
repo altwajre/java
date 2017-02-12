@@ -14,17 +14,19 @@ import java.util.List;
 @Path("/contacts")
 @Produces(MediaType.APPLICATION_JSON)
 public class ContactResource {
-    static int count = 0;
+    static int getCount = 0;
+    static int postCount = 0;
+    static int putCount = 0;
+    static int delCount = 0;
     private final ContactDao contactDao;
 
-    public ContactResource(){
+    public ContactResource() {
         contactDao = new ContactDaoImpl();
     }
 
     @GET
-    public Response getContacts(){
-
-        if(count++ < 5){
+    public Response getContacts() {
+        if (getCount++ < 5) {
             return Response
                     .status(Response.Status.BAD_REQUEST)
                     .build();
@@ -36,30 +38,48 @@ public class ContactResource {
 
     @GET
     @Path("/{id}")
-    public Response getContact(@PathParam("id") int id){
+    public Response getContact(@PathParam("id") int id) {
         Contact contact = contactDao.getContact(id);
         return Response.ok(contact).build();
     }
 
     @POST
     public Response createContact(Contact contact) throws URISyntaxException {
+        if (postCount++ < 5) {
+            return Response
+                    .status(Response.Status.BAD_REQUEST)
+                    .build();
+        }
+
         int newContactId = contactDao.createContact(contact);
-        return Response.created(new URI(String.valueOf(newContactId))).build();
+        return Response.created(new URI("contacts/" + String.valueOf(newContactId))).build();
     }
 
     @PUT
     @Path("/{id}")
-    public Response updateContact(@PathParam("id") int id, Contact contact){
+    public Response updateContact(@PathParam("id") int id, Contact contact) {
+        if (putCount++ < 5) {
+            return Response
+                    .status(Response.Status.BAD_REQUEST)
+                    .build();
+        }
+
         contactDao.updateContact(contact);
         return Response.ok(contact).build();
     }
 
     @DELETE
     @Path("/{id}")
-    public Response deleteContact(@PathParam("id") int id){
+    public Response deleteContact(@PathParam("id") int id) {
+        if (delCount++ < 5) {
+            return Response
+                    .status(Response.Status.BAD_REQUEST)
+                    .build();
+        }
+
         Contact toDeletedContact = contactDao.getContact(id);
         contactDao.deleteContact(toDeletedContact);
-        return Response.ok(toDeletedContact).build();
+        return Response.noContent().build();
     }
 
 }

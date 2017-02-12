@@ -1,7 +1,7 @@
 package com.company.app;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONObject;
+import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +34,12 @@ public class App
 /*
 output:
 # Map Json
-{class={name=Math, students={123=Tom, 234=Jen}}}
+{class={name=Math, students={123=Tom, 234=Jen}}, items=[{item={name=item1}, id=111}, {item={name=item2}, id=222}]}
+## Cast json array to List
+[{item={name=item1}, id=111}, {item={name=item2}, id=222}]
+## Get first item of json array
+{item={name=item1}, id=111}
+111
 # JSONObject
-{"class":{"name":"Math","students":{"123":"Tom","234":"Jen"}}}
+{"class":{"name":"Math","students":{"123":"Tom","234":"Jen"}},"items":[{"item":{"name":"item1"},"id":111},{"item":{"name":"item2"},"id":222}]}
  */

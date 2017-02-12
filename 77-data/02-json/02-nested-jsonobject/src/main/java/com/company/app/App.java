@@ -1,6 +1,7 @@
 package com.company.app;
 
-import org.json.JSONObject;
+
+import org.json.simple.JSONObject;
 
 public class App
 {
