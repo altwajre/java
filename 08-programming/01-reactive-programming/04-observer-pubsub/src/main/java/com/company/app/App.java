@@ -3,6 +3,7 @@ package com.company.app;
 import java.util.ArrayList;
 import java.util.List;
 
+// publisher/subscriber, producer/consumer
 abstract class Stock{ // abstract 'Observable', 'Publisher', 'Producer', 'Subject'
     private String symbol;
     private double price;
@@ -34,10 +35,10 @@ class IBM extends Stock{ // concrete 'Observable', 'Publisher', 'Producer', 'Sub
         super(symbol, price);
     }
 }
-interface IInvestor{ // interface 'Subscriber', 'Observer'
+interface IInvestor{ // interface 'Subscriber', 'Consumer', 'Observer'
     void update(Stock stock);
 }
-class Investor implements IInvestor{ // concrete 'Subscriber', 'Observer'
+class Investor implements IInvestor{ // concrete 'Subscriber', 'Consumer', 'Observer'
     private String name;
     private Stock stock;
     public Investor(String name){this.name = name;}

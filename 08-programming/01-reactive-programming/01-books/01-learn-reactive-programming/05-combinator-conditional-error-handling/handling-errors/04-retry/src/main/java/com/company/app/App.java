@@ -44,7 +44,7 @@ class ErrorEmitter implements Observable.OnSubscribe<Integer> {
 
 public class App {
     public static void main(String[] args) {
-        test_retry();
+//        test_retry();
 
         test_retrywhen();
 
@@ -54,7 +54,9 @@ public class App {
         System.out.println("#test_retrywhen");
 
         // For delayed retries, the retryWhen() operator capable of very complex retrying logic.
-        Observable<Integer> observable = Observable.create(new ErrorEmitter());
+        Observable<Integer> observable = Observable
+                .create(new ErrorEmitter());
+
         Observable<Integer> when = observable
                 .retryWhen(attempts -> {
                     System.out.println(attempts.getClass().getName());
@@ -116,9 +118,10 @@ Completed!
         System.out.println("#test_retry");
 // Because the initial value of the throwAnErrorCounter field is three, it will retry three times,
 // and when the counter becomes zero, the Observable instance will complete, OnCompleted notification.
-        Observable<Integer> observable = Observable.create(new ErrorEmitter());
-        Observable<Integer> retry = observable.retry();
-        retry.subscribe(
+        Observable<Integer> observable = Observable
+                .create(new ErrorEmitter())
+                .retry();
+        observable.subscribe(
                 v -> System.out.println(v),
                 e -> System.err.println(e),
                 () -> System.out.println("Completed!")
