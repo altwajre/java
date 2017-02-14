@@ -194,7 +194,8 @@ public class App {
         System.out.println("#retry_getAll_test");
         Observable<Response> observable = Observable
                 .create(new HttpGetRequest("http://localhost:8080/contacts", 200))
-                .retry(6); // since server fail 5 times, retry(3) will fail.
+                .retry(6)
+                .tryWhen(); // since server fail 5 times, retry(3) will fail.
 
         observable.subscribe(
                 v -> {
