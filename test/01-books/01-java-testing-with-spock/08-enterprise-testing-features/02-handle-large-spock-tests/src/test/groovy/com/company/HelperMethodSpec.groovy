@@ -24,6 +24,12 @@ class HelperMethodSpec extends Specification {
         then: "loan should not be approved"
         !loan.approved
 
+        when:
+        def x = true
+
+        then:
+        x
+
     }
 
     // 8.17 Using arguments that imply their importance in the test
