@@ -24,6 +24,7 @@ class HelperMethodSpec extends Specification {
         then: "loan should not be approved"
         !loan.approved
 
+        // when after then
         when:
         def x = true
 
