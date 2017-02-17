@@ -26,9 +26,14 @@ public class App
         System.out.println(item);
         System.out.println(item.get("id"));
 
+        System.out.println("# Map to JSONObject");
         JSONObject jsonObject = new JSONObject(mapJson);
-        System.out.println("# JSONObject");
         System.out.println(jsonObject.toString());
+
+        System.out.println("# JSONObject to Map");
+        Map map = jsonObject;
+        System.out.println(map);
+        System.out.println(map.get("class"));
     }
 }
 /*
@@ -40,6 +45,9 @@ output:
 ## Get first item of json array
 {item={name=item1}, id=111}
 111
-# JSONObject
+# Map to JSONObject
 {"class":{"name":"Math","students":{"123":"Tom","234":"Jen"}},"items":[{"item":{"name":"item1"},"id":111},{"item":{"name":"item2"},"id":222}]}
+# JSONObject to Map
+{"class":{"name":"Math","students":{"123":"Tom","234":"Jen"}},"items":[{"item":{"name":"item1"},"id":111},{"item":{"name":"item2"},"id":222}]}
+{name=Math, students={123=Tom, 234=Jen}}
  */
