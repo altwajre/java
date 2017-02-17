@@ -1,4 +1,4 @@
-package com.company
+package com.company.app
 
 // http://groovy-lang.org/design-patterns.html#_singleton_pattern
 class Singleton{
