@@ -2,6 +2,11 @@ package com.company.app;
 
 import java.util.function.Consumer;
 
+// https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html
+
+// Functional Interface: This is a functinoal interface and can therefore be used as the assignment target
+// for a lambda expression or method reference.
+
 class Callback {
     private Consumer<String> consumer = x -> {}; // x -> {} means do nothing
     Callback onConsumer(Consumer<String> consumer){

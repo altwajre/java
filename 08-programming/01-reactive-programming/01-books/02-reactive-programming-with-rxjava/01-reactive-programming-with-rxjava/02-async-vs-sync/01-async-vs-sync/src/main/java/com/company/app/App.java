@@ -31,19 +31,38 @@ public class App
 
     public static void main( String[] args )
     {
-        // In Memory Data
-//        sync_test();
+        // In Memory Data - book
+        sync_test();
 
+        // async - book
         async_test();
 
+        System.out.println("cache: " + cache);
+    }
+
+    private static Callback getDataAsync(int key) {
+        final Callback callback = new Callback();
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("*App.getDataAsync() simulates http request");
+            // Consumer.accept() invokes callback
+            String value = key + "_async";
+            callback.getOnResponse().accept(value);
+        }).start();
+        return callback;
     }
 
     private static void async_test() {
-        Integer key = 1;
+        System.out.println("#async_test");
+        Integer key = 2;
         Observable<Object> observable = Observable.create(s -> {
-            String name = getFromCache(key);
-            if(name != null){
-                s.onNext(name);
+            String value = getFromCache(key);
+            if(value != null){
+                s.onNext(value);
                 s.onCompleted();
             }
             else {
@@ -57,7 +76,7 @@ public class App
             }
         });
 
-        observable.subscribe(System.out::println);
+        observable.subscribe(v -> System.out.println("value=" + v));
 
         try {
             Thread.sleep(2000);
@@ -70,34 +89,30 @@ public class App
         cache.put(key, value);
     }
 
-    private static Callback getDataAsync(int key) {
-        final Callback callback = new Callback();
-        new Thread(() -> {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("*App.getDataAsync() invoke callback");
-            // Consumer.accept() invokes callback
-            callback.getOnResponse().accept(key + ":123");
-        }).start();
-        return callback;
-    }
-
     private static String getFromCache(int key) {
         return cache.get(key);
     }
 
     private static void sync_test() {
-        Integer key = 128;
-        cache.put(key, "Phil");
+        System.out.println("#sync_test");
+        Integer key = 1;
+        cache.put(key, key + "_sync");
 
         Observable<Object> observable = Observable.create(s -> {
             s.onNext(cache.get(key));
             s.onCompleted();
         });
 
-        observable.subscribe(System.out::println);
+        observable.subscribe(v -> System.out.println("value=" + v));
     }
 }
+/*
+output:
+#sync_test
+value=1_sync
+#async_test
+*Callback.onResponse() is invoked to hookup callback
+*App.getDataAsync() simulates http request
+value=2_async
+cache: {1=1_sync, 2=2_async}
+ */
