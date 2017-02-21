@@ -33,6 +33,7 @@ class SortedList extends ArrayList<Student>{
 class App {
     static void main(String... args){
         SortedList students = new SortedList()
+
         students.add(new Student("Tom", 18))
         students.add(new Student("Dick", 30))
         students.add(new Student("Harry", 10))
