@@ -1,5 +1,13 @@
 # Soap web service
 
+*Soap client*
+
+http://webservicestudio.codeplex.com/releases/view/13915
+
+http://webservicestudio.codeplex.com/SourceControl/latest
+
+*Example*
+
 https://www.youtube.com/watch?v=_B3rAz8Ge58
 
 ## Server
