@@ -6,6 +6,14 @@ class App {
 
         list_test()
 
+        set_test()
+
+    }
+
+    private static void set_test() {
+        print '#set_test'
+        def nums = [3, 1, 4, 1, 5, 2, 5] as Set
+        nums.each { println it }
     }
 
     private static void list_test() {
