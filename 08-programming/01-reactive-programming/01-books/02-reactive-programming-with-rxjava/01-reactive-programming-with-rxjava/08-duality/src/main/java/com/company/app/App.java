@@ -5,6 +5,7 @@ import rx.Observable;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+// Observable provides all the functionality of an Iterable of data: it is push instead of pull.
 public class App {
     public static void main(String[] args) {
         getDataFromLocalMemorySync_test();

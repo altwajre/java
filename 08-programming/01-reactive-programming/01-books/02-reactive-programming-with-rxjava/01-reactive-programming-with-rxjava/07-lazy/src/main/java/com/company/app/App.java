@@ -4,6 +4,11 @@ import rx.Observable;
 
 import java.util.function.Consumer;
 
+// Observable is lazy and will not start until subscribed to so all composition can be done before data starts flowing
+// Subscription, not construction starts work:
+//   Due to the laziness of an Observable, creating one does not actually cause any work to happen.
+// Observables can be reused:
+//   Because the Observable is lazy, it also means a particular instance can be invoked more than once.
 public class App
 {
     public static void main( String[] args )
