@@ -2,15 +2,17 @@ package com.company.app;
 
 import rx.Observable;
 
+// http://tomstechnicalblog.blogspot.com/2015/10/understanding-observables.html
 public class App
 {
     public static void main( String[] args )
     {
-        Observable<String> mover1 = Observable.create(s -> {
-            s.onNext("ITEM_1");
-            s.onNext("ITEM_2");
+        Observable<String> mover1 = Observable.<String>create(s -> {
+            String item = "ITEM";
+            s.onNext(item + "_1");
+            s.onNext(item + "_2");
             s.onCompleted();
-        });
+        }).retry();
 
         Observable<String> mover2 = mover1.map(item -> {
             System.out.println("put " + item + " in box");

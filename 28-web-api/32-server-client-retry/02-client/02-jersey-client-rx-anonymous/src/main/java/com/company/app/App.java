@@ -9,48 +9,6 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-abstract class HttpRequest implements Observable.OnSubscribe<Response> {
-    protected String url;
-    protected int expectedStatusCode;
-
-    public HttpRequest(String url, int expectedStatusCode) {
-        this.url = url;
-        this.expectedStatusCode = expectedStatusCode;
-    }
-
-    public void call(Subscriber<? super Response> subscriber) {
-
-        Response response = request();
-
-        if (response.getStatus() != expectedStatusCode) {
-            System.err.println(response.getStatus());
-            subscriber.onError(new RuntimeException());
-            return;
-        }
-
-        subscriber.onNext(response);
-        subscriber.onCompleted();
-
-    }
-
-    abstract protected Response request();
-}
-
-class HttpGetRequest extends HttpRequest {
-
-    public HttpGetRequest(String url, int expectedStatusCode) {
-        super(url, expectedStatusCode);
-    }
-
-    @Override
-    protected Response request() {
-        return ClientBuilder.newClient()
-                .target(url)
-                .request()
-                .get();
-    }
-}
-
 class HttpDeleteRequest extends HttpRequest {
 
     public HttpDeleteRequest(String url, int expectedStatusCode) {
@@ -106,11 +64,69 @@ class HttpPutRequest extends HttpRequest {
     }
 }
 
-public class App {
-    static int id = 18;
+class HttpGetRequest extends HttpRequest {
 
+    public HttpGetRequest(String url, int expectedStatusCode) {
+        super(url, expectedStatusCode);
+    }
+
+    @Override
+    protected Response request() {
+        return ClientBuilder.newClient()
+                .target(url)
+                .request()
+                .get();
+    }
+}
+
+abstract class HttpRequest implements Observable.OnSubscribe<Response> {
+    protected String url;
+    protected int expectedStatusCode;
+
+    public HttpRequest(String url, int expectedStatusCode) {
+        this.url = url;
+        this.expectedStatusCode = expectedStatusCode;
+    }
+
+    public void call(Subscriber<? super Response> subscriber) {
+
+        Response response = request();
+
+        if (response.getStatus() != expectedStatusCode) {
+            System.err.println(response.getStatus());
+            subscriber.onError(new RuntimeException());
+            return;
+        }
+
+        subscriber.onNext(response);
+        subscriber.onCompleted();
+
+    }
+
+    abstract protected Response request();
+}
+
+public class App {
+    private static void retry_get_test() {
+        System.out.println("#retry_get_test");
+        Observable<Response> observable = Observable
+                .create(new HttpGetRequest("http://localhost:8080/contacts/" + id, 200))
+                .retry(6); // since server fail 5 times, retry(3) will fail.
+
+        observable.subscribe(
+                v -> {
+                    v.bufferEntity();
+                    String response = v.readEntity(String.class);
+                    System.out.println(response);
+                },
+                e -> System.err.println(e),
+                () -> System.out.println("Completed!")
+        );
+    }
+
+    static int id = 18;
     public static void main(String[] args) {
-//        simple_jersey_client_test();
+        simple_jersey_client_test();
 
         retry_getAll_test();
 
@@ -143,7 +159,6 @@ public class App {
                 () -> System.out.println("Completed!")
         );
     }
-
 
     private static void retry_put_test() {
         System.out.println("#retry_put_test");
@@ -194,24 +209,6 @@ public class App {
         System.out.println("#retry_getAll_test");
         Observable<Response> observable = Observable
                 .create(new HttpGetRequest("http://localhost:8080/contacts", 200))
-                .retry(6)
-                .tryWhen(); // since server fail 5 times, retry(3) will fail.
-
-        observable.subscribe(
-                v -> {
-                    v.bufferEntity();
-                    String response = v.readEntity(String.class);
-                    System.out.println(response);
-                },
-                e -> System.err.println(e),
-                () -> System.out.println("Completed!")
-        );
-    }
-
-    private static void retry_get_test() {
-        System.out.println("#retry_get_test");
-        Observable<Response> observable = Observable
-                .create(new HttpGetRequest("http://localhost:8080/contacts/" + id, 200))
                 .retry(6); // since server fail 5 times, retry(3) will fail.
 
         observable.subscribe(
@@ -237,3 +234,59 @@ public class App {
         System.out.println(result);
     }
 }
+/*
+output:
+400
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>Error 400 Bad Request</title>
+</head>
+<body><h2>HTTP ERROR 400</h2>
+<p>Problem accessing /contacts. Reason:
+<pre>    Bad Request</pre></p>
+</body>
+</html>
+
+#retry_getAll_test
+400
+400
+400
+400
+[{"id":1,"name":"Tom"},{"id":2,"name":"Dick"},{"id":3,"name":"Harry"}]
+Completed!
+#retry_post_test
+400
+400
+400
+400
+400
+http://localhost:8080/contacts/18
+
+Completed!
+#retry_getAll_test
+[{"id":1,"name":"Tom"},{"id":2,"name":"Dick"},{"id":18,"name":"Will"},{"id":3,"name":"Harry"}]
+Completed!
+#retry_put_test
+400
+400
+400
+400
+400
+{"id":18,"name":"Put_Will"}
+Completed!
+#retry_get_test
+{"id":18,"name":"Put_Will"}
+Completed!
+#retry_delete_test
+400
+400
+400
+400
+400
+
+Completed!
+#retry_getAll_test
+[{"id":1,"name":"Tom"},{"id":2,"name":"Dick"},{"id":3,"name":"Harry"}]
+Completed!
+ */
