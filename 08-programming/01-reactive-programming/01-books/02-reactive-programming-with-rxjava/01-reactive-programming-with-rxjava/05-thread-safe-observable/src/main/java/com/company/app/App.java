@@ -6,12 +6,12 @@ import rx.Observable;
 // A single Observable stream must always be serialized and thread-safe.
 // Each event can be emitted from a different thread, as long as the emissions are not concurrent.
 // This means no interleaving or simultaneous execution of onNext().
-public class App
-{
-    public static void main( String[] args ) throws Exception {
+public class App {
+    public static void main(String[] args) throws Exception {
+
         Observable<Object> observable = Observable.create(s -> {
             new Thread(() -> {
-                String threadName = Thread.currentThread().getName();
+                String threadName = "Pub - " + Thread.currentThread().getName();
                 s.onNext(threadName + ": one");
                 s.onNext(threadName + ": two");
                 s.onNext(threadName + ": three");
@@ -20,7 +20,7 @@ public class App
             }).start();
         });
 
-        observable.subscribe(v -> System.out.println(v));
+        observable.subscribe(v -> System.out.println("Sub - " + Thread.currentThread().getName() + ": " + v));
 
         System.out.println(Thread.currentThread().getName() + ": waiting");
 
@@ -33,9 +33,9 @@ public class App
 /*
 output:
 main: waiting
-Thread-0: one
-Thread-0: two
-Thread-0: three
-Thread-0: four
+Sub - Thread-0: Pub - Thread-0: one
+Sub - Thread-0: Pub - Thread-0: two
+Sub - Thread-0: Pub - Thread-0: three
+Sub - Thread-0: Pub - Thread-0: four
 main: END
  */
