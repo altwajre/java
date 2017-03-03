@@ -8,9 +8,21 @@ https://www.youtube.com/watch?v=_B3rAz8Ge58
 
 > 01-server/soap
 
+**Start GlassFish Server**
+
+1, Click "Servers" tab
+
+2, Click Start button
+
+3, goto http://localhost:4848/
+
+**Eclipse**
+
+> Right click `soap` project, `Run As`, `Run on Server`, `Finish`, select GlassFish
+
 ## Client
 
-> 02-client/01-jersey-client
+> 02-client/01-jersey-client-resources
 
 ### postman
 

@@ -10,6 +10,14 @@ move glassfish4 to `/Users/whan/glassfish4`
 
 install glassish4 plugin
 
+**Start GlassFish Server**
+
+1, Click "Servers" tab
+
+2, Click Start button
+
+3, goto http://localhost:4848/
+
 ### Create maven Dynamic Web Project
 
 https://www.youtube.com/watch?v=fWATrhZcCNI
