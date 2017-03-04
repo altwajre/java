@@ -8,6 +8,6 @@ https://www.tutorialspoint.com/jmeter/
 
 http://jmeter.apache.org/download_jmeter.cgi
 
+## Start Jemter
+
 > go to `/Users/whan/Documents/apache-jmeter-3.1/bin`, run `$ ./jmeter.sh`
-
-

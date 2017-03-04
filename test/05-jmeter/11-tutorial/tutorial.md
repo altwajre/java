@@ -2,20 +2,6 @@
 
 https://www.youtube.com/watch?v=M-iAXz8vs48&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c
 
-**Create First Test**
-
-https://www.youtube.com/watch?v=8loLHbhfyh0&index=2&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c
-
-```
-1, Start Jmeter
-2, Create a TestPlan
-3, Create Thread Group (Users)
-4, Add a Sampler (Http)
-5, Add Listers
-   View Results in Table
-   View Results Tree
-6, To Run the Test
-```
 
 **Assertions**
 
@@ -78,9 +64,9 @@ https://www.youtube.com/watch?v=oy53KAKHpts&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmc
 https://www.youtube.com/watch?v=K26q5VgwLKk&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c&index=7
 
 ```
-1, Goto command line -> goto Jmeter -> bin
+1, $ cd /Users/whan/Documents/apache-jmeter-3.1/bin
 2, Command
-   jmeter -n -t [location of jmeter test script] -l [location of the result file]
+   $ ./jmeter.sh -n -t [location of jmeter test script] -l [location of the result file]
    -n -> non gui mode
    -t -> location of jmeter script
    -l -> location of result file
@@ -89,3 +75,20 @@ https://www.youtube.com/watch?v=K26q5VgwLKk&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmc
     jmeter -?
 ```
 
+**Web Services API**
+
+https://www.youtube.com/watch?v=eaU7951fNuQ&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c&index=9
+
+*SOAP*
+
+```
+1, Test Plan, Thread Group, Soap/XML-RPC Request, View Results Tree
+URL: http://...
+SOAPAction: ???
+Soap/XML-RPC Data:
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Body>
+    ...
+    </soapenv:Body>
+</soapenv:Envelope>
+```
