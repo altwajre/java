@@ -14,7 +14,18 @@ public class App {
 
     }
 
-// observeOn() operator allowing a Scheduler (thread_1) to start the next emission without waiting for the current emission to reach the Subscriber.
+// It is often helpful in the middle of an Observable chain to switch to another Scheduler.
+// For example, you may press a button on a UI and it kicks off work on a computation thread,
+// which frees up the UI thread so the UI does not freeze. But when the computation is done,
+// it needs to be displayed back on the UI.
+
+// Effectively, you can only use one subscribeOn(), but you can have any number of observeOn() operators.
+// You can switch emissions from one thread to another with ease using observeOn().
+// But do not use it everywhere for the sake of.
+// Only use it when you find a calculation is intense enough that it needs to be offloaded to another thread.
+
+// observeOn() operator allowing a Scheduler (thread_1) to start the next emission without
+// waiting for the current emission to reach the Subscriber.
     private static void observeOn_test() {
         System.out.println("#observeOn_test");
         Observable<String> source = Observable.just("Tom", "Dick", "Harry");
@@ -39,7 +50,7 @@ Received 8 on thread RxComputationScheduler-2
 Received 10 on thread RxComputationScheduler-2
  */
 
-// Use subscribeOn(Scheduler) to kick off tasks in worker thread
+// Use subscribeOn(Scheduler) to kick off tasks in a worker thread
 // Observable.interval() already specifies a subscribeOn() internally that emits on the computation scheduler
 
 // Choosing a Scheduler
