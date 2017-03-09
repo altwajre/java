@@ -1,5 +1,7 @@
 # SQL server profiler
 
+https://www.safaribooksonline.com/library/view/sql-server-2016/9780134619729/sqls_02_04.html
+
 Steps:
 
 ```
