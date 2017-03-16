@@ -1,7 +1,10 @@
 # Dropwizard
 
-http://www.dropwizard.io/0.9.2/docs/
 https://github.com/dropwizard/dropwizard
+
+## Create dropwizard project steps
+
+http://www.dropwizard.io/1.0.6/docs/getting-started.html
 
 ## Dropwizard Archetypes
 
