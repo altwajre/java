@@ -1,33 +1,52 @@
 package com.company.test;
 
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONObject;
 
 import java.io.*;
+import java.util.Map;
 
 public class App
 {
     public static void main( String[] args ) throws Exception {
-        StringBuilder result = new StringBuilder("");
+        classLoader_test();
+
+        inputStream_test();
+
+    }
+
+    private static void inputStream_test() throws IOException {
+        System.out.println("#inputStream_test");
+
+        InputStream inputStream = new FileInputStream(new File("src/main/resources/config/config.dev.json"));
+
+        Map mapJson = new ObjectMapper().readValue(inputStream, Map.class);
+
+        JSONObject jsonObject = new JSONObject(mapJson);
+        System.out.println(jsonObject.toString());
+    }
+/*
+output:
+#inputStream_test
+{"test-settings":{"url":"http://sitecoreadmin.int.dev-company.com"}}
+ */
+
+    private static void classLoader_test() throws IOException {
+        System.out.println("#classLoader_test");
 
         // Get file from resources folder
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream("config/config.dev.json");
 
-        BufferedReader streamReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-        StringBuilder responseStrBuilder = new StringBuilder();
+        Map mapJson = new ObjectMapper().readValue(inputStream, Map.class);
 
-        String inputStr;
-        while ((inputStr = streamReader.readLine()) != null)
-            responseStrBuilder.append(inputStr);
-        JSONObject config = new JSONObject(responseStrBuilder.toString());
-        System.out.println(config.toString());
-        System.out.println(config.get("test-settings"));
-        System.out.println(config.getJSONObject("test-settings").get("url"));
+        JSONObject jsonObject = new JSONObject(mapJson);
+        System.out.println(jsonObject.toString());
+
     }
-}
 /*
 output:
-{"test-settings":{"url":"http://sitecoreadmin.int.dev-godaddy.com"}}
-{"url":"http://sitecoreadmin.int.dev-godaddy.com"}
-http://sitecoreadmin.int.dev-godaddy.com
+#classLoader_test
+{"test-settings":{"url":"http://sitecoreadmin.int.dev-company.com"}}
  */
+}
