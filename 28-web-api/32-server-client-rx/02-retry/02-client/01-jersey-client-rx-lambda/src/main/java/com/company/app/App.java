@@ -7,10 +7,12 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.concurrent.TimeUnit;
 
 public class App {
 
     static int id = 18;
+
     public static void main(String[] args) {
 
         retry_getAll_test();
@@ -29,53 +31,17 @@ public class App {
 
     }
 
-    private static void retry_delete_test() {
+    private static void retry_getAll_test() {
 
-        System.out.println("#retry_delete_test");
-
-        Observable<Response> observable = Observable
-                .<Response>create(s -> {
-                    String url = "http://localhost:8080/contacts/" + id;
-                    Response response = ClientBuilder.newClient()
-                            .target(url)
-                            .request()
-                            .delete();
-
-                    if (response.getStatus() != 204) {
-                        System.err.println(response.getStatus());
-                        s.onError(new RuntimeException());
-                    }
-
-                    s.onNext(response);
-                    s.onCompleted();
-                })
-                .retry(6); // since server fail 5 times, retry(3) will fail.
-
-        observable.subscribe(
-                v -> {
-                    v.bufferEntity();
-                    String response = v.readEntity(String.class);
-                    System.out.println(response);
-                },
-                e -> System.err.println(e),
-                () -> System.out.println("Completed!")
-        );
-    }
-
-    private static void retry_put_test() {
-
-        System.out.println("#retry_put_test");
+        System.out.println("#retry_getAll_test");
 
         Observable<Response> observable = Observable
                 .<Response>create(s -> {
-                    String url = "http://localhost:8080/contacts/" + id;
-                    JSONObject body = new JSONObject();
-                    body.put("id", id);
-                    body.put("name", "Put_Will");
+                    String url = "http://localhost:8080/contacts";
                     Response response = ClientBuilder.newClient()
                             .target(url)
                             .request()
-                            .put(Entity.entity(body, MediaType.APPLICATION_JSON));
+                            .get();
 
                     if (response.getStatus() != 200) {
                         System.err.println(response.getStatus());
@@ -85,7 +51,16 @@ public class App {
                     s.onNext(response);
                     s.onCompleted();
                 })
-                .retry(6); // since server fail 5 times, retry(3) will fail.
+                .retry((attempts, error) -> {
+                    System.out.println("attempts: " + attempts);
+                    try {
+                        Thread.sleep(2000); // delay 2 seconds
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    return (error instanceof Exception) && attempts < 3;
+                });
+//                .retry(6); // since server fail 5 times, retry(3) will fail.
 
         observable.subscribe(
                 v -> {
@@ -137,17 +112,20 @@ public class App {
         );
     }
 
-    private static void retry_getAll_test() {
+    private static void retry_put_test() {
 
-        System.out.println("#retry_getAll_test");
+        System.out.println("#retry_put_test");
 
         Observable<Response> observable = Observable
                 .<Response>create(s -> {
-                    String url = "http://localhost:8080/contacts";
+                    String url = "http://localhost:8080/contacts/" + id;
+                    JSONObject body = new JSONObject();
+                    body.put("id", id);
+                    body.put("name", "Put_Will");
                     Response response = ClientBuilder.newClient()
                             .target(url)
                             .request()
-                            .get();
+                            .put(Entity.entity(body, MediaType.APPLICATION_JSON));
 
                     if (response.getStatus() != 200) {
                         System.err.println(response.getStatus());
@@ -202,6 +180,40 @@ public class App {
                 () -> System.out.println("Completed!")
         );
     }
+
+    private static void retry_delete_test() {
+
+        System.out.println("#retry_delete_test");
+
+        Observable<Response> observable = Observable
+                .<Response>create(s -> {
+                    String url = "http://localhost:8080/contacts/" + id;
+                    Response response = ClientBuilder.newClient()
+                            .target(url)
+                            .request()
+                            .delete();
+
+                    if (response.getStatus() != 204) {
+                        System.err.println(response.getStatus());
+                        s.onError(new RuntimeException());
+                    }
+
+                    s.onNext(response);
+                    s.onCompleted();
+                })
+                .retry(6); // since server fail 5 times, retry(3) will fail.
+
+        observable.subscribe(
+                v -> {
+                    v.bufferEntity();
+                    String response = v.readEntity(String.class);
+                    System.out.println(response);
+                },
+                e -> System.err.println(e),
+                () -> System.out.println("Completed!")
+        );
+    }
+
 }
 /*
 output:
