@@ -2,6 +2,7 @@ package com.company
 
 import org.yaml.snakeyaml.Yaml
 
+//http://www.yaml.org/spec/1.2/spec.html - Structures
 class App {
     static void main(String... args){
 
