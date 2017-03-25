@@ -1,0 +1,11 @@
+# Details of a user
+---
+name: Tom
+age: 28
+address:
+  street: 1234 Pine st
+  city: San Francisco
+  zip: 98001
+roles:
+  - User
+  - Editor
