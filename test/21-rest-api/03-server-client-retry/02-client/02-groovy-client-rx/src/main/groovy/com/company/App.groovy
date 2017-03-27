@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response
 class App {
     static void main(String[] args) {
 
-        System.out.println("#retry_getAll_test")
+        println("#retry_getAll_test")
 
         Observable<Response> observable = Observable
                 .<Response> create { s ->
@@ -26,17 +26,43 @@ class App {
             s.onNext(response)
             s.onCompleted()
         }
-        .retry(6) // since server fail 5 times, retry(3) will fail.
+        .retry { attempts, error ->
+            println ("attempts: " + attempts)
+            try {
+                sleep(1000) // delay
+            } catch (InterruptedException e) {
+                e.printStackTrace()
+            }
+            (error instanceof Exception) && attempts < 8
+        }
+//        .retry(6) // since server fail 5 times, retry(3) will fail.
 
         observable.subscribe(
                 { v ->
                     v.bufferEntity()
                     String response = v.readEntity(String.class)
-                    System.out.println(response)
+                    println(response)
                 },
                 { e -> System.err.println(e) },
-                { System.out.println("Completed!") }
+                { println("Completed!") }
         )
 
     }
 }
+/*
+output:
+#retry_getAll_test
+400
+attempts: 1
+400
+attempts: 2
+attempts: 3
+400
+attempts: 4
+400
+400
+attempts: 5
+[{"id":1,"name":"Tom"},{"id":2,"name":"Dick"},{"id":3,"name":"Harry"}]
+Completed!
+ */
+

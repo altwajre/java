@@ -218,14 +218,14 @@ public class App {
 /*
 output:
 #retry_getAll_test
+attempts: 1
 400
+attempts: 2
 400
+attempts: 3
 400
-400
-400
-[{"id":1,"name":"Tom"},{"id":2,"name":"Dick"},{"id":3,"name":"Harry"}]
-Completed!
 #retry_post_test
+java.lang.RuntimeException
 400
 400
 400
@@ -235,20 +235,24 @@ http://localhost:8080/contacts/18
 
 Completed!
 #retry_getAll_test
+attempts: 1
+400
+attempts: 2
+400
 [{"id":1,"name":"Tom"},{"id":2,"name":"Dick"},{"id":18,"name":"Will"},{"id":3,"name":"Harry"}]
 Completed!
 #retry_put_test
-400
-400
-400
-400
-400
 {"id":18,"name":"Put_Will"}
 Completed!
 #retry_get_test
 {"id":18,"name":"Put_Will"}
 Completed!
 #retry_delete_test
+400
+400
+400
+400
+400
 400
 400
 400
