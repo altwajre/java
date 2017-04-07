@@ -27,12 +27,8 @@ class App {
             s.onCompleted()
         }
         .retry { attempts, error ->
-            println ("attempts: " + attempts)
-            try {
-                sleep(1000) // delay
-            } catch (InterruptedException e) {
-                e.printStackTrace()
-            }
+            println ("attempts: ${attempts} - error: ${error}")
+            sleep(1000) // delay
             (error instanceof Exception) && attempts < 8
         }
 //        .retry(6) // since server fail 5 times, retry(3) will fail.
