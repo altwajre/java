@@ -1,5 +1,6 @@
 # Files to ignore
 **/.idea
+**/.vscode
 **/.css
 **/.img
 **/*.iml
@@ -12,6 +13,8 @@
 **/gradle/
 **/node_modules/
 **/out/
+**/bin/
+**/obj/
 **/temp.txt
 
 # Java
