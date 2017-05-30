@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+// https://docs.oracle.com/javase/tutorial/collections/streams/reduction.html
 public class App
 {
     final static List<String> friends = Arrays.asList("Tom", "Dick", "Harry", "Nate", "Bill", "Will", "Neal");
