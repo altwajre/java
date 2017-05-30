@@ -10,10 +10,7 @@ import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.*;
 
-/*
-http://mockito.org/
-
- */
+// https://static.javadoc.io/org.mockito/mockito-core/2.8.9/org/mockito/Mockito.html
 public class MockitoTest {
     /*
     1. Let's verify some behaviour
