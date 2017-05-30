@@ -120,7 +120,7 @@ public class MockitoTest {
     }
 
     // 5. Stubbing void methods with exceptions
-    @Test
+    @Test(expected = RuntimeException.class)
     public void stub_void_methods_with_exceptions(){
         LinkedList mockedList = mock(LinkedList.class);
         doThrow(new RuntimeException()).when(mockedList).clear();
