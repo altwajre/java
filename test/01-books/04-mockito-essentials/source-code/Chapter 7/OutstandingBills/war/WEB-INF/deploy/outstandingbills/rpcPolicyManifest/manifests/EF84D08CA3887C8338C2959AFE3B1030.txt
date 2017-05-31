@@ -1,0 +1,2 @@
+serviceClass: com.packt.billing.client.BillingService
+path: 3BF6DA82579A549E5B94CDE96680D4B1.gwt.rpc

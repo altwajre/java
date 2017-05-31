@@ -1,0 +1,8 @@
+#Sun Jun 29 20:46:50 IST 2014
+eclipse.preferences.version=1
+encoding//src/com/packt/webservice/jaxws/dto/DNAProfile.java=UTF-8
+encoding//src/com/packt/webservice/jaxws/dto/ProfileElement.java=UTF-8
+encoding//src/com/packt/webservice/jaxws/service/DNAFingerPrintService.java=UTF-8
+encoding//src/com/packt/webservice/jaxws/service/DNAFingerPrintServiceService.java=UTF-8
+encoding//src/com/packt/webservice/jaxws/service/DNAFingerPrintServiceServiceLocator.java=UTF-8
+encoding//src/com/packt/webservice/jaxws/service/DNAFingerPrintServiceSoapBindingStub.java=UTF-8

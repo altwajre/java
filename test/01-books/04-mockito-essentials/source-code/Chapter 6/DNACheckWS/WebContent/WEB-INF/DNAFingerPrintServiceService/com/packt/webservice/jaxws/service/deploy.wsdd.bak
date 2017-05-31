@@ -1,0 +1,52 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from DNAFingerPrintServiceService WSDL service -->
+
+  <service name="DNAFingerPrintService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.jaxws.webservice.packt.com"/>
+      <parameter name="wsdlServiceElement" value="DNAFingerPrintServiceService"/>
+      <parameter name="schemaQualified" value="http://service.jaxws.webservice.packt.com,http://dto.jaxws.webservice.packt.com"/>
+      <parameter name="wsdlServicePort" value="DNAFingerPrintService"/>
+      <parameter name="className" value="com.packt.webservice.jaxws.service.DNAFingerPrintServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="DNAFingerPrintService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="findMatch" qname="operNS:findMatch" xmlns:operNS="http://service.jaxws.webservice.packt.com" returnQName="retNS:findMatchReturn" xmlns:retNS="http://service.jaxws.webservice.packt.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:dnaProfile" xmlns:pns="http://service.jaxws.webservice.packt.com" type="tns:DNAProfile" xmlns:tns="http://dto.jaxws.webservice.packt.com"/>
+      </operation>
+      <parameter name="allowedMethods" value="findMatch"/>
+
+      <typeMapping
+        xmlns:ns="http://dto.jaxws.webservice.packt.com"
+        qname="ns:ProfileElement"
+        type="java:com.packt.webservice.jaxws.dto.ProfileElement"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://dto.jaxws.webservice.packt.com"
+        qname="ns:DNAProfile"
+        type="java:com.packt.webservice.jaxws.dto.DNAProfile"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://service.jaxws.webservice.packt.com"
+        qname="ns:ArrayOf_tns1_ProfileElement"
+        type="java:com.packt.webservice.jaxws.dto.ProfileElement[]"
+        innerType="cmp-ns:ProfileElement" xmlns:cmp-ns="http://dto.jaxws.webservice.packt.com"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

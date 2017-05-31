@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.jaxws.webservice.packt.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.jaxws.webservice.packt.com" xmlns:intf="http://service.jaxws.webservice.packt.com" xmlns:tns1="http://dto.jaxws.webservice.packt.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.jaxws.webservice.packt.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.jaxws.webservice.packt.com"/>
+   <element name="findMatch">
+    <complexType>
+     <sequence>
+      <element name="dnaProfile" type="tns1:DNAProfile"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_ProfileElement">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:ProfileElement"/>
+    </sequence>
+   </complexType>
+   <element name="findMatchResponse">
+    <complexType>
+     <sequence>
+      <element name="findMatchReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.jaxws.webservice.packt.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://service.jaxws.webservice.packt.com"/>
+   <complexType name="ProfileElement">
+    <sequence>
+     <element name="alleleA" nillable="true" type="xsd:string"/>
+     <element name="alleleB" nillable="true" type="xsd:string"/>
+     <element name="geneticMarker" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="DNAProfile">
+    <sequence>
+     <element name="dnaElements" nillable="true" type="impl:ArrayOf_tns1_ProfileElement"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="findMatchRequest">
+
+      <wsdl:part element="impl:findMatch" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findMatchResponse">
+
+      <wsdl:part element="impl:findMatchResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="DNAFingerPrintService">
+
+      <wsdl:operation name="findMatch">
+
+         <wsdl:input message="impl:findMatchRequest" name="findMatchRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findMatchResponse" name="findMatchResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="DNAFingerPrintServiceSoapBinding" type="impl:DNAFingerPrintService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="findMatch">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findMatchRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findMatchResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="DNAFingerPrintServiceService">
+
+      <wsdl:port binding="impl:DNAFingerPrintServiceSoapBinding" name="DNAFingerPrintService">
+
+         <wsdlsoap:address location="http://localhost:8080/DNACheckWS/services/DNAFingerPrintService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
