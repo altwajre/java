@@ -1,5 +1,8 @@
-package com.company.app;
+package com.company.app._1_MockitoForJUnit;
 
+import com.company.app.MeanTaxFactorCalculator;
+import com.company.app.Person;
+import com.company.app.TaxService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -10,10 +13,13 @@ import static org.assertj.core.api.BDDAssertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 
-public class MeanTaxFactorCalculatorTest {
+// Getting started with Mockito for JUnit
+public class MockitoForJunit {
   static final double TAX_FACTOR = 10;
-  @Mock TaxService taxService;
-  @InjectMocks MeanTaxFactorCalculator systemUnderTest;
+  @Mock
+  TaxService taxService;
+  @InjectMocks
+  MeanTaxFactorCalculator systemUnderTest;
   @Before
   public void setup() {
     MockitoAnnotations.initMocks(this);
