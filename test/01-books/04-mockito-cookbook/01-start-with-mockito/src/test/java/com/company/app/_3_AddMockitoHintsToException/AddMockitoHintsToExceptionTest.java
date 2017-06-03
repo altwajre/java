@@ -3,7 +3,6 @@ package com.company.app._3_AddMockitoHintsToException;
 import com.company.app.MeanTaxFactorCalculator;
 import com.company.app.Person;
 import com.company.app.TaxService;
-import org.junit.ComparisonFailure;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;

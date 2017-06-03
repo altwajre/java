@@ -1,3 +1,0 @@
-# mockito junit
-
-Run `MeanTaxFactorCalculatorTest`
