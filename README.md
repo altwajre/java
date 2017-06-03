@@ -9,13 +9,13 @@ http://brew.sh/
 
 If we have following error when run `brew update`
 ```
-LMDV-WHAN:01-protocol-buffers whan$ brew update
+$ brew update
 Error: /usr/local must be writable!
 ```
 
 Run `sudo chown -R $USER:admin /usr/local` as below
 ```
-LMDV-WHAN:01-protocol-buffers whan$ sudo chown -R $USER:admin /usr/local
+$ sudo chown -R $USER:admin /usr/local
 ```
 
 # Install Java
