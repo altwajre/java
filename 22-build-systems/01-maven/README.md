@@ -1,6 +1,23 @@
 # maven
 
-IntelliJ - open pom.xml will auto setup maven java project
+https://maven.apache.org/download.cgi
+
+## brew install
+
+https://wilsonmar.github.io/maven-on-macos/
+
+```
+brew update
+brew install maven
+brew upgrade maven
+
+mvn -version
+which mvn
+```
+
+## IntelliJ 
+
+open pom.xml will auto setup maven java project
 
 ## Predefined maven properties
 
