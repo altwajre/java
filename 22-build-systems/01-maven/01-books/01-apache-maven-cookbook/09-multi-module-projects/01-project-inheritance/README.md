@@ -1,5 +1,27 @@
 # Project Inheritance
 
+## Create projects
+
+> parent
+
+- create maven project with pom file only, `<packaging>pom</packaging>`
+
+> child
+
+- in pom, specified parent element as below
+
+```
+  <parent>
+    <groupId>com.company.app</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+```
+
+## Build
+
+> build at `child` folder `mvn clean package`
+
 ## How it works
 
 > child pom
