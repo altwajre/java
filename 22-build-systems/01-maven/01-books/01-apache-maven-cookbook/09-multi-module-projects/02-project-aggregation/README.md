@@ -11,11 +11,13 @@
 - in pom, specified below
 
 ```
-  <groupId>com.company.app</groupId>
-  <artifactId>parent</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
+    <groupId>com.company.app</groupId>
+    <version>1.0-SNAPSHOT</version>
+    <artifactId>child</artifactId>
+    <packaging>jar</packaging>
 ```
+
+- no `parent` element in pom file
 
 ## Build
 
