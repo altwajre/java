@@ -49,7 +49,6 @@
 > run the executable JAR
 
 ```
-$ java -jar target/executable-jar-1.0-SNAPSHO
-T.jar
+$ java -jar target/executable-jar-1.0-SNAPSHOT.jar
 23:21:05.956 [main] INFO  com.company.app.App - Hello World
 ```
