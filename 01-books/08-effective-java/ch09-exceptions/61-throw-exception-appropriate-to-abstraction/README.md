@@ -1,4 +1,4 @@
-# Throw exceptions appropariate to the abstraction
+# Throw exceptions appropriate to the abstraction
 
 ## Exception Translation
 
