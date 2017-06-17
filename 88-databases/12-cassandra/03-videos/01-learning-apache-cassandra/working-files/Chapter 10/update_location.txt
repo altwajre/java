@@ -1,1 +1,0 @@
-UPDATE location USING TTL 7776000 SET latitude = 34.872689, longitude = -111.757373 WHERE vehicle_id = 'AZWT3RSKI' AND date = '2014-05-20' AND time='2014-05-20 11:23:55';
