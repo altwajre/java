@@ -3,7 +3,7 @@
 `/Users/username/.m2`
 
 ```
-$ ls
+$ ls .m2
 repository	settings.xml
 ```
 
