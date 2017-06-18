@@ -39,10 +39,3 @@ $ mvn tomcat7:run
 > Test
 
 http://localhost:8080/run-webapp-with-tomcat/
-
-> Alternative Run (goals)
-
-```
-$ mvn jetty:run-war
-$ mvn jetty:run-exploded
-```
