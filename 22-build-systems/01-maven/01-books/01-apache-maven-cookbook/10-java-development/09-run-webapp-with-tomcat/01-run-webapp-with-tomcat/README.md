@@ -1,4 +1,4 @@
-# Run 
+# Running a web project with Tomcat 
 
 > Project Type
 
@@ -8,40 +8,37 @@
 
 ```
 $ mvn clean package
-
-$ ls target/
-classes		maven-archiver	war-project	war-project.war
 ```
 
 > Run
 
 ```
-$ mvn org.eclipse.jetty:jetty-maven-plugin:run
+$ mvn org.apache.tomcat.maven:tomcat7-maven-plugin:run
 ```
 
 > Test
 
-http://localhost:8080/
+http://localhost:8080/run-webapp-with-tomcat/
 
-## mvn jetty:run
+## mvn tomcat7:run
 
 > Add jetty pluginGroup to `.m2/settings.xml`
 
 ```
   <pluginGroups>
-    <pluginGroup>org.eclipse.jetty</pluginGroup>
+    <pluginGroup>org.apache.tomcat.maven</pluginGroup>
   </pluginGroups>
 ```
 
 > Run
 
 ```
-$ mvn jetty:run
+$ mvn tomcat7:run
 ```
 
 > Test
 
-http://localhost:8080/
+http://localhost:8080/run-webapp-with-tomcat/
 
 > Alternative Run (goals)
 
