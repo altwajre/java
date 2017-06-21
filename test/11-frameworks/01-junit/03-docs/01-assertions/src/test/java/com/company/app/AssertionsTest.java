@@ -25,6 +25,7 @@ public class AssertionsTest {
 
   @Test
   public void testAssertEquals() {
+    assertEquals("text", "text");
     assertEquals("failure - strings are not equal", "text", "text");
   }
 
