@@ -1,8 +1,0 @@
-cassandra:
-  keyspace: home_security
-  createTables:
-    - CREATE TABLE IF NOT EXISTS activity (home_id text, datetime timestamp, event text, code_used text, PRIMARY KEY (home_id, datetime));
-    - CREATE TABLE IF NOT EXISTS home (home_id text, address text, city text, state text, zip text, contact_name text, phone text, alt_phone text, phone_password text, email text, main_code text, guest_code text, PRIMARY KEY (home_id));
-   dropTables:
-    - DROP TABLE IF EXISTS activity;
-    - DROP TABLE IF EXISTS home;
