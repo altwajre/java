@@ -2,7 +2,12 @@ package com.company
 
 import org.yaml.snakeyaml.Yaml
 
-//http://www.yaml.org/spec/1.2/spec.html - Collections
+/*
+Collections
+
+http://www.yaml.org/spec/1.2/spec.html#id2759963
+
+ */
 class App {
     static void main(String... args) {
 
