@@ -33,50 +33,20 @@ DROP TABLE IF EXISTS activity;
 DESCRIBE TABLES;
 
  */
-public class SetupTeardownTest {
 
-  static Cluster cluster = Cluster.builder().addContactPoint("127.0.0.1")
-      .build();
-
-  // create session on the "hotel" keyspace
-  static Session session = cluster.connect("home_security");
-
-  private static void createTable(Session session) {
-
-    System.out.println("createTable");
-
-    // Query
-    String query = "CREATE TABLE IF NOT EXISTS activity (home_id text, "
-        + "datetime timestamp, "
-        + "event text, "
-        + "code_used text, "
-        + "PRIMARY KEY (home_id, datetime));";
-
-    // Executing the query
-    session.execute(query);
-  }
-
-  private static void dropTable(Session session) {
-
-    System.out.println("dropTable");
-
-    // Query
-    String query = "DROP TABLE IF EXISTS activity;";
-
-    // Executing the query
-    session.execute(query);
-  }
+public class SetupTeardownTableTest {
 
   @BeforeClass
   public static void setUpClass() {
     System.out.println("@BeforeClass setupClass");
-    createTable(session);
+    DBHelper.createTables();
   }
 
   @AfterClass
   public static void tearDownClass() {
     System.out.println("@AfterClass tearDownClass");
-    dropTable(session);
+    DBHelper.dropTables();
+    DBHelper.tearDown();
   }
 
   @Before
@@ -100,3 +70,16 @@ public class SetupTeardownTest {
   }
 
 }
+/*
+output:
+createTables
+@Before setup
+@Test test1()
+@After tearDown
+@Before setup
+@Test test2()
+@After tearDown
+@AfterClass tearDownClass
+dropTables
+tearDown
+ */
