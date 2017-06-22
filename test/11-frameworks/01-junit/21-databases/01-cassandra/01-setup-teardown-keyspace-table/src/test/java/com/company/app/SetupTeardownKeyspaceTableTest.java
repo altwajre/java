@@ -30,6 +30,10 @@ DROP TABLE IF EXISTS activity;
 
 DESCRIBE TABLES;
 
+-----------------------
+INSERT INTO activity (home_id, datetime, event, code_used) VALUES ('H01474777', '2014-05-21 07:32:16', 'alarm set', '5599');
+SELECT * FROM activity;
+
  */
 
 public class SetupTeardownKeyspaceTableTest {

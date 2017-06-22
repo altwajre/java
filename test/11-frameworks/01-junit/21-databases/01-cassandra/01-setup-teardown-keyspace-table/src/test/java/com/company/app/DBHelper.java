@@ -45,16 +45,12 @@ public class DBHelper {
     System.out.println("createTables");
 
     // Query
-    String query = "CREATE TABLE IF NOT EXISTS activity (home_id text, "
-        + "datetime timestamp, "
-        + "event text, "
-        + "code_used text, "
-        + "PRIMARY KEY (home_id, datetime));";
+    String query = "CREATE TABLE IF NOT EXISTS activity (home_id text, datetime timestamp, event text, code_used text, PRIMARY KEY (home_id, datetime));";
 
     // Executing the query
     session.execute(query);
 
-    query = "CREATE TABLE home (home_id text, address text, city text, state text, zip text, contact_name text, phone text, alt_phone text, phone_password text, email text, main_code text, guest_code text, PRIMARY KEY (home_id));";
+    query = "CREATE TABLE IF NOT EXISTS home (home_id text, address text, city text, state text, zip text, contact_name text, phone text, alt_phone text, phone_password text, email text, main_code text, guest_code text, PRIMARY KEY (home_id));";
 
     // Executing the query
     session.execute(query);
@@ -67,7 +63,10 @@ public class DBHelper {
     // Query
     String query = "DROP TABLE IF EXISTS activity;";
 
-    query += "DROP TABLE IF EXISTS home;";
+    // Executing the query
+    session.execute(query);
+
+    query = "DROP TABLE IF EXISTS home;";
 
     // Executing the query
     session.execute(query);
