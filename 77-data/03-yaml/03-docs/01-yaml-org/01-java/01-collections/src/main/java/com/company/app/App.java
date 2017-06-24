@@ -13,21 +13,22 @@ public class App
 {
     public static void main( String[] args ) throws Exception {
 
-        SequenceOfScalars();
+        sequenceOfScalars();
 
-        MappingScalarsToScalars();
+        mappingScalarsToScalars();
 
-        MappingScalarsToSequences();
+        mappingScalarsToSequences();
 
-        SequenceOfMappings();
+        sequenceOfMappings();
 
-        SequenceOfSequences();
+        sequenceOfSequences();
 
-        MappingOfMappings();
+        mappingOfMappings();
 
     }
 
     /*
+    yaml:
     #Example 2.6. Mapping of Mappings
     Mark McGwire: {hr: 65, avg: 0.278}
     Sammy Sosa: {
@@ -35,7 +36,7 @@ public class App
       avg: 0.288
     }
      */
-    private static void MappingOfMappings() throws FileNotFoundException {
+    private static void mappingOfMappings() throws FileNotFoundException {
 
         String pathname = "src/main/resources/spec/06-mapping-of-mappings.yaml";
         InputStream inputStream = new FileInputStream(new File(pathname));
@@ -49,6 +50,7 @@ public class App
         });
     }
     /*
+    output:
     Mark McGwire:
       hr: 65
       avg: 0.278
@@ -58,12 +60,13 @@ public class App
      */
 
     /*
+    yaml:
     #Example 2.5. Sequence of Sequences
     - [name        , hr, avg  ]
     - [Mark McGwire, 65, 0.278]
     - [Sammy Sosa  , 63, 0.288]
      */
-    private static void SequenceOfSequences() throws FileNotFoundException {
+    private static void sequenceOfSequences() throws FileNotFoundException {
 
         String pathname = "src/main/resources/spec/05-sequence-of-sequences.yaml";
         InputStream inputStream = new FileInputStream(new File(pathname));
@@ -77,12 +80,14 @@ public class App
         });
     }
     /*
+    output:
     - name hr avg
     - Mark McGwire 65 0.278
     - Sammy Sosa 63 0.288
      */
 
     /*
+    yaml:
     #Example 2.4. Sequence of Mappings
     #(players’ statistics)
     -
@@ -94,7 +99,7 @@ public class App
       hr:   63
       avg:  0.288
      */
-    private static void SequenceOfMappings() throws FileNotFoundException {
+    private static void sequenceOfMappings() throws FileNotFoundException {
 
         String pathname = "src/main/resources/spec/04-sequence-of-mappings.yaml";
         InputStream inputStream = new FileInputStream(new File(pathname));
@@ -118,6 +123,7 @@ public class App
 
     }
     /*
+    output:
     -
       name: Mark McGwire
       hr: 65
@@ -129,6 +135,7 @@ public class App
      */
 
     /*
+    yaml:
     #Example 2.3. Mapping Scalars to Sequences
     #(ball clubs in each league)
     american:
@@ -140,7 +147,7 @@ public class App
       - Chicago Cubs
       - Atlanta Braves
      */
-    private static void MappingScalarsToSequences() throws FileNotFoundException {
+    private static void mappingScalarsToSequences() throws FileNotFoundException {
 
         String pathname = "src/main/resources/spec/03-mapping-scalars-to-sequences.yaml";
         InputStream inputStream = new FileInputStream(new File(pathname));
@@ -158,13 +165,14 @@ public class App
      */
 
     /*
+    yaml:
     #Example 2.2. Mapping Scalars to Scalars
     #(player statistics)
     hr:  65    # Home runs
     avg: 0.278 # Batting average
     rbi: 147   # Runs Batted In
      */
-    private static void MappingScalarsToScalars() throws FileNotFoundException {
+    private static void mappingScalarsToScalars() throws FileNotFoundException {
 
         String pathname = "src/main/resources/spec/02-mapping-scalars-to-scalars.yaml";
         InputStream inputStream = new FileInputStream(new File(pathname));
@@ -184,13 +192,14 @@ public class App
      */
 
     /*
+    yaml:
     #Example 2.1. Sequence of Scalars
     #(ball players)
     - Mark McGwire
     - Sammy Sosa
     - Ken Griffey
      */
-    private static void SequenceOfScalars() throws FileNotFoundException {
+    private static void sequenceOfScalars() throws FileNotFoundException {
 
         String pathname = "src/main/resources/spec/01-sequence-of-scalars.yaml";
         InputStream inputStream = new FileInputStream(new File(pathname));
