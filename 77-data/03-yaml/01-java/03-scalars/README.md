@@ -1,5 +1,7 @@
 # Scalars
 
+http://www.yaml.org/spec/1.2/spec.html#id2760844
+
 Scalar content can be written in block notation, using a literal style (indicated by "|") 
 where all line breaks are significant.
 

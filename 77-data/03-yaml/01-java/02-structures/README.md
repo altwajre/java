@@ -1,5 +1,7 @@
 # 2.2. Structures
 
+http://www.yaml.org/spec/1.2/spec.html#id2760395
+
 YAML uses three dashes ("---") to separate directives from document content.
 This also serves to signal the start of a document if no directives are present.
 Three dots ("...") indicate the end of a document.
