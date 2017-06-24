@@ -69,15 +69,28 @@ stats: |
 //        ]
 
 
-        // #Example 2.17. Quoted Scalars
+        /*
+        yaml:
+        #Example 2.17. Quoted Scalars
+        unicode: "Sosa did fine.\u263A"
+        control: "\b1998\t1999\t2000\n"
+        hex esc: "\x0d\x0a is \r\n"
+
+        single: '"Howdy!" he cried.'
+        quoted: ' # Not a ''comment''.'
+        tie-fighter: '|\-*-/|'
+         */
         inputStream = new FileInputStream(new File("src/main/resources/spec/05-quoted-scalars.yaml"))
 
         def quotedScalars = new Yaml().load(inputStream)
         println quotedScalars
-//        [unicode:Sosa did fine.☺, control1998	1999	2000
-//         , hex esc:
-//                 is
-//         , single:"Howdy!" he cried., quoted: # Not a 'comment'., tie-fighter:|\-*-/|]
+        /*
+        output:
+        [unicode:Sosa did fine.☺, control1998	1999	2000
+         , hex esc:
+                 is
+         , single:"Howdy!" he cried., quoted: # Not a 'comment'., tie-fighter:|\-*-/|]
+         */
 
         // #Example 2.18. Multi-line Flow Scalars
         def multiLineFlowScalars = '''
