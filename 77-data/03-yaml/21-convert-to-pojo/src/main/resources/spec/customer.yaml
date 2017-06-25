@@ -1,0 +1,8 @@
+--- !<tag:customer>
+name: Tom
+age: 18
+orders:
+  - id: 123
+    description: order_1
+  - id: 789
+    description: order_2
