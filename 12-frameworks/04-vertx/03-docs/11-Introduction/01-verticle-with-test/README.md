@@ -21,7 +21,7 @@ $ mvn clean package
 > Run
 
 ```
-$ mvn clean package
+$ java -jar target/verticle-with-test-1.0-SNAPSHOT.jar
 ```
 
 go to http://localhost:8080/

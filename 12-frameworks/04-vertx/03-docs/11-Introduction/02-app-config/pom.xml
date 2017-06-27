@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.company.app</groupId>
-  <artifactId>verticle-with-test</artifactId>
+  <artifactId>app-config</artifactId>
   <version>1.0-SNAPSHOT</version>
   <build>
     <plugins>
@@ -42,7 +42,7 @@
   </build>
   <packaging>jar</packaging>
 
-  <name>verticle-with-test</name>
+  <name>app-config</name>
   <url>http://maven.apache.org</url>
 
   <properties>
