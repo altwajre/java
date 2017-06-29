@@ -1,5 +1,7 @@
 # Unit and Integration Tests
 
+http://vertx.io/blog/unit-and-integration-tests/
+
 > Unit tests
 
 Unit tests ensure that one component of your application, generally a class in the Java world, behaves as expected.
