@@ -8,6 +8,7 @@
 **/*.class
 **/.DS_Store
 **/.gradle
+**/.vertx
 **/build/
 **/classes/
 **/gradle/
