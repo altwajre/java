@@ -111,11 +111,15 @@ class BestPriceFinder {
     return prices;
   }
 
+  // Listing 11.17. Combining two independent CompletableFutures
   public List<String> findPricesInUSD(String product) {
 
     List<CompletableFuture<String>> priceFutures = shops.stream()
+        // Create a first task querying the shop to obtain the price of a product
         .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPrice(product))
+            // Combine the price and exchange rate by multiplying them
             .thenCombine(
+                // Create a second independent task to retrieve the conversion rate between USD and EUR
                 CompletableFuture.supplyAsync(() -> ExchangeService.getRate(Money.EUR, Money.USD)),
                 (price, rate) -> price * rate)
             .thenApply(price -> shop.getName() + " price is " + price))
@@ -148,3 +152,30 @@ public class App {
     System.out.println(msg + " done in " + duration + " msecs");
   }
 }
+/*
+output:
+72
+11
+71
+44
+[BestPrice price is 72.0, LetsSaveBig price is 11.0, MyFavoriteShop price is 71.0, BuyItAll price is 44.0]
+sequential done in 4024 msecs
+97
+79
+91
+20
+[BestPrice price is 91.0, LetsSaveBig price is 79.0, MyFavoriteShop price is 20.0, BuyItAll price is 97.0]
+parallel done in 1008 msecs
+18
+19
+1
+32
+[BestPrice price is 1.0, LetsSaveBig price is 19.0, MyFavoriteShop price is 32.0, BuyItAll price is 18.0]
+composed CompletableFuture done in 1008 msecs
+34
+39
+38
+99
+[BestPrice price is 25.11319402896881, LetsSaveBig price is 28.06768744414161, MyFavoriteShop price is 73.12371202552683, BuyItAll price is 28.806310797934813]
+combined USD CompletableFuture done in 2010 msecs
+ */
