@@ -1,5 +1,7 @@
 # Async SQL Client
 
+http://vertx.io/blog/using-the-asynchronous-sql-client/
+
 > pom.xml
 
 add following dependencies
