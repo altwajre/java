@@ -23,4 +23,9 @@ also called "a fat jar"
 io.vertx.core.Launcher class. This is actually equivalent to run using the vertx command-line tool that ships in the
 Vert.x distribution
 
+> AbstractVerticle base class
+
+1. life-cycle `start` and `stop` methods to override
+2. a protected field called `vertx` that references the Vert.x environment where the verticle is being deployed
+3. an accessor to some configuration object that allows passing external configuration to a verticle
 
