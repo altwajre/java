@@ -155,7 +155,7 @@ $ curl -X POST http://localhost:8080/api/whiskies -H 'content-type: application/
 
 ### Put a product
 
-> add handlers for `POST`, and add callback
+> add handlers for `PUT`, and add callback
 
 
 ```
@@ -229,7 +229,7 @@ $ mvn clean package
 $ java -jar target/vertx-web-rest-1.0-SNAPSHOT.jar
 ```
 
-> CURL - POST
+> CURL - DELETE
 
 ```
 $ curl -X DELETE http://localhost:8080/api/whiskies/2
