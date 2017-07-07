@@ -1,11 +1,15 @@
 package com.company.app.integration;
 
+import com.company.app.Whisky;
 import com.jayway.restassured.RestAssured;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import static com.jayway.restassured.RestAssured.delete;
 import static com.jayway.restassured.RestAssured.get;
+import static com.jayway.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class WhiskyVerticleRestIT {
@@ -14,7 +18,7 @@ public class WhiskyVerticleRestIT {
   public static void configureRestAssured() {
     RestAssured.baseURI = "http://localhost";
     RestAssured.port = Integer.getInteger("http.port", 8080);
-    System.out.println("###"+RestAssured.port);
+    System.out.println("### port="+RestAssured.port);
   }
 
   @AfterClass
@@ -45,27 +49,29 @@ public class WhiskyVerticleRestIT {
 
   @Test
   public void checkWeCanAddAndDeleteAProduct() {
+
+    System.out.println("### checkWeCanAddAndDeleteAProduct");
     // Create a new bottle and retrieve the result (as a Whisky instance).
-//    Whisky whisky = given()
-//        .body("{\"name\":\"Jameson\", \"origin\":\"Ireland\"}").request().post("/api/whiskies").thenReturn().as(Whisky.class);
-//    assertThat(whisky.getName()).isEqualToIgnoringCase("Jameson");
-//    assertThat(whisky.getOrigin()).isEqualToIgnoringCase("Ireland");
-//    assertThat(whisky.getId()).isNotZero();
-//
-//    // Check that it has created an individual resource, and check the content.
-//    get("/api/whiskies/" + whisky.getId()).then()
-//        .assertThat()
-//        .statusCode(200)
-//        .body("name", equalTo("Jameson"))
-//        .body("origin", equalTo("Ireland"))
-//        .body("id", equalTo(whisky.getId()));
-//
-//    // Delete the bottle
-//    delete("/api/whiskies/" + whisky.getId()).then().assertThat().statusCode(204);
-//
-//    // Check that the resrouce is not available anymore
-//    get("/api/whiskies/" + whisky.getId()).then()
-//        .assertThat()
-//        .statusCode(404);
+    Whisky whisky = given()
+        .body("{\"name\":\"Jameson\", \"origin\":\"Ireland\"}").request().post("/api/whiskies").thenReturn().as(Whisky.class);
+    assertThat(whisky.getName()).isEqualToIgnoringCase("Jameson");
+    assertThat(whisky.getOrigin()).isEqualToIgnoringCase("Ireland");
+    assertThat(whisky.getId()).isNotZero();
+
+    // Check that it has created an individual resource, and check the content.
+    get("/api/whiskies/" + whisky.getId()).then()
+        .assertThat()
+        .statusCode(200)
+        .body("name", equalTo("Jameson"))
+        .body("origin", equalTo("Ireland"))
+        .body("id", equalTo(whisky.getId()));
+
+    // Delete the bottle
+    delete("/api/whiskies/" + whisky.getId()).then().assertThat().statusCode(204);
+
+    // Check that the resrouce is not available anymore
+    get("/api/whiskies/" + whisky.getId()).then()
+        .assertThat()
+        .statusCode(404);
   }
 }
