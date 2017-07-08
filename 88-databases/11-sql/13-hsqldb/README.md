@@ -8,7 +8,7 @@ http://hsqldb.org/
 
 > location
 
-/Desktop/hsqldb-2.4.0/hsqldb
+/Users/whan/hsqldb-2.4.0/hsqldb
 
 ## running database
 
