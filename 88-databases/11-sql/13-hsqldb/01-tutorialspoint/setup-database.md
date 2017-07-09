@@ -29,7 +29,7 @@ Simple
 ```
 CREATE TABLE Customers(name VARCHAR (20), age INT);
 
-INSERT INTO Customers (name,age) VALUES ('Tom', 28 );
+INSERT INTO Customers (name,age) VALUES ('Tom', 28);
 
 SELECT * FROM Customers;
 ```

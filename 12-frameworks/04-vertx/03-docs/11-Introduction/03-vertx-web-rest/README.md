@@ -72,7 +72,7 @@ http://localhost:8080/api/whiskies
 > CURL - GET all
 
 ```
-$ curl http://localhost:8080/api/whiskies
+curl http://localhost:8080/api/whiskies
 ```
 
 ### Get a product
@@ -150,7 +150,7 @@ $ java -jar target/vertx-web-rest-1.0-SNAPSHOT.jar
 > CURL - POST
 
 ```
-$ curl -X POST http://localhost:8080/api/whiskies -H 'content-type: application/json' -d '{"name": "Vodka", "origin": "Russian"}'
+curl -X POST http://localhost:8080/api/whiskies -H 'content-type: application/json' -d '{"name": "Vodka", "origin": "Russian"}'
 ```
 
 ### Put a product
