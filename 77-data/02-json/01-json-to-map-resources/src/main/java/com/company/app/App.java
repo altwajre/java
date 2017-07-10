@@ -13,6 +13,8 @@ import java.util.Map;
 public class App
 {
     public static void main( String[] args ) throws IOException {
+
+        // Good One for loading from resources
         classLoader_test();
 
         inputStream_test();
@@ -25,16 +27,16 @@ public class App
         Map mapJson = new ObjectMapper().readValue(inputStream, Map.class);
         System.out.println(mapJson);
 
-        Map classJson = (Map)mapJson.get("class");
-        System.out.println(classJson);
+        Map classMap = (Map)mapJson.get("lesson");
+        System.out.println(classMap);
 
-        Map studentsJson = (Map)classJson.get("students");
-        System.out.println(studentsJson);
+        Map studentsMap = (Map)classMap.get("students");
+        System.out.println(studentsMap);
     }
 /*
 output:
 #inputStream_test
-{class={name=Math, students={123=Tom, 234=Jen}}}
+{lesson={name=Math, students={123=Tom, 234=Jen}}}
 {name=Math, students={123=Tom, 234=Jen}}
 {123=Tom, 234=Jen}
  */
@@ -43,13 +45,13 @@ output:
         System.out.println("#classLoader_test");
 
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("json//test.json");
+        InputStream inputStream = classLoader.getResourceAsStream("json/test.json");
 
         System.out.println("##Json to Map");
         Map mapJson = new ObjectMapper().readValue(inputStream, Map.class);
         System.out.println(mapJson);
 
-        Map classMap = (Map)mapJson.get("class");
+        Map classMap = (Map)mapJson.get("lesson");
         System.out.println(classMap);
 
         Map studentsMap = (Map)classMap.get("students");
@@ -63,7 +65,7 @@ output:
 output:
 #classLoader_test
 ##Json to Map
-{class={name=Math, students={123=Tom, 234=Jen}}}
+{lesson={name=Math, students={123=Tom, 234=Jen}}}
 {name=Math, students={123=Tom, 234=Jen}}
 {123=Tom, 234=Jen}
 ##Map to Json
