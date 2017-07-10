@@ -1,6 +1,26 @@
-# Rest with Vert.x
+# Vert.x REST hsqldb
 
 REST API
+
+## Run Database
+
+> location
+
+/Users/whan/hsqldb-2.4.0/hsqldb
+
+> start database
+
+```
+$ java -classpath lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:hsqldb/demodb --dbname.0 testdb
+```
+
+> database manager
+
+```
+$ java -cp lib/hsqldb.jar org.hsqldb.util.DatabaseManagerSwing
+```
+
+URL: jdbc:hsqldb:hsql:localhost/testdb
 
 > Compile and Run
 
