@@ -11,13 +11,13 @@ REST API
 > start database
 
 ```
-$ java -classpath lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:hsqldb/demodb --dbname.0 testdb
+java -classpath lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:hsqldb/demodb --dbname.0 testdb
 ```
 
 > database manager
 
 ```
-$ java -cp lib/hsqldb.jar org.hsqldb.util.DatabaseManagerSwing
+java -cp lib/hsqldb.jar org.hsqldb.util.DatabaseManagerSwing
 ```
 
 URL: jdbc:hsqldb:hsql:localhost/testdb
@@ -25,9 +25,9 @@ URL: jdbc:hsqldb:hsql:localhost/testdb
 > Compile and Run
 
 ```
-$ mvn clean package
+mvn clean package
 
-$ java -jar target/vertx-dbclient-1.0-SNAPSHOT.jar
+java -jar target/verticle-hsqldb-1.0-SNAPSHOT.jar
 ```
 
 http://localhost:8080/
