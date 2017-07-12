@@ -110,6 +110,8 @@ public class MainVerticle extends AbstractVerticle {
 
   private void addOne(RoutingContext routingContext) {
 
+    System.out.println("## AddOne");
+
     // read the request's content and create an instance of Whisky.
     final Customer customer = Json.decodeValue(routingContext.getBodyAsString(), Customer.class);
 

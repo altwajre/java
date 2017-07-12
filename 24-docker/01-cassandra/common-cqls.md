@@ -14,33 +14,25 @@ DROP KEYSPACE testdb;
 
 USE testdb;
 
-CREATE TABLE IF NOT EXISTS Customer (
+CREATE TABLE IF NOT EXISTS customer (
 customer_id text PRIMARY KEY,
 name text,
 age smallint
 );
 
-DESCRIBE TABLE Customer;
+DESCRIBE TABLE customer;
 
-DROP TABLE IF EXISTS Customer;
+DROP TABLE IF EXISTS customer;
 
 > Remove all rows
 
-TRUNCATE Customer;
+TRUNCATE customer;
 
 > Insert
 
-INSERT INTO Customer (
-customer_id,
-name,
-age
-)
-VALUES (
-'123',
-'Tom',
-28
-);
+INSERT INTO customer (customer_id, name, age)
+VALUES ('123', 'Tom', 28);
 
 > Select
 
-SELECT * FROM Customer;
+SELECT * FROM customer;
