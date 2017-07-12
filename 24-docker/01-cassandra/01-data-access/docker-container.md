@@ -1,5 +1,7 @@
 # docker containers
 
+User Defined Bridge Networks - `--network=local-services`
+
 ## docker-container cassandra
 
 > docker run
