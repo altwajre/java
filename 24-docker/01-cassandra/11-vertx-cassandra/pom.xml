@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.company.app</groupId>
-  <artifactId>verticle-cassandra</artifactId>
+  <artifactId>vertx-cassandra</artifactId>
   <version>1.0-SNAPSHOT</version>
   <build>
     <plugins>
@@ -19,7 +19,7 @@
   </build>
   <packaging>jar</packaging>
 
-  <name>verticle-cassandra</name>
+  <name>vertx-cassandra</name>
   <url>http://maven.apache.org</url>
 
   <properties>
