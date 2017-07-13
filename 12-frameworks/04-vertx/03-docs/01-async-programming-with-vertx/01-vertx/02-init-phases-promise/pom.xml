@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.company.app</groupId>
-  <artifactId>init-phases</artifactId>
+  <artifactId>init-phases-promise</artifactId>
   <version>1.0-SNAPSHOT</version>
   <build>
     <plugins>
@@ -19,7 +19,7 @@
   </build>
   <packaging>jar</packaging>
 
-  <name>init-phases</name>
+  <name>init-phases-promise</name>
   <url>http://maven.apache.org</url>
 
   <properties>
