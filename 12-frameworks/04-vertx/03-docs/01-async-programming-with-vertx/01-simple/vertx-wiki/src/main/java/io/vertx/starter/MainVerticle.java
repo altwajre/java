@@ -120,6 +120,9 @@ public class MainVerticle extends AbstractVerticle {
   }
 
   private void pageUpdateHandler(RoutingContext context) {
+
+    System.out.println("#pageUpdateHandler");
+
     String id = context.request().getParam("id");   // <1>
     String title = context.request().getParam("title");
     String markdown = context.request().getParam("markdown");
@@ -152,14 +155,35 @@ public class MainVerticle extends AbstractVerticle {
   }
 
   private void pageCreateHandler(RoutingContext context) {
+
+    System.out.println("#pageCreateHandler");
+
     String pageName = context.request().getParam("name");
-    String location = "/wiki/" + pageName;
-    if (pageName == null || pageName.isEmpty()) {
-      location = "/";
-    }
-    context.response().setStatusCode(303);
-    context.response().putHeader("Location", location);
-    context.response().end();
+    final String location = "/wiki/" + pageName;
+
+    dbClient.getConnection(car -> {
+      if (car.succeeded()) {
+        SQLConnection connection = car.result();
+        String sql = SQL_CREATE_PAGE;
+        JsonArray params = new JsonArray();   // <3>
+        params
+          .add(pageName)
+          .add("my content");
+
+        connection.updateWithParams(sql, params, res -> {   // <4>
+          connection.close();
+          if (res.succeeded()) {
+            context.response().setStatusCode(303);    // <5>
+            context.response().putHeader("Location", location);
+            context.response().end();
+          } else {
+            context.fail(res.cause());
+          }
+        });
+      } else {
+        context.fail(car.cause());
+      }
+    });
   }
 
   private void pageDeletionHandler(RoutingContext context) {
@@ -187,9 +211,10 @@ public class MainVerticle extends AbstractVerticle {
     Future<Void> future = Future.future();
 
     dbClient = JDBCClient.createShared(vertx, new JsonObject()  // <1>
-      .put("url", "jdbc:hsqldb:file:db/wiki")   // <2>
-      .put("driver_class", "org.hsqldb.jdbcDriver")   // <3>
-      .put("max_pool_size", 30));   // <4>
+      .put("url", "jdbc:hsqldb:hsql://localhost/wiki")
+      .put("user", "SA")
+      .put("password", "")
+      .put("driver_class", "org.hsqldb.jdbcDriver"));
 
     dbClient.getConnection(ar -> {    // <5>
       if (ar.failed()) {
@@ -243,10 +268,9 @@ public class MainVerticle extends AbstractVerticle {
   public void start(Future<Void> startFuture) throws Exception {
     Future<Void> steps = prepareDatabase().compose(v -> startHttpServer());
     steps.setHandler(ar -> {
-      if(ar.succeeded()) {
+      if (ar.succeeded()) {
         startFuture.complete();
-      }
-      else {
+      } else {
         startFuture.fail(ar.cause());
       }
     });
