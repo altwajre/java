@@ -8,10 +8,10 @@ DROP TABLE IF EXISTS customer;
 CREATE TABLE IF NOT EXISTS customer (
 customer_id text PRIMARY KEY,
 name text,
-age smallint
+age text
 );
 
 INSERT INTO customer (customer_id, name, age)
-VALUES ('123', 'Tom', 28);
+VALUES ('123', 'Tom', '28');
 
 SELECT * FROM customer;

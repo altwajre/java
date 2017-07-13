@@ -2,8 +2,12 @@ package com.company.app;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ResultSet;
-import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
+import com.datastax.driver.mapping.Mapper;
+import com.datastax.driver.mapping.MappingManager;
+import com.datastax.driver.mapping.Result;
+
+import java.util.List;
 
 public class App
 {
@@ -76,9 +80,9 @@ public class App
         System.out.println("#createTable");
 
         String query = "CREATE TABLE IF NOT EXISTS customer ("
-            + "customer_id text PRIMARY KEY,"
+            + "id text PRIMARY KEY,"
             + "name text,"
-            + "age smallint);";
+            + "age text);";
 
         session.execute(query);
     }
@@ -87,8 +91,8 @@ public class App
 
         System.out.println("#insertRecord");
 
-        String query = "INSERT INTO customer (customer_id, name, age)"
-            + "VALUES ('123', 'Tom', 28);";
+        String query = "INSERT INTO customer (id, name, age)"
+            + "VALUES ('123', 'Tom', '28');";
 
         session.execute(query);
     }
@@ -101,8 +105,18 @@ public class App
 
         ResultSet resultSet = session.execute(query);
 
-        for(Row row : resultSet){
-            System.out.println(row.getString("name").toString());
+//        for(Row row : resultSet){
+//            System.out.println(row.getString("name").toString());
+//        }
+
+        MappingManager manager = new MappingManager(session);
+        Mapper<Customer> mapper = manager.mapper(Customer.class);
+        Result<Customer> customers = mapper.map(resultSet);
+        List<Customer> all = customers.all();
+        System.out.println("all: "+all);
+
+        for(Customer customer : customers) {
+            System.out.println(customer);
         }
     }
 }
