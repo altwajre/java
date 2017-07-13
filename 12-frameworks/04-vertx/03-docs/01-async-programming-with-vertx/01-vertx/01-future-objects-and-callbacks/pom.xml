@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.company.app</groupId>
-  <artifactId>verticle-no-future</artifactId>
+  <artifactId>future-objects-and-callbacks</artifactId>
   <version>1.0-SNAPSHOT</version>
   <build>
     <plugins>
@@ -30,7 +30,7 @@
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
                     <Main-Class>io.vertx.core.Launcher</Main-Class>
-                    <Main-Verticle>com.company.app.HelloWorldVerticle</Main-Verticle>
+                    <Main-Verticle>com.company.app.HelloVerticle</Main-Verticle>
                   </manifestEntries>
                 </transformer>
               </transformers>
@@ -42,7 +42,7 @@
   </build>
   <packaging>jar</packaging>
 
-  <name>verticle-no-future</name>
+  <name>future-objects-and-callbacks</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -53,7 +53,18 @@
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
-      <version>3.4.1</version>
+      <version>3.4.2</version>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-codegen</artifactId>
+      <version>3.4.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.6</version>
     </dependency>
 
     <dependency>

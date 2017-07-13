@@ -2,6 +2,8 @@
 
 ## hsqldb
 
+location: /Users/whan/hsqldb-2.4.0/hsqldb
+
 > start database
 
 ```
