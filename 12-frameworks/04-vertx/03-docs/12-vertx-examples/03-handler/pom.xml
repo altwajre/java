@@ -2,8 +2,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.company.app</groupId>
-  <artifactId>init-phases-promise</artifactId>
+  <groupId>com.handlerCompany.app</groupId>
+  <artifactId>handler</artifactId>
   <version>1.0-SNAPSHOT</version>
   <build>
     <plugins>
@@ -19,7 +19,7 @@
   </build>
   <packaging>jar</packaging>
 
-  <name>init-phases-promise</name>
+  <name>handler</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -31,6 +31,17 @@
       <groupId>io.vertx</groupId>
       <artifactId>vertx-core</artifactId>
       <version>3.4.2</version>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-codegen</artifactId>
+      <version>3.4.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.6</version>
     </dependency>
 
     <dependency>

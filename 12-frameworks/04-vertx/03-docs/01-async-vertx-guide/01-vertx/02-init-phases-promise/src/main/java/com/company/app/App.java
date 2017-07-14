@@ -35,6 +35,13 @@ Wiki verticle initialization phases
 
 To make code cleaner, adopt return a future/promise object pattern to notify when each of the phases completes, and
 whether successful or not.
+
+By having each method returning a future object, the implementation of the start() method becomes a composition.
+
+When the future of MyPromise.task1() completes successfully, then MyPromise.task2() is called and the steps future
+completes depending of the outcome of the future returned by MyPromise.task2.
+MyPromise.task2 is never called if MyPromise.task1 encounters an error, in which case the steps future is a failed
+state and becomes completed with the exception describing the error.
  */
 public class App
 {
