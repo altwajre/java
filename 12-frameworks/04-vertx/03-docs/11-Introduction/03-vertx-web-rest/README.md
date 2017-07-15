@@ -232,5 +232,5 @@ $ java -jar target/vertx-web-rest-1.0-SNAPSHOT.jar
 > CURL - DELETE
 
 ```
-$ curl -X DELETE http://localhost:8080/api/whiskies/2
+curl -X DELETE http://localhost:8080/api/whiskies/2
 ```

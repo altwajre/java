@@ -40,18 +40,22 @@ public class WhiskyVerticle extends AbstractVerticle {
     router.route("/api/whiskies*").handler(BodyHandler.create());
 
     // GET all
+    // curl http://localhost:8080/api/whiskies
     router.get("/api/whiskies").handler(this::getAll);
 
     // POST
+    // curl -X POST http://localhost:8080/api/whiskies -H 'content-type: application/json' -d '{"name": "Vodka", "origin": "Russian"}'
     router.post("/api/whiskies").handler(this::addOne);
 
     // GET
     router.get("/api/whiskies/:id").handler(this::getOne);
 
     // UPDATE
+    // curl -X PUT http://localhost:8080/api/whiskies/1 -H "Content-Type: application/json" -d '{"name": "Brandy", "origin": "Dutch"}'
     router.put("/api/whiskies/:id").handler(this::updateOne);
 
     // DELETE
+    // curl -X DELETE http://localhost:8080/api/whiskies/2
     router.delete("/api/whiskies/:id").handler(this::deleteOne);
 
     // Create the HTTP server and pass the "accept" method to the request handler
