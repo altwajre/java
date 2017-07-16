@@ -34,8 +34,8 @@ class HandlerCompany {
 class HandlerBuilder {
     private String name;
 
-    public void handler(Handler<String> callback) {
-        callback.handle(name);
+    public void handler(Handler<String> handler) {
+        handler.handle(name);
     }
 }
 
