@@ -12,18 +12,28 @@ public class App
 
         Context context = vertx.getOrCreateContext();
 
+        /*
+        DO NOT call blocking operations directly from an event loop,
+        as that would prevent it from doing any other useful work.
+         */
         context.runOnContext(v -> {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+            blockingCode();
+
             System.out.println("handler: "+Thread.currentThread().getName() + " end");
         });
 
         System.out.println("#Main Thread END");
 
         vertx.close();
+    }
+
+    private static void blockingCode() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
 /*
