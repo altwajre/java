@@ -1,4 +1,16 @@
-# The Golden Rule - Don’t Block the Event Loop
+# Reactor and Multi-Reactor
+
+http://vertx.io/docs/vertx-core/java/#_reactor_and_multi_reactor
+
+## Don't block thread!
+
+With very few exceptions (i.e. some file system operations ending in 'Sync'), none of the APIs in Vert.x block the calling thread.
+
+If a result can be provided immediately, it will be returned immediately, otherwise you will usually provide a handler to receive events some time later.
+
+Because none of the Vert.x APIs block threads that means you can use Vert.x to handle a lot of concurrency using just a small number of threads.
+
+## The Golden Rule - Don’t Block the Event Loop
 
 We already know that the Vert.x APIs are non blocking and won’t block the event loop, but that’s not much help if you block the event loop yourself in a handler.
 

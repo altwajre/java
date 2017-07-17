@@ -1,5 +1,7 @@
 # Don't call us, we'll call you.
 
+http://vertx.io/docs/vertx-core/java/#_don_t_call_us_we_ll_call_you
+
 The Vert.x APIs are largely event driven. This means that when things happen in Vert.x that you are interested in,
 Vert.x will call you by sending you events.
 
