@@ -20,10 +20,10 @@ public class App
 
             blockingCode();
 
-            System.out.println("handler: "+Thread.currentThread().getName() + " end");
+            System.out.println(Thread.currentThread().getName() + ": handler end");
         });
 
-        System.out.println("#Main Thread END");
+        System.out.println(Thread.currentThread().getName() + ": thread END");
 
         vertx.close();
     }
@@ -38,12 +38,12 @@ public class App
 }
 /*
 output:
-#Main Thread END
-Jul 16, 2017 10:56:40 PM io.vertx.core.impl.BlockedThreadChecker
-WARNING: Thread Thread[vert.x-eventloop-thread-0,5,main] has been blocked for 2860 ms, time limit is 2000
-Jul 16, 2017 10:56:41 PM io.vertx.core.impl.BlockedThreadChecker
-WARNING: Thread Thread[vert.x-eventloop-thread-0,5,main] has been blocked for 3864 ms, time limit is 2000
-Jul 16, 2017 10:56:42 PM io.vertx.core.impl.BlockedThreadChecker
-WARNING: Thread Thread[vert.x-eventloop-thread-0,5,main] has been blocked for 4866 ms, time limit is 2000
-handler: vert.x-eventloop-thread-0 end
+main: thread END
+Jul 17, 2017 9:48:32 PM io.vertx.core.impl.BlockedThreadChecker
+WARNING: Thread Thread[vert.x-eventloop-thread-0,5,main] has been blocked for 2698 ms, time limit is 2000
+Jul 17, 2017 9:48:33 PM io.vertx.core.impl.BlockedThreadChecker
+WARNING: Thread Thread[vert.x-eventloop-thread-0,5,main] has been blocked for 3702 ms, time limit is 2000
+Jul 17, 2017 9:48:34 PM io.vertx.core.impl.BlockedThreadChecker
+WARNING: Thread Thread[vert.x-eventloop-thread-0,5,main] has been blocked for 4706 ms, time limit is 2000
+vert.x-eventloop-thread-0: handler end
  */

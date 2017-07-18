@@ -12,13 +12,14 @@ public class App
         vertx.<String>executeBlocking(future -> {
             // specify both the blocking code to execute
             // and a result handler to be called back async when the blocking code has been executed
-            String result = blockingCode();
+            System.out.println(Thread.currentThread().getName() + ": future handler");
+            String result =  blockingCode();
             future.complete(result);
         }, ar -> {
-            System.out.println("AsyncResult: " + ar.result());
+            System.out.println(Thread.currentThread().getName() + ": AsyncResult=" + ar.result());
         });
 
-        System.out.println("#Main Thread END");
+        System.out.println(Thread.currentThread().getName() + ": thread END");
 
         vertx.close();
     }
@@ -31,11 +32,12 @@ public class App
 //            e.printStackTrace();
         }
 
-        return "executed blocking code";
+        return "blocking code is executed";
     }
 }
 /*
 output:
-#Main Thread END
-AsyncResult: executed blocking code
+main: thread END
+vert.x-worker-thread-0: future handler
+vert.x-eventloop-thread-1: AsyncResult=blocking code is executed
  */

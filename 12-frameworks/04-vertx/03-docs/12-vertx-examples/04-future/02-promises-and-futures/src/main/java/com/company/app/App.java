@@ -2,6 +2,19 @@ package com.company.app;
 
 import io.vertx.core.Future;
 
+/*
+Wiki verticle initialization phases
+
+To make code cleaner, adopt return a future/promise object pattern to notify when each of the phases completes, and
+whether successful or not.
+
+By having each method returning a future object, the implementation of the start() method becomes a composition.
+
+When the future of PromiseTest.task1() completes successfully, then PromiseTest.task2() is called and the steps future
+completes depending of the outcome of the future returned by PromiseTest.task2.
+PromiseTest.task2 is never called if PromiseTest.task1 encounters an error, in which case the steps future is a failed
+state and becomes completed with the exception describing the error.
+ */
 class PromiseTest {
     private Future<Void> task1() {
         Future<Void> future = Future.future();
@@ -31,19 +44,6 @@ class PromiseTest {
     }
 }
 
-/*
-Wiki verticle initialization phases
-
-To make code cleaner, adopt return a future/promise object pattern to notify when each of the phases completes, and
-whether successful or not.
-
-By having each method returning a future object, the implementation of the start() method becomes a composition.
-
-When the future of PromiseTest.task1() completes successfully, then PromiseTest.task2() is called and the steps future
-completes depending of the outcome of the future returned by PromiseTest.task2.
-PromiseTest.task2 is never called if PromiseTest.task1 encounters an error, in which case the steps future is a failed
-state and becomes completed with the exception describing the error.
- */
 public class App
 {
     public static void main( String[] args )
