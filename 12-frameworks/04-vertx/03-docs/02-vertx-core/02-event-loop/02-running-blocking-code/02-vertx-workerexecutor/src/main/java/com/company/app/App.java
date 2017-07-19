@@ -19,15 +19,17 @@ public class App
 
         WorkerExecutor executor = vertx.createSharedWorkerExecutor("my-worker-pool");
         executor.executeBlocking(future -> {
+            System.out.println(Thread.currentThread().getName() + ": vertx.executeBlocking() future handler");
+
             // Call some blocking API that takes a significant amount of time to return
             String result = blockingCode();
             future.complete(result);
         }, ar -> {
-            System.out.println("AsyncResult: " + ar.result());
+            System.out.println(Thread.currentThread().getName() + ": vertx.executeBlocking() AsyncResult=" + ar.result());
         });
         executor.close();
 
-        System.out.println("#Main Thread END");
+        System.out.println(Thread.currentThread().getName() + ": thread END");
 
         vertx.close();
     }
@@ -45,6 +47,7 @@ public class App
 }
 /*
 output:
-#Main Thread END
-AsyncResult: executed blocking code
+main: thread END
+my-worker-pool-0: vertx.executeBlocking() future handler
+vert.x-eventloop-thread-1: vertx.executeBlocking() AsyncResult=executed blocking code
  */

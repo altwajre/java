@@ -14,11 +14,13 @@ public class App
             .vertx();
 
         vertx.<String>executeBlocking(future -> {
+
+            System.out.println(Thread.currentThread().getName() + ": vertx.executeBlocking() future handler");
             // specify both the blocking code to execute
             // and a result handler to be called back async when the blocking code has been executed
-            System.out.println(Thread.currentThread().getName() + ": vertx.executeBlocking() future handler");
             String result =  blockingCode();
             future.complete(result);
+
         }, ar -> {
             System.out.println(Thread.currentThread().getName() + ": vertx.executeBlocking() AsyncResult=" + ar.result());
         });
@@ -42,6 +44,6 @@ public class App
 /*
 output:
 main: thread END
-vert.x-worker-thread-0: future handler
-vert.x-eventloop-thread-1: AsyncResult=blocking code is executed
+vert.x-worker-thread-0: vertx.executeBlocking() future handler
+vert.x-eventloop-thread-1: vertx.executeBlocking() AsyncResult=blocking code is executed
  */
