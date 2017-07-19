@@ -52,8 +52,7 @@ public class App
             System.out.println(Thread.currentThread().getName() + ": vertx.deployVerticle() handler");
             vertx.undeploy(ar.result(), undeploy -> {
                 System.out.println(Thread.currentThread().getName() + ": vertx.undeploy() handler");
-                // self terminated
-                System.exit(0);
+                vertx.close(); // prefer to use vertx.close() instead of System.exit(0);
             });
         });
     }

@@ -42,8 +42,7 @@ public class App {
     Vertx vertx = Vertx.vertx();
     vertx.deployVerticle(new FirstVerticle(), ar -> {
       vertx.undeploy(ar.result(), undeploy -> {
-        // self terminated
-        System.exit(0);
+        vertx.close(); // prefer to use vertx.close() instead of System.exit(0);
       });
     });
   }
