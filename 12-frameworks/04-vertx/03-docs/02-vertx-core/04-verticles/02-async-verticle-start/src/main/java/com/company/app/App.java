@@ -4,6 +4,10 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 
+/*
+http://vertx.io/docs/vertx-core/java/#_asynchronous_verticle_start_and_stop
+
+ */
 class FirstVerticle extends AbstractVerticle {
 
   @Override

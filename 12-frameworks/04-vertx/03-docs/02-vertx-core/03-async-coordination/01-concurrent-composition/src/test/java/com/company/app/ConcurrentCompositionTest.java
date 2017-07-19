@@ -5,6 +5,8 @@ import io.vertx.core.Future;
 import org.junit.Test;
 
 /*
+http://vertx.io/docs/vertx-core/java/#_writing_verticles
+
 CompositeFuture.all() takes several futures arguments (up to 6) and returns a future that is succeeded
 when all the futures are and failed when at least one of the futures is failed:
  */

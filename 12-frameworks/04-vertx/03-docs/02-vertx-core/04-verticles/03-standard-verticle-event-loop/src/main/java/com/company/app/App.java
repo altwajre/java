@@ -4,6 +4,8 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 
 /*
+http://vertx.io/docs/vertx-core/java/#_standard_verticles
+
 Standard verticles are assigned an event loop thread when they are created and start method is called with that event loop.
 When you call any other methods that takes a handler on a core API from an event loop then Vert.x will guarantee
 that those handlers, when called, will be executed on the same event loop.

@@ -3,6 +3,10 @@ package com.company.app;
 import io.vertx.core.Future;
 import org.junit.Test;
 
+/*
+http://vertx.io/docs/vertx-core/java/#_sequential_composition
+
+ */
 class Tester {
   private Future<Void> task1() {
     Future<Void> future = Future.future();

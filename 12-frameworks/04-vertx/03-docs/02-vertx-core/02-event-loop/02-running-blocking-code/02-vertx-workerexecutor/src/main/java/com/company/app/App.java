@@ -4,6 +4,8 @@ import io.vertx.core.Vertx;
 import io.vertx.core.WorkerExecutor;
 
 /*
+http://vertx.io/docs/vertx-core/java/#blocking_code
+
 When several workers are created with the same name, they will share the same pool. The worker pool is destroyed when all the worker executors using it are closed.
 
 When an executor is created in a Verticle, Vert.x will close it automatically for you when the Verticle is undeployed.
