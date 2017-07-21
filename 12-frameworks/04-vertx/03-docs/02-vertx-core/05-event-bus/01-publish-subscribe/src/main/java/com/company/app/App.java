@@ -42,20 +42,6 @@ class Consumer1Verticle extends AbstractVerticle {
       System.out.println(Thread.currentThread().getName() + ": Consumer1Verticle eventBus.consumer() message=" + message.body());
     });
 
-    MessageConsumer<String> consumer = eventBus.consumer("com.company.msg");
-    consumer.completionHandler(res -> {
-      if (res.succeeded()) {
-        System.out.println(Thread.currentThread().getName() + ": Consumer1Verticle handler registration has reached all nodes");
-      } else {
-        System.out.println("Registration failed!");
-      }
-    });
-
-    // registering handler by using consumer.handler()
-    consumer.handler(message -> {
-      System.out.println(Thread.currentThread().getName() + ": Consumer1Verticle consumer.handler() message=" + message.body());
-    });
-
   }
 }
 
@@ -69,11 +55,7 @@ class Consumer2Verticle extends AbstractVerticle {
 
     EventBus eventBus = vertx.eventBus();
 
-    // registering handler by using eventBus.consumer()
-    eventBus.consumer("com.company.msg", message -> {
-      System.out.println(Thread.currentThread().getName() + ": Consumer2Verticle eventBus.consumer() message=" + message.body());
-    });
-
+    // NOTE: MessageConsumer.completionHandler()
     MessageConsumer<String> consumer = eventBus.consumer("com.company.msg");
     consumer.completionHandler(res -> {
       if (res.succeeded()) {
