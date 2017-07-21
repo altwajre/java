@@ -5,6 +5,17 @@ import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
 
+/*
+Messages are sent to an address. Vert.x will then route it to just one of the handlers registered at that address.
+
+If there is more than one handler registered at the address, one will be chosen using a non-strict round-robin algorithm.
+
+With point to point messaging, an optional reply handler can be specified when sending the message.
+
+When the reply is received back at the sender, it too can be replied to. This can be repeated adinfinitum, and allows a
+dialog to be set-up between two different verticles.
+ */
+
 class Receiver1Verticle extends AbstractVerticle {
 
     // Called when verticle is deployed

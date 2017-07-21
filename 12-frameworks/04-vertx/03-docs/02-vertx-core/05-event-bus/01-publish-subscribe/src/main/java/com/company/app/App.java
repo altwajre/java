@@ -33,13 +33,15 @@ class Consumer1Verticle extends AbstractVerticle {
   @Override
   public void start() {
 
-    System.out.println(Thread.currentThread().getName() + ": Consumer1Verticle.start() is called");
+    System.out.println(Thread.currentThread().getName()
+        + ": Consumer1Verticle.start() is called");
 
     EventBus eventBus = vertx.eventBus();
 
     // registering handler by using eventBus.consumer()
     eventBus.consumer("com.company.msg", message -> {
-      System.out.println(Thread.currentThread().getName() + ": Consumer1Verticle eventBus.consumer() message=" + message.body());
+      System.out.println(Thread.currentThread().getName()
+          + ": Consumer1Verticle eventBus.consumer() message=" + message.body());
     });
 
   }
@@ -51,7 +53,8 @@ class Consumer2Verticle extends AbstractVerticle {
   @Override
   public void start() {
 
-    System.out.println(Thread.currentThread().getName() + ": Consumer2Verticle.start() is called");
+    System.out.println(Thread.currentThread().getName()
+        + ": Consumer2Verticle.start() is called");
 
     EventBus eventBus = vertx.eventBus();
 
@@ -59,7 +62,8 @@ class Consumer2Verticle extends AbstractVerticle {
     MessageConsumer<String> consumer = eventBus.consumer("com.company.msg");
     consumer.completionHandler(res -> {
       if (res.succeeded()) {
-        System.out.println(Thread.currentThread().getName() + ": Consumer2Verticle handler registration has reached all nodes");
+        System.out.println(Thread.currentThread().getName()
+            + ": Consumer2Verticle handler registration has reached all nodes");
       } else {
         System.out.println("Registration failed!");
       }
@@ -67,7 +71,8 @@ class Consumer2Verticle extends AbstractVerticle {
 
     // registering handler by using consumer.handler()
     consumer.handler(message -> {
-      System.out.println(Thread.currentThread().getName() + ": Consumer2Verticle consumer.handler() message=" + message.body());
+      System.out.println(Thread.currentThread().getName()
+          + ": Consumer2Verticle consumer.handler() message=" + message.body());
     });
 
   }
@@ -79,7 +84,8 @@ class PublishVerticle extends AbstractVerticle {
   @Override
   public void start() {
 
-    System.out.println(Thread.currentThread().getName() + ": PublishVerticle.start() is called");
+    System.out.println(Thread.currentThread().getName()
+        + ": PublishVerticle.start() is called");
 
     EventBus eventBus = vertx.eventBus();
 
@@ -94,16 +100,19 @@ public class App {
     Vertx vertx = Vertx.vertx();
 
     vertx.deployVerticle(new Consumer1Verticle(), ar -> {
-      System.out.println(Thread.currentThread().getName() + ": vertx.deployVerticle() Consumer1Verticle handler");
+      System.out.println(Thread.currentThread().getName()
+          + ": vertx.deployVerticle() Consumer1Verticle handler");
     });
 
     vertx.deployVerticle(new Consumer2Verticle(), ar -> {
-      System.out.println(Thread.currentThread().getName() + ": vertx.deployVerticle() Consumer2Verticle handler");
+      System.out.println(Thread.currentThread().getName()
+          + ": vertx.deployVerticle() Consumer2Verticle handler");
     });
 
     vertx.setTimer(800, t -> {
       vertx.deployVerticle(new PublishVerticle(), ar -> {
-        System.out.println(Thread.currentThread().getName() + ": vertx.deployVerticle() PublishVerticle handler");
+        System.out.println(Thread.currentThread().getName()
+            + ": vertx.deployVerticle() PublishVerticle handler");
       });
     });
 
