@@ -5,6 +5,15 @@ import io.vertx.core.Vertx;
 import io.vertx.core.eventbus.DeliveryOptions;
 import io.vertx.core.eventbus.EventBus;
 
+/*
+Send Failures
+
+Message sends can fail for other reasons, including:
+
+There are no handlers available to send the message to
+
+The recipient has explicitly failed the message using fail
+ */
 class Receiver1Verticle extends AbstractVerticle {
 
   // Called when verticle is deployed
