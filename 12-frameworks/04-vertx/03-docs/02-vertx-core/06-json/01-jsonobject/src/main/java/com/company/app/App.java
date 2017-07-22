@@ -7,6 +7,15 @@ import lombok.Data;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+http://vertx.io/docs/vertx-core/java/#_json_objects
+
+The JsonObject class represents JSON objects.
+
+A JSON object is basically just a map which has string keys and values can be of one of the JSON supported types (string, number, boolean).
+
+JSON objects also support null values.
+ */
 @Data
 @AllArgsConstructor
 class User {
