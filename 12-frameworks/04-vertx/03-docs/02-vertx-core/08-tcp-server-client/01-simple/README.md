@@ -8,8 +8,8 @@ Right click `main`, click `run`
 
 > output
 
-vert.x-eventloop-thread-1: Server is listening on 1234
-vert.x-eventloop-thread-1: {
+vert.x-eventloop-thread-2: Server is listening on 1234
+vert.x-eventloop-thread-2: {
   "customer":
   {
     "name": "Tom",
@@ -27,7 +27,10 @@ vert.x-eventloop-thread-1: {
   }
 }
 
-vert.x-eventloop-thread-1: Hello from Client!
+vert.x-eventloop-thread-2: Hello from Client!
+The socket has been closed
+The socket has been closed
+Server is now closed
 
 ## Client
 

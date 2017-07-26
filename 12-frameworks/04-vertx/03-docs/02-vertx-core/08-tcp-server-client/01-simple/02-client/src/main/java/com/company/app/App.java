@@ -3,6 +3,7 @@ package com.company.app;
 import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.net.NetClient;
+import io.vertx.core.net.NetClientOptions;
 import io.vertx.core.net.NetSocket;
 import io.vertx.core.net.SocketAddress;
 
@@ -12,15 +13,17 @@ public class App {
   public static void main(String[] args) {
 
     Vertx vertx = Vertx.vertx();
-    NetClient client = vertx.createNetClient();
 
-    sendString(client);
+    sendString(vertx);
 
-    sendFile(client);
+    sendFile(vertx);
 
   }
 
-  private static void sendFile(NetClient client) {
+  private static void sendFile(Vertx vertx) {
+
+    NetClient client = vertx.createNetClient();
+
     // connect to port and host
     client.connect(1234, "localhost", ar -> {
       if (ar.succeeded()) {
@@ -37,7 +40,13 @@ public class App {
     });
   }
 
-  private static void sendString(NetClient client) {
+  private static void sendString(Vertx vertx) {
+
+    NetClientOptions options = new NetClientOptions()
+        .setReconnectAttempts(10)
+        .setReconnectInterval(500);
+
+    NetClient client = vertx.createNetClient(options);
 
     // connect to port and host
     client.connect(1234, "localhost", ar -> {
