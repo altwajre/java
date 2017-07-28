@@ -1,6 +1,4 @@
-# Web Security
-
-https://www.safaribooksonline.com/library/view/learning-java-ee/9781771371940/video170344.html
+# tomcat
 
 https://tomcat.apache.org/tomcat-7.0-doc/ssl-howto.html
 
