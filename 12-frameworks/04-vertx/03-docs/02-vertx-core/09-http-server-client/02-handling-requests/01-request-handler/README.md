@@ -1,5 +1,24 @@
 # simple server client
 
+The handler() is called every time a chunk of the request body arrives
+
+When request handler is called, the request object does not have the entire request body at this point.
+Because the body may be very large (e.g. a file upload) and we don't generally want to buffer the entire body
+in memory before handing it to you, as that could cause the server to exhaust available memory.
+
+```
+Buffer totalBuffer = Buffer.buffer();
+
+request.handler(buffer -> {
+  System.out.println("I have received a chunk of the body of length " + buffer.length());
+  totalBuffer.appendBuffer(buffer);
+});
+
+request.endHandler(v -> {
+  System.out.println("Full body received, length = " + totalBuffer.length());
+});
+```
+
 ## Server
 
 > Launch

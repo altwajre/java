@@ -16,30 +16,30 @@ public class App {
         .createHttpServer();
 
     server
-        .requestHandler(req -> {
+        .requestHandler(request -> {
 
-          HttpServerResponse response = req.response();
+          HttpServerResponse response = request.response();
 
-          System.out.println("uri: " + req.uri());
-          System.out.println("path: " + req.path());
-          System.out.println("query: " + req.query());
-          MultiMap headers = req.headers();
+          System.out.println("uri: " + request.uri());
+          System.out.println("path: " + request.path());
+          System.out.println("query: " + request.query());
+          MultiMap headers = request.headers();
           System.out.println("Headers: {Host: " + headers.get("HOST") + "}");
-          System.out.println("host: " + req.host());
-          System.out.println("params:\n" + req.params());
-          System.out.println("remoteAddress:" + req.remoteAddress());
-          System.out.println("absoluteURI: " + req.absoluteURI());
+          System.out.println("host: " + request.host());
+          System.out.println("params:\n" + request.params());
+          System.out.println("remoteAddress:" + request.remoteAddress());
+          System.out.println("absoluteURI: " + request.absoluteURI());
 
-          req.endHandler(v -> {
+          request.endHandler(v -> {
             System.out.println(Thread.currentThread().getName() + ": req.endHandler() is called");
           });
 
-          if (req.method() == HttpMethod.GET) {
+          if (request.method() == HttpMethod.GET) {
             response
                 .setChunked(true)
                 .write("Hello from server - GET request");
             response.end();
-          } else if (req.method() == HttpMethod.POST) {
+          } else if (request.method() == HttpMethod.POST) {
 
             /*
             the handler() is called every time a chunk of the request body arrives
@@ -49,7 +49,7 @@ public class App {
             in memory before handing it to you, as that could cause the server to exhaust available memory.
 
              */
-            req.handler(chunk -> {
+            request.handler(chunk -> {
               System.out.println(chunk);
             });
 
