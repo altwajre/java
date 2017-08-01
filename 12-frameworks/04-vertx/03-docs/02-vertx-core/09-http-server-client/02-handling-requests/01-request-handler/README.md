@@ -1,4 +1,4 @@
-# simple server client
+# request handler server client
 
 The handler() is called every time a chunk of the request body arrives
 
