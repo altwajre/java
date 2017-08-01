@@ -9,13 +9,13 @@ Right click `main`, click `run`
 > output
 
 Server listening at 8080
-this-is-chunk-0
-this-is-chunk-1
-this-is-chunk-2
-this-is-chunk-3
-this-is-chunk-4
+Client-Chunk-0
+Client-Chunk-1
+Client-Chunk-2
+Client-Chunk-3
+Client-Chunk-4
 
-vert.x-eventloop-thread-1: req.endHandler() is called
+vert.x-eventloop-thread-1: request.endHandler() is called
 
 ## Client
 
@@ -26,4 +26,9 @@ Right click `main`, click `run`
 > output
 
 StatusCode: 200
-Response body: Hello from server: request.method=POST /requestPost
+Server-Chunk-0
+Server-Chunk-1
+Server-Chunk-2
+Server-Chunk-3
+Server-Chunk-4
+vert.x-eventloop-thread-0: response.endhandler() is called

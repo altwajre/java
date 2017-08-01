@@ -15,19 +15,23 @@ public class App {
     HttpClientRequest request = client.request(HttpMethod.POST,
         8080,
         "localhost",
-        "/requestPost",
-        response -> {
-          System.out.println("StatusCode: " + response.statusCode());
-          response.bodyHandler(body -> {
-            System.out.println("Response body: " + body.toString());
-          });
-        });
+        "/requestPost");
+
+    request.handler(response -> {
+      System.out.println("StatusCode: " + response.statusCode());
+      response.endHandler(v -> {
+        System.out.println(Thread.currentThread().getName() + ": response.endhandler() is called");
+      });
+      response.handler(chunk -> {
+        System.out.println(chunk);
+      });
+    });
 
     request.setChunked(true);
 
     // Write some chunks
     for (int i = 0; i < 5; i++) {
-      request.write("this-is-chunk-" + i + "\n");
+      request.write("Client-Chunk-" + i + "\n");
     }
 
     request.end();
