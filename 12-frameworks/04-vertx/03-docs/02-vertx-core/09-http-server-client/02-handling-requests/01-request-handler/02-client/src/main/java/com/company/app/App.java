@@ -23,32 +23,24 @@ public class App {
   }
 
   private static void requestPost(HttpClient client) {
-    HttpClientRequest req = client.request(HttpMethod.POST, 8080, "localhost", "/requestPost", resp -> {
-      System.out.println("statusCode: " + resp.statusCode());
-      resp.bodyHandler(body -> {
+    HttpClientRequest request = client.request(HttpMethod.POST, 8080, "localhost", "/requestPost", response -> {
+      System.out.println("statusCode: " + response.statusCode());
+      response.bodyHandler(body -> {
         System.out.println("Response body: " + body.toString());
       });
     });
 
-    req.setChunked(true);
-
-    /*
-    BUG:
-    1. both req.write() calls just send data as once instead of sending separately twice
-    2. Content-Length does not work because `Benny` is sent to server
-
-     */
-    req.headers().set("Content-Length", String.valueOf(3));
+    request.setChunked(true);
 
     String names[] = {"Tom", "Benny"};
 
     for (int i = 0; i < 2; i++) {
-      Buffer buffer = Buffer.buffer(names[i]);
-      System.out.println(buffer);
-      req.write(buffer);
+      String name = names[i];
+      System.out.println(name);
+      request.write(name + "\n");
     }
 
-    req.end();
+    request.end();
   }
 
   private static void post(HttpClient client) {

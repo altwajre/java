@@ -60,7 +60,8 @@ params:
 
 remoteAddress:127.0.0.1:51213
 absoluteURI: http://localhost:8080/requestPost
-TomBenny
+Tom
+Benny
 vert.x-eventloop-thread-1: req.endHandler() is called
 
 ## Client
