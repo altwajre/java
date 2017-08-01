@@ -53,10 +53,6 @@ public class App {
               System.out.println(chunk);
             });
 
-//            req.bodyHandler(postData -> {
-//              System.out.println(postData);
-//            });
-
             response
                 .setChunked(true)
                 .write("Hello from server - POST request")

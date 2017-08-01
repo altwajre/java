@@ -1,4 +1,4 @@
-# send back responses server client
+# send back string and file responses server client
 
 ## Server
 
