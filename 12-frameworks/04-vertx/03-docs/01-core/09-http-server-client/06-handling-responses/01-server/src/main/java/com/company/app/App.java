@@ -1,6 +1,7 @@
 package com.company.app;
 
 import io.vertx.core.Vertx;
+import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerResponse;
 
@@ -17,14 +18,15 @@ public class App {
 
           HttpServerResponse response = request.response();
 
-          request.bodyHandler(postData -> {
-            System.out.println(Thread.currentThread().getName() + ": request.bodyHandler()=" + postData);
-          });
+          if (request.method() == HttpMethod.POST) {
+            request.bodyHandler(postData -> {
+              System.out.println(Thread.currentThread().getName() + ": request.bodyHandler()=" + postData);
+            });
+          }
 
           response
-              .setChunked(true)
-              .write("Hello from server - " + request.method())
-              .end();
+              .putHeader("content-type", "text/html")
+              .end("Hello from server - " + request.method());
         })
         // port and host
         .listen(8080, "localhost", ar -> {
