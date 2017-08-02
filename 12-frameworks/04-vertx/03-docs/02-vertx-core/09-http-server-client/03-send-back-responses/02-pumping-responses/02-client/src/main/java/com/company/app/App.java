@@ -15,9 +15,9 @@ public class App {
     client
         .post(8080, "localhost", "/post")
         .putHeader(HttpHeaders.CONTENT_LENGTH, postDataLen)
-        .handler(resp -> {
-          System.out.println("statusCode: " + resp.statusCode());
-          resp.bodyHandler(body -> {
+        .handler(response -> {
+          System.out.println("statusCode: " + response.statusCode());
+          response.bodyHandler(body -> {
             System.out.println("Response body: " + body.toString());
           });
         })
