@@ -16,7 +16,7 @@ class Customer {
 
 interface Worker {
     @Fluent
-    void doWork(Handler<AsyncResult<Customer>> callback);
+    Future<Customer> doWork(Handler<AsyncResult<Customer>> callback);
 }
 
 @Data
@@ -25,12 +25,14 @@ class Salesman implements Worker {
     private Customer customer;
 
     @Override
-    public void doWork(Handler<AsyncResult<Customer>> callback) {
+    public Future<Customer> doWork(Handler<AsyncResult<Customer>> callback) {
         Future<Customer> future = Future.future();
 
         // customer is AsyncResult
         future.complete(customer);
         callback.handle(future);
+
+        return future;
     }
 }
 
@@ -43,17 +45,22 @@ public class App
     public static void main( String[] args )
     {
         Salesman salesman = new Salesman(new Customer("Tom", 28));
-        salesman.doWork(ar -> {
-            System.out.println(ar);
-            System.out.println(ar.result());
-            System.out.println("hello from doWork() lambda");
+        Future<Customer> customerFuture = salesman.doWork(ar -> {
+
+            String threadName = Thread.currentThread().getName();
+            System.out.println(threadName + ": " + ar);
+            System.out.println(threadName + ": " + ar.result());
+
         });
+
+        Customer customer = customerFuture.result();
+        System.out.println(Thread.currentThread().getName() + ": Future.result()=" + customer);
 
     }
 }
 /*
 output:
-Future{result=Customer(name=Tom, age=28)}
-Customer(name=Tom, age=28)
-hello from doWork() lambda
+main: Future{result=Customer(name=Tom, age=28)}
+main: Customer(name=Tom, age=28)
+main: Future.result()=Customer(name=Tom, age=28)
  */
