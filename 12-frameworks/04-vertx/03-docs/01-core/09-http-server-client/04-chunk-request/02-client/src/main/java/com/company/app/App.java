@@ -30,7 +30,7 @@ public class App {
     request.setChunked(true);
 
     // Write some chunks
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 3; i++) {
       request.write("Client-Chunk-" + i + "\n");
     }
 

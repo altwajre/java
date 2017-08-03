@@ -1,4 +1,4 @@
-# simple server client
+# chunk request server client
 
 ## Server
 

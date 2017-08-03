@@ -1,5 +1,6 @@
 package com.company.app;
 
+import io.vertx.core.MultiMap;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
@@ -16,6 +17,11 @@ public class App {
     server
         .requestHandler(request -> {
 
+          System.out.println("uri: " + request.uri());
+          MultiMap headers = request.headers();
+          System.out.println("Headers:");
+          System.out.println("content-type: " + headers.get("content-type"));
+
           if (request.method() == HttpMethod.POST) {
 
             request.endHandler(v -> {
@@ -25,7 +31,7 @@ public class App {
           }
 
           request.handler(chunk -> {
-            System.out.println(chunk);
+            System.out.println(Thread.currentThread().getName() + ": chunk=" + chunk);
           });
 
           HttpServerResponse response = request.response();
@@ -38,7 +44,6 @@ public class App {
           }
 
           response.end();
-
         })
         // port and host
         .listen(8080, "localhost", ar -> {
@@ -49,6 +54,5 @@ public class App {
             System.out.println("Failed to bind!");
           }
         });
-
   }
 }

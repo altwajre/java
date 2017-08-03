@@ -1,8 +1,12 @@
 # github examples
 
-> Vert.x
+> Vert.x Core
 
 https://github.com/eclipse/vert.x
+
+> Vert.x-Web
+
+https://github.com/vert-x3/vertx-web
 
 > Vert.x examples
 
