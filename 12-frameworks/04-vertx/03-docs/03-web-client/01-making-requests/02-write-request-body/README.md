@@ -1,4 +1,6 @@
-# writing request bodies - server client
+# Writing request bodies - server client
+
+http://vertx.io/docs/vertx-web-client/java/#_writing_request_bodies
 
 ## Server
 

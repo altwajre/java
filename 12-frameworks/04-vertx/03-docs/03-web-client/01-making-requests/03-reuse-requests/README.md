@@ -1,4 +1,6 @@
-# reuse requests - server client
+# Reusing Requests - server client
+
+http://vertx.io/docs/vertx-web-client/java/#_reusing_requests
 
 ## Server
 

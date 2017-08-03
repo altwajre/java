@@ -1,4 +1,6 @@
-# web client simple
+# Simple requests - server client
+
+http://vertx.io/docs/vertx-web-client/java/#_simple_requests_with_no_body
 
 ## Server
 
