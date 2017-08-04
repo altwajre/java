@@ -39,6 +39,7 @@ public class WhiskyVerticleTest {
     // We create deployment options and set the _configuration_ json object:
     ServerSocket socket = new ServerSocket(0);
     port = socket.getLocalPort();
+    System.out.println(port);
     socket.close();
 
     DeploymentOptions options = new DeploymentOptions()
