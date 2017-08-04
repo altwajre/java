@@ -1,5 +1,6 @@
 package com.company.app;
 
+import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServer;
@@ -13,13 +14,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-/*
-GOOD: use @RunWith(VertxUnitRunner.class)
- */
-
 @RunWith(VertxUnitRunner.class)
-public class VertxUnitTest {
-
+public class AsyncAssertSuccessTest {
   String expected = "Hello from server";
 
   private Vertx vertx;
@@ -36,6 +32,33 @@ public class VertxUnitTest {
     System.out.println("#Before: host=" + host);
 
     vertx = Vertx.vertx();
+
+    vertx.deployVerticle(new AbstractVerticle() {
+      @Override
+      public void start() throws Exception {
+        vertx
+            .createHttpServer()
+            .requestHandler(request -> {
+              request
+                  .response()
+                  .end(expected);
+            })
+/*
+The asyncAssertSuccess method returns an Handler<AsyncResult<T>> instance that acts like Async,
+resolving the Async on success and failing the test on failure with the failure cause.
+ */
+            .listen(8080, host);
+      }
+    }, context.asyncAssertSuccess());
+
+//    createServer(context);
+  }
+
+  private void createServer(TestContext context) {
+    String host = context.get("host");
+    System.out.println("#Before: host=" + host);
+
+    vertx = Vertx.vertx();
     HttpServer server = vertx.createHttpServer();
     server
         .requestHandler(request -> {
@@ -43,12 +66,11 @@ public class VertxUnitTest {
               .response()
               .end(expected);
         })
-        // port and host
         .listen(8080, host, context.asyncAssertSuccess());
   }
 
   @Test
-  public void webClientCallServer(TestContext context) {
+  public void webClentCallServer(TestContext context) {
 
     String host = context.get("host");
     System.out.println("#Test: host=" + host);

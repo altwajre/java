@@ -1,8 +1,8 @@
 package com.company.app;
 
+import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
-import io.vertx.core.http.HttpServer;
 import io.vertx.ext.unit.Async;
 import io.vertx.ext.unit.TestContext;
 import io.vertx.ext.unit.junit.VertxUnitRunner;
@@ -13,13 +13,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-/*
-GOOD: use @RunWith(VertxUnitRunner.class)
- */
-
 @RunWith(VertxUnitRunner.class)
-public class VertxUnitTest {
-
+public class AsyncAssertSuccessCallbackTest {
   String expected = "Hello from server";
 
   private Vertx vertx;
@@ -36,19 +31,20 @@ public class VertxUnitTest {
     System.out.println("#Before: host=" + host);
 
     vertx = Vertx.vertx();
-    HttpServer server = vertx.createHttpServer();
-    server
-        .requestHandler(request -> {
-          request
-              .response()
-              .end(expected);
-        })
-        // port and host
-        .listen(8080, host, context.asyncAssertSuccess());
+
+    vertx.deployVerticle(HelloVerticle.class.getName(),
+/*
+The asyncAssertSuccess method returns an Handler<AsyncResult<T>> instance that acts like Async,
+invoking the delegating Handler<T> on success and failing the test on failure with the failure cause.
+ */
+        context.asyncAssertSuccess(v -> {
+          System.out.println("asyncAssertSuccess callback is called");
+        }));
+
   }
 
   @Test
-  public void webClientCallServer(TestContext context) {
+  public void webClientCallHelloVerticle(TestContext context) {
 
     String host = context.get("host");
     System.out.println("#Test: host=" + host);
@@ -80,6 +76,7 @@ public class VertxUnitTest {
 }
 /*
 #Before: host=localhost
+asyncAssertSuccess callback is called
 #Test: host=localhost
 body: Hello from server
  */
