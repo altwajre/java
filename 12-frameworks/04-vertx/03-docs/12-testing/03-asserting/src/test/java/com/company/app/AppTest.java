@@ -11,7 +11,7 @@ public class AppTest {
   @Test
   public void runTest() {
 
-//    Assert.assertEquals("", "");
+//    Assert.assertEquals("expected", "actual");
     TestSuite suite = TestSuite.create("the_test_suite");
 
     suite.test("assertEquals", testContext -> {

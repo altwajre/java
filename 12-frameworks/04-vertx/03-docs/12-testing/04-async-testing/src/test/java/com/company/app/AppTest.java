@@ -1,12 +1,15 @@
 package com.company.app;
 
 import io.vertx.core.Vertx;
+import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpClient;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.unit.Async;
 import io.vertx.ext.unit.TestOptions;
 import io.vertx.ext.unit.TestSuite;
 import io.vertx.ext.unit.report.ReportOptions;
+import io.vertx.ext.web.client.HttpResponse;
+import io.vertx.ext.web.client.WebClient;
 import org.junit.Test;
 
 /*
@@ -130,11 +133,10 @@ End test suite waitVertxTimerCompletedTest , run: 1, Failures: 0, Errors: 0
             }
           });
 
-      async.awaitSuccess();
+      async.awaitSuccess(1800);
 
     }).test("Vertx Client calls Server", context -> {
 
-      String actual = "Hello from server";
       Async async = context.async();
 
       Vertx vertx = Vertx.vertx();
@@ -144,13 +146,15 @@ End test suite waitVertxTimerCompletedTest , run: 1, Failures: 0, Errors: 0
       client.getNow(8080, "localhost", "/", response -> {
         System.out.println("StatusCode: " + response.statusCode());
         response.bodyHandler(body -> {
-          System.out.println("Response body: " + body.toString());
+          String actual = body.toString();
+          System.out.println(actual);
+
+          context.assertEquals(expected, actual);
           async.complete();
         });
       });
 
-      async.awaitSuccess();
-      context.assertEquals(expected, actual);
+      async.awaitSuccess(1800);
 
     }).after(context -> {
       System.out.println("#after");
@@ -170,7 +174,90 @@ Passed Vertx Client calls Server
 End test suite waitVertxServerStartedInBeforeTest , run: 1, Failures: 0, Errors: 0
  */
 
+  @Test
+  public void webClientCallServerTest() {
+
+    String expected = "Hello from server";
+
+    TestSuite suite = TestSuite.create("webClientCallServerTest");
+
+    suite.before(context -> {
+
+      System.out.println("#before");
+
+      Async async = context.async();
+
+      Vertx vertx = Vertx
+          .vertx();
+
+      HttpServer server = vertx.createHttpServer();
+
+      server
+          .requestHandler(request -> {
+            request
+                .response()
+                .end(expected);
+          })
+          // port and host
+          .listen(8080, "localhost", ar -> {
+            if (ar.succeeded()) {
+              HttpServer result = ar.result();
+              System.out.println("Server listening at " + result.actualPort());
+
+              async.complete();
+
+            } else {
+              System.out.println("Failed to bind!");
+            }
+          });
+
+      async.awaitSuccess(1800);
+
+    }).test("Vertx Client calls Server", context -> {
+
+      Async async = context.async();
+
+      Vertx vertx = Vertx.vertx();
+
+      WebClient client = WebClient.create(vertx);
+
+      client
+          .get(8080, "localhost", "/")
+          .send(ar -> {
+            if (ar.succeeded()) {
+              HttpResponse<Buffer> response = ar.result();
+
+              context.assertEquals(200, response.statusCode());
+
+              String actual = response.body().toString();
+              context.assertEquals(expected, actual);
+
+              async.complete();
+            } else {
+
+              context.fail(ar.cause());
+            }
+          });
+
+      async.awaitSuccess(1800);
+
+    }).after(context -> {
+      System.out.println("#after");
+    });
+
+    suite.run(new TestOptions().addReporter(new ReportOptions().setTo("console")));
+  }
 /*
+Begin test suite webClientCallServerTest
+#before
+Server listening at 8080
+Begin test Vertx Client calls Server
+Passed Vertx Client calls Server
+#after
+End test suite webClientCallServerTest , run: 1, Failures: 0, Errors: 0
+ */
+
+  /*
 Async can also be created with an initial count value, it completes when the count-down reaches zero using countDown:
 
 Wait until the complete count-down reaches zero
@@ -206,7 +293,7 @@ Calling complete() on an async completes the async as usual, it actually sets th
       });
 
       // Wait until completion of the timer and the http request
-      async.awaitSuccess();
+      async.awaitSuccess(1800);
     });
 
     suite.run(new TestOptions().addReporter(new ReportOptions().setTo("console")));

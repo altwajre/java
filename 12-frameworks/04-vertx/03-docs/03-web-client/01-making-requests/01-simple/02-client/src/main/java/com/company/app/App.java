@@ -18,21 +18,6 @@ public class App {
 
   }
 
-  private static void headRequest(WebClient client) {
-    // Send a HEAD request
-    client
-        .head(8080, "localhost", "/clienthead/b/c/page.html?param1=abc&param2=xyz")
-        .send(ar -> {
-          String threadName = Thread.currentThread().getName();
-          if (ar.succeeded()) {
-            HttpResponse<Buffer> response = ar.result();
-            System.out.println(threadName + ": StatusCode=" + response.statusCode());
-          } else {
-            System.out.println(threadName + ": Error=" + ar.cause());
-          }
-        });
-  }
-
   private static void getRequest(WebClient client) {
     // Send a GET request
     client
@@ -46,9 +31,27 @@ public class App {
           if (ar.succeeded()) {
             HttpResponse<Buffer> response = ar.result();
             System.out.println(threadName + ": StatusCode=" + response.statusCode());
+            System.out.println(threadName + ": " + response.body());
           } else {
             System.out.println(threadName + ": Error=" + ar.cause());
           }
         });
   }
+
+  private static void headRequest(WebClient client) {
+    // Send a HEAD request
+    client
+        .head(8080, "localhost", "/clienthead/b/c/page.html?param1=abc&param2=xyz")
+        .send(ar -> {
+          String threadName = Thread.currentThread().getName();
+          if (ar.succeeded()) {
+            HttpResponse<Buffer> response = ar.result();
+            System.out.println(threadName + ": StatusCode=" + response.statusCode());
+            System.out.println(threadName + ": " + response.body());
+          } else {
+            System.out.println(threadName + ": Error=" + ar.cause());
+          }
+        });
+  }
+
 }

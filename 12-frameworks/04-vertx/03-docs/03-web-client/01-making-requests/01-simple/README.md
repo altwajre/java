@@ -52,7 +52,9 @@ Right click `main`, click `run`
 
 ```
 vert.x-eventloop-thread-1: StatusCode=200
+vert.x-eventloop-thread-1: null
 vert.x-eventloop-thread-0: StatusCode=200
+vert.x-eventloop-thread-0: Hello from server - GET
 ```
 
 ## WebClient.wrap HttpClient
