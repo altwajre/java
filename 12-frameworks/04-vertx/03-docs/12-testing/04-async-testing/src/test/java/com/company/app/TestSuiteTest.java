@@ -27,7 +27,7 @@ Several Async objects can be created during the same test case, all of them must
 It is possible to wait until the completion of a specific Async, similar to Java’s count-down latch:
 WARNING: async.awaitSuccess() should not be executed from the event loop!
  */
-public class AppTest {
+public class TestSuiteTest {
 
   @Test
   public void waitThreadCompletedTest() {

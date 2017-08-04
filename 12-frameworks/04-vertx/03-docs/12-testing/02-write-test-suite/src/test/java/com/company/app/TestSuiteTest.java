@@ -12,7 +12,7 @@ The test cases declaration order is not guaranteed, so test cases should not rel
 test case to run. Such practice is considered as a bad one.
 
  */
-public class AppTest {
+public class TestSuiteTest {
 
   @Test
   public void runTest() {
@@ -41,7 +41,11 @@ public class AppTest {
       testContext.assertEquals(expected, actual);
     });
 
-    suite.run(new TestOptions().addReporter(new ReportOptions().setTo("console")));
+    suite.run(
+        new TestOptions()
+            .addReporter(
+                new ReportOptions()
+                    .setTo("console")));
   }
 /*
 Begin test suite the_test_suite
