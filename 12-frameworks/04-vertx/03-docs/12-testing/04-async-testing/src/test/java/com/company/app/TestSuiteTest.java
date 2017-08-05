@@ -13,19 +13,11 @@ import io.vertx.ext.web.client.WebClient;
 import org.junit.Test;
 
 /*
-1. The callback exits but the test case is not terminated
+DO NOT do following.
 
-2. The event callback from the bus terminates the test
+Do NOT put `TestSuite` into junit
 
-Creating an Async object with the async method marks the executed test case as non terminated. The test case terminates
-when the complete method is invoked.
-
-NOTE: When the complete callback is not invoked, the test case fails after a certain timeout.
-
-Several Async objects can be created during the same test case, all of them must be completed to terminate the test.
-
-It is possible to wait until the completion of a specific Async, similar to Java’s count-down latch:
-WARNING: async.awaitSuccess() should not be executed from the event loop!
+Use Junit integration RunWith(VertxUnitRunner.class) for junit
  */
 public class TestSuiteTest {
 
