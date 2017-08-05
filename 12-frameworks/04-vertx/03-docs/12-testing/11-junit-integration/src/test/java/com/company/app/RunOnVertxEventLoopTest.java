@@ -8,10 +8,7 @@ import io.vertx.ext.unit.junit.RunTestOnContext;
 import io.vertx.ext.unit.junit.VertxUnitRunner;
 import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 
 /*
@@ -68,9 +65,17 @@ public class RunOnVertxEventLoopTest {
 
     vertx = rule.vertx();
 
+    // Register the context exception handler
+    vertx.exceptionHandler(context.exceptionHandler());
+
     vertx.deployVerticle(HelloVerticle.class.getName(),
         context.asyncAssertSuccess());
 
+  }
+
+  @After
+  public void after(TestContext context) {
+    vertx.close(context.asyncAssertSuccess());
   }
 
   @Test

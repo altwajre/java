@@ -9,10 +9,7 @@ import io.vertx.ext.unit.junit.RepeatRule;
 import io.vertx.ext.unit.junit.VertxUnitRunner;
 import io.vertx.ext.web.client.HttpResponse;
 import io.vertx.ext.web.client.WebClient;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 
 /*
@@ -42,8 +39,8 @@ test repetition are executed sequentially
  */
 @RunWith(VertxUnitRunner.class)
 public class RepeatingTest {
+
   private String expected = "Hello from server";
-  private boolean isDeployed = false;
 
   private Vertx vertx;
 
@@ -61,14 +58,19 @@ public class RepeatingTest {
     String host = context.get("host");
     System.out.println(Thread.currentThread().getName() + ": Before - host=" + host);
 
-    if(!isDeployed){
-      vertx = Vertx.vertx();
+    vertx = Vertx.vertx();
 
-      vertx.deployVerticle(HelloVerticle.class.getName(),
-          context.asyncAssertSuccess());
-      isDeployed = true;
-    }
+    // Register the context exception handler
+    vertx.exceptionHandler(context.exceptionHandler());
 
+    vertx.deployVerticle(HelloVerticle.class.getName(),
+        context.asyncAssertSuccess());
+
+  }
+
+  @After
+  public void after(TestContext context) {
+    vertx.close(context.asyncAssertSuccess());
   }
 
   @Repeat(3)
@@ -111,9 +113,9 @@ vert.x-eventloop-thread-2: send() callback - body=Hello from server
 *** Iteration 2/3 of test webClientCallHelloVerticle(com.company.app.RepeatingTest)
 main: Before - host=localhost
 main: Test - host=localhost
-vert.x-eventloop-thread-3: send() callback - body=Hello from server
+vert.x-eventloop-thread-2: send() callback - body=Hello from server
 *** Iteration 3/3 of test webClientCallHelloVerticle(com.company.app.RepeatingTest)
 main: Before - host=localhost
 main: Test - host=localhost
-vert.x-eventloop-thread-4: send() callback - body=Hello from server
+vert.x-eventloop-thread-2: send() callback - body=Hello from server
  */

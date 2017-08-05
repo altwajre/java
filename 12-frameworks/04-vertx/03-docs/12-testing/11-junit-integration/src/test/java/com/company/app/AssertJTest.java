@@ -1,5 +1,6 @@
 package com.company.app;
 
+import io.vertx.core.Handler;
 import io.vertx.core.Vertx;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.ext.unit.Async;
@@ -13,8 +14,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 @RunWith(VertxUnitRunner.class)
-public class RunOnJunitThreadTest {
+public class AssertJTest {
   String expected = "Hello from server";
 
   private Vertx vertx;
@@ -26,9 +32,6 @@ public class RunOnJunitThreadTest {
 
   @Before
   public void setUp(TestContext context) {
-
-    String host = context.get("host");
-    System.out.println(Thread.currentThread().getName() + ": Before - host=" + host);
 
     vertx = Vertx.vertx();
 
@@ -61,7 +64,8 @@ public class RunOnJunitThreadTest {
           if (ar.succeeded()) {
             HttpResponse<Buffer> response = ar.result();
 
-            context.assertEquals(200, response.statusCode());
+//            context.assertEquals(200, response.statusCode());
+            assertThat(response.statusCode()).isEqualTo(200);
 
             String body = response.body().toString();
             System.out.println(Thread.currentThread().getName() + ": send() callback - body=" + body);
@@ -74,10 +78,28 @@ public class RunOnJunitThreadTest {
           }
         });
   }
-
-}
 /*
-main: Before - host=localhost
 main: Test - host=localhost
 vert.x-eventloop-thread-2: send() callback - body=Hello from server
  */
+
+  @Test
+  public void testAsyncOperation(TestContext context) {
+
+    Async async = context.async();
+
+    getSomeItems(list -> {
+      System.out.println(list);
+      assertThat(list).contains("Tom", "Dick");
+      async.complete();
+    });
+
+  }
+/*
+[Tom, Dick, Harry]
+ */
+
+  private void getSomeItems(Handler<List<String>> handler) {
+    vertx.setTimer(800, l -> handler.handle(Arrays.asList("Tom", "Dick", "Harry")));
+  }
+}

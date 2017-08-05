@@ -43,6 +43,7 @@ java.util.concurrent.TimeoutException
       // This handler will get called once after a specified delay
       System.out.println(Thread.currentThread().getName() + ": Timer fired");
 
+      vertx.close();
       async.complete();
     });
   }
