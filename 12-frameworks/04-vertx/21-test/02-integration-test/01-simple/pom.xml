@@ -3,17 +3,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.company.app</groupId>
-  <artifactId>use-port-var-in-other-plugin</artifactId>
+  <artifactId>simple</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>simple</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
   <build>
-    <testResources>
-      <testResource>
-        <directory>src/test/resources</directory>
-        <filtering>true</filtering>
-      </testResource>
-    </testResources>
-
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -22,26 +23,6 @@
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>1.9.1</version>
-        <executions>
-          <execution>
-            <id>reserve-network-port</id>
-            <goals>
-              <goal>reserve-network-port</goal>
-            </goals>
-            <phase>process-sources</phase>
-            <configuration>
-              <portNames>
-                <portName>http.port</portName>
-              </portNames>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
 
       <!-- Configure the integration-test plugin and pass the 'http.port' as system property -->
@@ -55,26 +36,12 @@
               <goal>integration-test</goal>
               <goal>verify</goal>
             </goals>
-            <configuration>
-              <systemProperties>
-                <http.port>${http.port}</http.port>
-              </systemProperties>
-            </configuration>
           </execution>
         </executions>
       </plugin>
 
     </plugins>
   </build>
-
-  <packaging>jar</packaging>
-
-  <name>use-port-var-in-other-plugin</name>
-  <url>http://maven.apache.org</url>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
 
   <dependencies>
     <dependency>
@@ -83,4 +50,5 @@
       <version>4.12</version>
     </dependency>
   </dependencies>
+
 </project>
