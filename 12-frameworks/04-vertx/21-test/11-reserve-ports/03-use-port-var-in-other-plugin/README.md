@@ -13,11 +13,27 @@ Click `Maven Projects` on the right border, expand Lifecycle, click `verify` to 
 
 > Result
 
+Unit Test
+
 ```
 Running com.company.app.unit.AssignPortToVariableTest
 unit: port=56899
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.044 sec
+```
 
+Generated config
+
+`target/test-classes/config.json`
+
+```
+{
+  "http.port": 56892
+}
+```
+
+Integration Test
+
+```
 Running com.company.app.integration.UsePortVariableInOtherPluginIT
 integration: port=56892
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec - in com.company.app.integration.UsePortVariableInOtherPluginIT
