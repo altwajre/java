@@ -5,7 +5,7 @@ import org.junit.Test;
 public class UsePortVariableInOtherPluginIT {
 
   @Test
-  public void bar() {
+  public void testIntegration() {
     Integer port = Integer.getInteger("http.port", 8080);
     System.out.println("integration: port="+port);
 

@@ -25,7 +25,6 @@
         </configuration>
       </plugin>
 
-      <!-- Configure the integration-test plugin and pass the 'http.port' as system property -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-failsafe-plugin</artifactId>

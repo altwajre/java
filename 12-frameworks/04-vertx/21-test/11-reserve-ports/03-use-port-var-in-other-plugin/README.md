@@ -1,9 +1,92 @@
 # Use picked port variable in other plugin
 
-Use the `build-helper-maven-plugin` to pick up a free port.
+> http.port
+
+1. Use the `build-helper-maven-plugin` to pick up a free port.
 Once found, the plugin assigns the picked port to the `http.port` variable.
-This plugin is executed early in the build (during the process-sources phase), 
-so the http.port variable can be used in the other plugin.
+
+```
+  <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>build-helper-maven-plugin</artifactId>
+    <version>1.9.1</version>
+    <executions>
+      <execution>
+        <id>reserve-network-port</id>
+        <goals>
+          <goal>reserve-network-port</goal>
+        </goals>
+        <phase>process-sources</phase>
+        <configuration>
+          <portNames>
+            <portName>http.port</portName>
+          </portNames>
+        </configuration>
+      </execution>
+    </executions>
+  </plugin>
+```
+
+2. This plugin is executed early in the build (during the process-sources phase), 
+so the `http.port` variable is assigned to `${http.port}` as `system property` in the other plugin.
+
+```
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-failsafe-plugin</artifactId>
+    <version>2.18.1</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>integration-test</goal>
+          <goal>verify</goal>
+        </goals>
+        <configuration>
+          <systemProperties>
+            <http.port>${http.port}</http.port>
+          </systemProperties>
+        </configuration>
+      </execution>
+    </executions>
+  </plugin>
+```
+
+3. Integration test can use the `system property` `http.port`
+
+```
+  @Test
+  public void testIntegration() {
+    Integer port = Integer.getInteger("http.port", 8080);
+    System.out.println("integration: port="+port);
+
+    String portProperty = System.getProperty("http.port");
+    System.out.println("System.getProperty('http.port')=" + portProperty);
+  }
+```
+
+> config.json
+
+pom.xml
+
+```
+<testResources>
+  <testResource>
+    <directory>src/test/resources</directory>
+    <filtering>true</filtering>
+  </testResource>
+</testResources>
+```
+
+Instructs Maven to filter resources from the src/test/resources directory. 
+Filter means replacing placeholders by actual values. 
+That’s exactly what we need as we now have the http.port variable. 
+So create the src/test/resources/config.json file with the following content:
+
+```
+{
+  "http.port": ${http.port}
+}
+```
 
 ## Intellij 
 

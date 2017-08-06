@@ -1,5 +1,25 @@
 # simple
 
+maven-failsafe-plugin
+
+> pom.xml
+
+```
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.18.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+```
+
 ## Intellij
 
 > Test Run
