@@ -1,5 +1,11 @@
 # Lifecycle
 
+> `clean` phases
+
+`mvn clean`
+
+> View phases
+
 - `$ mvn help:describe -Dcmd=clean` - want to see `clean` phases
 
 ```
@@ -42,3 +48,7 @@ It is a part of the lifecycle for the POM packaging 'jar'. This lifecycle includ
 * install: org.apache.maven.plugins:maven-install-plugin:2.4:install
 * deploy: org.apache.maven.plugins:maven-deploy-plugin:2.7:deploy
 ```
+
+## Intellij
+
+Click `Maven Projects` on the right border, expand Lifecycle, click `verify` to run integration tests after unit tests

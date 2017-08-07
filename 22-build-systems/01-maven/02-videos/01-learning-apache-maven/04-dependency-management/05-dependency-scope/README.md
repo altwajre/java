@@ -1,5 +1,7 @@
 # Dependency Scope
 
+debug option: `mvn -X`
+
 - `$ mvn -X compile` - junit jar is not included
 
 - `$ mvn -X test` - junit jar is included
