@@ -3,14 +3,13 @@ package com.company.app;
 public class App {
   public static void main(String[] args) {
 
-    System.out.println("# set/get property");
-    System.setProperty("com.company.version", "0.0.1");
-    System.out.println(System.getProperty("com.company.version"));
-    System.out.println("");
+    System.out.println("# user.dir: " + System.getProperty("user.dir") + "\n");
+    System.out.println("# os.name: " + System.getProperty("os.name") + "\n");
 
-    System.out.println("# get path.separator");
-    System.out.println(System.getProperty("path.separator"));
-    System.out.println("");
+    System.setProperty("com.company.version", "0.0.1");
+    System.out.println("# com.company.version: " + System.getProperty("com.company.version") + "\n");
+
+    System.out.println("# path.separator: " + System.getProperty("path.separator") + "\n");
 
     System.out.println("# get System.out");
     System.getProperties().list(System.out);
@@ -18,11 +17,14 @@ public class App {
   }
 }
 /*
-# set/get property
-0.0.1
+# user.dir: /Users/whan/Desktop/java/06-config/02-system-property
 
-# get path.separator
-:
+# os.name: Mac OS X
+
+# com.company.version: 0.0.1
+
+# path.separator: :
+
 
 # get System.out
 -- listing properties --
