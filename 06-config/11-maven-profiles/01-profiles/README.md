@@ -1,5 +1,13 @@
 # profiles
 
+http://maven.apache.org/guides/introduction/introduction-to-profiles.html
+
+https://www.safaribooksonline.com/library/view/learning-apache-maven/9781771373661/video212501.html
+
+> youtube
+
+https://www.youtube.com/watch?v=j3gEgh44iQQ
+
 ## basic
 
 > pom.xml
@@ -60,18 +68,10 @@ jar file is deployed to `06-profiles/artifact/production`
   </profiles>
 ```
 
-> set environment variable
-
-ISSUE: set env as below does NOT work.
+> build with activation `-DTEST_ENV=prod` - production
 
 ```
-`export TEST_ENV=prod`
-```
-
-> build - production
-
-```
-$ mvn package
+$ mvn -DTEST_ENV=prod package
 ```
 
 jar file is deployed to `06-profiles/artifact/production`

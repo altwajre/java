@@ -1,4 +1,4 @@
-# Files to ignore
+# Files/Folders to ignore
 **/.idea
 **/.vscode
 **/.css
@@ -17,6 +17,7 @@
 **/bin/
 **/obj/
 **/db/
+**/artifact/
 **/temp.txt
 
 # Java
