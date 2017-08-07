@@ -1,19 +1,7 @@
-# Lifecycle
-
-> `clean` phases
-
-`mvn clean`
-
-## View phases
-
-> View `clean` phase - `$ mvn help:describe -Dcmd=clean`
+# phases
 
 ```
-[INFO] --- maven-help-plugin:2.2:describe (default-cli) @ main ---
-[INFO] 'clean' is a lifecycle with the following phases:
-* pre-clean: Not defined
-* clean: org.apache.maven.plugins:maven-clean-plugin:2.5:clean
-* post-clean: Not defined
+`mvn phase` = `mvn clean`
 ```
 
 > View deploy (all) phases - `$ mvn help:describe -Dcmd=deploy`
@@ -49,6 +37,12 @@ It is a part of the lifecycle for the POM packaging 'jar'. This lifecycle includ
 * deploy: org.apache.maven.plugins:maven-deploy-plugin:2.7:deploy
 ```
 
-## Intellij
+> View `clean` phase - `$ mvn help:describe -Dcmd=clean`
 
-Click `Maven Projects` on the right border, expand Lifecycle, click `verify` to run integration tests after unit tests
+```
+[INFO] --- maven-help-plugin:2.2:describe (default-cli) @ main ---
+[INFO] 'clean' is a lifecycle with the following phases:
+* pre-clean: Not defined
+* clean: org.apache.maven.plugins:maven-clean-plugin:2.5:clean
+* post-clean: Not defined
+```
