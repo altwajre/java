@@ -54,11 +54,9 @@
             </goals>
             <configuration>
               <target>
-                <exec executable="bash"
+                <exec executable="${project.basedir}/scripts/after.sh"
                       dir="${project.build.directory}"
-                      spawn="false">
-                  <arg value="-c"/>
-                  <arg value="mkdir -p after"/>
+                      failonerror="true">
                 </exec>
               </target>
             </configuration>
