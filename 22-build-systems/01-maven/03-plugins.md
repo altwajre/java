@@ -36,7 +36,7 @@ Find out `jar` plugin info from super pom
 
 ## plugin documentation
 
-search `maven clean plugin documentation`
+google `maven clean plugin documentation` or click `clean` link at https://maven.apache.org/plugins/
 
 https://maven.apache.org/plugins/maven-clean-plugin/
 
@@ -47,3 +47,54 @@ https://maven.apache.org/plugins/maven-clean-plugin/
 `clean` goal properties are listed below
 
 https://maven.apache.org/plugins/maven-clean-plugin/clean-mojo.html
+
+## configuring-plugins
+
+https://maven.apache.org/guides/mini/guide-configuring-plugins.html#Configuring_Build_Plugins
+
+configuration, executions (phase and goal) 
+
+> bind `<configuration>` to `<phase>compile</phase>` and execute `<goal>javadoc</goal>`
+
+since `javadoc` is not in super pom, need to specify `<build><plugins><plugin><artifactId>maven-javadoc-plugin` before
+`<pluginManagement>`
+
+pom.xml
+
+```
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>2.10.1</version>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <configuration>
+            <header>myheader</header>
+            <footer>myfooter</footer>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>compile</phase>
+              <goals>
+                <goal>javadoc</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+```
+
+mvn phases
+
+```
+mvn clean compile
+```
+

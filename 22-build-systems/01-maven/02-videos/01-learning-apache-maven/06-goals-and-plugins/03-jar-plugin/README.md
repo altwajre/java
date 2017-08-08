@@ -11,22 +11,22 @@ https://maven.apache.org/plugins/maven-jar-plugin/
 ```
 
 ```
-      <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.4</version>
-        <executions>
-          <execution>
-            <id>default-jar</id>
-            <phase>package</phase>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+  <plugin>
+    <artifactId>maven-jar-plugin</artifactId>
+    <version>2.4</version>
+    <executions>
+      <execution>
+        <id>default-jar</id>
+        <phase>package</phase>
+        <goals>
+          <goal>jar</goal>
+        </goals>
+      </execution>
+    </executions>
+  </plugin>
 ```
 
-### Specify plugin goal properties
+### Specify plugin goal parameters
 
 > command line
 
