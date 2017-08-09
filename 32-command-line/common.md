@@ -6,6 +6,15 @@
 
 ## File Commands
 
+> file permission - executable
+
+```
+$ chmod 755 foo.sh
+$ ls -l
+total 8
+-rwxr-xr-x  1 whan  JOMAX\Domain Users  36 Aug  8 11:21 foo.sh
+```
+
 > Delete file `rm file-name`
 
 `$ rm .m2/settings.xml`
