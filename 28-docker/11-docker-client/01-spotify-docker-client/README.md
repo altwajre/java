@@ -1,6 +1,19 @@
-# docker run
+# spotify docker client
 
-## local app
+> App
+
+- get `myservice` ready to run by using docker command below
+- `docker stop 7c0175895874` # (container_Id) if `docker ps` shows `myservice` is running
+- run the app to launch `myservice` container
+- `docker ps` to verify the `myservice` is running, should see below
+
+```
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+7c0175895874        myservice           "python app.py"     6 seconds ago       Up 4 seconds                            boring_mclean
+```
+
+## docker command
 
 > python
 
@@ -10,7 +23,7 @@ Repeatly run, list, stop remove container
 docker run -p 80:5000 -d myservice
 docker ps
 docker stop 7c0175895874
-docker rm -f 7c0175895874
+docker rm -f 7c0175895874 # optional
 ```
 
 ```
@@ -72,3 +85,4 @@ docker rm -f 940599f61fc1
 # Delete an image
 docker rmi myservice
 ```
+
