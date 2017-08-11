@@ -17,7 +17,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 > python
 
-Repeatly run, list, stop remove container
+Repeatedly run, list, stop remove container
 
 ```
 docker run -p 80:5000 -d myservice
