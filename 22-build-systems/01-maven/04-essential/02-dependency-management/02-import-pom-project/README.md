@@ -22,6 +22,8 @@ packaging is pom - `<packaging>pom</packaging>`
 
 > pom project pom.xml
 
+delete `pom/src`
+
 Specify `<properties>` and `<dependencyManagement>` (optional <scope>test</scope>)
 
 ```
@@ -64,3 +66,25 @@ import dependency from pom project above as below, and specify dependencies with
     </dependency>
   </dependencies>
 ```
+
+> Test Run
+
+`mvn test`
+
+```
+Running com.company.app.AppTest
+# testProduct
+product_1
+product_2
+product_3
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.049 sec
+
+Running com.company.app.AppTest
+# testOffer
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.04 sec
+```
+
+> plugins
+
+Since plugins management import does not work, 
+the child project will import plugin themselves if the plugin is not already in super pom
