@@ -21,18 +21,6 @@ public class App {
     }
 }
 /*
-pom.xml
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>1.16.6</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
 output:
 Person(name=Tom, age=10)
  */
