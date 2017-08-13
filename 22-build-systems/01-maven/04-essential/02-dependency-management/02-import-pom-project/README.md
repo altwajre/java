@@ -87,4 +87,6 @@ Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.04 sec
 > plugins
 
 Since plugins management import does not work, 
-the child project will import plugin themselves if the plugin is not already in super pom
+the child project will import plugin themselves if the plugin is not already in super pom.
+
+Alternatively, `mvn install` parent pom has the common plugins.
