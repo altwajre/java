@@ -1,6 +1,46 @@
-# one service docker
+# customer service docker client
 
-> Run Test
+> jar
+
+Use `maven-shade-plugin` to create fat jar
+
+> config
+
+`src/main/conf/conf.json`
+
+```
+{
+  "http.port": 8082
+}
+```
+
+> Compile
+
+```
+$ mvn clean package
+```
+
+> Run App with `-config`
+
+```
+$ java -jar target/app-config-1.0-SNAPSHOT.jar -conf src/main/conf/conf.json
+```
+
+curl http://localhost:8082/api/customers
+
+```
+[ {
+  "id" : 0,
+  "name" : "Tom",
+  "age" : 18
+}, {
+  "id" : 1,
+  "name" : "Dick",
+  "age" : 28
+} ]
+```
+
+> Run Test - `mvn test`
 
 `CustomerVerticleTest`
 

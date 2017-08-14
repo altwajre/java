@@ -26,7 +26,7 @@ public class CustomerVerticleTest {
 
     DeploymentOptions options = new DeploymentOptions().setConfig(config);
 
-    Vertx.vertx().deployVerticle(new CustomerVerticle(), options, context.asyncAssertSuccess());
+    vertx.deployVerticle(new CustomerVerticle(), options, context.asyncAssertSuccess());
   }
 
   @After

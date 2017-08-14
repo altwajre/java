@@ -20,6 +20,18 @@ packaging is pom - `<packaging>pom</packaging>`
   <name>import-pom-project</name>
 ```
 
+> execution order
+
+pom, product, offer as specifed in <modules> below
+
+```
+  <modules>
+    <module>pom</module>
+    <module>product</module>
+    <module>offer</module>
+  </modules>
+```
+
 > pom project pom.xml
 
 delete `pom/src`
@@ -69,7 +81,7 @@ import dependency from pom project above as below, and specify dependencies with
 
 > Test Run
 
-`mvn test`
+`mvn clean test`
 
 ```
 Running com.company.app.AppTest

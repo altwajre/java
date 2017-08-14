@@ -1,6 +1,6 @@
 FROM java:8-jre
 
-ENV VERTICLE_FILE one-service-docker-1.0-SNAPSHOT-fat.jar
+ENV VERTICLE_FILE customer-service-1.0-SNAPSHOT-fat.jar
 
 # Set the location of the verticles
 ENV VERTICLE_HOME /usr/verticles

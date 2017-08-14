@@ -116,6 +116,19 @@ src/test/resources/config.json
 
 > Start and stop the application
 
+Start with `-conf`
+
+```
+    <exec executable="${java.home}/bin/java"
+          dir="${project.build.directory}"
+          spawn="true">
+      <arg value="-jar"/>
+      <arg value="${project.artifactId}-${project.version}-fat.jar"/>
+      <arg value="-conf"/>
+      <arg value="${project.build.directory}/test-classes/config.json"/>
+    </exec>
+```
+
 ```
       <!-- We use the maven-antrun-plugin to start the application before the integration tests and stop them afterward -->
       <plugin>

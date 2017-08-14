@@ -32,3 +32,6 @@ public class HelloVerticle extends AbstractVerticle {
         );
   }
 }
+/*
+http://localhost:8082/
+ */

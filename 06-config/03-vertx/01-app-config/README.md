@@ -2,7 +2,7 @@
 
 http://vertx.io/blog/vert-x-application-configuration/
 
-> Run with `-config`
+> Run App with `-config`
 
 ```
 $ java -jar target/app-config-1.0-SNAPSHOT.jar -conf src/main/conf/conf.json
@@ -12,7 +12,7 @@ $ java -jar target/app-config-1.0-SNAPSHOT.jar -conf src/main/conf/conf.json
 
 > config
 
-add src/main/conf/conf.json
+`src/main/conf/conf.json`
 
 ```
 {
@@ -26,10 +26,10 @@ add src/main/conf/conf.json
 $ mvn clean package
 ```
 
-> Run with -config
+> Run App with -config
 
 ```
 $ java -jar target/app-config-1.0-SNAPSHOT.jar -conf src/main/conf/conf.json
 ```
 
-go to http://localhost:8082/
+curl http://localhost:8082/

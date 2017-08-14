@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(VertxUnitRunner.class)
-public class CustomerVerticleTest {
+public class ProductVerticleTest {
 
   private Vertx vertx;
   private Integer port = 8081;
@@ -26,7 +26,7 @@ public class CustomerVerticleTest {
 
     DeploymentOptions options = new DeploymentOptions().setConfig(config);
 
-    vertx.deployVerticle(new CustomerVerticle(), options, context.asyncAssertSuccess());
+    vertx.deployVerticle(new ProductVerticle(), options, context.asyncAssertSuccess());
   }
 
   @After
@@ -38,10 +38,11 @@ public class CustomerVerticleTest {
   public void testGetAll(TestContext context) {
     Async async = context.async();
 
-    vertx.createHttpClient().getNow(port, "localhost", "/api/customers", response -> {
+    System.out.println("# port: " + port);
+    vertx.createHttpClient().getNow(port, "localhost", "/api/products", response -> {
       response.handler(body -> {
         System.out.println(body.toString());
-        context.assertTrue(body.toString().contains("Tom"));
+        context.assertTrue(body.toString().contains("iPhone"));
         async.complete();
       });
     });
