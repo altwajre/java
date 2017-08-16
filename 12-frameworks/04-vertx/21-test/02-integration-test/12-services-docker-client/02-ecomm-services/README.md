@@ -1,6 +1,8 @@
 # product service
 
-## Test
+## Run All Tests
+
+`mvn clean package`
 
 ### Offer consumes Product api test
 
