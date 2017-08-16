@@ -116,4 +116,19 @@ public class WhiskyVerticleTest {
         .write(json)
         .end();
   }
+
+  @Test
+  public void testGetAll(TestContext context) {
+    Async async = context.async();
+
+    System.out.println("# port: " + port);
+
+    vertx.createHttpClient().getNow(port, "localhost", "/api/whiskies", response -> {
+      response.handler(body -> {
+        System.out.println(body.toString());
+        async.complete();
+      });
+    });
+
+  }
 }

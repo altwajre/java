@@ -1,11 +1,21 @@
 package com.company.app;
 
-import io.vertx.core.MultiMap;
 import io.vertx.core.Vertx;
-import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.HttpServerResponse;
+import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+class User {
+  private String name;
+  private Integer age;
+}
 
 public class App {
   public static void main(String[] args) {
@@ -22,17 +32,14 @@ public class App {
 
           HttpServerResponse response = request.response();
 
-          if (request.uri().contains("jsonObject")) {
-            JsonObject jsonObject = new JsonObject().put("name", "jsonObject").put("age", "18");
-
-            response.end(jsonObject.encode());
-          } else if (request.uri().contains("/json")) {
-            JsonObject jsonObject = new JsonObject().put("name", "json").put("age", "28");
-
-            response.end(jsonObject.encode());
-          } else if (request.uri().contains("/default")) {
-            JsonObject jsonObject = new JsonObject().put("name", "default").put("age", "38");
-
+          if (request.uri().contains("/pojoBodyCodec")) {
+            User user = new User("pojoBodyCodec", 18);
+            response.end(Json.encodePrettily(user));
+          } else if (request.uri().contains("/jsonObjectBodyCodec")) {
+            User user = new User("jsonObjectBodyCodec", 28);
+            response.end(Json.encodePrettily(user));
+          } else if (request.uri().contains("/defaultBodyCodec")) {
+            JsonObject jsonObject = new JsonObject().put("name", "defaultBodyCodec").put("age", "38");
             response.end(jsonObject.encode());
           }
 

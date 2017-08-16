@@ -1,5 +1,84 @@
 # product service
 
+## Test
+
+### Offer consumes Product api test
+
+> Launch product rest api
+
+App.main()
+
+> Run Offer rest api that uses product rest api
+
+OfferVerticle
+
+```
+  private void getOne(RoutingContext context) {
+    String id = context.request().getParam("id");
+
+    if (id == null) {
+      context.response().setStatusCode(400).end();
+    } else {
+      Integer idAsInteger = Integer.valueOf(id);
+      Offer offer = offers.get(idAsInteger);
+      if (offer == null) {
+        context.response().setStatusCode(404).end();
+      } else {
+
+        Integer productPort = 8081;
+
+        WebClient.create(vertx)
+            .get(productPort, "localhost", "/api/products/1")
+            .as(BodyCodec.json(Product.class))
+            .send(ar -> {
+              if (ar.succeeded()) {
+                HttpResponse<Product> response = ar.result();
+
+                Product product = response.body();
+                System.out.println("Body:\n" + product.toString());
+                offer.setProduct(product);
+
+                // NOTE: put context.response() inside of send() callback
+                context.response()
+                    .putHeader("content-type", "application/json; charset=utf-8")
+                    .end(Json.encodePrettily(offer));
+              } else {
+                System.out.println("Error=" + ar.cause());
+              }
+            });
+
+      }
+    }
+
+  }
+```
+
+test
+
+```
+  @Test
+  public void testGetOne(TestContext context) {
+    Async async = context.async();
+
+    WebClient.create(vertx)
+        .get(port, "localhost", "/api/offers/1")
+        .as(BodyCodec.json(Offer.class))
+        .send(ar -> {
+          if (ar.succeeded()) {
+            HttpResponse<Offer> response = ar.result();
+
+            Offer body = response.body();
+            System.out.println("Body:\n" + body.toString());
+
+          } else {
+            System.out.println("Error=" + ar.cause());
+          }
+          async.complete();
+        });
+
+  }
+```
+
 > jar
 
 Use `maven-shade-plugin` to create fat jar

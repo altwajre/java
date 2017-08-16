@@ -24,8 +24,8 @@ Right click `main`, click `run`
 > output
 
 vert.x-eventloop-thread-2: StatusCode=200
-vert.x-eventloop-thread-2: Body={"name":"default","age":"38"}
-vert.x-eventloop-thread-1: StatusCode=200
-vert.x-eventloop-thread-1: Body=User(name=json, age=28)
+vert.x-eventloop-thread-2: Body={"name":"defaultBodyCodec","age":"38"}
 vert.x-eventloop-thread-0: StatusCode=200
-vert.x-eventloop-thread-0: Body={"name":"jsonObject","age":"18"}
+vert.x-eventloop-thread-0: Body=User(name=pojoBodyCodec, age=18)
+vert.x-eventloop-thread-1: StatusCode=200
+vert.x-eventloop-thread-1: Body={"name":"jsonObjectBodyCodec","age":"28"}

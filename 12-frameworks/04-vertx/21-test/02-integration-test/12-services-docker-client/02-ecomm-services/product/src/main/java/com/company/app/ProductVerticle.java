@@ -3,6 +3,7 @@ package com.company.app;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.json.Json;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
@@ -34,6 +35,12 @@ public class ProductVerticle extends AbstractVerticle {
     // GET
     router.get("/api/products/:id").handler(this::getOne);
 
+    // UPDATE
+    router.put("/api/products/:id").handler(this::updateOne);
+
+    // DELETE
+    router.delete("/api/products/:id").handler(this::deleteOne);
+
     Integer port = config().getInteger("http.port", 8080);
     System.out.println(port);
 
@@ -55,7 +62,42 @@ public class ProductVerticle extends AbstractVerticle {
         );
   }
 
+  private void deleteOne(RoutingContext context) {
+    final String id = context.request().getParam("id");
+    if(id == null) {
+      context.response().setStatusCode(400).end();
+    }
+    else {
+      Integer idAsInteger = Integer.valueOf(id);
+      products.remove(idAsInteger);
+    }
+    context.response().setStatusCode(204).end();
+  }
+
+  private void updateOne(RoutingContext context) {
+    final String id = context.request().getParam("id");
+    JsonObject json = context.getBodyAsJson();
+
+    if(id == null || json == null) {
+      context.response().setStatusCode(400).end();
+    }
+    else {
+      final Integer idAsInteger = Integer.valueOf(id);
+      Product product = products.get(idAsInteger);
+      if(product == null) {
+        context.response().setStatusCode(404).end();
+      }
+      else {
+        product.setName(json.getString("name"));
+        context.response()
+            .putHeader("content-type", "application/json; charset=utf-8")
+            .end(Json.encodePrettily(product));
+      }
+    }
+  }
+
   private void getOne(RoutingContext context) {
+
     String id = context.request().getParam("id");
 
     if(id == null) {
@@ -96,9 +138,12 @@ public class ProductVerticle extends AbstractVerticle {
   }
 
   private void prepareData() {
-    Product iPhone = new Product("iPhone");
+    Product iPhone = new Product(1, "iPhone");
     products.put(iPhone.getId(), iPhone);
-    Product macBook = new Product("MacBook");
+    Product macBook = new Product(2, "MacBook");
     products.put(macBook.getId(), macBook);
+    Product airPod = new Product(3,"AirPod");
+    products.put(airPod.getId(), airPod);
+
   }
 }
