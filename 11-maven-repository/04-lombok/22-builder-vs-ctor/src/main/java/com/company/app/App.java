@@ -3,15 +3,18 @@ package com.company.app;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+//@NoArgsConstructor // @NoArgsConstructor is not allowed when @Builder is already used
 class Customer {
   private String name;
   private int age;
 }
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 class User {
   private String name;
@@ -32,6 +35,11 @@ public class App {
     System.out.println("#Constructor");
     final User dick = new User("Dick", 28);
     System.out.println(dick);
+    final User ben = new User();
+    ben.setName("Ben");
+    ben.setAge(48);
+    System.out.println(ben);
+
   }
 }
 /*
@@ -40,4 +48,5 @@ Customer(name=Tom, age=18)
 Customer(name=Harry, age=38)
 #Constructor
 User(name=Dick, age=28)
+User(name=Ben, age=48)
  */
