@@ -12,7 +12,6 @@ public class SetterUtils {
 
     final List<String> excludeMethods = Arrays.asList("equals", "toString", "hashCode", "canEqual");
     final Map<String, Object> paramValues = new HashMap<String, Object>(){{
-      put("java.lang.String", "string");
       put("int", 8);
     }};
     Arrays.stream(clazz.getDeclaredMethods()).filter(m -> {
@@ -20,7 +19,13 @@ public class SetterUtils {
       return !excludeMethods.contains(methodName) && methodName.startsWith("set");
     }).forEach(m ->{
       final String typeName = m.getParameterTypes()[0].getTypeName();
-      final Object paramValue = paramValues.get(typeName);
+      Object paramValue;
+      if(typeName == "java.lang.String") {
+        paramValue = m.getName().substring(3);
+      }
+      else {
+        paramValue = paramValues.get(typeName);
+      }
       try {
         m.invoke(objInstance, paramValue);
       } catch (IllegalAccessException e) {

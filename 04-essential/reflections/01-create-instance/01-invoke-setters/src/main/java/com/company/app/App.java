@@ -28,9 +28,9 @@ public class App {
   public static void main(String[] args) throws Exception {
     testSetterUtils();
 
-    testNoArgsConstructor();
-
-    testAllArgsConstructor();
+//    testNoArgsConstructor();
+//
+//    testAllArgsConstructor();
   }
 
   private static void testSetterUtils() throws InstantiationException, IllegalAccessException {
