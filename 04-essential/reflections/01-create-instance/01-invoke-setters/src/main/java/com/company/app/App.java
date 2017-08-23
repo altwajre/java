@@ -28,14 +28,14 @@ public class App {
   public static void main(String[] args) throws Exception {
     testSetterUtils();
 
-//    testNoArgsConstructor();
-//
-//    testAllArgsConstructor();
+    testNoArgsConstructor();
+
+    testAllArgsConstructor();
   }
 
   private static void testSetterUtils() throws InstantiationException, IllegalAccessException {
     System.out.println("#testSetterUtils");
-    final Object person = SetterUtils.newInstance(Person.class);
+    final Object person = SetterUtils.INSTANCE.newInstance(Person.class);
     System.out.println(person);
   }
 

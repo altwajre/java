@@ -14,8 +14,8 @@ import java.util.Map;
 public class ReflectionTest {
   @Test
   public void testInvokeSettersGenericMethod() throws Exception {
-    final Object obj1 = SetterUtils.newInstance(Person.class);
-    final Object obj2 = SetterUtils.newInstance(Person.class);
+    final Object obj1 = SetterUtils.INSTANCE.newInstance(Person.class);
+    final Object obj2 = SetterUtils.INSTANCE.newInstance(Person.class);
     Assert.assertEquals(obj1, obj2);
   }
 
