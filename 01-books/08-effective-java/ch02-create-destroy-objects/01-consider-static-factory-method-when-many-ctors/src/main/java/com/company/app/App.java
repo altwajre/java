@@ -94,8 +94,7 @@ public class App
     }
 }
 /*
-output:
-Default service, Complementary service, Armed service
+Default service, Complementary service, Armed service, My Service
 
 note:
 checkout following:
