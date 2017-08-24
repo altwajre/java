@@ -8,8 +8,10 @@ CustomerTest.testCloneSerialization()
 
 > Serializer
 
-enum GlobalMapper
+GlobalMapper.clone()
 
 > Validator
 
-class SerializationValidator
+SerializationValidator.validate()
+
+SerializationValidator.validateClone()
