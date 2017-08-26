@@ -20,27 +20,4 @@ public class ScoreCollectionTest {
     assertThat(actualResult, equalTo(6));
   }
 
-  @Test
-  public void testFunctionalInterfaceLambda() {
-    final Scoreable scoreable = () -> 8;
-    System.out.println(scoreable.getScore());
-  }
-/*
-8
- */
-
-  @Test
-  public void testFunctionalInterfaceAnonymousClass() {
-    final Scoreable scoreable = new Scoreable() {
-      @Override
-      public int getScore() {
-        return 8;
-      }
-    };
-    System.out.println(scoreable.getScore());
-  }
-/*
-8
- */
-
 }
