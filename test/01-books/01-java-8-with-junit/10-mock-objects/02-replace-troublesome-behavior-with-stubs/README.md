@@ -18,6 +18,29 @@ public class AddressRetriever {
    }
 ```
 
-> Test
+## Test
 
 AddressRetrieverTest.answersAppropriateAddressForValidCoordinates()
+
+> add smart stub
+
+```
+    Http http = (String url) -> {
+      /*
+      Add a guard to the stub that verifies the URL passed to the Http method get().
+      If it doesn't contain the expected parameter string, fail the test.
+       */
+      if(!url.contains("lat=18.000000&lon=28.000000")) {
+        fail("utl" + url + "does not contain correct params");
+      }
+      return "{\"address\":{"
+          + "\"house_number\":\"324\","
+          + "\"road\":\"North Tejon Street\","
+          + "\"city\":\"Colorado Springs\","
+          + "\"state\":\"Colorado\","
+          + "\"postcode\":\"80903\","
+          + "\"country_code\":\"us\"}"
+          + "}";
+
+    };
+```

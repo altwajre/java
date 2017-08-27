@@ -6,29 +6,38 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+import static org.mockito.Matchers.contains;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-public class AddressRetrieverTest {
+public class AddressRetrieverMockTest {
   @Test
   public void answersAppropriateAddressForValidCoordinates() throws IOException, ParseException {
-    // Arrange - stub
-    Http http = (String url) -> {
-      /*
-      Add a guard to the stub that verifies the URL passed to the Http method get().
-      If it doesn't contain the expected parameter string, fail the test.
-       */
-      if(!url.contains("lat=18.000000&lon=28.000000")) {
-        fail("utl" + url + "does not contain correct params");
-      }
-      return "{\"address\":{"
+    // Arrange - Mockito mock
+
+    /*
+    mock(Http.class) tells Mockito to create a mock instance that implements the Http interface.
+    This mock does all the dirty tracking and verifying work behind the scenes.
+     */
+    Http http = mock(Http.class);
+
+    /*
+    when() is called to setup the expectations for the test.
+    thenReturn() is called (returns the specified value) when the expectation is met
+     */
+    when(http.get(contains("lat=18.000000&lon=28.000000")))
+        .thenReturn(
+            "{\"address\":{"
           + "\"house_number\":\"324\","
           + "\"road\":\"North Tejon Street\","
           + "\"city\":\"Colorado Springs\","
           + "\"state\":\"Colorado\","
           + "\"postcode\":\"80903\","
           + "\"country_code\":\"us\"}"
-          + "}";
-    };
+          + "}"
+        );
 
     final AddressRetriever retriever = new AddressRetriever(http);
 
