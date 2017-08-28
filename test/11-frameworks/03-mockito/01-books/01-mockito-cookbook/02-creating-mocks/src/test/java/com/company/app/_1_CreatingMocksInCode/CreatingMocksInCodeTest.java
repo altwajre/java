@@ -6,8 +6,8 @@ import com.company.app.TaxService;
 import org.junit.Test;
 
 import static org.assertj.core.api.BDDAssertions.then;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 
 // create a mock by using the Mockito.mock static method

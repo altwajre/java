@@ -6,7 +6,7 @@ import com.company.app.TaxService;
 import org.junit.Test;
 import org.mockito.internal.stubbing.answers.ThrowsExceptionClass;
 
-import static org.junit.Assert.*;
+import static junit.framework.TestCase.fail;
 import static org.mockito.Mockito.mock;
 
 /*

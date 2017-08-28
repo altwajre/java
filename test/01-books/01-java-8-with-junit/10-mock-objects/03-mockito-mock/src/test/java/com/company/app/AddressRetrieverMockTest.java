@@ -5,17 +5,18 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+import static org.assertj.core.api.BDDAssertions.then;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-import static org.mockito.Matchers.contains;
+import static org.mockito.ArgumentMatchers.contains;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class AddressRetrieverMockTest {
   @Test
   public void answersAppropriateAddressForValidCoordinates() throws IOException, ParseException {
-    // Arrange - Mockito mock
+    // Arrange - given
 
     /*
     mock(Http.class) tells Mockito to create a mock instance that implements the Http interface.
@@ -39,12 +40,11 @@ public class AddressRetrieverMockTest {
           + "}"
         );
 
+    // Act - when
     final AddressRetriever retriever = new AddressRetriever(http);
-
-    // Act
     final Address address = retriever.retrieve(18.0, 28.0);
 
-    // Assert
+    // Assert - then
     assertThat(address.houseNumber, equalTo("324"));
     assertThat(address.road, equalTo("North Tejon Street"));
     assertThat(address.city, equalTo("Colorado Springs"));
@@ -52,4 +52,28 @@ public class AddressRetrieverMockTest {
     assertThat(address.zip, equalTo("80903"));
   }
 
+  @Test
+  public void answersAppropriateAddressForValidCoordinatesBDD() throws IOException, ParseException {
+    Http http = mock(Http.class);
+
+    // given
+    given(http.get(contains("lat=18.000000&lon=28.000000")))
+        .willReturn(
+            "{\"address\":{"
+                + "\"house_number\":\"324\","
+                + "\"road\":\"North Tejon Street\","
+                + "\"city\":\"Colorado Springs\","
+                + "\"state\":\"Colorado\","
+                + "\"postcode\":\"80903\","
+                + "\"country_code\":\"us\"}"
+                + "}"
+        );
+
+    // when
+    final AddressRetriever retriever = new AddressRetriever(http);
+    final Address address = retriever.retrieve(18.0, 28.0);
+
+    // then
+    then(address.houseNumber).isEqualTo("324");
+  }
 }

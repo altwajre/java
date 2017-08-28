@@ -30,9 +30,4 @@ public class AddMockitoHintsToExceptionTest {
     then(meanTaxFactor).isEqualTo(UNUSED_VALUE);
   }
 
-  @Test
-  public void foo(){
-    then(1).isEqualTo(2);
-  }
-
 }
