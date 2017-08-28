@@ -1,7 +1,11 @@
 package com.company.app;
 
 import org.json.simple.parser.ParseException;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.io.IOException;
 
@@ -10,14 +14,26 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class AddressRetrieverMockTest {
+
+  // 1. Create a mock instance using the @Mock annotation
+  @Mock
+  private Http http;
+  // 2. Declare a target instance variable annotated with @InjectMocks
+  @InjectMocks
+  private AddressRetriever retriever;
+
+  @Before
+  public void createRetriever() {
+    retriever = new AddressRetriever();
+    // 3. After instantiating the target instance, call below
+    MockitoAnnotations.initMocks(this);
+  }
+
   @Test
   public void answersAppropriateAddressForValidCoordinatesBDD() throws IOException, ParseException {
-    Http http = mock(Http.class);
-
     // given
     given(http.get(contains("lat=18.000000&lon=28.000000")))
         .willReturn(
@@ -32,27 +48,15 @@ public class AddressRetrieverMockTest {
         );
 
     // when
-    final AddressRetriever retriever = new AddressRetriever(http);
     final Address address = retriever.retrieve(18.0, 28.0);
 
     // then
     then(address.houseNumber).isEqualTo("324");
-    then(address.road).isEqualTo("North Tejon Street");
-    then(address.city).isEqualTo("Colorado Springs");
-    then(address.state).isEqualTo("Colorado");
-    then(address.zip).isEqualTo("80903");
   }
 
   @Test
   public void answersAppropriateAddressForValidCoordinates() throws IOException, ParseException {
     // Arrange - given
-
-    /*
-    mock(Http.class) tells Mockito to create a mock instance that implements the Http interface.
-    This mock does all the dirty tracking and verifying work behind the scenes.
-     */
-    Http http = mock(Http.class);
-
     /*
     when() is called to setup the expectations for the test.
     thenReturn() is called (returns the specified value) when the expectation is met
@@ -70,7 +74,6 @@ public class AddressRetrieverMockTest {
         );
 
     // Act - when
-    final AddressRetriever retriever = new AddressRetriever(http);
     final Address address = retriever.retrieve(18.0, 28.0);
 
     // Assert - then
