@@ -16,11 +16,11 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+/*
+4. Verifying exact number of invocations / at least x /never
+- times(1) is the default. Therefore using times(1) explicitly can be omitted.
+ */
 public class VerifyInvocationsTest {
-  /*
-  4. Verifying exact number of invocations / at least x /never
-  - times(1) is the default. Therefore using times(1) explicitly can be omitted.
-   */
   @Test
   public void verifyNumberOfInvocations() {
     LinkedList mockedList = mock(LinkedList.class);
