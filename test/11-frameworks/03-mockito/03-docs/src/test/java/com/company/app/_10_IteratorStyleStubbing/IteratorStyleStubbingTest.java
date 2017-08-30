@@ -13,6 +13,7 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
+// 10. Stubbing consecutive calls (iterator-style stubbing)
 public class IteratorStyleStubbingTest {
   @Mock
   private MyClass mock;

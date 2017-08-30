@@ -8,14 +8,14 @@ import java.util.List;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 
+/*
+6. Verification in order
+A + B can be mixed together at will
+Verification in order is flexible - you don't have to verify all interactions one-by-one but only those that you
+are interested in testing in order. Also you can create an InOrder object passing only the mocks that are relevant
+for in-order verification.
+ */
 public class InOrderTest {
-  /*
-  6. Verification in order
-  A + B can be mixed together at will
-  Verification in order is flexible - you don't have to verify all interactions one-by-one but only those that you
-  are interested in testing in order. Also you can create an InOrder object passing only the mocks that are relevant
-  for in-order verification.
-   */
   @Test
   public void verification_in_order() {
     // A. Single mock whose methods must be invoked in a particular order

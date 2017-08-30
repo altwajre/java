@@ -11,12 +11,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/*
+3. Argument matchers
+- Argument matchers allow flexible verification or stubbing.
+- If you are using argument matchers, all arguments have to be provided by matchers.
+ */
 public class ArgumentMatchersTest {
-  /*
-  3. Argument matchers
-  - Argument matchers allow flexible verification or stubbing.
-  - If you are using argument matchers, all arguments have to be provided by matchers.
-   */
   @Test
   public void argumentMatchers() {
     LinkedList mockedList = mock(LinkedList.class);

@@ -7,12 +7,12 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class VerifyBehaviorTest {
-  /*
+/*
 1. Let's verify some behaviour
 Once created, a mock will remember all interactions. Then you can selectively verify whatever interactions you are
 interested in.
- */
+*/
+public class VerifyBehaviorTest {
   @Test
   public void verifyBehavior() {
     // mock creation
@@ -22,7 +22,7 @@ interested in.
     mockedList.add("one");
     mockedList.clear();
 
-    // verification
+    // verify invocations
     verify(mockedList).add("one");
     verify(mockedList).clear();
   }
