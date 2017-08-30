@@ -1,4 +1,4 @@
-package com.company.app._02_Stubbing;
+package com.company.app._02_Mock;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +14,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class StubbingTest {
+public class MockTest {
   /*
   2. Stubbing
   - By default, for all methods that return a value, a mock will return either null, a primitive/primitive wrapper value,
