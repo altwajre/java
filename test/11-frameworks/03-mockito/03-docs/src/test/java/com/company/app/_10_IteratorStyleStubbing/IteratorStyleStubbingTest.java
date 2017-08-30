@@ -13,11 +13,6 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
-class MyClass {
-  public String someMethod(String input){
-    return "Default";
-  }
-}
 public class IteratorStyleStubbingTest {
   @Mock
   private MyClass mock;
