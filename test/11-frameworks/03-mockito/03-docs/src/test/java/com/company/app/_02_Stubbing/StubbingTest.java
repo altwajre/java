@@ -1,10 +1,16 @@
 package com.company.app._02_Stubbing;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import java.util.LinkedList;
 
+import static org.assertj.core.api.BDDAssertions.then;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -18,6 +24,7 @@ public class StubbingTest {
   - Once stubbed, the method will always return a stubbed value, regardless of how many times it is called
   - Last stubbing is more important - when you stubbed the same arguments many times.
    */
+
   @Test
   public void stubbing() {
     // we can mock concrete classes, not just interfaces
@@ -38,5 +45,35 @@ public class StubbingTest {
     //If your code cares what get(0) returns, then something else breaks (often even before verify() gets executed).
     //If your code doesn't care what get(0) returns, then it should not be stubbed. Not convinced?
     verify(mockedList).get(0);
+  }
+
+  // we can mock concrete classes, not just interfaces
+  @Mock
+  private LinkedList mockList;
+
+  @Before
+  public void setup() {
+    MockitoAnnotations.initMocks(this);
+  }
+
+  @Test
+  public void stubbingBDD() {
+    // given
+    given(mockList.get(0))
+        .willReturn("first");
+    given(mockList.get(1))
+        .willReturn(new RuntimeException());
+
+    // when
+    final String first = (String) mockList.get(0);
+    final String exception = mockList.get(1).toString();
+
+    // then
+    then(first).isEqualTo("first");
+    System.out.println(exception);
+    then(exception).contains("RuntimeException");
+
+    // verify invocations
+    verify(mockList, times(1)).get(0);
   }
 }
