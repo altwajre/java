@@ -8,6 +8,10 @@ import org.mockito.MockitoAnnotations;
 import java.util.LinkedList;
 
 import static org.assertj.core.api.BDDAssertions.then;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
+import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -44,7 +48,7 @@ public class MockTest {
     //Although it is possible to verify a stubbed invocation, usually it's just redundant
     //If your code cares what get(0) returns, then something else breaks (often even before verify() gets executed).
     //If your code doesn't care what get(0) returns, then it should not be stubbed. Not convinced?
-    verify(mockedList).get(0);
+    verify(mockedList, times(1)).get(0);
   }
 
   // we can mock concrete classes, not just interfaces
@@ -72,6 +76,27 @@ public class MockTest {
     then(first).isEqualTo("first");
     System.out.println(exception);
     then(exception).contains("RuntimeException");
+
+    // verify invocations
+    verify(mockList, times(1)).get(0);
+  }
+
+  @Test
+  public void stubbingTDD() {
+    // Arrange
+    when(mockList.get(0))
+        .thenReturn("first");
+    when(mockList.get(1))
+        .thenReturn(new RuntimeException());
+
+    // Act
+    final String first = (String) mockList.get(0);
+    final String exception = mockList.get(1).toString();
+
+    // Assert
+    assertThat(first, equalTo("first"));
+    System.out.println(exception);
+    assertThat(exception, containsString("RuntimeException"));
 
     // verify invocations
     verify(mockList, times(1)).get(0);
