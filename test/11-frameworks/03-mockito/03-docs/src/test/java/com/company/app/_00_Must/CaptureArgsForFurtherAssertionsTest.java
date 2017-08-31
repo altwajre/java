@@ -1,7 +1,10 @@
 package com.company.app._00_Must;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -53,17 +56,24 @@ public class CaptureArgsForFurtherAssertionsTest {
   EmailService mock = mock(EmailService.class);
   BulkEmailService bulkEmailService = new BulkEmailService(mock);
 
-  @Test
-  public void shouldAllowAssertionsOnCapturedArgument() {
-    // given
-    final ArgumentCaptor<Person> argument = ArgumentCaptor.forClass(Person.class);
+  // given
+  @Captor
+  ArgumentCaptor<Person> arg;
 
+  @Before
+  public void setup() {
+    MockitoAnnotations.initMocks(this);
+  }
+
+  @Test
+  public void shouldAllowAssertionsOnCapturedArgumentAnnotation() {
     // when
     bulkEmailService.email(12);
 
     // then
-    verify(mock).sendEmailTo(argument.capture());
-    assertEquals(12, argument.getValue().getAge());
+    // verify invocation and capture person arg for further assertion
+    verify(mock, times(1)).sendEmailTo(arg.capture());
+    assertEquals(12, arg.getValue().getAge());
   }
 
   @Test
