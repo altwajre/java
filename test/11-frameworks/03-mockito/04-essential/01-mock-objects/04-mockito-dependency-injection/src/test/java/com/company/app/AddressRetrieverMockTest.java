@@ -52,6 +52,10 @@ public class AddressRetrieverMockTest {
 
     // then
     then(address.houseNumber).isEqualTo("324");
+    then(address.road).isEqualTo("North Tejon Street");
+    then(address.city).isEqualTo("Colorado Springs");
+    then(address.state).isEqualTo("Colorado");
+    then(address.zip).isEqualTo("80903");
   }
 
   @Test

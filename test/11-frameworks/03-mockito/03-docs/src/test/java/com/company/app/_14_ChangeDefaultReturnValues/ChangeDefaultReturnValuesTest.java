@@ -2,34 +2,36 @@ package com.company.app._14_ChangeDefaultReturnValues;
 
 import org.junit.Test;
 import org.mockito.exceptions.verification.SmartNullPointerException;
-import org.mockito.internal.stubbing.defaultanswers.ReturnsSmartNulls;
 
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.RETURNS_SMART_NULLS;
 import static org.mockito.Mockito.mock;
 
-interface Bar {
-  void boo();
-}
-
-class Foo {
-  Foo getSomeClass() {
-    return null;
-  }
-
-  Bar getSomeInterface() {
-    return null;
-  }
-
-  Bar getBarWithParams(int x, String y) {
-    return null;
-  }
-
-  void boo() {
-  }
-}
-
+/*
+14. Changing default return values of unstubbed invocations
+You can create a mock with specified strategy for its return values.
+ */
 public class ChangeDefaultReturnValuesTest {
+  interface Bar {
+    void boo();
+  }
+
+  class Foo {
+    Foo getSomeClass() {
+      return null;
+    }
+
+    Bar getSomeInterface() {
+      return null;
+    }
+
+    Bar getBarWithParams(int x, String y) {
+      return null;
+    }
+
+    void boo() {
+    }
+  }
 
   @Test
   public void shouldThrowSmartNPEWhenMethodReturnsClass() {
@@ -57,6 +59,5 @@ public class ChangeDefaultReturnValuesTest {
     catch (SmartNullPointerException e) {
       System.out.println(e.getMessage());
     }
-
   }
 }

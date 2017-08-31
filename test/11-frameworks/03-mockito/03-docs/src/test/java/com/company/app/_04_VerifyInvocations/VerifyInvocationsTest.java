@@ -21,6 +21,26 @@ import static org.mockito.Mockito.verify;
 - times(1) is the default. Therefore using times(1) explicitly can be omitted.
  */
 public class VerifyInvocationsTest {
+  interface CustomerListener {
+    void found(Customer customer);
+  }
+  @Data
+  @AllArgsConstructor
+  class Customer {
+    private int id;
+    private String name;
+    private int age;
+  }
+  class DataStore {
+    private Map<Integer, Customer> customers = new HashMap<>();
+    public void add(Customer customer) {
+      customers.put(customer.getId(), customer);
+    }
+    public void process(CustomerListener listener, int id) {
+      listener.found(customers.get(id));
+    }
+  }
+
   @Test
   public void verifyNumberOfInvocations() {
     LinkedList mockedList = mock(LinkedList.class);
@@ -66,25 +86,5 @@ public class VerifyInvocationsTest {
 
     // Verify CustomerListener.found() is invoked once
     verify(listener, times(1)).found(tom);
-  }
-}
-
-interface CustomerListener {
-  void found(Customer customer);
-}
-@Data
-@AllArgsConstructor
-class Customer {
-  private int id;
-  private String name;
-  private int age;
-}
-class DataStore {
-  private Map<Integer, Customer> customers = new HashMap<>();
-  public void add(Customer customer) {
-    customers.put(customer.getId(), customer);
-  }
-  public void process(CustomerListener listener, int id) {
-    listener.found(customers.get(id));
   }
 }

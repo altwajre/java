@@ -1,4 +1,4 @@
-package com.company.app.argumentmatchers;
+package com.company.app.ArgumentMatchers;
 
 import org.junit.Test;
 
@@ -11,13 +11,13 @@ import static org.mockito.Mockito.mock;
 /*
 https://static.javadoc.io/org.mockito/mockito-core/2.8.47/org/mockito/ArgumentMatchers.html
  */
-class MyClass {
-  public String myMethod(String name, int age){
-    return name + ", " + age;
-  }
-}
-
 public class ArgumentMatchersTest {
+  class MyClass {
+    public String myMethod(String name, int age){
+      return name + ", " + age;
+    }
+  }
+
   @Test
   public void testArgumentMatchers() {
 

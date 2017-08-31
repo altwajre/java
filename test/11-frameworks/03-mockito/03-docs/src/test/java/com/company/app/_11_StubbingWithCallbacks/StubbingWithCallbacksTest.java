@@ -17,6 +17,10 @@ import static org.mockito.Mockito.when;
 Allows stubbing with generic Answer interface.
  */
 public class StubbingWithCallbacksTest {
+  interface IMethods {
+    String simpleMethod(String argument);
+  }
+
   @Mock
   private IMethods mock;
 
