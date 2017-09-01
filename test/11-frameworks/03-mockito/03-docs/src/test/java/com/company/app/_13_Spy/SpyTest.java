@@ -18,7 +18,6 @@ import static org.mockito.Mockito.when;
 You can create spies of real objects. When you use the spy then the real methods are called (unless a method was stubbed).
 
 Real spies should be used carefully and occasionally, for example when dealing with legacy code.
-
  */
 public class SpyTest {
   @Test

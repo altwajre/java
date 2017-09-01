@@ -1,6 +1,7 @@
 # test doubles
 
-`Doubles` includes following
+> `Doubles` includes following
+
 - `Dummy` - a dummy object is passed as a mandatory parameter object. A dummy object is not directly used in the test
 or code under test, but it is required for the creation of another object required in the code under test.
 ```
