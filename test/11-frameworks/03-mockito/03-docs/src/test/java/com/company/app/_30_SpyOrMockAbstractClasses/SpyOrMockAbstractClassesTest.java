@@ -8,6 +8,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.withSettings;
 
+/*
+30. Spying or mocking abstract classes
+
+Previously, spying was only possible on instances of objects.
+New API makes it possible to use constructor when creating an instance of the mock.
+This is particularly useful for mocking abstract classes because the user is no longer required to provide an instance
+of the abstract class.
+ */
 public class SpyOrMockAbstractClassesTest {
   static abstract class AbstractMessage {
     private final String message;
