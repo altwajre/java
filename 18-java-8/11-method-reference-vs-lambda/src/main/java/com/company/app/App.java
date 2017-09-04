@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-class Apple {
+final class Apple {
   private Integer weight = 0;
   private String color;
 
@@ -30,42 +30,56 @@ class Apple {
 public class App {
   public static void main(String[] args) {
 
+    instanceMethodOfAnObject();
+
     constructorReference();
 
     staticMethod();
 
     instanceMethodOfType();
+  }
 
-    instanceMethodOfAnObject();
+  private static void instanceMethodOfAnObject() {
+    System.out.println("#instanceMethodOfAnObject: new Apple()::isHeavy");
 
+    Predicate<Apple> lambdaPredicate = (Apple apple) -> apple.getWeight() > 150;
+    boolean lambdaResult = lambdaPredicate.test(new Apple(180, "red"));
+    System.out.println(lambdaResult);
+
+    final Apple apple = new Apple();
+    Predicate<Apple> mrPredicate = apple::isHeavy;
+/*
+@FunctionalInterface
+public interface Predicate<T> {
+    boolean test(T t);
+}
+ */
+    boolean pResult = mrPredicate.test(new Apple(168, "green"));
+    System.out.println("method reference: boolean isHeavy(Apple apple)" + pResult);
+
+    Supplier<Boolean> mrSupplier = new Apple()::isTrue;
+/*
+@FunctionalInterface
+public interface Supplier<T> {
+    T get();
+}
+ */
+    final Boolean sResult = mrSupplier.get();
+    System.out.println("method reference: boolean isTrue()" + sResult);
   }
 
   private static void constructorReference() {
     System.out.println("#constructorReference: Apple::new");
     Apple apple = new Apple();
-    System.out.println("regular: weight="+apple.getWeight());
+    System.out.println("regular: weight=" + apple.getWeight());
 
     Supplier<Apple> lambdaSupplier = () -> new Apple();
     Apple lambdaApple = lambdaSupplier.get();
-    System.out.println("lambda: weight="+lambdaApple.getWeight());
+    System.out.println("lambda: weight=" + lambdaApple.getWeight());
 
     Supplier<Apple> cRSupplier = Apple::new;
     Apple crApple = cRSupplier.get();
-    System.out.println("ctor reference: weight="+crApple.getWeight());
-  }
-
-  private static void instanceMethodOfAnObject() {
-    System.out.println("#instanceMethodOfAnObject: new Apple()::isHeavy");
-    Predicate<Apple> lambdaPredicate = (Apple apple) -> apple.getWeight() > 150;
-    boolean lambdaResult = lambdaPredicate.test(new Apple(180, "red"));
-    System.out.println(lambdaResult);
-
-    Predicate<Apple> mrPredicate = new Apple()::isHeavy;
-    boolean mrResult = mrPredicate.test(new Apple(168, "green"));
-    System.out.println("method reference: boolean isHeavy(Apple apple)" + mrResult);
-
-    Supplier<Boolean> mrSupplier = new Apple()::isTrue;
-    System.out.println("method reference: boolean isTrue()"+mrSupplier.get());
+    System.out.println("ctor reference: weight=" + crApple.getWeight());
   }
 
   private static void instanceMethodOfType() {
@@ -90,7 +104,10 @@ public class App {
   }
 }
 /*
-output:
+#instanceMethodOfAnObject: new Apple()::isHeavy
+true
+method reference: boolean isHeavy(Apple apple)true
+method reference: boolean isTrue()false
 #constructorReference: Apple::new
 regular: weight=0
 lambda: weight=0
@@ -101,8 +118,4 @@ method reference: heavy=true
 #instanceMethodOfType: Apple::isTrue
 lambda: false
 method reference: false
-#instanceMethodOfAnObject: new Apple()::isHeavy
-true
-method reference: boolean isHeavy(Apple apple)true
-method reference: boolean isTrue()false
  */
