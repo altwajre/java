@@ -15,7 +15,8 @@ public class App {
     final Vertx vertx = Vertx.vertx();
     final HttpServer server = vertx.createHttpServer();
     final Router router = Router.router(vertx);
-    final Route route = router.route().pathRegex(".*foo");
+//    final Route route = router.route().pathRegex(".*foo");
+    final Route route = router.routeWithRegex(".*foo");
     route.handler(context -> {
       // This handler will be called for:
 
