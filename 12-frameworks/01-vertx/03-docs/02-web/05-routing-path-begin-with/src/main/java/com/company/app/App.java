@@ -7,6 +7,8 @@ import io.vertx.ext.web.Route;
 import io.vertx.ext.web.Router;
 
 /*
+http://vertx.io/docs/vertx-web/java/#_routing_by_paths_that_begin_with_something
+
 Often you want to route all requests that begin with a certain path.
 A simple way is to use an asterisk * at the end of the path when declaring the route path.
  */

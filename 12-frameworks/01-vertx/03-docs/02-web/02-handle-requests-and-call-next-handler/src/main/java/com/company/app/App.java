@@ -7,6 +7,8 @@ import io.vertx.ext.web.Route;
 import io.vertx.ext.web.Router;
 
 /*
+http://vertx.io/docs/vertx-web/java/#_handling_requests_and_calling_the_next_handler
+
 All this happens without any thread blocking.
  */
 public class App {

@@ -6,6 +6,8 @@ import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;
 
 /*
+http://vertx.io/docs/vertx-web/java/#_using_blocking_handlers
+
 We can't call blocking code in a normal handler. We need to use blocking handler.
 A blocking handler looks just like a normal handler but it’s called by Vert.x using a thread from the worker pool not using an event loop.
  */
