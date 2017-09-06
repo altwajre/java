@@ -1,5 +1,9 @@
 # Customer API
 
+> Launch App
+
+App.main()
+
 > Test
 
 ```
