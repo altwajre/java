@@ -11,6 +11,9 @@ import io.vertx.ext.web.handler.SessionHandler;
 import io.vertx.ext.web.handler.UserSessionHandler;
 import io.vertx.ext.web.sstore.LocalSessionStore;
 
+/*
+properties_path: resources/login/loginusers.properties
+ */
 public class App {
   public static void main(String[] args) {
     final Vertx vertx = Vertx.vertx();
