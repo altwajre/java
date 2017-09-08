@@ -4,6 +4,9 @@ import io.vertx.core.Vertx;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.TimeoutHandler;
 
+/*
+http://vertx.io/docs/vertx-web/java/#_timeout_handler
+ */
 public class App {
   public static void main(String[] args) {
     final Vertx vertx = Vertx.vertx();
