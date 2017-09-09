@@ -11,7 +11,7 @@ http://vertx.io/docs/vertx-core/java/#_asynchronous_verticle_start_and_stop
 class FirstVerticle extends AbstractVerticle {
 
   @Override
-  public void start(Future<Void> startFuture) {
+  public void start(Future<Void> future) {
 
     System.out.println(Thread.currentThread().getName() + ": FirstVerticle.start() async is called");
 
@@ -21,9 +21,9 @@ class FirstVerticle extends AbstractVerticle {
 
       if (ar.succeeded()) {
         // call future.complete() to signal that you're done
-        startFuture.complete();
+        future.complete();
       } else {
-        startFuture.fail(ar.cause());
+        future.fail(ar.cause());
       }
     });
   }
