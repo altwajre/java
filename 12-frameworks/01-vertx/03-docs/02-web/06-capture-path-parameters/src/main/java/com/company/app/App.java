@@ -9,6 +9,8 @@ import io.vertx.ext.web.Router;
 /*
 http://vertx.io/docs/vertx-web/java/#_capturing_path_parameters
 
+Checkout MyVerticleTest on how unit test works
+
 It's possible to match paths using placeholders for parameters which are then available in the request params.
 The placeholders consist of `:` followed by the parameter name. Parameter names consist of any alphabetic character,
 numeric character or underscore.
@@ -18,7 +20,7 @@ public class App {
     final Vertx vertx = Vertx.vertx();
     final HttpServer server = vertx.createHttpServer();
     final Router router = Router.router(vertx);
-    final Route route = router.route(HttpMethod.POST, "/catalogue/products/:producttype/:productid/");
+    final Route route = router.route(HttpMethod.POST, "/catalogue/products/:producttype/:productid");
     route.handler(context -> {
       final String producttype = context.request().getParam("producttype");
       final String productid = context.request().getParam("productid");
@@ -29,6 +31,6 @@ public class App {
   }
 }
 /*
-curl -X POST http://localhost:8080/catalogue/products/tools/drill123/
+curl -X POST http://localhost:8080/catalogue/products/tools/drill123
 tools: drill123
  */

@@ -35,9 +35,9 @@ public class MyVerticleTest {
       System.out.println(resp.getHeader("Content-Type"));
       resp.bodyHandler(body -> {
         System.out.println(body);
+        async.complete();
       });
       context.assertEquals("application/json", resp.getHeader("Content-Type"));
-      async.complete();
     }).putHeader(HttpHeaders.ACCEPT, "application/json").end();
   }
 
@@ -50,9 +50,9 @@ public class MyVerticleTest {
       System.out.println(resp.getHeader("Content-Type"));
       resp.bodyHandler(body -> {
         System.out.println(body);
+        async.complete();
       });
       context.assertEquals("text/xml", resp.getHeader("Content-Type"));
-      async.complete();
     }).putHeader(HttpHeaders.ACCEPT, "text/xml").end();
 
   }
