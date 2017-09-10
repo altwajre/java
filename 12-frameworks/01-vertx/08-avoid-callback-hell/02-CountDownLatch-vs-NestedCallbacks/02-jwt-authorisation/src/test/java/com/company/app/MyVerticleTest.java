@@ -22,7 +22,7 @@ public class MyVerticleTest {
   @Before
   public void setUp(TestContext context) {
     vertx = Vertx.vertx();
-    this.vertx.deployVerticle(new MyVerticle(), context.asyncAssertSuccess());
+    vertx.deployVerticle(new MyVerticle(), context.asyncAssertSuccess());
   }
 
   @After
