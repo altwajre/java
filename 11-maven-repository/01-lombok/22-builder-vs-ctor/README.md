@@ -1,5 +1,7 @@
 # Builder vs Constructor
 
+http://javarevisited.blogspot.com/2012/06/builder-design-pattern-in-java-example.html
+
 https://projectlombok.org/features/Builder.html
 https://projectlombok.org/features/Constructor.html
 
