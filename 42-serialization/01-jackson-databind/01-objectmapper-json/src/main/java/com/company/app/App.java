@@ -15,6 +15,9 @@ class Student extends Person{
     private String arpartment;
 }
 
+/*
+http://www.tutorialspoint.com/jackson/jackson_objectmapper.htm
+ */
 public class App
 {
     public static void main( String[] args ) throws Exception {
@@ -30,9 +33,6 @@ public class App
     }
 }
 /*
-http://www.tutorialspoint.com/jackson/jackson_objectmapper.htm
-
-output:
 Student [ name:: Mahesh, age: 21]
 {
   "name" : "Mahesh",
