@@ -39,7 +39,7 @@ public class OrderStateMachine extends DetachedStateMachine<State, Event> {
     Map<Event, State> transition = new EnumMap<>(Event.class);
     transition.put(Event.PURCHASE, State.READY);
     transition.put(Event.CANCEL, State.CANCELLED);
-    transitions.put(State.CREATED, transition);
+    transitions.put(State.CREATED, transition); // root: State.CREATED
   }
 
   public OrderStateMachine() {
