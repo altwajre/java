@@ -77,7 +77,7 @@ Customer(id=5, name=Sam, age=58)
  */
 
   @Test
-  public void webClientAbsSencBuffer(TestContext context) throws IOException {
+  public void webClientAbsSendBuffer(TestContext context) throws IOException {
     final Async async = context.async();
     WebClient client = WebClient.create(vertx);
 
@@ -142,6 +142,48 @@ GET all
   "age" : 48
 } ]
  */
+
+  @Test
+  public void webClientSendBuffer(TestContext context) throws IOException {
+    final Async async = context.async();
+    WebClient client = WebClient.create(vertx);
+
+    final String json = Json.encodePrettily(new Customer(4, "Will", 48));
+    ObjectMapper mapper = new ObjectMapper();
+    final JsonNode root = mapper.readTree(json);
+
+    final String reqJson = Json.encodePrettily(root);
+
+    System.out.println("POST");
+    // POST
+    client
+        .post(port, "localhost", "/api/customers")
+        .sendBuffer(Buffer.buffer(reqJson), ar1 -> {
+          if (ar1.succeeded()) {
+            final HttpResponse<Buffer> resp1 = ar1.result();
+            System.out.println(resp1.statusCode());
+            System.out.println(resp1.body());
+
+            System.out.println("GET all");
+            // Get all
+            client
+                .get(port, "localhost", "/api/customers")
+                .send(ar2 -> {
+                  if (ar2.succeeded()) {
+                    final HttpResponse<Buffer> resp2 = ar2.result();
+                    System.out.println(resp2.statusCode());
+                    System.out.println(resp2.body());
+                  } else {
+                    System.out.println("Error: " + ar2.cause());
+                  }
+                  async.complete();
+                });
+
+          } else {
+            System.out.println("Error: " + ar1.cause());
+          }
+        });
+  }
 
   @Test
   public void webClient(TestContext context) {
