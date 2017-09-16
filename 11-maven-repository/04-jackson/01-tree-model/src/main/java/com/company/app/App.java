@@ -1,11 +1,16 @@
 package com.company.app;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /*
 https://www.mkyong.com/java/jackson-tree-model-example/
@@ -115,6 +120,14 @@ After Update:
         System.out.println("ref: " + ref);
       }
     }
+
+    System.out.println("#id=1");
+    final Optional<JsonNode> jsonNode1 = StreamSupport.stream(rootArray.spliterator(), false)
+        .filter(n -> n.path("id").asInt() == 1)
+        .findFirst();
+
+    final String id1 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonNode1.get());
+    System.out.println(id1);
   }
 /*
 id: 1
@@ -133,6 +146,21 @@ type: phone/home
 ref: 333-333-1234
 type: phone/work
 ref: 444-444-4444
+#id=1
+{
+  "id" : 1,
+  "name" : {
+    "first" : "Yong",
+    "last" : "Mook Kim"
+  },
+  "contact" : [ {
+    "type" : "phone/home",
+    "ref" : "111-111-1234"
+  }, {
+    "type" : "phone/work",
+    "ref" : "222-222-2222"
+  } ]
+}
  */
 
   private static void traversingOneUser() throws IOException {
