@@ -2,7 +2,21 @@
 
 https://sites.google.com/site/williamhandev/database/mysql/jump-start
 
-**Start Server**
+## Installation
+
+> uninstall
+
+http://community.jaspersoft.com/wiki/uninstall-mysql-mac-os-x
+
+> install using native packages
+
+https://dev.mysql.com/doc/refman/5.6/en/osx-installation-pkg.html
+
+> brew install
+
+https://coderwall.com/p/os6woq/uninstall-all-those-broken-versions-of-mysql-and-re-install-it-with-brew-on-mac-mavericks
+
+> Start Server
 
 $ mysql.server start
 $ mysql.server stop
@@ -15,7 +29,7 @@ $ mysql --version
 $ type -a mysql   <- find out where MYSQL is installed
 mysql is /usr/local/mysql/bin/mysql
 
-**MySql command mode**
+> MySql command mode
 
 $ sudo /usr/local/mysql/bin/mysql -u root
 
@@ -29,15 +43,17 @@ mysql> CREATE USER 'whan'@'localhost'; <- run it if local-user is not in user li
 mysql> GRANT ALL ON cookbook.* TO 'whan'@'localhost';  <- Grant user to cookbook database
 ```
 
-**Create database**
+> Create database
 
 mysql> create database INVENTORY;
 mysql> show databases;
 
-**grant all privileges to inventory database**
+> grant all privileges to inventory database
+
 mysql> GRANT ALL PRIVILEGES ON INVENTORY.* TO 'community'@'%' IDENTIFIED BY 'mysql01' WITH GRANT OPTION;
 
-**community=username; mysql01=password;***
+> username=community; password=mysql01;
+
 mysql> GRANT ALL PRIVILEGES ON INVENTORY.* TO 'community'@'localhost' IDENTIFIED BY 'mysql01' WITH GRANT OPTION;
     
 setup the users that just created for the particular database
@@ -46,9 +62,10 @@ quit
 mysql> \q
 Select database
 
-**login as username=community**
+> login as username=community
+
 $ mysql -u community -p
-mysql> use INVENTORY    <- select table
+mysql> use INVENTORY;    <- select table
 mysql> show tables;   <- show tables
 mysql> SELECT DATABASE() FROM DUAL;   <- show current database
 Create tables
