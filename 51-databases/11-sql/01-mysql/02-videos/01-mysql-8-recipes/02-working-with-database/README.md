@@ -11,3 +11,7 @@ $ mysql -uroot -p
 password: I*u*!*a*
 
 > Workbench
+
+> Run query
+
+hr-schema.sql
