@@ -4,11 +4,23 @@ https://sites.google.com/site/williamhandev/database/mysql/jump-start
 
 ## Installation
 
+> stop mysql server
+
+System Preferences - MySQL
+ 
 > uninstall
 
 http://community.jaspersoft.com/wiki/uninstall-mysql-mac-os-x
 
 > install using native packages
+
+MySQL Community Server
+
+1, https://dev.mysql.com/downloads/mysql/
+
+2, download `Mac OS X 10.12 (x86, 64-bit), DMG Archive`
+
+3, follow link below to install
 
 https://dev.mysql.com/doc/refman/5.6/en/osx-installation-pkg.html
 
@@ -23,25 +35,28 @@ $ mysql.server stop
 $ sudo /usr/local/mysql/support-files/mysql.server start
 $ sudo /usr/local/mysql/support-files/mysql.server stop
 
-$ mysqladmin version   <- it is running if shows version info
+$ mysqladmin version   <- shows version info if it is running
 $ mysql --version
 
 $ type -a mysql   <- find out where MYSQL is installed
 mysql is /usr/local/mysql/bin/mysql
 
-> MySql command mode
+## MySql command mode
 
-$ sudo /usr/local/mysql/bin/mysql -u root
+> login as root
 
-if you have Access denied for user error, do following
+$ /usr/local/mysql/bin/mysql -u root -p
 
-```
-$ sudo /usr/local/mysql/bin/mysql -u root -pabc  <- password is "abc"; -p is option
-re-add local user
+> add user
+
 mysql> DROP USER 'whan'@'localhost';  <- drop user
 mysql> CREATE USER 'whan'@'localhost'; <- run it if local-user is not in user list
+$ mysql
+mysql>
+
+> grant user to database access
+
 mysql> GRANT ALL ON cookbook.* TO 'whan'@'localhost';  <- Grant user to cookbook database
-```
 
 > Create database
 
