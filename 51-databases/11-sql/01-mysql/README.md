@@ -83,18 +83,18 @@ $ mysql -u community -p
 mysql> use INVENTORY;    <- select table
 mysql> show tables;   <- show tables
 mysql> SELECT DATABASE() FROM DUAL;   <- show current database
-Create tables
 
+Create table
 mysql> CREATE TABLE customer (name VARCHAR(20), age INT);
 mysql> SHOW TABLES;
-Insert data
 
+Insert data
 mysql> INSERT INTO customer (name, age) VALUES("Tom", 10);
 mysql> INSERT INTO customer (name, age) VALUES("Dick", 20);
 mysql> INSERT INTO customer (name, age) VALUES("Harry", 18);
+
 Select data
-
 mysql> SELECT * FROM INVENTORY.customer;
-Drop database
 
+Drop database
 mysql> DROP DATABASE INVENTORY;
