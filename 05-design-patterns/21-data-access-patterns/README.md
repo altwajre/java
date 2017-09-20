@@ -1,5 +1,7 @@
 # Data Access / Dao Design Pattern
 
+https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm
+
 http://tutorials.jenkov.com/java-persistence/dao-design-pattern.html
 
 https://www.youtube.com/watch?v=H1mePFyqqiE
