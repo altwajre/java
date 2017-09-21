@@ -72,6 +72,38 @@ Diff:
     assertThat(change1.getRight()).isEqualTo("Tommy C. Smart");
 
     System.out.println(diff);
-  }
 
+    final String json = javers.getJsonConverter().toJson(diff);
+    System.out.println(json);
+  }
+/*
+Diff:
+1. ValueChange{globalId:'com.company.app.Person/tommy', property:'firstName', oldVal:'Tommy Smart', newVal:'Tommy C. Smart'}
+2. ValueChange{globalId:'com.company.app.Person/tommy', property:'lastName', oldVal:'Lee', newVal:'Lee C'}
+
+{
+  "changes": [
+    {
+      "changeType": "ValueChange",
+      "globalId": {
+        "entity": "com.company.app.Person",
+        "cdoId": "tommy"
+      },
+      "property": "firstName",
+      "left": "Tommy Smart",
+      "right": "Tommy C. Smart"
+    },
+    {
+      "changeType": "ValueChange",
+      "globalId": {
+        "entity": "com.company.app.Person",
+        "cdoId": "tommy"
+      },
+      "property": "lastName",
+      "left": "Lee",
+      "right": "Lee C"
+    }
+  ]
+}
+ */
 }

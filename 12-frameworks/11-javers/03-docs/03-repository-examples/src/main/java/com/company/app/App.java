@@ -1,8 +1,7 @@
 package com.company.app;
 
-// checkout tests
+// checkout test
 public class App {
   public static void main(String[] args) {
-
   }
 }
