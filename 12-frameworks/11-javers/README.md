@@ -15,11 +15,16 @@ Javers javers = JaversBuilder.javers().build();
 > Object diff
 
 ```
-final Person tomOld = new Person("Tom", 18);
-final Person tomNew = new Person("Tommy", 28);
-final Diff diff = javers.compare(tomNew, tomOld);
+Person tommyOld = new Person("tommy", "Tommy Smart");
+Person tommyNew = new Person("tommy", "Tommy C. Smart");
+
+Diff diff = javers.compare(tommyOld, tommyNew);
 ```
 
 > Object audit
 
+```
+Person robert = new Person("bob", "Robert Martin");
+javers.commit("user", robert);
+```
 
