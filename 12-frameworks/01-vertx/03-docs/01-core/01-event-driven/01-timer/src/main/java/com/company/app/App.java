@@ -19,7 +19,7 @@ public class App
 
         long timerId = vertx.setTimer(1800, timerHandler -> {
             // This handler will get called once after a specified delay
-            System.out.println(Thread.currentThread().getName() + ": One-time Timers fired");
+            System.out.println(Thread.currentThread().getName() + ": One-time Timer fired");
 
             // cancel timer
             vertx.cancelTimer(periodicId);

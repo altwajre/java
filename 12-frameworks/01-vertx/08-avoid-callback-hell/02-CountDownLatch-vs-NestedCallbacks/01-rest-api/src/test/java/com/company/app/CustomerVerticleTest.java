@@ -70,7 +70,7 @@ public class CustomerVerticleTest {
 
     final CountDownLatch latch1 = new CountDownLatch(1);
 
-    System.out.println("POST");
+    System.out.println("#POST");
     // POST
     vertx.createHttpClient()
         .post(port, "localhost", "/api/customers")
@@ -89,7 +89,7 @@ public class CustomerVerticleTest {
 
     final CountDownLatch latch2 = new CountDownLatch(1);
 
-    System.out.println("GET");
+    System.out.println("#GET all");
     // GET
     vertx.createHttpClient().get(port, "localhost", "/api/customers", resp2 -> {
       assertEquals(200, resp2.statusCode());
