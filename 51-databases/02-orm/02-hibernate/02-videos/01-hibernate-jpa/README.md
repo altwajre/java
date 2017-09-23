@@ -2,6 +2,11 @@
 
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/
 
+> Session
+
+1. run InfiniteFinancesSchema.sql in mysql first
+2. so we can use hibernate session to persist data
+
 ## Start MySQL Server
 
 > Start MySql Server at `System Preferences`, `MySql`
