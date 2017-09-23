@@ -1,25 +1,73 @@
 package com.company.app;
 
+import com.company.app.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import java.util.Date;
 
 /*
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209920.html
 
-resources/hibernate.properties
+1, resources/hibernate.properties - hibernate will auto pick up the hibernate.properties config
 hibernate.connection.username=infinite
 hibernate.connection.password=skills
 hibernate.connection.url=jdbc:mysql://localhost:3306/ifinances
 hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver
 hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
 
-run InfiniteFinancesSchema.sql first before running this app
+2, add User to config
+Configuration configuration = new Configuration();
+configuration.addAnnotatedClass(User.class);
+return configuration
+    .buildSessionFactory(new StandardServiceRegistryBuilder()
+        .build());
+
+3, run InfiniteFinancesSchema.sql first before running this app
+
+4, database - finances_user table
+
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS `finances_user`;
+SET FOREIGN_KEY_CHECKS=1;
+CREATE TABLE `finances_user` (
+    `USER_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+    `FIRST_NAME` varchar(45) NOT NULL,
+    `LAST_NAME` varchar(45) NOT NULL,
+    `BIRTH_DATE` date NOT NULL,
+    `EMAIL_ADDRESS` varchar(100) NOT NULL,
+    `LAST_UPDATED_BY` varchar(45) NOT NULL,
+    `LAST_UPDATED_DATE` datetime NOT NULL,
+    `CREATED_BY` varchar(45) NOT NULL,
+    `CREATED_DATE` datetime NOT NULL,
+    `USER_ADDRESS_LINE_1` varchar(100) DEFAULT NULL,
+    `USER_ADDRESS_LINE_2` varchar(100) DEFAULT NULL,
+    `CITY` varchar(100) DEFAULT NULL,
+    `STATE` varchar(2) DEFAULT NULL,
+    `ZIP_CODE` varchar(5) DEFAULT NULL,
+    PRIMARY KEY (`USER_ID`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
  */
 public class App {
   public static void main(String[] args) {
     final SessionFactory sessionFactory = SessionFactoryBuilder.get();
     final Session session = sessionFactory.openSession();
     session.beginTransaction();
+//    session.getTransaction().begin();
+
+    User user = new User();
+    user.setBirthDate(new Date());
+    user.setCreatedBy("kevin");
+    user.setCreatedDate(new Date());
+    user.setEmailAddress("kmb385@yahoo.com");
+    user.setFirstName("Kevin");
+    user.setLastName("Bowersox");
+    user.setLastUpdatedBy("kevin");
+    user.setLastUpdatedDate(new Date());
+
+    session.save(user);
+    session.getTransaction().commit();
+
     sessionFactory.close();
   }
 }
