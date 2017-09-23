@@ -25,7 +25,7 @@ mysql -u root -p # password: root
 show databases;
  
 create database test_db;
- 
+
 GRANT ALL PRIVILEGES ON test_db.* TO 'test'@'%' IDENTIFIED BY 'test' WITH GRANT OPTION;
  
 > Workbench

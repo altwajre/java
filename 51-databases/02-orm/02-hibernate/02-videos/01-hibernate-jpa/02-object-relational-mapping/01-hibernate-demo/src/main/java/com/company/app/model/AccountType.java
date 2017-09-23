@@ -1,4 +1,4 @@
-package com.infiniteskills.data.entities;
+package com.company.app.model;
 
 import java.util.Date;
 
