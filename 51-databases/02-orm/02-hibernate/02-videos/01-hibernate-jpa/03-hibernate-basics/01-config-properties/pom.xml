@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.company.app</groupId>
-  <artifactId>properties</artifactId>
+  <artifactId>config-properties</artifactId>
   <version>1.0-SNAPSHOT</version>
   <build>
     <plugins>
@@ -19,12 +19,12 @@
   </build>
   <packaging>jar</packaging>
 
-  <name>properties</name>
+  <name>config-properties</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
+  <config-properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+  </config-properties>
 
   <dependencies>
     <dependency>
