@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false" default-lazy="false">
+  <class name="com.company.app.model.User" table="finances_user">
+    <id name="userId" type="long">
+      <generator class="native"/>
+    </id>
+    <property column="FIRST_NAME" name="firstName"/>
+    <property column="LAST_NAME" name="lastName"/>
+    <property column="BIRTH_DATE" name="birthDate"/>
+    <property column="EMAIL_ADDRESS" name="emailAddress"/>
+    <property column="LAST_UPDATED_DATE" name="lastUpdatedDate"/>
+    <property column="LAST_UPDATED_BY" name="lastUpdatedBy"/>
+    <property column="CREATED_DATE" name="createdDate"/>
+    <property column="CREATED_BY" name="createdBy"/>
+  </class>
+</hibernate-mapping>
