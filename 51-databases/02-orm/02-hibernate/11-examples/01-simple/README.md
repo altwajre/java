@@ -24,16 +24,16 @@ mysql -u root -p # password: root
  
 show databases;
  
-create database test_db;
+create database my_db;
 
-GRANT ALL PRIVILEGES ON test_db.* TO 'test'@'%' IDENTIFIED BY 'test' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON my_db.* TO 'user'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
  
 > Workbench
 
-User: test
-Password: test
+User: user
+Password: password
 
-use test_db;
+use my_db;
 TRUNCATE TABLE Person;
 select * from Person;
  

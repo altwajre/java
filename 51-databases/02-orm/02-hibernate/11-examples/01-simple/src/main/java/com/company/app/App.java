@@ -16,7 +16,8 @@ public class App {
   public static void main(String[] args) {
     Vertx vertx = Vertx.vertx();
 
-    final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("test");
+    String persistenceProviderName = "test-unit";
+    final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(persistenceProviderName);
     final EntityManager entityManager = entityManagerFactory.createEntityManager();
 
     System.out.println("#createPerson");
@@ -33,6 +34,14 @@ public class App {
     });
   }
 
+  private static void createPerson(EntityManager entityManager) {
+    final Person person = new Person();
+    person.setName("Tom");
+    entityManager.getTransaction().begin();
+    entityManager.persist(person);
+    entityManager.getTransaction().commit();
+  }
+
   private static void getPerson(EntityManager entityManager) {
     final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
     final CriteriaQuery<Person> criteriaQuery = criteriaBuilder.createQuery(Person.class);
@@ -46,14 +55,6 @@ public class App {
     resultList.forEach(p -> {
       System.out.println(p.getName());
     });
-  }
-
-  private static void createPerson(EntityManager entityManager) {
-    final Person person = new Person();
-    person.setName("Tom");
-    entityManager.getTransaction().begin();
-    entityManager.persist(person);
-    entityManager.getTransaction().commit();
   }
 }
 /*
