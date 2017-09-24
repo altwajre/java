@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.company.app</groupId>
-  <artifactId>@column</artifactId>
+  <artifactId>@transient</artifactId>
   <version>1.0-SNAPSHOT</version>
   <build>
     <plugins>
@@ -19,7 +19,7 @@
   </build>
   <packaging>jar</packaging>
 
-  <name>@column</name>
+  <name>@transient</name>
   <url>http://maven.apache.org</url>
 
   <properties>
