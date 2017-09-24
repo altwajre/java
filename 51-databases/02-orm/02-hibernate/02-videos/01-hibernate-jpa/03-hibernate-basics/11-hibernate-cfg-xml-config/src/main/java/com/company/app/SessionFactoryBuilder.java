@@ -1,5 +1,6 @@
 package com.company.app;
 
+import com.company.app.model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -13,6 +14,7 @@ public enum SessionFactoryBuilder {
   private static SessionFactory buildSessionFactory() {
     try {
       Configuration configuration = new Configuration();
+      configuration.addAnnotatedClass(User.class);
       configuration.configure();
       return configuration
           .buildSessionFactory(new StandardServiceRegistryBuilder()

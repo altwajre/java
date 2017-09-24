@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name="FINANCES_USER")
+@Table(name="finances_user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

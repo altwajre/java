@@ -27,23 +27,18 @@ the configuration when obtaining an javax.persistence.EntityManagerFacory refere
     <properties>
       <property name="javax.persistence.jdbc.driver"
                 value="com.mysql.cj.jdbc.Driver"/>
-
       <property name="javax.persistence.jdbc.url"
                 value="jdbc:mysql://localhost/ifinances"/>
-
       <property name="javax.persistence.jdbc.user"
                 value="infinite"/>
-
       <property name="javax.persistence.jdbc.password"
                 value="skills"/>
-
       <property name="hibernate.show_sql"
                 value="true"/>
-
       <property name="hibernate.hbm2ddl.auto"
                 value="create"/>
     </properties>
-  </persistence-unit>\
+  </persistence-unit>
 
 2, add User to config
 Configuration configuration = new Configuration();
