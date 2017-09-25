@@ -10,7 +10,7 @@ import java.util.Date;
 /*
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209930.html
 
-calculated column and dynamic assign value to it
+> calculated column and dynamic assign value to it
 	@Formula("lower(datediff(curdate(), birth_date)/365)")
 
 Note: @Formula may tightly couple to database

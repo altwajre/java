@@ -10,8 +10,7 @@ import java.util.Date;
 
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209929.html
 
-Date and Time format
-
+> Date and Time format
   @Temporal(TemporalType.TIMESTAMP)
   @Temporal(TemporalType.DATE)
   @Temporal(TemporalType.TIME)
