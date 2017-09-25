@@ -13,6 +13,7 @@ Corresponds with a database row
 * Collection
 
 ```
+@Entity
 public class User {
   @Id
   private Long userId; // Basic Value Type
