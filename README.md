@@ -5,6 +5,10 @@ java
 
 http://brew.sh/
 
+> install brew
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 > `brew update`, `brew doctor`, `brew upgrade`
 
 If we have following error when run `brew update`
@@ -38,11 +42,14 @@ download JDK `Windows x64`
 
 ### brew install java
 
-> brew tap caskroom/cask
+https://gist.github.com/JeOam/a926dbb5145c4d0789c1
 
-> brew install brew-cask
-
-> brew cask install java
+```
+$ brew update
+$ brew tap caskroom/cask
+$ brew install Caskroom/cask/java
+$ java -version
+```
 
 ### install NetBeans IDE that comes with java
 
