@@ -2,7 +2,11 @@ package com.company.app.model;
 
 import lombok.Data;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,6 +36,11 @@ public class User {
   @Column(name = "EMAIL_ADDRESS")
   private String emailAddress;
 
+  @Embedded
+  @AttributeOverrides({@AttributeOverride(name="addressLine1", column=@Column(name="USER_ADDRESS_LINE_1")),
+      @AttributeOverride(name="addressLine2", column=@Column(name="USER_ADDRESS_LINE_2"))})
+  private Address address;
+
   @Column(name = "LAST_UPDATED_DATE")
   private Date lastUpdatedDate;
 
@@ -43,5 +52,4 @@ public class User {
 
   @Column(name = "CREATED_BY", updatable = false)
   private String createdBy;
-
 }
