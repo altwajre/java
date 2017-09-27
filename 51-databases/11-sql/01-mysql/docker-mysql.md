@@ -26,7 +26,7 @@ docker exec -it 6c6225d60019 bash # login by using container Id
 
 ## Login to MySQL client, create database, add user
 
-mysql -u root -p # Your password is root if you copy/pasted the exact same command above
+mysql -u root -p # Your password is `root` if you copy/pasted the exact same command above
 
 mysql> create database test_db;
 
