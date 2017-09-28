@@ -15,7 +15,6 @@ public enum SessionFactoryBuilder {
   private static SessionFactory buildSessionFactory() {
     try {
       Configuration configuration = new Configuration();
-      configuration.addAnnotatedClass(User.class);
       configuration.addAnnotatedClass(Bank.class);
       configuration.configure();
       return configuration

@@ -11,20 +11,7 @@ import java.util.Date;
 
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209934.html?autoStart=True
 
-> SQL tables
-
-describe user_address;
-+---------------------+--------------+------+-----+---------+-------+
-| Field               | Type         | Null | Key | Default | Extra |
-+---------------------+--------------+------+-----+---------+-------+
-| USER_ID             | bigint(20)   | NO   | PRI | NULL    |       |
-| USER_ADDRESS_LINE_1 | varchar(100) | NO   | PRI | NULL    |       |
-| USER_ADDRESS_LINE_2 | varchar(100) | NO   | PRI | NULL    |       |
-| CITY                | varchar(100) | NO   | PRI | NULL    |       |
-| STATE               | varchar(2)   | NO   | PRI | NULL    |       |
-| ZIP_CODE            | varchar(5)   | NO   | PRI | NULL    |       |
-| ADDRESS_TYPE        | varchar(45)  | YES  |     | NULL    |       |
-+---------------------+--------------+------+-----+---------+-------+
+> SQL table
 
 describe finances_user;
 +---------------------+--------------+------+-----+---------+----------------+
@@ -46,7 +33,7 @@ describe finances_user;
 | ZIP_CODE            | varchar(5)   | YES  |     | NULL    |                |
 +---------------------+--------------+------+-----+---------+----------------+
 
-> Object model - classes
+> Object model - embed class Address into class User and persist into finances_user table
 
 @Embeddable
 public class Address {
@@ -75,34 +62,11 @@ public class User {
   @Column(name = "USER_ID")
   private Long userId;
 
-  @Column(name = "FIRST_NAME")
-  private String firstName;
-
-  @Column(name = "LAST_NAME")
-  private String lastName;
-
-  @Column(name = "BIRTH_DATE", nullable = false)
-  private Date birthDate;
-
-  @Column(name = "EMAIL_ADDRESS")
-  private String emailAddress;
-
   @Embedded
   @AttributeOverrides({@AttributeOverride(name="addressLine1", column=@Column(name="USER_ADDRESS_LINE_1")),
       @AttributeOverride(name="addressLine2", column=@Column(name="USER_ADDRESS_LINE_2"))})
   private Address address;
 
-  @Column(name = "LAST_UPDATED_DATE")
-  private Date lastUpdatedDate;
-
-  @Column(name = "LAST_UPDATED_BY")
-  private String lastUpdatedBy;
-
-  @Column(name = "CREATED_DATE", updatable = false)
-  private Date createdDate;
-
-  @Column(name = "CREATED_BY", updatable = false)
-  private String createdBy;
 }
 
 -----------------------------------------------------
