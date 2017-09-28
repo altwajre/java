@@ -1,7 +1,5 @@
 package com.company.app;
 
-import com.company.app.model.Address;
-import com.company.app.model.Bank;
 import com.company.app.model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -17,8 +15,6 @@ public enum SessionFactoryBuilder {
     try {
       Configuration configuration = new Configuration();
       configuration.addAnnotatedClass(User.class);
-      configuration.addAnnotatedClass(Bank.class);
-      configuration.addAnnotatedClass(Address.class);
       configuration.configure();
       return configuration
           .buildSessionFactory(new StandardServiceRegistryBuilder()

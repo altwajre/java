@@ -1,4 +1,4 @@
-# hibernate persist mysql
+# MySQL
 
 ## docker container
 
@@ -12,42 +12,30 @@ docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:latest
 
 > Login into the container instance
 
-```
 docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS                            PORTS                               NAMES
 6c6225d60019        mysql/mysql-server:latest   "/entrypoint.sh my..."   6 seconds ago       Up 3 seconds (health: starting)   0.0.0.0:3306->3306/tcp, 33060/
 
 docker exec -it 6c6225d60019 bash
-```
 
 > Login into MySQL
 
-```
 mysql -u root -p # password: root
- 
-show databases;
- 
-create database my_db;
 
-GRANT ALL PRIVILEGES ON my_db.* TO 'user'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
-```
+show databases;
+
+create database ifinances;
+
+GRANT ALL PRIVILEGES ON ifinances.* TO 'infinite'@'%' IDENTIFIED BY 'skills' WITH GRANT OPTION;
  
 > Workbench
 
-```
-User: user
-Password: password
+User: infinite
+Password: skills
 
-use my_db;
-CREATE TABLE `Person` (
-  `id` bigint(20) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-)
-describe Person;
+use ifinances;
 TRUNCATE TABLE Person;
 select * from Person;
-```
  
 ## Docker Container
 
