@@ -42,7 +42,6 @@ describe bank_contact;
 
 > Object model - class Bank maps to table `bank` and `bank_contact`
 
-@Data
 @Entity
 @Table(name = "bank")
 public class Bank {

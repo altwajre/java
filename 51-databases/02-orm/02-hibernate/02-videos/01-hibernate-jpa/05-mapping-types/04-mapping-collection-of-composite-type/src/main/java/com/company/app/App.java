@@ -9,11 +9,11 @@ import java.util.Date;
 
 /*
 
-https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209934.html?autoStart=True
+https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209937.html
 
-> SQL table
+> SQL tables
 
-describe finances_user;
+mysql> describe finances_user;
 +---------------------+--------------+------+-----+---------+----------------+
 | Field               | Type         | Null | Key | Default | Extra          |
 +---------------------+--------------+------+-----+---------+----------------+
@@ -32,26 +32,22 @@ describe finances_user;
 | STATE               | varchar(2)   | YES  |     | NULL    |                |
 | ZIP_CODE            | varchar(5)   | YES  |     | NULL    |                |
 +---------------------+--------------+------+-----+---------+----------------+
+14 rows in set (0.00 sec)
 
-> Object model - embed class Address into class User and persist into finances_user table
+mysql> describe user_address;
++---------------------+--------------+------+-----+---------+-------+
+| Field               | Type         | Null | Key | Default | Extra |
++---------------------+--------------+------+-----+---------+-------+
+| USER_ID             | bigint(20)   | NO   | PRI | NULL    |       |
+| USER_ADDRESS_LINE_1 | varchar(100) | NO   | PRI | NULL    |       |
+| USER_ADDRESS_LINE_2 | varchar(100) | NO   | PRI | NULL    |       |
+| CITY                | varchar(100) | NO   | PRI | NULL    |       |
+| STATE               | varchar(2)   | NO   | PRI | NULL    |       |
+| ZIP_CODE            | varchar(5)   | NO   | PRI | NULL    |       |
+| ADDRESS_TYPE        | varchar(45)  | YES  |     | NULL    |       |
++---------------------+--------------+------+-----+---------+-------+
 
-@Embeddable
-public class Address {
-  @Column(name = "ADDRESS_LINE_1")
-  private String addressLine1;
-
-  @Column(name = "ADDRESS_LINE_2")
-  private String addressLine2;
-
-  @Column(name = "CITY")
-  private String city;
-
-  @Column(name = "STATE")
-  private String state;
-
-  @Column(name = "ZIP_CODE")
-  private String zipCode;
-}
+> Object model - class Bank maps to table `bank` and `bank_contact`
 
 @Entity
 @Table(name = "finances_user")
@@ -62,12 +58,11 @@ public class User {
   @Column(name = "USER_ID")
   private Long userId;
 
-  @Embedded
-  @AttributeOverrides({@AttributeOverride(name="addressLine1", column=@Column(name="USER_ADDRESS_LINE_1")),
-      @AttributeOverride(name="addressLine2", column=@Column(name="USER_ADDRESS_LINE_2"))})
-  private Address address;
-
-}
+  @ElementCollection
+  @CollectionTable(name = "user_address", joinColumns = @JoinColumn(name = "USER_ID"))
+  @AttributeOverrides({@AttributeOverride(name = "addressLine1", column = @Column(name = "USER_ADDRESS_LINE_1")),
+      @AttributeOverride(name = "addressLine2", column = @Column(name = "USER_ADDRESS_LINE_2"))})
+  private List<Address> addresses = new ArrayList<>();
 
 -----------------------------------------------------
 
@@ -120,6 +115,17 @@ CREATE TABLE `finances_user` (
     PRIMARY KEY (`USER_ID`)
     )
 
+DROP TABLE IF EXISTS `user_address`;
+CREATE TABLE `user_address` (
+  `USER_ID` bigint(20) NOT NULL,
+  `USER_ADDRESS_LINE_1` varchar(100) NOT NULL,
+  `USER_ADDRESS_LINE_2` varchar(100) NOT NULL,
+  `CITY` varchar(100) NOT NULL,
+  `STATE` varchar(2) NOT NULL,
+  `ZIP_CODE` varchar(5) NOT NULL,
+  `ADDRESS_TYPE` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`,`USER_ADDRESS_LINE_1`,`USER_ADDRESS_LINE_2`,`CITY`,`STATE`,`ZIP_CODE`)
+)
  */
 public class App {
   public static void main(String[] args) {
@@ -129,22 +135,31 @@ public class App {
 
     User user = new User();
     user.setBirthDate(new Date());
-    user.setCreatedBy("Kevin");
+    user.setCreatedBy("kmb");
     user.setCreatedDate(new Date());
-    user.setEmailAddress("kmb3");
-    user.setFirstName("kevin");
+    user.setEmailAddress("kmb385");
+    user.setFirstName("Kevin");
     user.setLastName("bowersox");
-    user.setLastUpdatedBy("kmb");
+    user.setLastUpdatedBy("kevin");
     user.setLastUpdatedDate(new Date());
 
-    Address address = new Address();
-    address.setAddressLine1("Line 1");
-    address.setAddressLine2("Line 2");
-    address.setCity("Philadelphia");
-    address.setState("PA");
-    address.setZipCode("12345");
+    Address address1 = new Address();
+    address1.setAddressLine1("Line 1");
+    address1.setAddressLine2("Line 2");
+    address1.setCity("New York");
+    address1.setState("NY");
+    address1.setZipCode("12345");
 
-    user.setAddress(address);
+    user.getAddresses().add(address1);
+
+    Address address2 = new Address();
+    address2.setAddressLine1("Line 3");
+    address2.setAddressLine2("Line 4");
+    address2.setCity("Corning");
+    address2.setState("NY");
+    address2.setZipCode("12345");
+
+    user.getAddresses().add(address2);
 
     session.save(user);
     session.getTransaction().commit();
@@ -153,5 +168,7 @@ public class App {
   }
 }
 /*
-Hibernate: insert into finances_user (USER_ADDRESS_LINE_1, USER_ADDRESS_LINE_2, CITY, STATE, ZIP_CODE, BIRTH_DATE, CREATED_BY, CREATED_DATE, EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, LAST_UPDATED_BY, LAST_UPDATED_DATE) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into finances_user (BIRTH_DATE, CREATED_BY, CREATED_DATE, EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, LAST_UPDATED_BY, LAST_UPDATED_DATE) values (?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into user_address (USER_ID, USER_ADDRESS_LINE_1, USER_ADDRESS_LINE_2, CITY, STATE, ZIP_CODE) values (?, ?, ?, ?, ?, ?)
+Hibernate: insert into user_address (USER_ID, USER_ADDRESS_LINE_1, USER_ADDRESS_LINE_2, CITY, STATE, ZIP_CODE) values (?, ?, ?, ?, ?, ?)
  */
