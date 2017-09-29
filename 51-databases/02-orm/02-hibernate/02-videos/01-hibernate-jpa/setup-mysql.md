@@ -35,7 +35,7 @@ Password: skills
 
 use ifinances;
 TRUNCATE TABLE Person;
-select * from Person;
+select * from Person; 
  
 ## Docker Container
 
