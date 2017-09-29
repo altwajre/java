@@ -14,6 +14,6 @@
     <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
     <!-- Echo all executed SQL to stdout -->
     <property name="show_sql">true</property>
-    <!--<mapping class="com.company.app.model.User" />-->
+    <!--<mapping class="com.company.app.model.Bank" />-->
   </session-factory>
 </hibernate-configuration>
