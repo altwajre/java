@@ -12,6 +12,24 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+/*
+
+> SQL
+
+User: user
+Password: password
+
+use my_db;
+CREATE TABLE `Person` (
+  `id` bigint(20) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
+describe Person;
+TRUNCATE TABLE Person;
+select * from Person;
+
+ */
 public class App {
   public static void main(String[] args) {
     Vertx vertx = Vertx.vertx();
