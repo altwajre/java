@@ -10,7 +10,7 @@ import java.util.Date;
 /*
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209941.html
 
-bidirectional
+bidirectional one to one
 
 > SQL tables
 
@@ -46,7 +46,7 @@ describe finances_user;
 | ZIP_CODE            | varchar(5)   | YES  |     | NULL    |                |
 +---------------------+--------------+------+-----+---------+----------------+
 
-> Object model - class
+> Object model - classes
 
 @Entity
 @Table(name="credential")
