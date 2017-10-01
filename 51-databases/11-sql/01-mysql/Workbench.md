@@ -1,5 +1,9 @@
 # workbench
 
+> tutorial
+
+https://www.youtube.com/watch?v=X_umYKqKaF0&t=95s
+
 > download and install
 
 https://dev.mysql.com/downloads/workbench/
