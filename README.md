@@ -51,10 +51,6 @@ $ brew install Caskroom/cask/java
 $ java -version
 ```
 
-### install NetBeans IDE that comes with java
-
-> https://netbeans.org/features/index.html
-
 ### Install IDE
 
 #### Intellij
@@ -122,4 +118,3 @@ Edit Path Environment
 - `$ atom ~/.bash_profile`
 - `$ touch ~/.bash_profile; open ~/.bash_profile`
 - `export ORGANIZATION="Tony's Pizza"` - set environment variable
-

@@ -1,10 +1,26 @@
 # Common
 
-> find
+## .bash_profile
 
-`$ find . -name 'README.md'`
+> alias
+
+```
+$ ls -a
+$ cat .bash_profile
+alias ot='open -a Terminal "`pwd`"'
+alias gla='git log --oneline --all --decorate --graph'
+alias g='cd /Users/whan/Desktop/github'
+```
 
 ## File Commands
+
+> find
+
+$ find . -name 'README.md'
+
+> Remove all *.class files
+
+find . -name "*.class" -print0 | xargs -0 rm -rf
 
 > file permission - executable
 
@@ -17,15 +33,15 @@ total 8
 
 > Delete file `rm file-name`
 
-`$ rm .m2/settings.xml`
+$ rm .m2/settings.xml
 
 > Copy file1 to file2 `cp file1 file2`
 
-`$ cp .m2/settings.xml .m2/settings.xml.ecomm`
+$ cp .m2/settings.xml .m2/settings.xml.ecomm
 
 > Rename source to dest `mv file1 file2`
 
-`$ mv .m2/settings.xml .m2/settings.xml.ecomm`
+$ mv .m2/settings.xml .m2/settings.xml.ecomm
 
 ## mac command line
 
