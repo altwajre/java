@@ -1,0 +1,18 @@
+`Problem` the `star_meaning` is depended on non-key column `star` that is depended on primary key `review_id`
+reviews
+--------------
+review_id    | PK
+review       |
+star         | it depends on review_id
+star_meaning | it depends on star column because when we change star, star_meaning will change
+user_id      | FK
+--------------
+
+`Solution` move `star` and `star_meaning` to a new table `stars`, add FK `star_id` to reviews table.
+reviews                           stars
+--------------                   -------------
+review_id    | PK                |star_id
+review       |                   |star
+star_id      | FK                |star_meaning
+user_id      | FK                -------------
+--------------

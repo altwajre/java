@@ -11,6 +11,8 @@ import java.util.Date;
 
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209940.html
 
+unidirectional = one way direction
+
 > SQL tables
 
 - Source Object (credential)/Target Object (finances_user)

@@ -1,0 +1,8 @@
+`Users` table
+  `Problem` `address` column is not atomic
+  `Solution` need to break it down to `street address`, `city`, `state`, `zip`
+
+--------------------------------------
+|user_id|first_name|last_name|address|
+--------------------------------------
+|       |          |         |       |

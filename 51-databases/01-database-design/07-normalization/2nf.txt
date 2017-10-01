@@ -1,0 +1,12 @@
+`Problem`: in intermediary table `Authors_Books`, `ISBN` is `partial dependent` on `book_id`
+
+|Authors         |Authors_Books                                   |Books
+--------------------------------------------------------------------------
+|author_id       |author_id |book_id |author_position | `ISBN`    |book_id
+|  PK            |  FK       FK                                   |PK
+
+`Solution`: move `ISBN` to `Books` table
+|Authors         |Authors_Books                            |Books
+--------------------------------------------------------------------------
+|author_id       |author_id |book_id |author_position      |book_id |`ISBN`
+|  PK            |  FK       FK                            |PK

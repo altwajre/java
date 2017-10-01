@@ -1,0 +1,10 @@
+`child` points back to `parent`, `child` inherits the values from `parent`.
+
+Parent  <--  Child
+  PK          FK
+
+`One-to-Many`
+          / Child-1
+Parent  <-- Child-2
+  PK      \ Child-3
+              FK
