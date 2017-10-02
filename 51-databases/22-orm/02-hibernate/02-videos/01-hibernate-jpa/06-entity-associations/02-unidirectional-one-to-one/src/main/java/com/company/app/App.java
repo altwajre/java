@@ -93,7 +93,7 @@ public class Credential {
 
 3, run InfiniteFinancesSchema.sql first before running this app
 
-4, database - finances_user table
+4, database 
 
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `finances_user`;
@@ -161,4 +161,3 @@ Hibernate: update hibernate_sequence set next_val= ? where next_val=?
 Hibernate: insert into finances_user (BIRTH_DATE, CREATED_BY, CREATED_DATE, EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, LAST_UPDATED_BY, LAST_UPDATED_DATE) values (?, ?, ?, ?, ?, ?, ?, ?)
 Hibernate: insert into credential (PASSWORD, USER_ID, USERNAME, CREDENTIAL_ID) values (?, ?, ?, ?)
  */
-

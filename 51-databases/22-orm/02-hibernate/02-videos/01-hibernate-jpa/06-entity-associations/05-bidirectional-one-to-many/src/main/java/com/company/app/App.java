@@ -108,7 +108,7 @@ public class Transaction {
 
 3, run InfiniteFinancesSchema.sql first before running this app
 
-4, database - finances_user table
+4, database 
 
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `account`;

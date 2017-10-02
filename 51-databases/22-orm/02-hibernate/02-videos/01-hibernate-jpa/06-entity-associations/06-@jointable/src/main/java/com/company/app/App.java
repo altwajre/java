@@ -1,38 +1,30 @@
 package com.company.app;
 
-import com.company.app.model.Account;
-import com.company.app.model.Transaction;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import java.math.BigDecimal;
-import java.util.Date;
-
 /*
 
-https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209942.html
+when few of the transactions belong to budget, we create `budget_transaction` table to avoid lots of null budget value on `transaction` table
 
-unidirectional one to many
+-----
 
-> SQL tables
+show create table transaction;
 
-describe account;
-+-------------------+---------------+------+-----+---------+----------------+
-| Field             | Type          | Null | Key | Default | Extra          |
-+-------------------+---------------+------+-----+---------+----------------+
-| ACCOUNT_ID        | bigint(20)    | NO   | PRI | NULL    | auto_increment |
-| BANK_ID           | bigint(20)    | YES  | MUL | NULL    |                |
-| ACCOUNT_TYPE      | varchar(45)   | YES  | MUL | NULL    |                |
-| NAME              | varchar(100)  | YES  |     | NULL    |                |
-| INITIAL_BALANCE   | decimal(10,2) | NO   |     | NULL    |                |
-| CURRENT_BALANCE   | decimal(10,2) | NO   |     | NULL    |                |
-| OPEN_DATE         | date          | NO   |     | NULL    |                |
-| CLOSE_DATE        | date          | NO   |     | NULL    |                |
-| LAST_UPDATED_BY   | varchar(45)   | NO   |     | NULL    |                |
-| LAST_UPDATED_DATE | datetime      | YES  |     | NULL    |                |
-| CREATED_BY        | varchar(45)   | YES  |     | NULL    |                |
-| CREATED_DATE      | datetime      | YES  |     | NULL    |                |
-+-------------------+---------------+------+-----+---------+----------------+
+CREATE TABLE `transaction` (
+  `TRANSACTION_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ACCOUNT_ID` bigint(20) NOT NULL,
+  `TRANSACTION_TYPE` varchar(45) NOT NULL,
+  `TITLE` varchar(100) NOT NULL,
+  `AMOUNT` decimal(10,2) NOT NULL,
+  `INITIAL_BALANCE` decimal(10,2) NOT NULL,
+  `CLOSING_BALANCE` decimal(10,2) NOT NULL,
+  `NOTES` mediumtext,
+  `LAST_UPDATED_BY` varchar(45) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL,
+  `CREATED_BY` varchar(45) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL,
+  PRIMARY KEY (`TRANSACTION_ID`),
+  KEY `ACCOUNT_FK2_idx` (`ACCOUNT_ID`),
+  CONSTRAINT `ACCOUNT_FK2` FOREIGN KEY (`ACCOUNT_ID`) REFERENCES `account` (`ACCOUNT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+)
 
 describe transaction;
 +-------------------+---------------+------+-----+---------+----------------+
@@ -52,32 +44,49 @@ describe transaction;
 | CREATED_DATE      | datetime      | NO   |     | NULL    |                |
 +-------------------+---------------+------+-----+---------+----------------+
 
-> Object model - classes
+-----
 
-@Entity
-@Table(name = "account")
-public class Account {
+show create table budget;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "ACCOUNT_ID")
-  private Long accountId;
+CREATE TABLE `budget` (
+  `BUDGET_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(100) NOT NULL,
+  `GOAL_AMOUNT` decimal(10,2) NOT NULL,
+  `PERIOD` varchar(45) NOT NULL,
+  PRIMARY KEY (`BUDGET_ID`)
+)
 
-  @OneToMany(cascade=CascadeType.ALL)
-  @JoinColumn(name="ACCOUNT_ID", nullable=false) // ACCOUNT_ID is transaction.ACCOUNT_ID
-  List<Transaction> transactions = new ArrayList<>();
+describe budget;
++-------------+---------------+------+-----+---------+----------------+
+| Field       | Type          | Null | Key | Default | Extra          |
++-------------+---------------+------+-----+---------+----------------+
+| BUDGET_ID   | bigint(20)    | NO   | PRI | NULL    | auto_increment |
+| NAME        | varchar(100)  | NO   |     | NULL    |                |
+| GOAL_AMOUNT | decimal(10,2) | NO   |     | NULL    |                |
+| PERIOD      | varchar(45)   | NO   |     | NULL    |                |
++-------------+---------------+------+-----+---------+----------------+
 
-@Entity
-@Table(name = "transaction")
-public class Transaction {
+-----
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "TRANSACTION_ID")
-  private Long transactionId;
+show create table budget_transaction;
 
-  @Column(name = "TRANSACTION_TYPE")
-  private String transactionType;
+CREATE TABLE `budget_transaction` (
+  `TRANSACTION_ID` bigint(20) NOT NULL,
+  `BUDGET_ID` bigint(20) NOT NULL,
+  PRIMARY KEY (`TRANSACTION_ID`,`BUDGET_ID`),
+  UNIQUE KEY `TRANSACTION_ID_UNIQUE` (`TRANSACTION_ID`),
+  KEY `BUDGET_FK_idx` (`BUDGET_ID`),
+  CONSTRAINT `BUDGET_FK` FOREIGN KEY (`BUDGET_ID`) REFERENCES `budget` (`BUDGET_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `TRANSACTION_FK2` FOREIGN KEY (`TRANSACTION_ID`) REFERENCES `transaction` (`TRANSACTION_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+)
+
+describe budget_transaction;
++----------------+------------+------+-----+---------+-------+
+| Field          | Type       | Null | Key | Default | Extra |
++----------------+------------+------+-----+---------+-------+
+| TRANSACTION_ID | bigint(20) | NO   | PRI | NULL    |       |
+| BUDGET_ID      | bigint(20) | NO   | PRI | NULL    |       |
++----------------+------------+------+-----+---------+-------+
 
 -----------------------------------------------------
 
@@ -98,6 +107,7 @@ public class Transaction {
 
 2, add User to config and load xml config
     Configuration configuration = new Configuration();
+    configuration.addAnnotatedClass(Budget.class);
     configuration.addAnnotatedClass(Account.class);
     configuration.addAnnotatedClass(Transaction.class);
     configuration.configure();
@@ -108,52 +118,21 @@ public class Transaction {
 
 3, run InfiniteFinancesSchema.sql first before running this app
 
-4, database 
+4, database
 
-SET FOREIGN_KEY_CHECKS=0;
-DROP TABLE IF EXISTS `account`;
-SET FOREIGN_KEY_CHECKS=1;
-CREATE TABLE `account` (
-  `ACCOUNT_ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `BANK_ID` bigint(20) DEFAULT NULL,
-  `ACCOUNT_TYPE` varchar(45) DEFAULT NULL,
-  `NAME` varchar(100) DEFAULT NULL,
-  `INITIAL_BALANCE` decimal(10,2) NOT NULL,
-  `CURRENT_BALANCE` decimal(10,2) NOT NULL,
-  `OPEN_DATE` date NOT NULL,
-  `CLOSE_DATE` date NOT NULL,
-  `LAST_UPDATED_BY` varchar(45) NOT NULL,
-  `LAST_UPDATED_DATE` datetime DEFAULT NULL,
-  `CREATED_BY` varchar(45) DEFAULT NULL,
-  `CREATED_DATE` datetime DEFAULT NULL,
-  PRIMARY KEY (`ACCOUNT_ID`),
-  KEY `BANK_FK` (`BANK_ID`),
-  KEY `ACCOUNT_TYPE_FK_idx` (`ACCOUNT_TYPE`),
-  CONSTRAINT `BANK_FK` FOREIGN KEY (`BANK_ID`) REFERENCES `bank` (`BANK_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-)
-
-SET FOREIGN_KEY_CHECKS=0;
-DROP TABLE IF EXISTS `transaction`;
-SET FOREIGN_KEY_CHECKS=1;
-CREATE TABLE `transaction` (
-  `TRANSACTION_ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ACCOUNT_ID` bigint(20) NOT NULL,
-  `TRANSACTION_TYPE` varchar(45) NOT NULL,
-  `TITLE` varchar(100) NOT NULL,
-  `AMOUNT` decimal(10,2) NOT NULL,
-  `INITIAL_BALANCE` decimal(10,2) NOT NULL,
-  `CLOSING_BALANCE` decimal(10,2) NOT NULL,
-  `NOTES` mediumtext,
-  `LAST_UPDATED_BY` varchar(45) NOT NULL,
-  `LAST_UPDATED_DATE` datetime NOT NULL,
-  `CREATED_BY` varchar(45) NOT NULL,
-  `CREATED_DATE` datetime NOT NULL,
-  PRIMARY KEY (`TRANSACTION_ID`),
-  KEY `ACCOUNT_FK2_idx` (`ACCOUNT_ID`),
-  CONSTRAINT `ACCOUNT_FK2` FOREIGN KEY (`ACCOUNT_ID`) REFERENCES `account` (`ACCOUNT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-)
+run InfiniteFinancesSchema.sql again to have a clean state
 
  */
+
+import com.company.app.model.Account;
+import com.company.app.model.Budget;
+import com.company.app.model.Transaction;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
 public class App {
   public static void main(String[] args) {
     final SessionFactory sessionFactory = SessionFactoryBuilder.get();
@@ -184,6 +163,7 @@ public class App {
     beltPurchase.setTransactionType("Debit");
 
     account.getTransactions().add(beltPurchase);
+    beltPurchase.setAccount(account);
 
     Transaction shoePurchase = new Transaction();
     shoePurchase.setTitle("Work Shoes");
@@ -198,9 +178,21 @@ public class App {
     shoePurchase.setTransactionType("Debit");
 
     account.getTransactions().add(shoePurchase);
+    shoePurchase.setAccount(account);
 
-    session.save(account);
+    Budget budget = new Budget();
+    budget.setGoalAmount(new BigDecimal("10000.00"));
+    budget.setName("Emergency Fund");
+    budget.setPeriod("Yearly");
+
+    budget.getTransactions().add(beltPurchase);
+    budget.getTransactions().add(shoePurchase);
+
+    session.save(budget);
     session.getTransaction().commit();
+
+    Transaction dbTransaction = session.get(Transaction.class, account.getTransactions().get(0).getTransactionId());
+    System.out.println(dbTransaction.getAccount().getName());
 
     sessionFactory.close();
   }
@@ -208,9 +200,13 @@ public class App {
 /*
 Hibernate: select next_val as id_val from hibernate_sequence for update
 Hibernate: update hibernate_sequence set next_val= ? where next_val=?
+Hibernate: select next_val as id_val from hibernate_sequence for update
+Hibernate: update hibernate_sequence set next_val= ? where next_val=?
+Hibernate: insert into budget (GOAL_AMOUNT, NAME, PERIOD, BUDGET_ID) values (?, ?, ?, ?)
 Hibernate: insert into account (CLOSE_DATE, CREATED_BY, CREATED_DATE, CURRENT_BALANCE, INITIAL_BALANCE, LAST_UPDATED_BY, LAST_UPDATED_DATE, NAME, OPEN_DATE, ACCOUNT_ID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: insert into transaction (AMOUNT, CLOSING_BALANCE, CREATED_BY, CREATED_DATE, INITIAL_BALANCE, LAST_UPDATED_BY, LAST_UPDATED_DATE, NOTES, TITLE, TRANSACTION_TYPE, ACCOUNT_ID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: insert into transaction (AMOUNT, CLOSING_BALANCE, CREATED_BY, CREATED_DATE, INITIAL_BALANCE, LAST_UPDATED_BY, LAST_UPDATED_DATE, NOTES, TITLE, TRANSACTION_TYPE, ACCOUNT_ID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: update transaction set ACCOUNT_ID=? where TRANSACTION_ID=?
-Hibernate: update transaction set ACCOUNT_ID=? where TRANSACTION_ID=?
+Hibernate: insert into transaction (ACCOUNT_ID, AMOUNT, CLOSING_BALANCE, CREATED_BY, CREATED_DATE, INITIAL_BALANCE, LAST_UPDATED_BY, LAST_UPDATED_DATE, NOTES, TITLE, TRANSACTION_TYPE) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into transaction (ACCOUNT_ID, AMOUNT, CLOSING_BALANCE, CREATED_BY, CREATED_DATE, INITIAL_BALANCE, LAST_UPDATED_BY, LAST_UPDATED_DATE, NOTES, TITLE, TRANSACTION_TYPE) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into budget_transaction (BUDGET_ID, TRANSACTION_ID) values (?, ?)
+Hibernate: insert into budget_transaction (BUDGET_ID, TRANSACTION_ID) values (?, ?)
+Savings Account
  */

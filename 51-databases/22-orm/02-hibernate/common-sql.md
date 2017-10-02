@@ -17,6 +17,7 @@ CREATE TABLE `Person` (
   PRIMARY KEY (`id`)
 )
 describe Person;
+show create table Person;
 TRUNCATE TABLE Person;
 select * from Person;
 ```
