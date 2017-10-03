@@ -16,6 +16,25 @@ bidirectional one to many
 
 > SQL tables
 
+CREATE TABLE `account` (
+  `ACCOUNT_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `BANK_ID` bigint(20) DEFAULT NULL,
+  `ACCOUNT_TYPE` varchar(45) DEFAULT NULL,
+  `NAME` varchar(100) DEFAULT NULL,
+  `INITIAL_BALANCE` decimal(10,2) NOT NULL,
+  `CURRENT_BALANCE` decimal(10,2) NOT NULL,
+  `OPEN_DATE` date NOT NULL,
+  `CLOSE_DATE` date NOT NULL,
+  `LAST_UPDATED_BY` varchar(45) NOT NULL,
+  `LAST_UPDATED_DATE` datetime DEFAULT NULL,
+  `CREATED_BY` varchar(45) DEFAULT NULL,
+  `CREATED_DATE` datetime DEFAULT NULL,
+  PRIMARY KEY (`ACCOUNT_ID`),
+  KEY `BANK_FK` (`BANK_ID`),
+  KEY `ACCOUNT_TYPE_FK_idx` (`ACCOUNT_TYPE`),
+  CONSTRAINT `BANK_FK` FOREIGN KEY (`BANK_ID`) REFERENCES `bank` (`BANK_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+)
+
 describe account;
 +-------------------+---------------+------+-----+---------+----------------+
 | Field             | Type          | Null | Key | Default | Extra          |
@@ -33,6 +52,26 @@ describe account;
 | CREATED_BY        | varchar(45)   | YES  |     | NULL    |                |
 | CREATED_DATE      | datetime      | YES  |     | NULL    |                |
 +-------------------+---------------+------+-----+---------+----------------+
+
+-----
+
+CREATE TABLE `transaction` (
+  `TRANSACTION_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `ACCOUNT_ID` bigint(20) NOT NULL,
+  `TRANSACTION_TYPE` varchar(45) NOT NULL,
+  `TITLE` varchar(100) NOT NULL,
+  `AMOUNT` decimal(10,2) NOT NULL,
+  `INITIAL_BALANCE` decimal(10,2) NOT NULL,
+  `CLOSING_BALANCE` decimal(10,2) NOT NULL,
+  `NOTES` mediumtext,
+  `LAST_UPDATED_BY` varchar(45) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL,
+  `CREATED_BY` varchar(45) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL,
+  PRIMARY KEY (`TRANSACTION_ID`),
+  KEY `ACCOUNT_FK2_idx` (`ACCOUNT_ID`),
+  CONSTRAINT `ACCOUNT_FK2` FOREIGN KEY (`ACCOUNT_ID`) REFERENCES `account` (`ACCOUNT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+)
 
 describe transaction;
 +-------------------+---------------+------+-----+---------+----------------+
@@ -108,7 +147,7 @@ public class Transaction {
 
 3, run InfiniteFinancesSchema.sql first before running this app
 
-4, database 
+4, database
 
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `account`;

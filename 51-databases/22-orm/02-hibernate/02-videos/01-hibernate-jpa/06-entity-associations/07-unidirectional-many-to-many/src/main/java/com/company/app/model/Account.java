@@ -5,9 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /*
 
@@ -48,45 +46,6 @@ describe account;
 | CREATED_DATE      | datetime      | YES  |     | NULL    |                |
 +-------------------+---------------+------+-----+---------+----------------+
 
------
-
-CREATE TABLE `transaction` (
-  `TRANSACTION_ID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ACCOUNT_ID` bigint(20) NOT NULL,
-  `TRANSACTION_TYPE` varchar(45) NOT NULL,
-  `TITLE` varchar(100) NOT NULL,
-  `AMOUNT` decimal(10,2) NOT NULL,
-  `INITIAL_BALANCE` decimal(10,2) NOT NULL,
-  `CLOSING_BALANCE` decimal(10,2) NOT NULL,
-  `NOTES` mediumtext,
-  `LAST_UPDATED_BY` varchar(45) NOT NULL,
-  `LAST_UPDATED_DATE` datetime NOT NULL,
-  `CREATED_BY` varchar(45) NOT NULL,
-  `CREATED_DATE` datetime NOT NULL,
-  PRIMARY KEY (`TRANSACTION_ID`),
-  KEY `ACCOUNT_FK2_idx` (`ACCOUNT_ID`),
-  CONSTRAINT `ACCOUNT_FK2` FOREIGN KEY (`ACCOUNT_ID`) REFERENCES `account` (`ACCOUNT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-)
-
-describe transaction;
-+-------------------+---------------+------+-----+---------+----------------+
-| Field             | Type          | Null | Key | Default | Extra          |
-+-------------------+---------------+------+-----+---------+----------------+
-| TRANSACTION_ID    | bigint(20)    | NO   | PRI | NULL    | auto_increment |
-| ACCOUNT_ID        | bigint(20)    | NO   | MUL | NULL    |                |
-| TRANSACTION_TYPE  | varchar(45)   | NO   |     | NULL    |                |
-| TITLE             | varchar(100)  | NO   |     | NULL    |                |
-| AMOUNT            | decimal(10,2) | NO   |     | NULL    |                |
-| INITIAL_BALANCE   | decimal(10,2) | NO   |     | NULL    |                |
-| CLOSING_BALANCE   | decimal(10,2) | NO   |     | NULL    |                |
-| NOTES             | mediumtext    | YES  |     | NULL    |                |
-| LAST_UPDATED_BY   | varchar(45)   | NO   |     | NULL    |                |
-| LAST_UPDATED_DATE | datetime      | NO   |     | NULL    |                |
-| CREATED_BY        | varchar(45)   | NO   |     | NULL    |                |
-| CREATED_DATE      | datetime      | NO   |     | NULL    |                |
-+-------------------+---------------+------+-----+---------+----------------+
-
-Owning table `transaction` contains the fk ACCOUNT_ID
  */
 
 @Data
@@ -98,6 +57,12 @@ public class Account {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "ACCOUNT_ID")
   private Long accountId;
+
+  @ManyToMany(cascade=CascadeType.ALL)
+  @JoinTable(name="user_account",
+      joinColumns=@JoinColumn(name="ACCOUNT_ID"), // Owning entity (account) - ACCOUNT_ID = account.ACCOUNT_ID
+      inverseJoinColumns=@JoinColumn(name="USER_ID")) // USER_ID = finances_user.USER_ID
+  private Set<User> users = new HashSet<>();
 
   @OneToMany(cascade=CascadeType.ALL, mappedBy = "account")
   List<Transaction> transactions = new ArrayList<>();
