@@ -14,7 +14,7 @@
 
 ```
 SessionFactory factory = HibernateUtil.getSessionFactory();
-Session session = factory.openSession();
+Session session = factory.openSession(); // create persistent context
 // perform operations on entities
 session.close();
 ```
@@ -43,5 +43,5 @@ session.close();
 // (3) Initial State - Persistent
 Session session2 = factory.openSession();
 Transaction transaction2 = session2.beginTransaction();
-session2.delete(bank); // (3) End State - Removed 
+session2.delete(bank); // (3) End State - Removed
 ```
