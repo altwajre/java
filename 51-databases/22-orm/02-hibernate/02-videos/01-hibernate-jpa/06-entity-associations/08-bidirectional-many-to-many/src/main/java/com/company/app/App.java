@@ -10,9 +10,9 @@ import java.util.Date;
 
 /*
 
-https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209945.html
+https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209946.html
 
-unidirectional many to many
+bidirectional many to many
 
 > SQL tables
 
@@ -131,19 +131,29 @@ public class Account {
       inverseJoinColumns=@JoinColumn(name="USER_ID")) // USER_ID = finances_user.USER_ID
   private Set<User> users = new HashSet<>();
 
+@Entity
+@Table(name = "finances_user")
+public class User {
+  @Id
+  @GeneratedValue
+  @Column(name = "USER_ID")
+  private Long userId;
+
+  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "users") // users = Account.users (Object)
+  private Set<Account> accounts = new HashSet<>();
+
 class App {
-  ...
-  account1.getUsers().add(user1);
-  account1.getUsers().add(user2);
+    ...
+    user1.getAccounts().add(account1);
+    user2.getAccounts().add(account1);
 
-  account2.getUsers().add(user1);
-  account2.getUsers().add(user2);
+    user1.getAccounts().add(account2);
+    user2.getAccounts().add(account2);
 
-  session.save(account1);
-  session.save(account2);
-  ...
+    session.save(user1);
+    session.save(user2);
+    ...
 }
-
 -----------------------------------------------------
 
 1. resources/hibernate.cfg.xml - it is loaded by .applySettings(configuration.getProperties())
@@ -174,6 +184,7 @@ class App {
             .build());
 
 3, run InfiniteFinancesSchema.sql first before running this app
+
 
  */
 public class App {
@@ -224,18 +235,21 @@ public class App {
     user2.setLastUpdatedBy("system");
     user2.setLastUpdatedDate(new Date());
 
-    account1.getUsers().add(user1);
-    account1.getUsers().add(user2);
+//    account1.getUsers().add(user1);
+//    account1.getUsers().add(user2);
+    user1.getAccounts().add(account1);
+    user2.getAccounts().add(account1);
 
-    account2.getUsers().add(user1);
-    account2.getUsers().add(user2);
+//    account2.getUsers().add(user1);
+//    account2.getUsers().add(user2);
+    user1.getAccounts().add(account2);
+    user2.getAccounts().add(account2);
 
-    session.save(account1);
-    session.save(account2);
+    session.save(user1);
+    session.save(user2);
     session.getTransaction().commit();
 
     sessionFactory.close();
-
   }
 }
 /*
@@ -247,12 +261,8 @@ Hibernate: select next_val as id_val from hibernate_sequence for update
 Hibernate: update hibernate_sequence set next_val= ? where next_val=?
 Hibernate: select next_val as id_val from hibernate_sequence for update
 Hibernate: update hibernate_sequence set next_val= ? where next_val=?
-Hibernate: insert into account (CLOSE_DATE, CREATED_BY, CREATED_DATE, CURRENT_BALANCE, INITIAL_BALANCE, LAST_UPDATED_BY, LAST_UPDATED_DATE, NAME, OPEN_DATE, ACCOUNT_ID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: insert into finances_user (BIRTH_DATE, CREATED_BY, CREATED_DATE, EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, LAST_UPDATED_BY, LAST_UPDATED_DATE, USER_ID) values (?, ?, ?, ?, ?, ?, ?, ?, ?)
 Hibernate: insert into finances_user (BIRTH_DATE, CREATED_BY, CREATED_DATE, EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, LAST_UPDATED_BY, LAST_UPDATED_DATE, USER_ID) values (?, ?, ?, ?, ?, ?, ?, ?, ?)
 Hibernate: insert into account (CLOSE_DATE, CREATED_BY, CREATED_DATE, CURRENT_BALANCE, INITIAL_BALANCE, LAST_UPDATED_BY, LAST_UPDATED_DATE, NAME, OPEN_DATE, ACCOUNT_ID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-Hibernate: insert into user_account (ACCOUNT_ID, USER_ID) values (?, ?)
-Hibernate: insert into user_account (ACCOUNT_ID, USER_ID) values (?, ?)
-Hibernate: insert into user_account (ACCOUNT_ID, USER_ID) values (?, ?)
-Hibernate: insert into user_account (ACCOUNT_ID, USER_ID) values (?, ?)
+Hibernate: insert into account (CLOSE_DATE, CREATED_BY, CREATED_DATE, CURRENT_BALANCE, INITIAL_BALANCE, LAST_UPDATED_BY, LAST_UPDATED_DATE, NAME, OPEN_DATE, ACCOUNT_ID) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: insert into finances_user (BIRTH_DATE, CREATED_BY, CREATED_DATE, EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, LAST_UPDATED_BY, LAST_UPDATED_DATE, USER_ID) values (?, ?, ?, ?, ?, ?, ?, ?, ?)
  */

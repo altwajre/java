@@ -99,7 +99,7 @@ public class Account {
   @Column(name = "ACCOUNT_ID")
   private Long accountId;
 
-  @OneToMany(cascade=CascadeType.ALL, mappedBy = "account")
+  @OneToMany(cascade=CascadeType.ALL, mappedBy = "account") // account = Transaction.account (Object)
   List<Transaction> transactions = new ArrayList<>();
 
   @Column(name = "NAME")

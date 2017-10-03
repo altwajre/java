@@ -1,13 +1,31 @@
 package com.company.app.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /*
+
+CREATE TABLE `finances_user` (
+  `USER_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `FIRST_NAME` varchar(45) NOT NULL,
+  `LAST_NAME` varchar(45) NOT NULL,
+  `BIRTH_DATE` date NOT NULL,
+  `EMAIL_ADDRESS` varchar(100) NOT NULL,
+  `LAST_UPDATED_BY` varchar(45) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL,
+  `CREATED_BY` varchar(45) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL,
+  `USER_ADDRESS_LINE_1` varchar(100) DEFAULT NULL,
+  `USER_ADDRESS_LINE_2` varchar(100) DEFAULT NULL,
+  `CITY` varchar(100) DEFAULT NULL,
+  `STATE` varchar(2) DEFAULT NULL,
+  `ZIP_CODE` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`)
+)
+
 describe finances_user;
 +---------------------+--------------+------+-----+---------+----------------+
 | Field               | Type         | Null | Key | Default | Extra          |
@@ -27,19 +45,22 @@ describe finances_user;
 | STATE               | varchar(2)   | YES  |     | NULL    |                |
 | ZIP_CODE            | varchar(5)   | YES  |     | NULL    |                |
 +---------------------+--------------+------+-----+---------+----------------+
+
  */
 
 @Data
 @Entity
 @Table(name = "finances_user")
 public class User {
-
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue
   @Column(name = "USER_ID")
   private Long userId;
 
-  @OneToOne(mappedBy = "user") // user is Credential.user (Object)
+  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "users") // users = Account.users (Object)
+  private Set<Account> accounts = new HashSet<>();
+
+  @OneToOne(mappedBy = "user") // user = Credential.user (Object)
   private Credential credential;
 
   @Column(name = "FIRST_NAME")
@@ -48,17 +69,18 @@ public class User {
   @Column(name = "LAST_NAME")
   private String lastName;
 
-  @Column(name = "BIRTH_DATE", nullable = false)
+  @Column(name = "BIRTH_DATE")
   private Date birthDate;
 
   @Column(name = "EMAIL_ADDRESS")
   private String emailAddress;
 
   @ElementCollection
-  @CollectionTable(name = "user_address", joinColumns = @JoinColumn(name = "USER_ID"))
-  @AttributeOverrides({@AttributeOverride(name = "addressLine1", column = @Column(name = "USER_ADDRESS_LINE_1")),
-      @AttributeOverride(name = "addressLine2", column = @Column(name = "USER_ADDRESS_LINE_2"))})
-  private List<Address> addresses = new ArrayList<>();
+  @CollectionTable(name = "USER_ADDRESS", joinColumns = @JoinColumn(name = "USER_ID"))
+  @AttributeOverrides({
+      @AttributeOverride(name = "addressLine1", column = @Column(name = "USER_ADDRESS_LINE_1")),
+      @AttributeOverride(name = "addressLine2", column = @Column(name = "USER_ADDRESS_LINE_2")) })
+  private List<Address> addresses = new ArrayList<Address>();
 
   @Column(name = "LAST_UPDATED_DATE")
   private Date lastUpdatedDate;
@@ -71,4 +93,7 @@ public class User {
 
   @Column(name = "CREATED_BY", updatable = false)
   private String createdBy;
+
+  @Formula("lower(datediff(curdate(), birth_date)/365)")
+  private int age;
 }

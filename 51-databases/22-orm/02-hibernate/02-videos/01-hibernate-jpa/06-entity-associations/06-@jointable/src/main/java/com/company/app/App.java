@@ -2,6 +2,12 @@ package com.company.app;
 
 /*
 
+https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209944.html
+
+@JoinTable
+
+> SQL tables
+
 when few of the transactions belong to budget, we create `budget_transaction` table to avoid lots of null budget value on `transaction` table
 
 -----
@@ -87,6 +93,23 @@ describe budget_transaction;
 | TRANSACTION_ID | bigint(20) | NO   | PRI | NULL    |       |
 | BUDGET_ID      | bigint(20) | NO   | PRI | NULL    |       |
 +----------------+------------+------+-----+---------+-------+
+
+> Object model - classes
+
+@Entity
+@Table(name = "budget")
+public class Budget {
+
+  @Id
+  @GeneratedValue
+  @Column(name = "BUDGET_ID")
+  private Long budgetId;
+
+  @OneToMany(cascade=CascadeType.ALL)
+  @JoinTable(name="budget_transaction",
+      joinColumns=@JoinColumn(name="BUDGET_ID"), // Owning entity (budget) - BUDGET_ID = budget.BUDGET_ID
+      inverseJoinColumns=@JoinColumn(name="TRANSACTION_ID")) // TRANSACTION_ID = transaction.TRANSACTION_ID
+  private List<Transaction> transactions = new ArrayList<>();
 
 -----------------------------------------------------
 
