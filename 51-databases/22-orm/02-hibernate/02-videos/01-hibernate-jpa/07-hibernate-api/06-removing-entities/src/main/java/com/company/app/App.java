@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 /*
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209953.html
 
+session.delete(bank)
  */
 public class App {
   public static void main(String[] args) {

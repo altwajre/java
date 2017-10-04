@@ -9,6 +9,8 @@ import javax.persistence.Persistence;
 /*
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209962.html
 
+entityManager.remove(bank) = session.delete(bank)
+
 1, retrieving
 2, remove entity
 3, commit
