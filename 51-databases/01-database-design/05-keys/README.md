@@ -9,7 +9,7 @@ Primary Keys
 ## Primary Key Index
 https://www.youtube.com/watch?v=AI4ifO-6-mo&list=PL_c9BZzLwBRK0Pc28IdvPQizD2mJlgoID&index=22
 Primary key will automatically create an index used for database lookup optimization.
-`index` makes search fast like book index. 
+`index` makes search fast like book index.
 we should have `index` for SELECT `WHERE` and `JOIN`.
 
 ## Look up Table
@@ -22,7 +22,7 @@ What do keys do?
 2, Unique
 3, Improves functionality of database
 4, makes update easy, less work
-5, allows for adding complexity 
+5, allows for adding complexity
 6, FK constraint
 
 Example: look-up-table.sql
@@ -35,7 +35,7 @@ https://www.youtube.com/watch?v=kAXP8a1zuHo&index=24&list=PL_c9BZzLwBRK0Pc28IdvP
 ## Primary Key and Alternate Key
 https://www.youtube.com/watch?v=u77YwdnleS0&list=PL_c9BZzLwBRK0Pc28IdvPQizD2mJlgoID&index=25
 `Primary Key` is the candidate key that you select to be used as the main key for that table. The Primary must be specified upon table creation.
-`Alternate Key` all other candidate keys can be assigned as an alternate key. The alternate keys may be an offical type of key in your RDBMS or 
+`Alternate Key` all other candidate keys can be assigned as an alternate key. The alternate keys may be an offical type of key in your RDBMS or
                 it may be defined as simply a unique index.
 
 ## Surrogate Key and Natural Key
@@ -49,7 +49,7 @@ https://www.youtube.com/watch?v=wcuqwXUF-gY&index=27&list=PL_c9BZzLwBRK0Pc28IdvP
   Pros: no need to define new data, store less information.
   Cons: not easy to figure out the Natural Key, Natural Key may change because it has real world meaning.  
 `Surrogate Key` is added auto incremented number
-  Pros: it is ussally number that easy to work with. Never changing.
+  Pros: it is usually number that easy to work with. Never changing.
   Cons: need to add a new column to the table
 `Which one should I use?` pick one and use it through out the database. I prefer to use `surrogate key` through out the database because it is simple, just add a new id column.
 
@@ -93,4 +93,4 @@ Examples:
 https://www.youtube.com/watch?v=vsGDtnBCwgg&list=PL_c9BZzLwBRK0Pc28IdvPQizD2mJlgoID&index=31
 `Simple Key` is key with only one column
 `Composite Key` is key with multiple columns where at least one column is not a key in itself
-`Compound Key` is key where all columns are themselves keys. Compound keys are most commonly seen in intermediary table (junction tables). 
+`Compound Key` is key where all columns are themselves keys. Compound keys are most commonly seen in intermediary table (junction tables).
