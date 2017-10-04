@@ -9,8 +9,10 @@ import java.util.Date;
 /*
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209955.html
 
-  session2.saveOrUpdate(transientBank); // insert a new bank record
-  session2.saveOrUpdate(detachedBank); // update reattach bank entity
+session2.saveOrUpdate(transientBank); // insert a new bank record
+session2.saveOrUpdate(detachedBank); // update reattach bank entity
+
+run populate.sql to ensure the record is there before running the app
 
  */
 public class App {
