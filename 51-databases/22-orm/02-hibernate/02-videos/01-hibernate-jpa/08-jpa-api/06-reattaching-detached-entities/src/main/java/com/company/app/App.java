@@ -7,16 +7,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /*
-https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209962.html
-
-entityManager.remove(bank) = session.delete(bank)
+https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209963.html
 
 1, retrieving
 2, remove entity
 3, commit
 
   Bank bank = entityManager.find(Bank.class, 1L);
-  entityManager.remove(bank);
+  entityManager.clear();
   entityManager.getTransaction().commit();
 
 > config
@@ -40,11 +38,15 @@ public class App {
 
       Bank bank = entityManager.find(Bank.class, 1L);
 
-      System.out.println("#Before entityManager.remove(bank)");
+      System.out.println("#Before entityManager.detach(bank)");
       System.out.println("entityManager.contains(bank)=" + entityManager.contains(bank)); // bank is in persistence context
-      entityManager.remove(bank);
-      System.out.println("#After entityManager.remove(bank)");
+//      entityManager.clear(); // detach all entities
+      entityManager.detach(bank); // detach a single entity (bank)
+      System.out.println("#After entityManager.detach(bank)");
       System.out.println("entityManager.contains(bank)=" + entityManager.contains(bank)); // bank is not in persistence context
+
+      bank.setName("Updated Name");
+      Bank mergedBank = entityManager.merge(bank); // reattaching entity (bank) to persistence context, and mergeBank is in persistence context
 
       entityManager.getTransaction().commit();
     } catch (Exception e) {
@@ -57,10 +59,10 @@ public class App {
 }
 /*
 Hibernate: select bank0_.BANK_ID as BANK_ID1_1_0_, bank0_.ADDRESS_LINE_1 as ADDRESS_2_1_0_, bank0_.ADDRESS_LINE_2 as ADDRESS_3_1_0_, bank0_.CITY as CITY4_1_0_, bank0_.STATE as STATE5_1_0_, bank0_.ZIP_CODE as ZIP_CODE6_1_0_, bank0_.CREATED_BY as CREATED_7_1_0_, bank0_.CREATED_DATE as CREATED_8_1_0_, bank0_.IS_INTERNATIONAL as IS_INTER9_1_0_, bank0_.LAST_UPDATED_BY as LAST_UP10_1_0_, bank0_.LAST_UPDATED_DATE as LAST_UP11_1_0_, bank0_.NAME as NAME12_1_0_ from bank bank0_ where bank0_.BANK_ID=?
-#Before entityManager.remove(bank)
+#Before entityManager.detach(bank)
 entityManager.contains(bank)=true
-#After entityManager.remove(bank)
+#After entityManager.detach(bank)
 entityManager.contains(bank)=false
-Hibernate: delete from bank_contact where BANK_ID=?
-Hibernate: delete from bank where BANK_ID=?
+Hibernate: select bank0_.BANK_ID as BANK_ID1_1_0_, bank0_.ADDRESS_LINE_1 as ADDRESS_2_1_0_, bank0_.ADDRESS_LINE_2 as ADDRESS_3_1_0_, bank0_.CITY as CITY4_1_0_, bank0_.STATE as STATE5_1_0_, bank0_.ZIP_CODE as ZIP_CODE6_1_0_, bank0_.CREATED_BY as CREATED_7_1_0_, bank0_.CREATED_DATE as CREATED_8_1_0_, bank0_.IS_INTERNATIONAL as IS_INTER9_1_0_, bank0_.LAST_UPDATED_BY as LAST_UP10_1_0_, bank0_.LAST_UPDATED_DATE as LAST_UP11_1_0_, bank0_.NAME as NAME12_1_0_ from bank bank0_ where bank0_.BANK_ID=?
+Hibernate: update bank set ADDRESS_LINE_1=?, ADDRESS_LINE_2=?, CITY=?, STATE=?, ZIP_CODE=?, CREATED_BY=?, CREATED_DATE=?, IS_INTERNATIONAL=?, LAST_UPDATED_BY=?, LAST_UPDATED_DATE=?, NAME=? where BANK_ID=?
  */
