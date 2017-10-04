@@ -1,6 +1,7 @@
 package com.company.app;
 
 import com.company.app.model.Currency;
+import com.company.app.model.id.CurrencyId;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -74,31 +75,44 @@ CREATE TABLE `currency` (
 public class App {
   public static void main(String[] args) {
     EntityManagerFactory entityManagerFactory = null;
-    EntityManager entityManager = null;
+    EntityManager entityManager1 = null;
+    EntityManager entityManager2 = null;
 
     try{
       entityManagerFactory = Persistence.createEntityManagerFactory("infinite-finances");
-      entityManager = entityManagerFactory.createEntityManager();
-      entityManager.getTransaction().begin();
+      entityManager1 = entityManagerFactory.createEntityManager();
+      entityManager1.getTransaction().begin();
 
       Currency currency = new Currency();
       currency.setCountryName("China");
       currency.setName("CNY");
       currency.setSymbol("¥");
 
-      entityManager.persist(currency);
+      entityManager1.persist(currency);
 
-      entityManager.getTransaction().commit();
+      entityManager1.getTransaction().commit();
+
+      entityManager2 = entityManagerFactory.createEntityManager();
+      entityManager2.getTransaction().begin();
+
+      Currency dbCurrency = entityManager2.find(Currency.class, new CurrencyId("CNY", "China"));
+      System.out.println(dbCurrency.getName());
+
+      entityManager2.getTransaction().commit();
+
     }
     catch (Exception e){
-      entityManager.getTransaction().rollback();
+      entityManager1.getTransaction().rollback();
     }
     finally {
-      entityManager.close();
+      entityManager1.close();
+      entityManager2.close();
       entityManagerFactory.close();
     }
   }
 }
 /*
 Hibernate: insert into currency (SYMBOL, COUNTRY_NAME, NAME) values (?, ?, ?)
+Hibernate: select currency0_.COUNTRY_NAME as COUNTRY_1_0_0_, currency0_.NAME as NAME2_0_0_, currency0_.SYMBOL as SYMBOL3_0_0_ from currency currency0_ where currency0_.COUNTRY_NAME=? and currency0_.NAME=?
+CNY
  */
