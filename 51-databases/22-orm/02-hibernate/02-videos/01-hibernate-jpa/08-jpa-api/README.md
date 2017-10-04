@@ -1,5 +1,7 @@
 # JPA API
 
+JPA is like interface and Hibernate is the implementation of the JPA interface
+
 > Java Persistence API (JPA)
 
 - Configure a JPA application
