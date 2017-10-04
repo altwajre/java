@@ -57,9 +57,9 @@ public class CurrencyId implements Serializable {
 
 -----------------------------------------------------
 
-3, run InfiniteFinancesSchema.sql first before running this app
+1, run InfiniteFinancesSchema.sql first before running this app
 
-4, database
+2, database
 
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `currency`;
