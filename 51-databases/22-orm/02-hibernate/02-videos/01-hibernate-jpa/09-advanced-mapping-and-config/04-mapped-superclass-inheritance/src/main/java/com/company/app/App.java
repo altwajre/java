@@ -124,6 +124,10 @@ public class Bond extends Investment{
   private Date maturityDate;
 }
 
+-----
+
+run InfiniteFinancesSchema.sql first before running this app
+
  */
 public class App {
   public static void main(String[] args) {

@@ -17,6 +17,8 @@ https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/
 
 TODO: recreate following tables before running the app
 
+run InfiniteFinancesSchema.sql first before running this app
+
 SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `stock`;
 SET FOREIGN_KEY_CHECKS=1;
@@ -235,7 +237,7 @@ public class App {
       entityManager.getTransaction().begin();
 
       Portfolio portfolio = new Portfolio();
-      portfolio.setName("First Investments");
+      portfolio.setName("Tom Invest");
 
       Stock stock = new Stock();
       stock.setIssuer("Allen Edmonds");
