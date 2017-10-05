@@ -20,4 +20,8 @@ describe Person;
 show create table Person;
 TRUNCATE TABLE Person;
 select * from Person;
+
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS `Person`;
+SET FOREIGN_KEY_CHECKS=1;
 ```

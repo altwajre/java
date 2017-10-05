@@ -30,6 +30,7 @@ create database ifinances;
 GRANT ALL PRIVILEGES ON ifinances.* TO 'infinite'@'%' IDENTIFIED BY 'skills' WITH GRANT OPTION;
 use ifinances;
 show tables;
+drop database ifinances;
 ```
 
 > Workbench

@@ -76,6 +76,13 @@ Shortcut	Description
 Alt Enter	Show the list of available intention actions.
 ```
 
+> kb
+
+*Error: Could not find or load main class @{surefireArgLine}*
+
+`Build, Execution, Deployment`, `Build Tools`, `Maven`, `Running Tests`, uncheck `argline`
+
+
 #### Eclipse
 
 Maven project
