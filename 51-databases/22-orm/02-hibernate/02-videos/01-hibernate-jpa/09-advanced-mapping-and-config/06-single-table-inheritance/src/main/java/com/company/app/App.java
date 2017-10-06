@@ -13,6 +13,8 @@ import java.util.Date;
 /*
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209972.html
 
+> SQL tables
+
 put both Bond and Stock into `investment` table
 
 describe investment;

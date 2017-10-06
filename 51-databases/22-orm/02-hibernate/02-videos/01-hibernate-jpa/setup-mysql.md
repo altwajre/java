@@ -30,6 +30,7 @@ mysql -u root -p # password: root
 show databases;
 create database ifinances;
 GRANT ALL PRIVILEGES ON ifinances.* TO 'infinite'@'%' IDENTIFIED BY 'skills' WITH GRANT OPTION;
+use ifinances;
 ```
  
 > Workbench
