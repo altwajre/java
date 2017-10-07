@@ -1,5 +1,13 @@
 # MAC
 
+> list listening ports
+
+lsof -Pn -i4 | grep LISTEN
+
+> clear up command line
+
+`ctrl + u` or `ctrl + c`
+
 ## `.bash_profile`
 
 https://redfinsolutions.com/blog/creating-bashprofile-your-mac
