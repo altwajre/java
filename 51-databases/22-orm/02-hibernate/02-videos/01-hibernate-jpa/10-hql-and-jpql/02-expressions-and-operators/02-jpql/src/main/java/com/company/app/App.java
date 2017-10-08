@@ -14,7 +14,7 @@ https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/
 
 > JPQL - jpa
 
-Query query = entityManager.createQuery("from Transaction t order by t.title");
+`between` and `like` operators
 
 run populate.sql before running this app
 
@@ -48,7 +48,9 @@ public class App {
   }
 
   private static void typedQuery(EntityManager entityManager) {
-    TypedQuery<Transaction> query = entityManager.createQuery("from Transaction t order by t.title", Transaction.class);
+    TypedQuery<Transaction> query = entityManager.createQuery(
+        "from Transaction t where (t.amount between 75 and 100) and t.title like '%s' order by t.title",
+        Transaction.class);
     List<Transaction> transactions = query.getResultList();
 
     transactions.forEach(t -> {
@@ -66,17 +68,8 @@ public class App {
   }
 }
 /*
-Hibernate: select transactio0_.TRANSACTION_ID as TRANSACT1_0_, transactio0_.AMOUNT as AMOUNT2_0_, transactio0_.CLOSING_BALANCE as CLOSING_3_0_, transactio0_.CREATED_BY as CREATED_4_0_, transactio0_.CREATED_DATE as CREATED_5_0_, transactio0_.INITIAL_BALANCE as INITIAL_6_0_, transactio0_.LAST_UPDATED_BY as LAST_UPD7_0_, transactio0_.LAST_UPDATED_DATE as LAST_UPD8_0_, transactio0_.NOTES as NOTES9_0_, transactio0_.TITLE as TITLE10_0_, transactio0_.TRANSACTION_TYPE as TRANSAC11_0_ from transaction transactio0_ order by transactio0_.TITLE
-Bonus
-Breakfast
-Dinner
-Dress Belt
+Hibernate: select transactio0_.TRANSACTION_ID as TRANSACT1_0_, transactio0_.AMOUNT as AMOUNT2_0_, transactio0_.CLOSING_BALANCE as CLOSING_3_0_, transactio0_.CREATED_BY as CREATED_4_0_, transactio0_.CREATED_DATE as CREATED_5_0_, transactio0_.INITIAL_BALANCE as INITIAL_6_0_, transactio0_.LAST_UPDATED_BY as LAST_UPD7_0_, transactio0_.LAST_UPDATED_DATE as LAST_UPD8_0_, transactio0_.NOTES as NOTES9_0_, transactio0_.TITLE as TITLE10_0_, transactio0_.TRANSACTION_TYPE as TRANSAC11_0_ from transaction transactio0_ where (transactio0_.AMOUNT between 75 and 100) and (transactio0_.TITLE like '%s') order by transactio0_.TITLE
 Groceries
-Lunch
 Pants
-Pay Check
-Shirt
-Socks
-Tie
 Work Shoes
  */

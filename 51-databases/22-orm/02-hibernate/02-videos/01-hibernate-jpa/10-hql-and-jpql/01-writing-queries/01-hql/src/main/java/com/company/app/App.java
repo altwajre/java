@@ -10,7 +10,9 @@ import java.util.List;
 /*
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209978.html
 
-HQL - hibernate
+> HQL - hibernate
+
+Query query = session.createQuery("select t from Transaction t");
 
 run populate.sql before running this app
 
