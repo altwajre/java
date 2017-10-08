@@ -15,6 +15,8 @@ https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/
 > JPQL - jpa
 
 `between` and `like` operators
+entityManager.createQuery(
+    "from Transaction t where (t.amount between 75 and 100) and t.title like '%s' order by t.title",
 
 run populate.sql before running this app
 
