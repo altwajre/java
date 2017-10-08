@@ -15,7 +15,7 @@ https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/
 
 > HQL - hibernate
 
-- implicit form of join
+- implicit form of join - no join keyword in the query
 session.createQuery("select distinct t.account from Transaction t where t.amount > 500 and t.transactionType = 'Deposit'");
 
 run populate.sql before running this app
@@ -32,8 +32,8 @@ public class App {
 
     List<Account> accounts = query.list();
 
-    accounts.forEach(account -> {
-      System.out.println(account.getName());
+    accounts.forEach(t -> {
+      System.out.println(t.getName());
     });
 
     session.getTransaction().commit();
