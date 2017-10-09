@@ -1,3 +1,3 @@
 # Hibernate Getting Started Guide
 
-http://docs.jboss.org/hibernate/orm/5.2/quickstart/html_single/
+http://docs.jboss.org/hibernate/orm/current/quickstart/html_single/

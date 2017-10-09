@@ -22,3 +22,7 @@ CriteriaBuilder cb = em.getCriteraBuilder();
 CriteriaQuery<Transaction> criteriaQuery = cb.createQuery(Transaction.class);
 Root<Transaction> root = criteriaQuery.from(Transaction.class);
 criteriaQuery.select(root);
+
+> Criteria API
+
+https://docs.jboss.org/hibernate/entitymanager/3.5/reference/en/html/querycriteria.html

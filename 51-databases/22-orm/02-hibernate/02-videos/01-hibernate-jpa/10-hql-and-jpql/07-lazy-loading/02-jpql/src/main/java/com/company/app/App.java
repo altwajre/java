@@ -10,7 +10,7 @@ import java.util.List;
 /*
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209983.html
 
-> HQL - hibernate `lazy loading`  avoid execute not needed SQLs
+> JPQL - JPA api `lazy loading`  avoid execute not needed SQLs
 
 Account.java
 
