@@ -8,4 +8,4 @@ public class AbstractDao<T, ID extends Serializable> implements Dao<T, ID> {
   }
 ```
 
-run InfiniteFinancesSchema.sql in mysql first before running App
+run InfiniteFinancesSchema.sql in mysql before running App
