@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import lombok.Data;
 
+import java.lang.reflect.ParameterizedType;
+
 @Data
 class Person {
   @JsonProperty
@@ -29,15 +31,15 @@ public class App {
     String jsonString = "{\"name\":\"Mahesh\", \"age\":21, \"arpartment\":\"128\"}";
 
     Student student = deserialize(mapper, jsonString);
-
-    serialize(mapper, student);
+    String studentJson = serialize(mapper, student);
+    System.out.println(studentJson);
   }
 
-  private static void serialize(ObjectMapper mapper, Student student) throws JsonProcessingException {
+  private static String serialize(ObjectMapper mapper, Student student) throws JsonProcessingException {
     System.out.println("#serialize json-string");
     mapper.enable(SerializationFeature.INDENT_OUTPUT);
     String jsonStr = mapper.writeValueAsString(student);
-    System.out.println(jsonStr);
+    return jsonStr;
   }
 
   private static Student deserialize(ObjectMapper mapper, String jsonString) throws java.io.IOException {

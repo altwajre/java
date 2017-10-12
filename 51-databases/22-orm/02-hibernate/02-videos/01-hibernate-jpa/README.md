@@ -2,10 +2,18 @@
 
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/
 
-> Session
+run InfiniteFinancesSchema.sql in mysql first
 
-1. run InfiniteFinancesSchema.sql in mysql first
-2. so we can use hibernate session to persist data
+> EntityManager vs Session
+
+| EntityManager              | Session                   |
+|----------------------------|---------------------------|
+| persist()                  | save()                    |
+| merge()                    | merge()                   |
+| remove()                   | delete()                  |
+| detach(), close(), clear() | evict(), close(), clear() |
+| find(), getReference()     | get(), load()             |
+| flush()                    | flush()                   |
 
 ## Start MySQL Server
 

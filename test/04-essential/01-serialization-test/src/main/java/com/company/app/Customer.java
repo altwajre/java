@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 @Data
-@Accessors(fluent = true, chain = true)
 @AllArgsConstructor
-@Builder
 public class Customer {
   @JsonProperty
   private String name;
