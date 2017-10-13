@@ -39,6 +39,7 @@ public class App {
     }
     catch (Exception e){
       entityManager.getTransaction().rollback();
+      e.printStackTrace();
     }
     finally {
       entityManager.close();

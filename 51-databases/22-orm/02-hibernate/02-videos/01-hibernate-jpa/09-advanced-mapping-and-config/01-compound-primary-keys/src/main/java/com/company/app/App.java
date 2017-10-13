@@ -103,6 +103,7 @@ public class App {
     }
     catch (Exception e){
       entityManager1.getTransaction().rollback();
+      e.printStackTrace();
     }
     finally {
       entityManager1.close();
