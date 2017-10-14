@@ -71,7 +71,7 @@ test scope - ()
 - run against the entire system
 - have a high confidence that the code being tested will work in production
 - tricky to do well in a microservices context
-x
+
 > Trade-Offs
 
 *go up the pyramid*
@@ -143,7 +143,7 @@ consumer-driven contract (CDC) as service tests instead of end-to-end tests
 > The customer service has two separate consumers (Helpdesk and Web shop)
 
 [ Helpdesk ] \
-               [ Customer service ] -> [ Stub database]
+               [ Customer service ] -> [ Stub database ]
 [ Web shop ] /
 
 - create two sets of tests: one for each consumer representing the helpdesk's and web-shop's use of the customer service.
