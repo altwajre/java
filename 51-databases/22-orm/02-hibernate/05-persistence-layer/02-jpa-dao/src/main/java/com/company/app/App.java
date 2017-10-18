@@ -87,7 +87,7 @@ public class App {
       User updatedUser = update(userDao, foundUser);
       System.out.println("Update - UserId=" + updatedUser.getUserId() + ", FirstName=" + updatedUser.getFirstName());
 
-      delete(userDao, updatedUser);
+//      delete(userDao, updatedUser);
 
       entityManager.getTransaction().commit();
     } catch (Exception e) {
