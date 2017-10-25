@@ -12,7 +12,11 @@ System Preferences - MySQL
 
 http://community.jaspersoft.com/wiki/uninstall-mysql-mac-os-x
 
-> install using native packages
+> option 1: brew install
+
+$ brew install mysql
+
+> option 2: install using native packages
 
 MySQL Community Server
 
@@ -49,7 +53,7 @@ quit
 mysql> \q
 Select database
 
-> login as username=community
+> login as username=user
 
 $ mysql -u user -p <- password is password
 mysql> use INVENTORY;    <- select database
