@@ -1,5 +1,5 @@
 # Docker
 
-> download and install
+> install
 
-https://store.docker.com/editions/community/docker-ce-desktop-mac
+https://www.docker.com/products/docker-toolbox
