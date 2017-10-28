@@ -6,15 +6,11 @@ User Defined Bridge Networks - `--network=local-services`
 
 > docker run
 
-```
 docker run --name cassandra-01 --network=local-services -d -p 9042:9042 cassandra:latest
-```
 
 > remote into docker
 
-```
 docker exec -it cassandra-01 sh
-```
 
 ## docker-container data-access services
 
@@ -28,36 +24,19 @@ Cluster cluster = Cluster.builder().addContactPoint(address)
     .build();
 ```
 
+> build vertx project to generate the .jar file
+
+$ mvn clean package
+
 > docker build and docker run
 
-```
 docker build -t verticle-service .
-
-docker run --name verticle-service-01 --network=local-services -p 8081:8080 verticle-service
-```
+docker run --name verticle-service-01 --network=local-services -d -p 8081:8080 verticle-service
 
 > cleanup
 
-```
-# List all running containers
-docker ps
-# List all containers includes stopped ones
-docker ps -a
-# List all images
-docker images
-
-# Delete all containers
-docker rm $(docker ps -a -q)
-# Force delete all containers
+- Force delete all containers
 docker rm -f $(docker ps -a -q)
 
-# Delete all images
-docker rmi $(docker images -q)
-# Force delete all images
+- Force delete all images
 docker rmi -f $(docker images -q)
-
-# Delete a container
-docker rm myservice
-# Delete an image
-docker rmi myservice
-```
