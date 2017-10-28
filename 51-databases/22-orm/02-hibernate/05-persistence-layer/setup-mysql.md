@@ -2,10 +2,6 @@
 
 ## docker container
 
-> First time download docker image and docker run
-
-docker run --name mysql_local -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:latest
- 
 > Docker run after image is downloaded
 
 docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:latest
