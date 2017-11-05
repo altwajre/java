@@ -4,26 +4,16 @@
                                  http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-    <persistence-unit name="test">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <properties>
-            <property name="javax.persistence.jdbc.driver"
-                      value="com.mysql.cj.jdbc.Driver"/>
-
-            <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost/test_db"/>
-
-            <property name="javax.persistence.jdbc.user"
-                      value="test"/>
-
-            <property name="javax.persistence.jdbc.password"
-                      value="test"/>
-
-            <property name="hibernate.show_sql"
-                      value="true"/>
-
-            <property name="hibernate.hbm2ddl.auto"
-                      value="create"/>
-        </properties>
-    </persistence-unit>
+  <persistence-unit name="test">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/test_db"/>
+      <property name="javax.persistence.jdbc.user" value="test"/>
+      <property name="javax.persistence.jdbc.password" value="test"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->
+    </properties>
+  </persistence-unit>
 </persistence>
