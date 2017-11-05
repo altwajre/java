@@ -17,10 +17,10 @@ WARNs:
 -----------------------------------------------------------------
 
 > 4. Tutorial Using the Java Persistence API (JPA)
-JPA, however, defines a differen
-t bootstrap process that uses its own configuration file named persistence.ml. This bootstraping process is defined by
-the JPA spec. In Java SE the persistence provider is required to locate all JPA configuration files by classpath lookup
-of the META-INF/persistence.xml resource name.
+
+JPA, however, defines a different bootstrap process that uses its own configuration file named persistence.ml.
+This bootstraping process is defined by the JPA spec. In Java SE the persistence provider is required to locate
+all JPA configuration files by classpath lookup of the META-INF/persistence.xml resource name.
 
 persistence.xml files should provide a unique name for each "persistence unit". Applications use this name to reference
 the configuration when obtaining an javax.persistence.EntityManagerFacory reference.
