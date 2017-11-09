@@ -8,6 +8,9 @@ https://www.tutorialspoint.com/jmeter/
 
 http://jmeter.apache.org/download_jmeter.cgi
 
+- download `apache-jmeter-3.3.tgz`
+- copy `apache-jmeter-3.3` to `/Applications`
+
 ## Start Jemter
 
-> go to `/Users/whan/Documents/apache-jmeter-3.1/bin`, run `$ ./jmeter.sh`
+- go to `/Applications/apache-jmeter-3.3/bin`, double click `jmeter.sh`

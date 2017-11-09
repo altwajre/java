@@ -2,13 +2,18 @@
 
 https://www.youtube.com/watch?v=M-iAXz8vs48&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c
 
+## Server
 
-**Assertions**
+Launch Server - App.main()
+
+## Client
+
+> Assertions
 
 https://www.youtube.com/watch?v=mXhC9CtQBC8&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c&index=3
 
 Use assertion to check the Response
- 
+
 ```
 1, Response Assertion
 2, Duration Assertion
@@ -18,7 +23,7 @@ Use assertion to check the Response
 6, XPATH Assertion
 ```
 
-**Listeners**
+> Listeners
 
 https://www.youtube.com/watch?v=5FyVKVAqEJo&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c&index=4
 
@@ -31,7 +36,7 @@ https://www.youtube.com/watch?v=5FyVKVAqEJo&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmc
 6, Simple Data Writer
 ```
 
-**Record UI**
+> Record UI
 
 https://www.youtube.com/watch?v=JI99ZOuI5tQ&index=5&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c
 
@@ -46,7 +51,7 @@ https://www.youtube.com/watch?v=JI99ZOuI5tQ&index=5&list=PLhW3qG5bs-L-zox1h3eIL7
 6, Run and validate
 ```
 
-**Database**
+> Database
 
 https://www.youtube.com/watch?v=oy53KAKHpts&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c&index=6
 
@@ -59,7 +64,7 @@ https://www.youtube.com/watch?v=oy53KAKHpts&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmc
 6, Run and validate
 ```
 
-**Command Line**
+> Command Line
 
 https://www.youtube.com/watch?v=K26q5VgwLKk&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c&index=7
 
@@ -70,16 +75,16 @@ https://www.youtube.com/watch?v=K26q5VgwLKk&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmc
    -n -> non gui mode
    -t -> location of jmeter script
    -l -> location of result file
-    
+
     jmeter -h
     jmeter -?
 ```
 
-**Web Services API**
+> Web Services API
 
 https://www.youtube.com/watch?v=eaU7951fNuQ&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c&index=9
 
-*SOAP*
+> SOAP
 
 ```
 1, Test Plan, Thread Group, Soap/XML-RPC Request, View Results Tree
