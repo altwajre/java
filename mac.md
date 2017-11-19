@@ -8,15 +8,7 @@ lsof -Pn -i4 | grep LISTEN
 
 `ctrl + u` or `ctrl + c`
 
-## `.bash_profile`
-
-https://redfinsolutions.com/blog/creating-bashprofile-your-mac
-
-```
-touch ~/.bash_profile
-atom ~/.bash_profile
-source ~/.bash_profile
-```
+> `~/.bash_profile`
 
 > cat ~/.bash_profile
 
@@ -29,9 +21,10 @@ alias g='cd /Users/whan/git/public'
 export JAVA_HOME=$(/usr/libexec/java_home)
 ```
 
-> python - brew install
+> redirection
 
-echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.bash_profile
+- append
+echo hello >> /var/log/yum.log
 
 ## Reset the System Management Controller (SMC)
 
