@@ -7,6 +7,7 @@ public class App {
 
     System.out.println("# Set env in terminal, and get env in code");
     // NOTE: set env var TEST_ENV in terminal `export TEST_ENV=dev`
+    //       display env var `echo ${TEST_ENV}`
     System.out.println("TEST_ENV=" + System.getenv("TEST_ENV"));
     System.out.println("\n");
 
