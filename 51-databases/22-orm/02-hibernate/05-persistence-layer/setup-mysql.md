@@ -2,49 +2,57 @@
 
 ## docker container
 
-> Docker run after image is downloaded
-
-docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:latest
-
-> Login into the container instance
-
-```
-docker ps
-CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS                            PORTS                               NAMES
-6c6225d60019        mysql/mysql-server:latest   "/entrypoint.sh my..."   6 seconds ago       Up 3 seconds (health: starting)   0.0.0.0:3306->3306/tcp, 33060/
-
-docker exec -it 6c6225d60019 bash
-```
-
-> Login into MySQL
-
+- Create container named `mysql`
+docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:latest
+- Login into container `mysql`
+docker exec -it mysql bash
+- Login into `mysql` container
 mysql -u root -p # password: root
 
-> Create database and add user
+## SQL
 
-```
+- Create database and add user
 show databases;
 create database ifinances;
 GRANT ALL PRIVILEGES ON ifinances.* TO 'infinite'@'%' IDENTIFIED BY 'skills' WITH GRANT OPTION;
 use ifinances;
-```
- 
-> Workbench
+- Create table
+SET FOREIGN_KEY_CHECKS=0;
+DROP TABLE IF EXISTS `finances_user`;
+SET FOREIGN_KEY_CHECKS=1;
+CREATE TABLE `finances_user` (
+  `USER_ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `FIRST_NAME` varchar(45) NOT NULL,
+  `LAST_NAME` varchar(45) NOT NULL,
+  `BIRTH_DATE` date NOT NULL,
+  `EMAIL_ADDRESS` varchar(100) NOT NULL,
+  `LAST_UPDATED_BY` varchar(45) NOT NULL,
+  `LAST_UPDATED_DATE` datetime NOT NULL,
+  `CREATED_BY` varchar(45) NOT NULL,
+  `CREATED_DATE` datetime NOT NULL,
+  `USER_ADDRESS_LINE_1` varchar(100) DEFAULT NULL,
+  `USER_ADDRESS_LINE_2` varchar(100) DEFAULT NULL,
+  `CITY` varchar(100) DEFAULT NULL,
+  `STATE` varchar(2) DEFAULT NULL,
+  `ZIP_CODE` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`USER_ID`)
+);
 
-```
+## App
+
+- Run App in Intellij
+In `02-jpa-dao`, run App.man()
+
+## Workbench
+
 User: infinite
 Password: skills
 
 use ifinances;
-TRUNCATE TABLE Person;
-select * from Person;
-```
+TRUNCATE TABLE finances_user;
+select * from finances_user;
  
-## Docker Container
-
-> Force delete all containers
-
-docker rm -f $(docker ps -a -q)
+## Docker Cleanup
 
 ```
 # List all running containers

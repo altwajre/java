@@ -11,9 +11,17 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /*
+https://docs.jboss.org/hibernate/entitymanager/3.5/reference/en/html/configuration.html
+
+Map<String, Object> configOverrides = new HashMap<String, Object>();
+configOverrides.put("javax.persistence.jdbc.url", "jdbc:mysql://localhost/ifinances");
+entityManagerFactory = Persistence.createEntityManagerFactory("infinite-finances", configOverrides);
+
 https://www.safaribooksonline.com/library/view/hibernate-and-java/9781771373494/video209973.html
 
 > SQL tables
@@ -74,7 +82,10 @@ public class App {
     EntityManager entityManager = null;
 
     try {
-      entityManagerFactory = Persistence.createEntityManagerFactory("infinite-finances");
+      Map<String, Object> configOverrides = new HashMap<String, Object>();
+      configOverrides.put("javax.persistence.jdbc.url", "jdbc:mysql://localhost/ifinances");
+
+      entityManagerFactory = Persistence.createEntityManagerFactory("infinite-finances", configOverrides);
       entityManager = entityManagerFactory.createEntityManager();
       entityManager.getTransaction().begin();
 
