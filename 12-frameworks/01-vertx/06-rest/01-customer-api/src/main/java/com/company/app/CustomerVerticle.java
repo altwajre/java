@@ -23,6 +23,9 @@ public class CustomerVerticle extends AbstractVerticle {
     // Enables the reading of the request body for all routes under "/api/customers"
     router.route("/api/customers*").handler(BodyHandler.create());
 
+    // curl http://localhost:8080/api/about
+    router.get("/api/about").handler(this::getAbout);
+
     // curl http://localhost:8080/api/customers
     router.get("/api/customers").handler(this::getAll);
 
@@ -40,6 +43,12 @@ public class CustomerVerticle extends AbstractVerticle {
               }
             }
         );
+  }
+
+  private void getAbout(RoutingContext context) {
+    context.response()
+        .putHeader("content-type", "application/json")
+        .end(Json.encodePrettily("about"));
   }
 
   private void addOne(RoutingContext context) {
