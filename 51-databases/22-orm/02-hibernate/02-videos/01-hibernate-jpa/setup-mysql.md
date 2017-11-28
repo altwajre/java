@@ -2,37 +2,18 @@
 
 ## docker container
 
-> First time download docker image and docker run
-
+- docker run
 docker run --name mysql_local -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:latest
- 
-> Docker run after image is downloaded
-
-docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql/mysql-server:latest
-
-> Login into the container instance
-
-```
-docker ps
-CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS                            PORTS                               NAMES
-6c6225d60019        mysql/mysql-server:latest   "/entrypoint.sh my..."   6 seconds ago       Up 3 seconds (health: starting)   0.0.0.0:3306->3306/tcp, 33060/
-
-docker exec -it 6c6225d60019 bash
-```
-
-> Login into MySQL
-
+- Login into the container instance
+docker exec -it mysql_local bash
+- Login into MySQL
 mysql -u root -p # password: root
-
-> Create database and add user
-
-```
+- Create database and add user
 show databases;
 create database ifinances;
 GRANT ALL PRIVILEGES ON ifinances.* TO 'infinite'@'%' IDENTIFIED BY 'skills' WITH GRANT OPTION;
 use ifinances;
-```
- 
+
 > Workbench
 
 ```

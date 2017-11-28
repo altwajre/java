@@ -7,23 +7,12 @@
   <persistence-unit name="test">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <properties>
-      <property name="javax.persistence.jdbc.driver"
-                value="com.mysql.cj.jdbc.Driver"/>
-
-      <property name="javax.persistence.jdbc.url"
-                value="jdbc:mysql://localhost/ifinances"/>
-
-      <property name="javax.persistence.jdbc.user"
-                value="infinite"/>
-
-      <property name="javax.persistence.jdbc.password"
-                value="skills"/>
-
-      <property name="hibernate.show_sql"
-                value="true"/>
-
-      <property name="hibernate.hbm2ddl.auto"
-                value="create"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/ifinances"/>
+      <property name="javax.persistence.jdbc.user" value="infinite"/>
+      <property name="javax.persistence.jdbc.password" value="skills"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.hbm2ddl.auto" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>
