@@ -68,6 +68,9 @@ https://www.youtube.com/watch?v=oy53KAKHpts&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmc
 
 https://www.youtube.com/watch?v=K26q5VgwLKk&list=PLhW3qG5bs-L-zox1h3eIL7CZh5zJmci4c&index=7
 
+cd apache-jmeter-3.3
+sh bin/jmeter -n -t ~/jmeter/GET.jmx -l ~/jmeter/test.csv
+
 ```
 1, $ cd /Users/whan/Documents/apache-jmeter-3.1/bin
 2, Command
