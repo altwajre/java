@@ -1,3 +1,5 @@
+create database test;
+
 CREATE TABLE Customers(
    id   INT              NOT NULL,
    name VARCHAR (20)     NOT NULL,
