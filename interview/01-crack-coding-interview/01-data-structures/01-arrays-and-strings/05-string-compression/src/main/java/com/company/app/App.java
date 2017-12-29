@@ -2,9 +2,9 @@ package com.company.app;
 
 /*
 Q: basic string compression using the counts of repeated chars.
-For example, the string aabcccccaaa would become a2blc5a3.
+For example, the string aabcccccaaa would become a2b1c5a3.
  */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {

@@ -2,21 +2,34 @@ package com.company.app;
 
 import java.util.Random;
 
-/**
- * Hello world!
- *
- */
-public class App 
-{
+public class App {
+    static void shuffleCTCI(int[] cards) {
+        System.out.println("before shuffle");
+        for (int i = 0; i < cards.length; i++) {
+            System.out.print(cards[i] + " ");
+        }
 
-    static void shuffleCTCI(int[] cards){
-        Random rand = new Random();
-        int randomNum = rand.nextInt(5);
-        for(int i = 0; i < cards.length; i++){
+        for (int i = 0; i < cards.length; i++) {
+            Random rand = new Random();
+            int randomNum = rand.nextInt(cards.length - 1);
+            int temp = cards[i];
+            cards[i] = cards[randomNum];
+            cards[randomNum] = temp;
+        }
+
+        System.out.println("\nafter shuffle");
+        for (int i = 0; i < cards.length; i++) {
+            System.out.print(cards[i] + " ");
         }
     }
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+
+    public static void main(String[] args) {
+        shuffleCTCI(new int[]{1, 2, 3, 4, 5});
     }
 }
+/*
+before shuffle
+1 2 3 4 5
+after shuffle
+5 2 3 1 4
+ */
