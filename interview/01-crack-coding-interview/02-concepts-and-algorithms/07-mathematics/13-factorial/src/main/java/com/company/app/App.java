@@ -1,9 +1,10 @@
 package com.company.app;
 
+// https://en.wikipedia.org/wiki/Factorial
+
 public class App
 {
     /*
-    https://en.wikipedia.org/wiki/Factorial
     For example, the factorial of 4 is
     4! = 1 * 2 * 3 * 4 = 24
      */

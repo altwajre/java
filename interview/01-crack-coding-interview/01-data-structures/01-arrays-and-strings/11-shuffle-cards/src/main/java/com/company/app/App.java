@@ -3,7 +3,7 @@ package com.company.app;
 import java.util.Random;
 
 public class App {
-    static void shuffleCTCI(int[] cards) {
+    static void shuffle(int[] cards) {
         System.out.println("before shuffle");
         for (int i = 0; i < cards.length; i++) {
             System.out.print(cards[i] + " ");
@@ -24,10 +24,11 @@ public class App {
     }
 
     public static void main(String[] args) {
-        shuffleCTCI(new int[]{1, 2, 3, 4, 5});
+        shuffle(new int[]{1, 2, 3, 4, 5});
     }
 }
 /*
+output:
 before shuffle
 1 2 3 4 5
 after shuffle
