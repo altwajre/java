@@ -1,6 +1,19 @@
-# Project Aggregation
+# Project Aggregation (multi-modules)
 
 https://www.safaribooksonline.com/library/view/apache-maven-cookbook/9781785286124/ch09s03.html
+
+`Aggregation` is defined with a top-down approach
+`Inheritance` is defined the bottom-up approach
+
+`parent` pom includes `child`
+
+```
+<modules>
+  <module>child</module>
+</modules>
+```
+
+Build the `parent` project, `child` projects tests will run
 
 ## Create projects
 

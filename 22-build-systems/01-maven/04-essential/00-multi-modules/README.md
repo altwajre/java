@@ -1,4 +1,4 @@
-# Combining inheritance and aggregation
+# Combining inheritance and aggregation - multi modules
 
 https://www.safaribooksonline.com/library/view/apache-maven-cookbook/9781785286124/ch09s04.html
 

@@ -2,6 +2,22 @@
 
 https://www.safaribooksonline.com/library/view/apache-maven-cookbook/9781785286124/ch09s02.html
 
+Maven allows a number of elements specified in the parent pom file to be merged to the inheriting project.
+
+`child` POM references `parent`
+
+```
+<parent>
+  <groupId>com.company.app</groupId>
+  <artifactId>parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+</parent>
+```
+
+Need to build the projects at the `child` level because build the `parent` project won't build `child` projects
+
+Build the `parent` project, `child` projects tests won't run
+
 ## Create projects
 
 > parent
@@ -13,16 +29,16 @@ https://www.safaribooksonline.com/library/view/apache-maven-cookbook/97817852861
 - in pom, specified parent element as below
 
 ```
-  <parent>
-    <groupId>com.company.app</groupId>
-    <artifactId>parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
+<parent>
+  <groupId>com.company.app</groupId>
+  <artifactId>parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+</parent>
 ```
 
-## Build
+## Build the `child` project
 
-> build at `child` folder `mvn clean package`
+mvn clean package
 
 ## How it works
 
