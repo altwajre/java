@@ -1,5 +1,7 @@
 # Project Aggregation
 
+https://www.safaribooksonline.com/library/view/apache-maven-cookbook/9781785286124/ch09s03.html
+
 ## Create projects
 
 > parent

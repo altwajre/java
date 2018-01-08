@@ -1,5 +1,7 @@
 # Project Inheritance
 
+https://www.safaribooksonline.com/library/view/apache-maven-cookbook/9781785286124/ch09s02.html
+
 ## Create projects
 
 > parent
@@ -41,5 +43,5 @@
 - it inherits groupId, version, properties and dependencies defined in the parent
 
 - location: by default, maven looks for the parent pom in the parent folder of child
- 
+
 - otherwise, it attempts to download the parent pom from the repository

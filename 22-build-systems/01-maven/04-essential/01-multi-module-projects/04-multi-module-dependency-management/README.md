@@ -1,5 +1,7 @@
 # Performing multi-module dependency management
 
+https://www.safaribooksonline.com/library/view/apache-maven-cookbook/9781785286124/ch09s05.html
+
 > `parent` project
 
 update the `pom` file as below
