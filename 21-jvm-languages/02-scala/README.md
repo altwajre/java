@@ -6,7 +6,7 @@ It is a functional programming
 
 ## Installation
 
-> `$ brew install scala`
+brew install scala
 
 ## Interactive shell (REPL)
 
@@ -26,5 +26,3 @@ $ which scala
 ```
 
 ## SBT - Simple Build Tool
-
-
