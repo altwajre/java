@@ -4,8 +4,10 @@ package com.company.app;
 http://www.oodesign.com/single-responsibility-principle.html
 
 Intent:
-A class should only one reason to change
+- A class should only one reason to change
+- Change Email class should not need to change Content classes
 
+Benefit:
 - adding a new protocol causes changes only in the Email
 - adding a new type of content supported causes changes only in Content class
 
