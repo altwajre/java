@@ -1,71 +1,74 @@
-# Unit and Integration Tests
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-mvn clean package
-java -jar ./target/unit-integration-tests-1.0-SNAPSHOT-fat.jar
+  <groupId>com.company.app</groupId>
+  <artifactId>unit-integration-tests</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-- GET all
-curl http://localhost:8080/api/whiskies
+  <name>unit-integration-tests</name>
+  <url>http://maven.apache.org</url>
 
-- GET one
- curl http://localhost:8080/api/whiskies/1
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
- - POST
- curl -X POST http://localhost:8080/api/whiskies -d '{"name": "Bowmore 18 Years", "origin": "Scotland"}'
-
- - UPDATE
- curl -X PUT http://localhost:8080/api/whiskies/1 -d '{"name": "Bowmore 18", "origin": "Scotland"}'
-
- - DELETE
- curl -X DELETE http://localhost:8080/api/whiskies/1
-
-=============================
-
-http://vertx.io/blog/unit-and-integration-tests/
-
-> Unit tests
-
-Unit tests ensure that one component of your application, generally a class in the Java world, behaves as expected.
-The application is not tested as a whole, but pieces by pieces.
-
-> Integration tests
-
-Integration tests are more black box in the sense that the application is started and tested generally externally.
-
-## Unit tests
-
-> pom.xml
-
-```
+  <dependencies>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-web</artifactId>
+      <version>3.4.2</version>
+    </dependency>
+    <dependency>
+      <groupId>io.vertx</groupId>
+      <artifactId>vertx-core</artifactId>
+      <version>3.4.1</version>
+    </dependency>
     <dependency>
       <groupId>io.vertx</groupId>
       <artifactId>vertx-unit</artifactId>
       <version>3.4.1</version>
       <scope>test</scope>
     </dependency>
-```
 
-> Tests
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.16.8</version>
+    </dependency>
 
-com.company.app.unit.WhiskyVerticleTest
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
 
-## Integration tests
+    <dependency>
+      <groupId>com.jayway.restassured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <version>2.4.0</version>
+      <scope>test</scope>
+    </dependency>
 
-> Tasks
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>2.0.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-- Reserve a free port - get a free port on which the application can listen, and we need to inject this port
-- Generate application configuration - write a JSON file configuring the application HTTP port to this port
-- Start the application - launch the application in a background process
-- Execute the integration tests - run the integration tests
-- Stop the application - stop the application after test executed
+  <build>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
 
-### pom.xml
-
-> Fat Jar
-
-<outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar</outputFile>
-need to match `Start and stop the application` <arg value="${project.artifactId}-${project.version}-fat.jar"/>
-
-```
+    <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
@@ -91,11 +94,15 @@ need to match `Start and stop the application` <arg value="${project.artifactId}
           </execution>
         </executions>
       </plugin>
-```
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
 
-> Pick up a free port plugin. Once found, the plugin assigns the http.port variable to the picked port
-
-```
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -115,28 +122,7 @@ need to match `Start and stop the application` <arg value="${project.artifactId}
           </execution>
         </executions>
       </plugin>
-```
 
-> Filter resources from `src/test/resources`, replace placeholders by actual values
-
-```
-    <testResources>
-      <testResource>
-        <directory>src/test/resources</directory>
-        <filtering>true</filtering>
-      </testResource>
-    </testResources>
-```
-
-> Config file, `${http.port}` is the (default) Maven syntax for filtering; replace `${http.port}` by the selected port
-
-```
-src/test/resources/config.json
-```
-
-> Start and stop the application
-
-```
       <!-- We use the maven-antrun-plugin to start the application before the integration tests and stop them afterward -->
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -188,11 +174,7 @@ src/test/resources/config.json
           </execution>
         </executions>
       </plugin>
-```
 
-> Execute integration tests
-
-```
       <!-- Configure the integration-test plugin and pass the 'http.port' as system property -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -212,14 +194,7 @@ src/test/resources/config.json
           </execution>
         </executions>
       </plugin>
-```
 
-### Tests
-
-com.company.app.integration.WhiskyVerticleRestIT
-
-> Run
-
-```
-$ mvn clean verify
-```
+    </plugins>
+  </build>
+</project>
