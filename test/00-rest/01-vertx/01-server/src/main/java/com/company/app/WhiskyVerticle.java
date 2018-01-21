@@ -56,6 +56,7 @@ public class WhiskyVerticle extends AbstractVerticle {
     router.put("/api/whiskies/:id").handler(this::updateOne);
 
     // DELETE
+    // curl -X DELETE http://localhost:8080/api/whiskies/1
     router.delete("/api/whiskies/:id").handler(this::deleteOne);
 
     // Create the HTTP server and pass the "accept" method to the request handler
