@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.jayway.restassured.RestAssured;
+import com.jayway.restassured.http.ContentType;
 
 import static com.jayway.restassured.RestAssured.delete;
 import static com.jayway.restassured.RestAssured.get;
@@ -11,6 +12,7 @@ import static com.jayway.restassured.RestAssured.given;
 
 public class App {
   public static void main(String[] args) {
+
     RestAssured.baseURI = "http://localhost";
     RestAssured.port = Integer.getInteger("http.port", 8080);
 
@@ -36,6 +38,7 @@ public class App {
     ((ObjectNode) whisky).put("origin", "Japanese");
 
     JsonNode response = given()
+        .contentType(ContentType.JSON)
         .body(whisky)
         .when()
         .post("/api/whiskies")
@@ -52,6 +55,7 @@ public class App {
     ((ObjectNode) whisky).put("origin", "Irish");
 
     JsonNode response = given()
+        .contentType(ContentType.JSON)
         .body(whisky)
         .when()
         .put("/api/whiskies/" + id)

@@ -26,7 +26,8 @@ class WhiskyClient {
     return response;
   }
 
-  public JsonNode update(JsonNode whisky, String id) {
+  public JsonNode update(JsonNode whisky) {
+    String id = whisky.get("id").textValue();
     WebTarget target = this.client.target("http://localhost:8080/api/whiskies/" + id);
     JsonNode response = target
         .request()
@@ -81,10 +82,11 @@ public class App {
 
     // Update
     JsonNode updateWhisky = mapper.createObjectNode();
+    ((ObjectNode) updateWhisky).put("id", id);
     ((ObjectNode) updateWhisky).put("name", "Jersey Update");
     ((ObjectNode) updateWhisky).put("origin", "UK");
 
-    whiskyClient.update(updateWhisky, id);
+    whiskyClient.update(updateWhisky);
 
     whiskyClient.getAll();
 
