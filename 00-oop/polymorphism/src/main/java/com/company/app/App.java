@@ -3,7 +3,7 @@ package com.company.app;
 import java.util.ArrayList;
 import java.util.List;
 
-//https://www.youtube.com/watch?v=qqYOYIVrso0
+// https://www.youtube.com/watch?v=qqYOYIVrso0
 abstract class Animal {
     abstract public void eat();
 }
