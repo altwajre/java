@@ -22,6 +22,11 @@ Make sure function statements are all at the same level of abstraction.
 
 Read code like a top-down narrative. We want every function to be followed by those at the next level of abstraction so that we can read the program.
 
+```
+public
+private
+```
+
 ## SWITCH STATEMENTS
 
 It's hard to make a `switch` statement that does one thing because `switch` statements always do N things.

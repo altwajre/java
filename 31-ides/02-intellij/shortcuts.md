@@ -1,5 +1,28 @@
 # Shortcuts
 
+https://www.jetbrains.com/help/idea/mastering-intellij-idea-keyboard-shortcuts.html
+
+⌘ - Command
+⌥ - Alt
+⇧ - Shift
+⌃ - Ctrl
+
+## Remember these Shortcuts
+
+| Action                                 | Mac shortcut                     | youtube                                     |
+|----------------------------------------|----------------------------------|---------------------------------------------|
+| Smart code completion                  | Ctrl + Alt + Space               | https://www.youtube.com/watch?v=SeUG1Ia5eJ8 |
+| Search everywhere                      | Double Shift                     |   |
+| Show intention actions and quick-fixes | Alt + Enter                      |   |
+| Generate Code                          | Command + N                      |   |
+| Parameter info                         | Command + P                      |   |
+| Move up and down                       | Shift + Command + Up/Down arrows |   |
+| Extend/Shrink selection                | Alt + Up/Down arrows             |   |
+| Recent files popup                     | Command + E                      |   |
+| Rename                                 | Shift + F6                       |   |
+| Expand/Collapse all functions          | Shift + Command + +/-            |   |
+
+
 ## Using Live Templates
 
 | Action               | PC shortcut    | Mac shortcut     |

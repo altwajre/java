@@ -1,8 +1,8 @@
 # Separation of Concerns (SoC) VS Single Responsibility Principle (SRP)
 
 - Separation of Concerns
-https://www.youtube.com/watch?v=C7hkrV1oaSY
 https://www.youtube.com/watch?v=0ZNIQOO2sfA
+https://www.youtube.com/watch?v=C7hkrV1oaSY
 
 - Separation of Concerns
 Works at both high and low levels
