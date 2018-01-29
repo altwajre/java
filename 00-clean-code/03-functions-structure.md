@@ -89,6 +89,8 @@ o.getX()
 
 #### Law of Demeter
 
+Talk to friends, not to strangers
+
 - Each unit should have only limited knowledge about other units: only units "closely" related to the current unit.
 - Each unit should only talk to its friends; don't talk to strangers.
 - Only talk to your immediate friends.
