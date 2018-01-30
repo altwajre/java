@@ -1,6 +1,8 @@
-# Data Access / Dao Design Pattern
+# Data Access / Dao Design Pattern / Data Access Object Pattern
 
 https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm
+
+https://github.com/pwillhan/dotnet/blob/master/vs/vs2013/mvc/01-mvc4-rest-data/DataObjects/Contracts/ICustomerDao.cs
 
 http://tutorials.jenkov.com/java-persistence/dao-design-pattern.html
 
@@ -8,8 +10,8 @@ https://www.youtube.com/watch?v=H1mePFyqqiE
 
 ## DAO vs Repository
 
-DAO is an abstraction of data persistence. Repository is an abstraction of a collection of objects. 
-DAO would be considered closer to the database, often table-centric. 
+DAO is an abstraction of data persistence. Repository is an abstraction of a collection of objects.
+DAO would be considered closer to the database, often table-centric.
 Repository would be considered closer to the Domain, dealing only in Aggregate Roots.
 
 ## Repository Pattern
