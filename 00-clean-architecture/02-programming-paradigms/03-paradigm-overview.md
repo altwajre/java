@@ -8,7 +8,7 @@ Use structured programming as the algorithmic foundation of our modules.
 
 Structured programming imposes discipline on direct transfer of control.
 
-It replaces those jumps (goto) with the more familiar if/then/else and do/while/until constructs.
+It replaces the jumps (goto) with the more familiar if/then/else and do/while/until constructs.
 
 ## Object Oriented Programming
 
