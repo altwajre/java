@@ -70,7 +70,8 @@ public class WhiskyVerticleRestIT {
     delete("/api/whiskies/" + whisky.getId()).then().assertThat().statusCode(204);
 
     // Check that the resrouce is not available anymore
-    get("/api/whiskies/" + whisky.getId()).then()
+    get("/api/whiskies/" + whisky.getId())
+        .then()
         .assertThat()
         .statusCode(404);
   }

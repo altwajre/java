@@ -2,7 +2,7 @@
 
 https://www.safaribooksonline.com/library/view/clean-architecture-a/9780134494272/part3.xhtml
 
-SOLID principles
+SOLID principles arrange the bricks into walls and rooms.
 
 ## SRP: The Single Responsibility Principle
 
