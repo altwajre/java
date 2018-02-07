@@ -1,5 +1,6 @@
 package com.company.app;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 
@@ -36,8 +37,13 @@ public class App
         InputStream inputStream = classLoader.getResourceAsStream("json/parking.json");
 
         System.out.println("#Json to Pojo");
-        Parking parking = new ObjectMapper().readValue(inputStream, Parking.class);
+        ObjectMapper mapper = new ObjectMapper();
+        Parking parking = mapper.readValue(inputStream, Parking.class);
         System.out.println(parking);
+
+        System.out.println("#Pojo to Json");
+        JsonNode jsonNode = mapper.convertValue(parking, JsonNode.class);
+        System.out.println(jsonNode.toString());
 
     }
 }
