@@ -4,6 +4,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.IntStream;
 
 /*
 http://crunchify.com/how-to-run-multiple-threads-concurrently-in-java-executorservice-approach/
@@ -54,12 +55,12 @@ public class App {
         "http://www.wikipedia.org/",
         "http://en.wikipedia.org/wiki/Main_Page"};
 
-    for (int i = 0; i < hostList.length; i++) {
-
+    IntStream.range(0, hostList.length).parallel().forEach(i -> {
       String url = hostList[i];
       Runnable worker = new MyRunnable(url);
       executor.execute(worker);
-    }
+    });
+
     executor.shutdown();
     // Wait until all threads are finish
     while (!executor.isTerminated()) {
