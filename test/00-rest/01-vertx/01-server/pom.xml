@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.company.app</groupId>
-  <artifactId>unit-integration-tests</artifactId>
+  <artifactId>server</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 

@@ -10,8 +10,8 @@ public class DetachedStateMachine<S extends Enum<S>, E extends Enum<E>> implemen
   @JsonIgnore
   private final StateMachineDefinition<S, E> definition;
 
-  public DetachedStateMachine(S initial, Map<S, Map<E, S>> transitons, Set<S> acceptable) {
-    this.definition = new StateMachineDefinition<>(initial, transitons, acceptable);
+  public DetachedStateMachine(S initial, Map<S, Map<E, S>> transitions, Set<S> acceptable) {
+    this.definition = new StateMachineDefinition<>(initial, transitions, acceptable);
   }
 
   @Override

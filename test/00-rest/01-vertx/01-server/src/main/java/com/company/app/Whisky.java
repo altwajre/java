@@ -15,6 +15,9 @@ public class Whisky {
   @Getter
   @Setter
   private String origin;
+  @Getter
+  @Setter
+  private State state;
 
   public Whisky(String name, String origin) {
     this.id = COUNTER.getAndIncrement();

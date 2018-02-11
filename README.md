@@ -5,15 +5,22 @@ java
 
 https://gist.github.com/JeOam/a926dbb5145c4d0789c1
 
-- brew install java
-brew update
-brew tap caskroom/cask
-brew install Caskroom/cask/java
+- brew install java 8
+brew cask install caskroom/versions/java8
 java -version
 
+ls /Library/Java/JavaVirtualMachines/
+jdk1.8.0_162.jdk
+
 - brew install Maven
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home
 brew install maven
+
+mvn -version
+
+- brew install java 9
+brew cask install java
+brew cask uninstall java
 
 ## Install IDE
 
@@ -23,7 +30,11 @@ brew install maven
 https://www.jetbrains.com/idea/
 
 - setup SDK - Java Home
-path is `/Library/Java/JavaVirtualMachines/jdk1.8.0_45.jdk/Contents/Home`
+path is `/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home`
+
+- clear caches
+
+/Users/whan/Library/Caches
 
 - Open Java Project
 Open pom.xml

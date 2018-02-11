@@ -39,25 +39,41 @@ public class WhiskyVerticle extends AbstractVerticle {
     // Enables the reading of the request body for all routes under "/api/whiskies".
     router.route("/api/whiskies*").handler(BodyHandler.create());
 
+    // GET one
+    // curl http://localhost:8080/api/whiskies/{id}
+    router.get("/api/whiskies/:id").handler(this::get);
+
     // GET all
     // curl http://localhost:8080/api/whiskies
     router.get("/api/whiskies").handler(this::getAll);
 
     // POST
     // curl -X POST http://localhost:8080/api/whiskies -d '{"name": "Bowmore 18 Years", "origin": "Scotland"}'
-    router.post("/api/whiskies").handler(this::addOne);
-
-    // GET one
-    // curl http://localhost:8080/api/whiskies/1
-    router.get("/api/whiskies/:id").handler(this::getOne);
+    router.post("/api/whiskies").handler(this::create);
 
     // UPDATE
-    // curl -X PUT http://localhost:8080/api/whiskies/1 -d '{"name": "Bowmore 18", "origin": "Scotland"}'
-    router.put("/api/whiskies/:id").handler(this::updateOne);
+    // curl -X PUT http://localhost:8080/api/whiskies/{id} -d '{"name": "Bowmore 18", "origin": "Scotland"}'
+    router.put("/api/whiskies/:id").handler(this::update);
+
+    // Activate
+    // curl -X POST http://localhost:8080/api/whiskies/{id}/activate -d {}
+    router.post("/api/whiskies/:id/activate").handler(this::activate);
+
+    // Suspend
+    // curl -X POST http://localhost:8080/api/whiskies/{id}/suspend -d {}
+    router.post("/api/whiskies/:id/suspend").handler(this::suspend);
+
+    // Unsuspend
+    // curl -X POST http://localhost:8080/api/whiskies/{id}/unsuspend -d {}
+    router.post("/api/whiskies/:id/unsuspend").handler(this::unsuspend);
+
+    // Cancel
+    // curl -X POST http://localhost:8080/api/whiskies/{id}/cancel -d {}
+    router.post("/api/whiskies/:id/cancel").handler(this::cancel);
 
     // DELETE
-    // curl -X DELETE http://localhost:8080/api/whiskies/1
-    router.delete("/api/whiskies/:id").handler(this::deleteOne);
+    // curl -X DELETE http://localhost:8080/api/whiskies/{id}
+    router.delete("/api/whiskies/:id").handler(this::delete);
 
     // Create the HTTP server and pass the "accept" method to the request handler
     vertx
@@ -78,8 +94,21 @@ public class WhiskyVerticle extends AbstractVerticle {
         );
   }
 
-  private void updateOne(RoutingContext routingContext) {
+  private void create(RoutingContext routingContext) {
+    // read the request's content and create an instance of Whisky.
+    final Whisky whisky = Json.decodeValue(routingContext.getBodyAsString(), Whisky.class);
+    whisky.setState(State.ACTIVE);
+    // Add it to the backend map
+    products.put(whisky.getId(), whisky);
 
+    // Return the created whisky as JSON
+    routingContext.response()
+        .setStatusCode(201)
+        .putHeader("content-type", "application/json; charset=utf-8")
+        .end(Json.encodePrettily(whisky));
+  }
+
+  private void update(RoutingContext routingContext) {
     final String id = routingContext.request().getParam("id");
     JsonObject json = routingContext.getBodyAsJson();
 
@@ -100,11 +129,37 @@ public class WhiskyVerticle extends AbstractVerticle {
             .end(Json.encodePrettily(whisky));
       }
     }
-
   }
 
-  private void getOne(RoutingContext routingContext) {
+  private void activate(RoutingContext routingContext) {
+    changeState(routingContext, State.ACTIVE);
+  }
 
+  private void suspend(RoutingContext routingContext) {
+    changeState(routingContext, State.SUSPENDED);
+  }
+
+  private void unsuspend(RoutingContext routingContext) {
+    changeState(routingContext, State.ACTIVE);
+  }
+
+  private void cancel(RoutingContext routingContext) {
+    changeState(routingContext, State.CANCELLED);
+  }
+
+  private void delete(RoutingContext routingContext) {
+    final String id = routingContext.request().getParam("id");
+    if(id == null){
+      routingContext.response().setStatusCode(400).end();
+    }
+    else {
+      Integer idAsInteger = Integer.valueOf(id);
+      products.remove(idAsInteger);
+    }
+    routingContext.response().setStatusCode(204).end();
+  }
+
+  private void get(RoutingContext routingContext) {
     final String id = routingContext.request().getParam("id");
     if(id == null) {
       routingContext.response().setStatusCode(400).end();
@@ -123,33 +178,6 @@ public class WhiskyVerticle extends AbstractVerticle {
     }
   }
 
-  private void deleteOne(RoutingContext routingContext) {
-
-    final String id = routingContext.request().getParam("id");
-    if(id == null){
-      routingContext.response().setStatusCode(400).end();
-    }
-    else {
-      Integer idAsInteger = Integer.valueOf(id);
-      products.remove(idAsInteger);
-    }
-    routingContext.response().setStatusCode(204).end();
-  }
-
-  private void addOne(RoutingContext routingContext) {
-
-    // read the request's content and create an instance of Whisky.
-    final Whisky whisky = Json.decodeValue(routingContext.getBodyAsString(), Whisky.class);
-    // Add it to the backend map
-    products.put(whisky.getId(), whisky);
-
-    // Return the created whisky as JSON
-    routingContext.response()
-        .setStatusCode(201)
-        .putHeader("content-type", "application/json; charset=utf-8")
-        .end(Json.encodePrettily(whisky));
-  }
-
   private void getAll(RoutingContext routingContext) {
     // Write the HTTP response
     // The response is in JSON using the utf-8 encoding
@@ -159,10 +187,34 @@ public class WhiskyVerticle extends AbstractVerticle {
         .end(Json.encodePrettily(products.values()));
   }
 
+  private void changeState(RoutingContext routingContext, State state) {
+    final String id = routingContext.request().getParam("id");
+    JsonObject json = routingContext.getBodyAsJson();
+
+    if(id == null || json == null) {
+      routingContext.response().setStatusCode(400).end();
+    }
+    else {
+      final Integer idAsInteger = Integer.valueOf(id);
+      Whisky whisky = products.get(idAsInteger);
+      if(whisky == null) {
+        routingContext.response().setStatusCode(404).end();
+      }
+      else {
+        whisky.setState(state);
+        routingContext.response()
+            .putHeader("content-type", "application/json; charset=utf-8")
+            .end(Json.encodePrettily(whisky));
+      }
+    }
+  }
+
   private void createSomeData() {
     Whisky bowmore = new Whisky("Bowmore 15 Years Laimrig", "Scotland, Islay");
+    bowmore.setState(State.ACTIVE);
     products.put(bowmore.getId(), bowmore);
     Whisky talisker = new Whisky("Talisker 57° North", "Scotland, Island");
+    talisker.setState(State.ACTIVE);
     products.put(talisker.getId(), talisker);
   }
 }
