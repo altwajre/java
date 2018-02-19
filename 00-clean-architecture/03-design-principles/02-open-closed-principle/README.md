@@ -4,6 +4,10 @@ https://www.safaribooksonline.com/library/view/clean-architecture-a/978013449427
 
 A software artifact should be open for extension but closed for modification.
 
+The OCP is driving forces behind the architecture os systems.
+The goal is to make the system easy to extend without incurring a high impact of change.
+This goal is accomplished by partitioning the system into components, and arranging those components into a dependency hierarchy that protects higher-level components from changes in lower-level components.
+
 ## OCP in Architectural level
 
 Architects separate functionality based on how, why and when it changes, and then organize that separated functionality into a hierarchy of components.
