@@ -4,6 +4,10 @@ https://www.safaribooksonline.com/library/view/clean-architecture-a/978013449427
 
 SOLID principles arrange the bricks into walls and rooms.
 
+- Tolerate change
+- Are easy to understand
+- Are the basic of components that can be used in many software systems
+
 ## SRP: The Single Responsibility Principle
 
 Each software module has one, and only one reason to change.

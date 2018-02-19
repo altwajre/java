@@ -29,3 +29,7 @@ need following for `mvn clean test` to work
     </dependencies>
   </plugin>
 ```
+
+## Response Time
+
+https://www.joecolantonio.com/2015/12/28/rest-assured-how-to-check-response-times/
