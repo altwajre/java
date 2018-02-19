@@ -2,7 +2,10 @@
 
 https://www.safaribooksonline.com/library/view/clean-architecture-a/9780134494272/ch7.xhtml
 
-- A module should be responsible to one, and only one, actor.
+A module should be responsible to one, and only one, actor.
+
+At the level of components, it becomes the Common Closure Principle.
+At the architectural level, it becomes the change responsible for the creation of Architectural Boundaries.
 
 ## Symptoms of violating SRP
 
