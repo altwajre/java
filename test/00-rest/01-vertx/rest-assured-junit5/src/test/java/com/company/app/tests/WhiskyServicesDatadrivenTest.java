@@ -1,9 +1,9 @@
 package com.company.app.tests;
 
-import com.company.app.WhiskyClientImpl;
-import com.company.app.WhiskyScenarioProxy;
-import com.company.app.WhiskyValidator;
-import com.company.app.WhiskyValidatorBase;
+import com.company.app.implementations.WhiskyClientImpl;
+import com.company.app.implementations.WhiskyScenarioProxy;
+import com.company.app.implementations.WhiskyValidator;
+import com.company.app.implementations.WhiskyValidatorBase;
 import com.jayway.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class WhiskyServicesProxyDatadrivenTest {
+public class WhiskyServicesDatadrivenTest {
 
   private static WhiskyScenarioProxy whisky;
 

@@ -1,6 +1,8 @@
 package com.company.app;
 import static java.lang.System.out;
 
+interface IHerbivore{ }  // Abstract Product_A
+interface ICarnivore{ void Eat(IHerbivore h); } // Abstract Product_B
 class Cow implements IHerbivore{ } // Product_A_1
 class Lion implements ICarnivore{  // Product_B_1
     public void Eat(IHerbivore h) {
@@ -13,8 +15,7 @@ class Wolf implements ICarnivore{  // Product_B_2
         out.println(this.getClass().getSimpleName() + " eats " + h.getClass().getSimpleName());
     }
 }
-interface IHerbivore{ }  // Abstract Product_A
-interface ICarnivore{ void Eat(IHerbivore h); } // Abstract Product_B
+
 interface IContinentFactory{  // Abstract Factory
     IHerbivore CreateHerbivore();
     ICarnivore CreateCarnivore();
@@ -31,6 +32,7 @@ class America implements IContinentFactory{  // Concrete Factory_2
         return new Wolf();
     }
 }
+
 interface IAnimalWorld{ void RunFoodChain(); }  // Client
 class AnimalWorld<T extends IContinentFactory> implements IAnimalWorld{  // Client
     private IHerbivore _herbivore;

@@ -1,7 +1,7 @@
 package com.company.app.tests;
 
-import com.company.app.WhiskyClientImpl;
-import com.company.app.WhiskyValidator;
+import com.company.app.implementations.WhiskyClientImpl;
+import com.company.app.implementations.WhiskyValidator;
 import com.company.app.common.ResourceHelper;
 import com.company.app.contracts.WhiskyClient;
 import com.fasterxml.jackson.databind.JsonNode;

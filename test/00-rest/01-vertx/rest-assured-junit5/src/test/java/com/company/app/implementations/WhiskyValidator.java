@@ -1,4 +1,4 @@
-package com.company.app;
+package com.company.app.implementations;
 
 import com.company.app.common.CreateMethodShouldBeCalledFirstException;
 import com.company.app.common.State;

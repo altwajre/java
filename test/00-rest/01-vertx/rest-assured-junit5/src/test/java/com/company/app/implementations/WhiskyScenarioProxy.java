@@ -1,4 +1,4 @@
-package com.company.app;
+package com.company.app.implementations;
 
 import com.company.app.common.ResourceHelper;
 import com.company.app.contracts.WhiskyScenario;
