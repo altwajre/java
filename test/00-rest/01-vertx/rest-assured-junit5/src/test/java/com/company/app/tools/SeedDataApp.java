@@ -1,7 +1,7 @@
 package com.company.app.tools;
 
 import com.company.app.implementations.WhiskyClientImpl;
-import com.company.app.implementations.WhiskyScenarioProxy;
+import com.company.app.implementations.WhiskyScenarioImpl;
 import com.company.app.implementations.WhiskyValidator;
 import com.company.app.implementations.WhiskyValidatorBase;
 import com.jayway.restassured.RestAssured;
@@ -15,7 +15,7 @@ public class SeedDataApp {
       RestAssured.port = Integer.getInteger("http.port", 8080);
 
       WhiskyValidatorBase whiskyValidator = new WhiskyValidator(new WhiskyClientImpl());
-      WhiskyScenarioProxy whisky = new WhiskyScenarioProxy(whiskyValidator);
+      WhiskyScenarioImpl whisky = new WhiskyScenarioImpl(whiskyValidator);
 
       IntStream
           .range(0, 10)

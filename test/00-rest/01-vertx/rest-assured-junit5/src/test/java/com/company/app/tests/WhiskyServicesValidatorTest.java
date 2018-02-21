@@ -1,9 +1,8 @@
 package com.company.app.tests;
 
-import com.company.app.implementations.WhiskyClientImpl;
-import com.company.app.implementations.WhiskyValidator;
 import com.company.app.common.ResourceHelper;
 import com.company.app.contracts.WhiskyClient;
+import com.company.app.implementations.factory.WhiskyValidatorClientFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.jayway.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
@@ -14,7 +13,7 @@ import java.io.IOException;
 
 public class WhiskyServicesValidatorTest {
 
-  private WhiskyValidator whisky;
+  private WhiskyClient whisky;
 
   @AfterAll
   public static void configureRestAssured() {
@@ -29,8 +28,7 @@ public class WhiskyServicesValidatorTest {
 
   @BeforeEach
   public void setUp() {
-    WhiskyClient client = new WhiskyClientImpl();
-    whisky = new WhiskyValidator(client);
+    whisky = new WhiskyValidatorClientFactory().create();
   }
 
   // curl -X POST http://localhost:8080/api/whiskies -d '{"name": "Bowmore 18 Years", "origin": "Scotland"}'

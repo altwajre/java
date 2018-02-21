@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import static java.util.Objects.isNull;
 import static org.assertj.core.api.Assertions.assertThat;
 
+// Decorator
 public class WhiskyValidator extends WhiskyValidatorBase implements Validator {
 
   private ObjectMapper mapper = new ObjectMapper();

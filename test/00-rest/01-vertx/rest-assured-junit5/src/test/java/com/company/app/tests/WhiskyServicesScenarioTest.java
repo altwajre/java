@@ -1,18 +1,16 @@
 package com.company.app.tests;
 
-import com.company.app.implementations.WhiskyClientImpl;
-import com.company.app.implementations.WhiskyScenarioProxy;
-import com.company.app.implementations.WhiskyValidator;
-import com.company.app.implementations.WhiskyValidatorBase;
+import com.company.app.contracts.WhiskyScenario;
+import com.company.app.implementations.factory.WhiskyScenarioClientFactory;
 import com.jayway.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class WhiskyServicesProxyTest {
+public class WhiskyServicesScenarioTest {
 
-  private WhiskyScenarioProxy whisky;
+  private WhiskyScenario whisky;
 
   @BeforeAll
   public static void configureRestAssured() {
@@ -27,8 +25,7 @@ public class WhiskyServicesProxyTest {
 
   @BeforeEach
   public void setUp() {
-    WhiskyValidatorBase whiskyValidator = new WhiskyValidator(new WhiskyClientImpl());
-    whisky = new WhiskyScenarioProxy(whiskyValidator);
+    whisky = new WhiskyScenarioClientFactory().create();
   }
 
   // curl -X POST http://localhost:8080/api/whiskies -d '{"name": "Bowmore 18 Years", "origin": "Scotland"}'

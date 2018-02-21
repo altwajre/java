@@ -1,9 +1,11 @@
 package com.company.app.tests;
 
+import com.company.app.contracts.WhiskyScenario;
 import com.company.app.implementations.WhiskyClientImpl;
-import com.company.app.implementations.WhiskyScenarioProxy;
+import com.company.app.implementations.WhiskyScenarioImpl;
 import com.company.app.implementations.WhiskyValidator;
 import com.company.app.implementations.WhiskyValidatorBase;
+import com.company.app.implementations.factory.WhiskyScenarioClientFactory;
 import com.jayway.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,14 +15,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class WhiskyServicesDatadrivenTest {
 
-  private static WhiskyScenarioProxy whisky;
+  private static WhiskyScenario whisky;
 
   @BeforeAll
   public static void configureRestAssured() {
     RestAssured.baseURI = "http://localhost";
     RestAssured.port = Integer.getInteger("http.port", 8080);
-    WhiskyValidatorBase whiskyValidator = new WhiskyValidator(new WhiskyClientImpl());
-    whisky = new WhiskyScenarioProxy(whiskyValidator);
+    whisky = new WhiskyScenarioClientFactory().create();
   }
 
   @AfterAll

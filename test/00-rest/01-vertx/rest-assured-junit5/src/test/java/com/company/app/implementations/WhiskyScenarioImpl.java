@@ -1,21 +1,22 @@
 package com.company.app.implementations;
 
 import com.company.app.common.ResourceHelper;
+import com.company.app.contracts.WhiskyClient;
 import com.company.app.contracts.WhiskyScenario;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
 
 // Proxy
-public class WhiskyScenarioProxy implements WhiskyScenario {
+public class WhiskyScenarioImpl implements WhiskyScenario {
 
-  private WhiskyValidatorBase whisky;
+  private WhiskyClient whisky;
   private JsonNode createBody;
   private JsonNode updateBody;
   private JsonNode emptyBody;
   private String id;
 
-  public WhiskyScenarioProxy(WhiskyValidatorBase whisky) {
+  public WhiskyScenarioImpl(WhiskyClient whisky) {
     this.whisky = whisky;
 
     try {

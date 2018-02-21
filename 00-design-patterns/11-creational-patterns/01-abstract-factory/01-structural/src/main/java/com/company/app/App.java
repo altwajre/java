@@ -1,5 +1,25 @@
 package com.company.app;
 
+abstract class AbstractProductA{}
+abstract class AbstractProductB{
+    public abstract void Interact(AbstractProductA a);
+}
+class ProductA1 extends AbstractProductA{}
+class ProductB1 extends AbstractProductB{
+    @Override
+    public void Interact(AbstractProductA a) {
+        System.out.println(this.getClass().getSimpleName() + " interacts with " + a.getClass().getSimpleName());
+    }
+}
+class ProductA2 extends AbstractProductA{}
+class ProductB2 extends AbstractProductB{
+    @Override
+    public void Interact(AbstractProductA a) {
+        System.out.println(this.getClass().getSimpleName() + " interacts with " + a.getClass().getSimpleName());
+    }
+}
+
+// factory acts as dependency injection that controls how the products should be built
 abstract class AbstractFactory{
     public abstract AbstractProductA CreateProductA();
     public abstract AbstractProductB CreateProductB();
@@ -24,24 +44,7 @@ class ConcreteFactory2 extends AbstractFactory{
         return new ProductB2();
     }
 }
-abstract class AbstractProductA{}
-abstract class AbstractProductB{
-    public abstract void Interact(AbstractProductA a);
-}
-class ProductA1 extends AbstractProductA{}
-class ProductB1 extends AbstractProductB{
-    @Override
-    public void Interact(AbstractProductA a) {
-        System.out.println(this.getClass().getSimpleName() + " interacts with " + a.getClass().getSimpleName());
-    }
-}
-class ProductA2 extends AbstractProductA{}
-class ProductB2 extends AbstractProductB{
-    @Override
-    public void Interact(AbstractProductA a) {
-        System.out.println(this.getClass().getSimpleName() + " interacts with " + a.getClass().getSimpleName());
-    }
-}
+
 class Client{
     private AbstractProductA abstractProductA;
     private AbstractProductB abstractProductB;
