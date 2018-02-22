@@ -1,13 +1,13 @@
-# Building a RESTful Web Service
+# Spring REST Services
 
-https://spring.io/guides/gs/rest-service/
+http://websystique.com/spring-boot/spring-boot-rest-api-example/
+https://spring.io/guides/tutorials/bookmarks/
 
-## Run
-
-mvn clean package && java -jar target/swagger-1.0-SNAPSHOT.jar
-
-curl http://localhost:8080/greeting
-curl http://localhost:8080/greeting?name=User
+curl http://localhost:8080/whiskies
+curl http://localhost:8080/whiskies/1
+curl -X POST http://localhost:8080/whiskies -H 'content-type: application/json' -d '{"name": "Bowmore 18 Years", "origin": "Scotland", "fats": ["fat_11", "fat_12"]}'
+curl -X PUT http://localhost:8080/whiskies/1 -H 'content-type: application/json' -d '{"name": "Bowmore 28", "origin": "Scotland 18", "fats": ["fat_18", "fat_28"]}'
+curl -X DELETE http://localhost:8080/whiskies/2
 
 ## Swagger
 
