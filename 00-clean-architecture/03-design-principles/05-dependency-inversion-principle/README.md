@@ -16,6 +16,12 @@ In statically typed languages, inheritance is the strongest, and most rigid, of 
 When you override the concrete functions, you do not eliminate those dependencies.
 To manage those dependencies, you should make the function abstract and create multiple implementations.
 
+## Factories
+
+Factories acts dependency injection to create an object.
+
+To comply with rules, the creation of volatile concrete object requires special handling.
+
 ## References
 
 - youtube

@@ -1,7 +1,7 @@
 package com.company.app.tests;
 
 import com.company.app.contracts.WhiskyScenario;
-import com.company.app.implementations.factory.WhiskyScenarioClientFactory;
+import com.company.app.implementations.factories.WhiskyScenarioClientFactory;
 import com.jayway.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;

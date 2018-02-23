@@ -33,3 +33,52 @@ need following for `mvn clean test` to work
 ## Response Time
 
 https://www.joecolantonio.com/2015/12/28/rest-assured-how-to-check-response-times/
+
+/tests/WhiskyServicesResponseTimeTest.java
+
+## Swagger
+
+http://localhost:8080/swagger-ui.html
+
+http://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
+
+- pom.xml
+
+```
+<dependency>
+  <groupId>io.springfox</groupId>
+  <artifactId>springfox-swagger2</artifactId>
+  <version>2.7.0</version>
+</dependency>
+
+<dependency>
+  <groupId>io.springfox</groupId>
+  <artifactId>springfox-swagger-ui</artifactId>
+  <version>2.7.0</version>
+</dependency>
+```
+
+- SwaggerConfig.java
+
+```
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+  @Bean
+  public Docket api() {
+    return new Docket(DocumentationType.SWAGGER_2)
+        .select()
+        .apis(RequestHandlerSelectors.basePackage("com.company.app.services"))
+        .paths(PathSelectors.any())
+        .build();
+  }
+}
+```
+
+## Spring config port
+
+- application.properties
+
+```
+server.port = 8081
+```

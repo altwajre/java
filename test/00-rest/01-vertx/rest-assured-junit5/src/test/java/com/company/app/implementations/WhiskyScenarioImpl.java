@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
 
-// Proxy
+// Facade that enables data-driven
 public class WhiskyScenarioImpl implements WhiskyScenario {
 
   private WhiskyClient whisky;

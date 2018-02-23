@@ -1,4 +1,4 @@
-package com.company.app.contracts.factory;
+package com.company.app.contracts.factories;
 
 import com.company.app.contracts.WhiskyScenario;
 
