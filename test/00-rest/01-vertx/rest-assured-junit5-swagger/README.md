@@ -38,7 +38,7 @@ https://www.joecolantonio.com/2015/12/28/rest-assured-how-to-check-response-time
 
 ## Swagger
 
-http://localhost:8080/swagger-ui.html
+http://localhost:8081/swagger-ui.html
 
 http://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
 
