@@ -1,4 +1,4 @@
-package com.company.app;
+package com.company.app.junit4;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,3 +17,8 @@ public class MultipleBefores {
     System.out.println("test1");
   }
 }
+/*
+setup2
+setup1
+test1
+ */

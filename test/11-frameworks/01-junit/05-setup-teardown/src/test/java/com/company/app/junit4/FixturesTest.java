@@ -1,4 +1,4 @@
-package com.company.app;
+package com.company.app.junit4;
 
 import org.junit.After;
 import org.junit.AfterClass;

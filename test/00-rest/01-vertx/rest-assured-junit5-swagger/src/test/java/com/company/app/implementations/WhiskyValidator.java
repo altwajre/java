@@ -1,6 +1,6 @@
 package com.company.app.implementations;
 
-import com.company.app.common.CreateMethodShouldBeCalledFirstException;
+import com.company.app.common.CreateMethodNotCalledException;
 import com.company.app.common.State;
 import com.company.app.common.WhiskyPayload;
 import com.company.app.contracts.Validator;
@@ -52,7 +52,7 @@ public class WhiskyValidator extends WhiskyValidatorBase implements Validator {
     System.out.println("WhiskyValidator.update()");
 
     if (isNull(currentState))
-      throw new CreateMethodShouldBeCalledFirstException();
+      throw new CreateMethodNotCalledException();
 
     JsonNode actual = super.update(id, body);
     currentState.setState(State.ACTIVE);
@@ -66,7 +66,7 @@ public class WhiskyValidator extends WhiskyValidatorBase implements Validator {
     System.out.println("WhiskyValidator.activate()");
 
     if (isNull(currentState))
-      throw new CreateMethodShouldBeCalledFirstException();
+      throw new CreateMethodNotCalledException();
 
     JsonNode actual = super.activate(id, body);
     currentState.setState(State.ACTIVE);
@@ -80,7 +80,7 @@ public class WhiskyValidator extends WhiskyValidatorBase implements Validator {
     System.out.println("WhiskyValidator.suspend()");
 
     if (isNull(currentState))
-      throw new CreateMethodShouldBeCalledFirstException();
+      throw new CreateMethodNotCalledException();
 
     JsonNode actual = super.suspend(id, body);
     currentState.setState(State.SUSPENDED);
@@ -94,7 +94,7 @@ public class WhiskyValidator extends WhiskyValidatorBase implements Validator {
     System.out.println("WhiskyValidator.unsuspend()");
 
     if (isNull(currentState))
-      throw new CreateMethodShouldBeCalledFirstException();
+      throw new CreateMethodNotCalledException();
 
     JsonNode actual = super.unsuspend(id, body);
     currentState.setState(State.ACTIVE);
@@ -108,7 +108,7 @@ public class WhiskyValidator extends WhiskyValidatorBase implements Validator {
     System.out.println("WhiskyValidator.cancel()");
 
     if (isNull(currentState))
-      throw new CreateMethodShouldBeCalledFirstException();
+      throw new CreateMethodNotCalledException();
 
     JsonNode actual = super.cancel(id, body);
     currentState.setState(State.CANCELLED);

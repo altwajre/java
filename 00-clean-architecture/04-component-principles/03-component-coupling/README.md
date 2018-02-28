@@ -23,7 +23,7 @@ They will be stepping all over one another because they must all use exactly the
 Cycles make it difficult to isolate components, so unit testing and releasing become difficult and error prone.
 Cycles make it difficult to work out the order in which you must build the components. Indeed, there is no correct order.
 
-> Breaking the Cycle
+> Solution: Breaking the Cycle
 
 1. Dependency Inversion Principle (DIP).
 Create an interface inverts the dependency between the components.
@@ -54,3 +54,45 @@ Thus the component dependency structure grows and evolves with the logical desig
 Depend in the direction of stability.
 
 Ensure that modules are intended to be easy to change are not depended on by modules that are harder to change.
+
+> Stability
+
+To make a software component difficult to change, is to make lots of other software components depend on it.
+A component with lots of incoming Dependencies is very stable because it requires a great deal of work to reconcile any changes with all the dependent components
+
+> Stability Metrics
+
+- Fan-in: Incoming dependencies. This metric identifies the number of classes outside this component that depend on classes within the component.
+- Fan-out: Outgoing dependencies. This metric identifies the number of classes inside this component that depend on classes outside the component.
+- I: Instability: I = Fan-out / (Fan-in + Fan-out). This metric has the range [0,1]. I=0 indicates a maximally stable component. I=1 indicates a maximally unstable component.
+
+The SDP says the I metric of a component should be larger than the I metrics of the components that it depends on.
+`I` metrics should decrease in the direction of dependency.
+
+Stable component depends Flexible component violates the SDP because Flexible is no longer be easy to change.
+We can fix it by using DIP; creating an interface component that breaks the dependency of Stable on Flexible and forces both components to depend on interface component.
+
+## The Stable Abstractions Principle
+
+A component should be as abstract as it is stable.
+
+> Where Do We Put The High-Level Policy?
+
+High-level architecture and policy decisions in the system should not change often.
+Use OCP principle that it is possible and desirable to create classes that are flexible enough to be extended without requiring modification.
+Abstract classes and interfaces.
+
+> Introducing The Stable Abstractions Principle
+
+The Stable Abstractions Principle (SAP) sets up a relationship between stability and abstractness.
+Stable component should be abstract so that its stability does not prevent it from being extended.
+Unstable component should be concrete since it is instability allows the concrete code within it to be easily changed.
+
+> Measuring Abstraction
+
+- Nc: The number of classes in the component.
+- Na: The number of abstract classes and interfaces in the component.
+- A: Abstractness. A = Na / Nc
+
+0 implies that the component has no abstract classes at all.
+1 implies that the component has only abstract classes.

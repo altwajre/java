@@ -25,21 +25,21 @@ public class WhiskyServicesDatadrivenTest {
     RestAssured.reset();
   }
 
-  @DisplayName("DisplayName: create")
+  @DisplayName("Whisky: create")
   @ParameterizedTest
   @ValueSource(strings = {"create"})
   public void create(String methodName) {
     whisky.invoke(methodName);
   }
 
-  @DisplayName("DisplayName: create update")
+  @DisplayName("Whisky: create update")
   @ParameterizedTest
   @ValueSource(strings = {"create", "update"})
   public void create_Update(String methodName) {
     whisky.invoke(methodName);
   }
 
-  @DisplayName("DisplayName: create suspend")
+  @DisplayName("Whisky: create suspend")
   @ParameterizedTest
   @ValueSource(strings = {"create", "suspend"})
   public void create_Suspend(String methodName) {
