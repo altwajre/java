@@ -1,7 +1,7 @@
 package com.company.app.tests;
 
 import com.company.app.contracts.WhiskyScenario;
-import com.company.app.implementations.factories.WhiskyScenarioClientFactory;
+import com.company.app.implementations.factories.WhiskyScenarioFactoryImpl;
 import com.jayway.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -25,7 +25,7 @@ public class WhiskyServicesScenarioTest {
 
   @BeforeEach
   public void setUp() {
-    whisky = new WhiskyScenarioClientFactory().create();
+    whisky = new WhiskyScenarioFactoryImpl().create();
   }
 
   // curl -X POST http://localhost:8080/api/whiskies -d '{"name": "Bowmore 18 Years", "origin": "Scotland"}'

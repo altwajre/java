@@ -1,7 +1,7 @@
 package com.company.app.services.controller;
 
 import com.company.app.contracts.WhiskyScenario;
-import com.company.app.implementations.factories.WhiskyScenarioClientFactory;
+import com.company.app.implementations.factories.WhiskyScenarioFactoryImpl;
 import com.company.app.services.TestResult;
 import com.company.app.services.TestStep;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -32,7 +32,7 @@ public class WhiskyScenarioController {
       RestAssured.baseURI = "http://localhost";
       RestAssured.port = Integer.getInteger("http.port", 8080);
 
-      WhiskyScenario whisky = new WhiskyScenarioClientFactory().create();
+      WhiskyScenario whisky = new WhiskyScenarioFactoryImpl().create();
       testStep.getSteps().forEach(s -> {
         whisky.invoke(s);
       });

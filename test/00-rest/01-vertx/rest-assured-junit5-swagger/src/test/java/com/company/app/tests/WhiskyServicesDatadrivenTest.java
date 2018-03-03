@@ -1,7 +1,7 @@
 package com.company.app.tests;
 
 import com.company.app.contracts.WhiskyScenario;
-import com.company.app.implementations.factories.WhiskyScenarioClientFactory;
+import com.company.app.implementations.factories.WhiskyScenarioFactoryImpl;
 import com.jayway.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,7 +17,7 @@ public class WhiskyServicesDatadrivenTest {
   public static void configureRestAssured() {
     RestAssured.baseURI = "http://localhost";
     RestAssured.port = Integer.getInteger("http.port", 8080);
-    whisky = new WhiskyScenarioClientFactory().create();
+    whisky = new WhiskyScenarioFactoryImpl().create();
   }
 
   @AfterAll

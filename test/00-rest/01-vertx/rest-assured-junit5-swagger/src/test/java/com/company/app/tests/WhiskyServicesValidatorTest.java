@@ -2,7 +2,7 @@ package com.company.app.tests;
 
 import com.company.app.common.ResourceHelper;
 import com.company.app.contracts.WhiskyClient;
-import com.company.app.implementations.factories.WhiskyValidatorClientFactory;
+import com.company.app.implementations.factories.WhiskyValidatorFactoryImpl;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.jayway.restassured.RestAssured;
 import org.junit.jupiter.api.AfterAll;
@@ -28,7 +28,7 @@ public class WhiskyServicesValidatorTest {
 
   @BeforeEach
   public void setUp() {
-    whisky = new WhiskyValidatorClientFactory().create();
+    whisky = new WhiskyValidatorFactoryImpl().create();
   }
 
   // curl -X POST http://localhost:8080/api/whiskies -d '{"name": "Bowmore 18 Years", "origin": "Scotland"}'

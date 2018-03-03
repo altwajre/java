@@ -13,20 +13,20 @@ public class CompareTwoJsonStrings {
   public void compareTwoJsonStringsTest() {
     ObjectMapper mapper = new ObjectMapper();
 
-    JsonNode old = mapper.createObjectNode();
-    ((ObjectNode) old).put("name", "Nikka");
-    ((ObjectNode) old).put("origin", "Japanese");
-    String oldJsonStr = old.toString();
+    JsonNode baseline = mapper.createObjectNode();
+    ((ObjectNode) baseline).put("name", "Nikka");
+    ((ObjectNode) baseline).put("origin", "Japanese");
+    String oldJsonStr = baseline.toString();
     System.out.println(oldJsonStr);
 
-    JsonNode current = mapper.createObjectNode();
-    ((ObjectNode) current).put("name", "Nikka");
-    ((ObjectNode) current).put("origin", "Japan");
-    String curJsonStr = current.toString();
+    JsonNode change = mapper.createObjectNode();
+    ((ObjectNode) change).put("name", "Nikka");
+    ((ObjectNode) change).put("origin", "Japan");
+    String curJsonStr = change.toString();
     System.out.println(curJsonStr);
 
     Javers javers = JaversBuilder.javers().build();
-    Diff diff = javers.compare(old, current);
+    Diff diff = javers.compare(baseline, change);
     System.out.println(diff.toString());
 
   }
