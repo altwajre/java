@@ -7,31 +7,20 @@ import com.company.app.services.TestStep;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.jayway.restassured.RestAssured;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 @RestController
-public class WhiskyScenarioController {
-  private Map<Integer, TestResult> testResults = new LinkedHashMap<>();
-  private Map<Integer, TestStep> testScenarios = new LinkedHashMap<>();
+public class WhiskyController {
 
   @PostMapping(value = "/whiskies/scenario")
   public ResponseEntity<TestResult> testScenario(@RequestBody TestStep testStep) {
-    int id = testStep.getId();
-    testScenarios.put(id, testStep);
     TestResult testResult = new TestResult();
 
     try {
-      RestAssured.baseURI = "http://localhost";
-      RestAssured.port = Integer.getInteger("http.port", 8080);
-
       WhiskyScenario whisky = new WhiskyScenarioFactoryImpl().create();
       testStep.getSteps().forEach(s -> {
         whisky.invoke(s);
@@ -41,8 +30,6 @@ public class WhiskyScenarioController {
       testResult.setStatus("FAIL");
       testResult.setError(e.getMessage());
 //      testResult.setError(e.getMessage() + ": " + e.getCause().getCause().toString()); // null check
-    } finally {
-      RestAssured.reset();
     }
 
     return new ResponseEntity(testResult, HttpStatus.OK);

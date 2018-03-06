@@ -33,10 +33,7 @@ interface IInvestor{  // Observer interface
 }
 class Investor implements IInvestor{  // Concrete Observer
     private String name;
-    private Stock stock;
     public Investor(String name){ this.name = name; }
-    public Stock getStock() { return stock; }
-    public void setStock(Stock stock) { this.stock = stock; }
     @Override
     public void update(Stock stock) {
         System.out.format("Notified %s of %s's change to %s\n", name, stock.getSymbol(), stock.getPrice());

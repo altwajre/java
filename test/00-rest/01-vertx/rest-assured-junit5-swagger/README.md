@@ -58,6 +58,12 @@ http://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
 </dependency>
 ```
 
+- application.properties
+
+```
+server.port = 8081
+```
+
 - SwaggerConfig.java
 
 ```
