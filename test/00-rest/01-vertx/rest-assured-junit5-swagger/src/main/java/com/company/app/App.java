@@ -13,6 +13,11 @@ import static com.jayway.restassured.RestAssured.given;
 public class App {
   public static void main(String[] args) {
 
+    testRestAssured();
+
+  }
+
+  private static void testRestAssured() {
     RestAssured.baseURI = "http://localhost";
     RestAssured.port = Integer.getInteger("http.port", 8080);
 
@@ -27,7 +32,6 @@ public class App {
 
     getAllTest();
     getOneTest();
-
   }
 
   // curl -X POST http://localhost:8080/api/whiskies -d '{"name": "Bowmore 18 Years", "origin": "Scotland"}'

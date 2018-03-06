@@ -2,11 +2,11 @@ package com.company.app.implementations.factories;
 
 import com.company.app.contracts.WhiskyClient;
 import com.company.app.contracts.factories.WhiskyClientFactory;
-import com.company.app.implementations.WhiskyValidator;
+import com.company.app.implementations.WhiskyRestAssuredClient;
 
-public class WhiskyValidatorFactoryImpl implements WhiskyClientFactory {
+public class WhiskyRestAssuredClientFactory implements WhiskyClientFactory {
   @Override
   public WhiskyClient create() {
-    return new WhiskyValidator(new WhiskyRestAssuredClientFactory().create());
+    return new WhiskyRestAssuredClient();
   }
 }

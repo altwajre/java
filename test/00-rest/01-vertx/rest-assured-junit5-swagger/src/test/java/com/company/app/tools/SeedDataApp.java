@@ -1,6 +1,6 @@
 package com.company.app.tools;
 
-import com.company.app.implementations.WhiskyClientImpl;
+import com.company.app.implementations.WhiskyRestAssuredClient;
 import com.company.app.implementations.WhiskyScenarioImpl;
 import com.company.app.implementations.WhiskyValidator;
 import com.company.app.implementations.WhiskyValidatorBase;
@@ -14,7 +14,7 @@ public class SeedDataApp {
       RestAssured.baseURI = "http://localhost";
       RestAssured.port = Integer.getInteger("http.port", 8080);
 
-      WhiskyValidatorBase whiskyValidator = new WhiskyValidator(new WhiskyClientImpl());
+      WhiskyValidatorBase whiskyValidator = new WhiskyValidator(new WhiskyRestAssuredClient());
       WhiskyScenarioImpl whisky = new WhiskyScenarioImpl(whiskyValidator);
 
       IntStream
