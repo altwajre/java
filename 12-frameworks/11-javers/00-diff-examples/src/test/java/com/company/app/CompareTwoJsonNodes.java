@@ -8,9 +8,9 @@ import org.javers.core.JaversBuilder;
 import org.javers.core.diff.Diff;
 import org.junit.Test;
 
-public class CompareTwoJsonStrings {
+public class CompareTwoJsonNodes {
   @Test
-  public void compareTwoJsonStringsTest() {
+  public void compareTwoJsonNodesTest() {
     ObjectMapper mapper = new ObjectMapper();
 
     JsonNode baseline = mapper.createObjectNode();
@@ -22,8 +22,8 @@ public class CompareTwoJsonStrings {
     JsonNode change = mapper.createObjectNode();
     ((ObjectNode) change).put("name", "Nikka");
     ((ObjectNode) change).put("origin", "Japan");
-    String curJsonStr = change.toString();
-    System.out.println(curJsonStr);
+    String newJsonStr = change.toString();
+    System.out.println(newJsonStr);
 
     Javers javers = JaversBuilder.javers().build();
     Diff diff = javers.compare(baseline, change);
