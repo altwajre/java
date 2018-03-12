@@ -21,9 +21,33 @@ docker exec -it mysql bash
 mysql -u root -p
 Enter password: test
 mysql> show databases;
-mysql> GRANT ALL PRIVILEGES ON test.* TO 'test'@'%' IDENTIFIED BY 'test';
+mysql> CREATE DATABASE test;
 mysql> use test;
+
+```
+DROP TABLE Customer;
+DROP TABLE currency;
+TRUNCATE TABLE Customer;
+TRUNCATE TABLE currency;
+
+CREATE TABLE `Customer` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `age` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `currency` (
+  `NAME` varchar(45) NOT NULL,
+  `COUNTRY_NAME` varchar(45) NOT NULL,
+  `SYMBOL` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`NAME`,`COUNTRY_NAME`)
+);
+```
+
+mysql> GRANT ALL PRIVILEGES ON test.* TO 'test'@'%' IDENTIFIED BY 'test';
 - after curl post
+mysql> use test;
 mysql> SELECT * FROM Customer;
 
 ## java -jar on local machine

@@ -9,6 +9,12 @@ mvn clean package && java -jar target/swagger-1.0-SNAPSHOT.jar
 curl http://localhost:8080/greeting
 curl http://localhost:8080/greeting?name=User
 
+## Docker
+
+docker build -t spring-service .
+docker run --name spring-service -d -p 8080:8080 spring-service
+                                   host port : container port
+
 ## Swagger
 
 http://localhost:8080/swagger-ui.html
