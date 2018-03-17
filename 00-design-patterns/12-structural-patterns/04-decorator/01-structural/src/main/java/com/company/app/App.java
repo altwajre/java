@@ -43,15 +43,15 @@ public class App
 {
     public static void main( String[] args )
     {
-        ConcreteComponent c = new ConcreteComponent();
-        ConcreteDecoratorA d1 = new ConcreteDecoratorA();
-        ConcreteDecoratorB d2 = new ConcreteDecoratorB();
+        Component c = new ConcreteComponent();
+        Decorator dA = new ConcreteDecoratorA();
+        Decorator dB = new ConcreteDecoratorB();
 
         // Linked decorators
-        d1.setComponent(c);
-        d2.setComponent(d1);
+        dA.setComponent(c);
+        dB.setComponent(dA);
 
-        d2.Operation();
+        dB.Operation();
     }
 }
 /*

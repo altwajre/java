@@ -1,8 +1,8 @@
 package com.company.app;
 
 abstract class AbstractClass{
-    public abstract void primitiveOperation1();
-    public abstract void primitiveOperation2();
+    protected abstract void primitiveOperation1();
+    protected abstract void primitiveOperation2();
     public void templateMethod(){
         primitiveOperation1();
         primitiveOperation2();
@@ -11,21 +11,21 @@ abstract class AbstractClass{
 }
 class ConcreteClassA extends AbstractClass{
     @Override
-    public void primitiveOperation1() {
+    protected void primitiveOperation1() {
         System.out.println("ConcreteClassA.primitiveOperation1()");
     }
     @Override
-    public void primitiveOperation2() {
+    protected void primitiveOperation2() {
         System.out.println("ConcreteClassA.primitiveOperation2()");
     }
 }
 class ConcreteClassB extends AbstractClass{
     @Override
-    public void primitiveOperation1() {
+    protected void primitiveOperation1() {
         System.out.println("ConcreteClassB.primitiveOperation1()");
     }
     @Override
-    public void primitiveOperation2() {
+    protected void primitiveOperation2() {
         System.out.println("ConcreteClassB.primitiveOperation2()");
     }
 }
