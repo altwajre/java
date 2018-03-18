@@ -4,10 +4,11 @@
 
 - Maven Project
 - Java
-- 1.5.10
+- Spring Boot: 2.0.0
 - Group: com.example
 - Artifact: demo
 - Search for dependencies: `Web`
+- Click "Generate Project"
 
 > Create Spring Boot Project
 

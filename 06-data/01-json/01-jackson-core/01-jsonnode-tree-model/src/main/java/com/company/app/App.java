@@ -17,7 +17,7 @@ public class App {
 
     traversingOneUser();
 
-    traversingUsers();
+    traversingUsers(); // array
 
     crud();
 
@@ -96,6 +96,9 @@ After Update:
     ObjectMapper mapper = new ObjectMapper();
     JsonNode rootArray = mapper.readTree(new File("src/main/resources/data/users.json"));
 
+    JsonNode firstNode = rootArray.get(0);
+    System.out.println("Array: first-item: " + firstNode);
+
     for (JsonNode root : rootArray) {
       long id = root.path("id").asLong();
       System.out.println("id: " + id);
@@ -127,6 +130,7 @@ After Update:
     System.out.println(id1);
   }
 /*
+Array: first-item: {"id":1,"name":{"first":"Yong","last":"Mook Kim"},"contact":[{"type":"phone/home","ref":"111-111-1234"},{"type":"phone/work","ref":"222-222-2222"}]}
 id: 1
 firstName: Yong
 middleName:
