@@ -1,0 +1,6 @@
+version: '2'
+services:
+  tools-debug-swap-service:
+    build: ../.
+    ports:
+      - 8080:8080

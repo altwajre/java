@@ -6,12 +6,15 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/common-applicatio
 
 ## Debug to view matched configurations
 
-SpringApplication.run(Section21Application.class, "--debug");
+application.properties
 
+```
+debug=true
+```
 
 ## @ConfigurationProperties
 
-SimpleProperties. java
+SimpleProperties.java
 
 ```
 @ConfigurationProperties(prefix = "simple")
