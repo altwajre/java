@@ -2,11 +2,26 @@
 
 https://www.safaribooksonline.com/library/view/essentials-of-spring/9781787283893/video2_2.html
 
+> add dependencies
+
 ```
-    <dependency>
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+  </dependency>
+  <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-    </dependency>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+  </dependency>
+```
+
+security dependency is for docker remote
+
+```
+  <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+  </dependency>
 ```
 
 ## Automatic server restarts
@@ -83,5 +98,3 @@ Run/Debug Configuration
 - Main class: `org.springframework.boot.devtools.RemoteSpringApplication`
 - Program arguments: `http://localhost:8080`
 - Click `Run`
-
-## Debugging a remote application
