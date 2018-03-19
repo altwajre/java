@@ -13,3 +13,7 @@ public class App
         customer.say("hi");
     }
 }
+/*
+[main] INFO com.company.test.App - Hello from main
+[main] INFO com.company.test.Customer - Tom say: hi
+ */

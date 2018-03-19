@@ -2,14 +2,13 @@
 
 ## Spring Boot
 
-- Install Spring Boot CLI
-brew update
-brew upgrade
-brew cleanup
-brew prune
-brew doctor
+- brew install Spring Boot CLI
 
 brew tap pivotal/tap
 brew install springboot
 
 spring --version
+
+## application properties
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
