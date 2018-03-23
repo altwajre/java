@@ -1,4 +1,4 @@
-package com.company.app.implementations;
+package com.company.app.implementations.clients;
 
 import com.company.app.contracts.WhiskyClient;
 import com.fasterxml.jackson.databind.JsonNode;

@@ -1,10 +1,11 @@
-package com.company.app.implementations;
+package com.company.app.implementations.clients;
 
 import com.company.app.common.CreateMethodNotCalledException;
 import com.company.app.common.State;
 import com.company.app.common.WhiskyPayload;
 import com.company.app.contracts.Validator;
 import com.company.app.contracts.WhiskyClient;
+import com.company.app.implementations.clients.WhiskyValidatorBase;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

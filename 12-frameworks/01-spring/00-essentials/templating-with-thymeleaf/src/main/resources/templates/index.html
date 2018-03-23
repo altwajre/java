@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:data="http://www.thymeleaf.org/extras/data">
+<head>
+<body>
+<div data:simple="${simpleValue}">
+  <h2 th:inline="text">[[${today}]]</h2>
+  <p>Today is: <span th:text="${today}">13 February 2011</span></p>
+  <span th:text="${simpleValue}">override me</span>
+</div>
+</body>
+</head>
+</html>

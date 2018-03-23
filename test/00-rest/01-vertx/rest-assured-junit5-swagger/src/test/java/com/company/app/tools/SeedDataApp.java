@@ -1,9 +1,9 @@
 package com.company.app.tools;
 
-import com.company.app.implementations.WhiskyRestAssuredClient;
-import com.company.app.implementations.WhiskyScenarioImpl;
-import com.company.app.implementations.WhiskyValidator;
-import com.company.app.implementations.WhiskyValidatorBase;
+import com.company.app.implementations.clients.WhiskyRestAssuredClient;
+import com.company.app.implementations.clients.WhiskyScenarioImpl;
+import com.company.app.implementations.clients.WhiskyValidator;
+import com.company.app.implementations.clients.WhiskyValidatorBase;
 import com.jayway.restassured.RestAssured;
 
 import java.util.stream.IntStream;

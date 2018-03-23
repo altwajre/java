@@ -10,6 +10,9 @@
 **/.DS_Store
 **/.gradle
 **/.vertx
+**/.settings
+**/.classpath
+**/.project
 **/build/
 **/classes/
 **/gradle/
