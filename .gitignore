@@ -23,6 +23,7 @@
 **/db/
 **/artifact/
 **/temp.txt
+**/bundle.js
 
 # Java
 **/target/
