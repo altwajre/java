@@ -6,31 +6,34 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.IOException;
 
-public class App
-{
-    static ObjectMapper mapper = new ObjectMapper();
-    public static void main( String[] args ) throws IOException {
-        createFromObjectNode();
+public class App {
+  static ObjectMapper mapper = new ObjectMapper();
 
-        createFromString();
+  public static void main(String[] args) throws IOException {
+    createFromObjectNode();
 
-    }
+    createFromString();
 
-    private static void createFromString() throws IOException {
-        System.out.println("#createFromString");
-        String jsonString = "{\"name\":\"Nikka\",\"origin\":\"Japan\"}";
-        JsonNode jsonNode = mapper.readTree(jsonString);
-        System.out.println(jsonNode);
-    }
+  }
 
-    private static void createFromObjectNode() {
-        System.out.println("#createFromObjectNode");
-        JsonNode whisky = mapper.createObjectNode();
-        ((ObjectNode) whisky).put("name", "Nikka");
-        ((ObjectNode) whisky).put("origin", "Japanese");
+  private static void createFromString() throws IOException {
+    System.out.println("#createFromString");
+    String jsonString = "{\"name\":\"Nikka\",\"origin\":\"Japan\"}";
+    JsonNode jsonNode = mapper.readTree(jsonString);
+    System.out.println(jsonNode);
 
-        System.out.println(whisky.toString());
-    }
+    ((ObjectNode) jsonNode).put("age", 28);
+    System.out.println("After added a field: " + jsonNode);
+  }
+
+  private static void createFromObjectNode() {
+    System.out.println("#createFromObjectNode");
+    JsonNode whisky = mapper.createObjectNode();
+    ((ObjectNode) whisky).put("name", "Nikka");
+    ((ObjectNode) whisky).put("origin", "Japanese");
+
+    System.out.println(whisky.toString());
+  }
 }
 /*
 output:
@@ -38,4 +41,5 @@ output:
 {"name":"Nikka","origin":"Japanese"}
 #createFromString
 {"name":"Nikka","origin":"Japan"}
+After added a field: {"name":"Nikka","origin":"Japan","age":28}
  */
