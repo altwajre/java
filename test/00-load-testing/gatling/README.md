@@ -1,5 +1,6 @@
 # gatling - scala
 
+https://gatling.io/docs/current/cheat-sheet/
 https://gatling.io/documentation/
 https://gatling.io/docs/current/quickstart/
 

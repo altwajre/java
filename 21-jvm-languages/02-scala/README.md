@@ -8,6 +8,11 @@ It is a functional programming
 
 brew install scala
 
+```
+To use with IntelliJ, set the Scala home to:
+  /usr/local/opt/scala/idea
+```
+
 ## Interactive shell (REPL)
 
 ```
@@ -15,6 +20,8 @@ $ scala
 Welcome to Scala 2.12.1 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_45).
 Type in expressions for evaluation. Or try :help.
 
+scala> println("Hello")
+Hello
 scala> :q <- exit
 ```
 
