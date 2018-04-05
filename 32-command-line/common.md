@@ -26,6 +26,7 @@ find . -name "*.class" -print0 | xargs -0 rm -rf
 
 ```
 $ chmod 755 foo.sh
+$ chmod +x foo.sh
 $ ls -l
 total 8
 -rwxr-xr-x  1 whan  JOMAX\Domain Users  36 Aug  8 11:21 foo.sh
