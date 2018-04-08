@@ -90,13 +90,13 @@ http://lampwww.epfl.ch/~michelou/scala/using-scala-from-java.html
 Companion.scala
 
 ```
-class Companion {
+class com.company.app.Companion {
   def hello(): Unit = {
     println("Hello (class)")
   }
 }
 
-object Companion {
+object com.company.app.Companion {
   def hallo(): Unit = {
     println("Hello (object)")
   }
@@ -113,8 +113,48 @@ public class App {
     callScalaMethods();
   }
   private static void callScalaMethods() {
-    new Companion().hello(); // instance method
-    Companion.hallo(); // static method
+    new com.company.app.Companion().hello(); // instance method
+    com.company.app.Companion.hallo(); // static method
+  }
+}
+```
+
+## Use Java from Scala
+
+- Java
+
+Person.java
+
+```
+public class Person {
+  private String name;
+  private int age;
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
+  public int getAge() {
+    return age;
+  }
+  public void setAge(int age) {
+    this.age = age;
+  }
+}
+```
+
+- Scala calls Java
+
+ScalaHello.scala
+
+```
+object ScalaHello {
+  def main(args: Array[String]): Unit = {
+    val tom = new Person()
+    tom.setName("Tom")
+    tom.setAge(28)
+    println(s"Scala says Hello, ${tom.getName}!")
   }
 }
 ```

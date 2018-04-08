@@ -29,7 +29,57 @@ class LoadTest extends Simulation{
 }
 ```
 
+## feeders
+
+https://www.rubix.nl/blogs/basic-gatling-load-script-feeders
+
+> Random uuid each scenario
+
+- UuidFeeder.scala
+
+```
+object UuidFeeder {
+  val feeder = Iterator.continually(Map("uuid" -> java.util.UUID.randomUUID.toString()))
+}
+```
+
+- LoadTest.scala
+
+```
+val postGet: ScenarioBuilder = scenario("Post Get")
+.feed(UuidFeeder.feeder)  <- add feeder
+.exec(http("Create whisky")
+  .post(s"http://localhost:${port}/api/whiskies")
+  .body(StringBody(s"""{"name": "$${uuid}", "origin": "Scotland"}""")).asJSON <- use uuid
+```
+
 ## Steps
 
-1. Launch vertx-server
-2. Run `mvn clean gatling:execute`
+- server
+Launch vertx-server
+
+- server
+mvn clean gatling:execute
+
+> run a specific test
+
+specific the class at `gatling-maven-plugin` `simulationClass`
+
+```
+  <plugin>
+    <groupId>io.gatling</groupId>
+    <artifactId>gatling-maven-plugin</artifactId>
+    <version>${gatling-plugin.version}</version>
+    <executions>
+      <execution>
+        <id>getUsers</id>
+        <goals>
+          <goal>execute</goal>
+        </goals>
+        <configuration>
+          <simulationClass>com.company.app.LoadTest</simulationClass>
+        </configuration>
+      </execution>
+    </executions>
+  </plugin>
+```

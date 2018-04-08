@@ -1,4 +1,4 @@
-package com.company.app.common;
+package com.company.app;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,9 +10,6 @@ public class ResourceHelper {
   public static JsonNode get(String path) {
 
     ObjectMapper mapper = GlobalMapper.INSTANCE.mapper();
-
-//    mapper.readTree("{\"name\":\"Nikka\",\"origin\":\"Japanese\"}")
-//    mapper.readTree(new File("src/test/resources/data/testCreate-whisky.json"))
     try {
       return mapper.readTree(mapper
           .getClass()

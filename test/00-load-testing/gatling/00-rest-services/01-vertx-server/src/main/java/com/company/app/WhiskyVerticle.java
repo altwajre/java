@@ -95,6 +95,7 @@ public class WhiskyVerticle extends AbstractVerticle {
   }
 
   private void create(RoutingContext routingContext) {
+    System.out.println("create");
     // read the request's content and create an instance of Whisky.
     final Whisky whisky = Json.decodeValue(routingContext.getBodyAsString(), Whisky.class);
     whisky.setState(State.ACTIVE);
@@ -109,6 +110,7 @@ public class WhiskyVerticle extends AbstractVerticle {
   }
 
   private void update(RoutingContext routingContext) {
+    System.out.println("update");
     final String id = routingContext.request().getParam("id");
     JsonObject json = routingContext.getBodyAsJson();
 
@@ -132,22 +134,32 @@ public class WhiskyVerticle extends AbstractVerticle {
   }
 
   private void activate(RoutingContext routingContext) {
+    System.out.println("activate");
+
     changeState(routingContext, State.ACTIVE);
   }
 
   private void suspend(RoutingContext routingContext) {
+    System.out.println("suspend");
+
     changeState(routingContext, State.SUSPENDED);
   }
 
   private void unsuspend(RoutingContext routingContext) {
+    System.out.println("unsuspend");
+
     changeState(routingContext, State.ACTIVE);
   }
 
   private void cancel(RoutingContext routingContext) {
+    System.out.println("cancel");
+
     changeState(routingContext, State.CANCELLED);
   }
 
   private void delete(RoutingContext routingContext) {
+    System.out.println("delete");
+
     final String id = routingContext.request().getParam("id");
     if(id == null){
       routingContext.response().setStatusCode(400).end();
@@ -160,6 +172,8 @@ public class WhiskyVerticle extends AbstractVerticle {
   }
 
   private void get(RoutingContext routingContext) {
+    System.out.println("get");
+
     final String id = routingContext.request().getParam("id");
     if(id == null) {
       routingContext.response().setStatusCode(400).end();
@@ -179,6 +193,8 @@ public class WhiskyVerticle extends AbstractVerticle {
   }
 
   private void getAll(RoutingContext routingContext) {
+    System.out.println("getAll");
+
     // Write the HTTP response
     // The response is in JSON using the utf-8 encoding
     // We returns the list of bottles

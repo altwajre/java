@@ -19,13 +19,9 @@ public class WhiskyScenarioImpl implements WhiskyScenario {
   public WhiskyScenarioImpl(WhiskyClient whisky) {
     this.whisky = whisky;
 
-    try {
-      createBody = ResourceHelper.get("data/whisky/create.json");
-      updateBody = ResourceHelper.get("data/whisky/update.json");
-      emptyBody = ResourceHelper.get("data/whisky/empty.json");
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+    createBody = ResourceHelper.get("data/whisky/create.json");
+    updateBody = ResourceHelper.get("data/whisky/update.json");
+    emptyBody = ResourceHelper.get("data/whisky/empty.json");
   }
 
   @Override
