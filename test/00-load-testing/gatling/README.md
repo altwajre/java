@@ -1,5 +1,8 @@
 # gatling - scala
 
+- Ability to deal with logic between requests
+- Gatling implements virtual users as messages instead of threads which scales much better
+
 https://gatling.io/docs/current/cheat-sheet/
 https://gatling.io/documentation/
 https://gatling.io/docs/current/quickstart/

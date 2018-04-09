@@ -1,4 +1,4 @@
-var result = (1 to 10).reverse.mkString(", ") // mkString means makeString
+val result = (1 to 10).reverse.mkString(", ") // mkString means makeString
 println(result)
 
 println((10 to 1 by -1).mkString(", "))
