@@ -1,4 +1,5 @@
 import java.time._
+// `protected` so test can access it
 class Employee protected (val firstName:String, val lastName:String, val title:String, val hireDate:LocalDate)
 
 object Employee {
