@@ -320,6 +320,15 @@ println(managerRef.fullName)
 // Tom Lee, Mathematics Manager
 ```
 
+## Case Classes
+
+- Placing case keyword in front of class makes it a case class
+- Case classes have an automatic equals, toString, and hashCode
+- You can instantiate a class without the new keyword
+- If you don't like the methods created. Override your own.
+- You can have automatic pattern matching with case classes
+- Copy method to 'clone' instances
+
 ## Parameterized Types on Classes
 
 - Parameterized Types use square brackets just like in methods
@@ -356,4 +365,37 @@ test("Couple") {
   println(coupleIntString.first)
   println(coupleIntString.second)
 }
+```
+
+## Singleton Objects
+
+- Objects are singletons
+- Objects are Scala's replacement for the keyword static
+- Objects are meant for factories, defining pattern matching, defining defaults, and main methods
+- Main methods are always inside of objects
+- You can forget the main declaration by having your object extend App
+
+> Classes
+
+- Need to define a template to create multiple instances
+- Every instance is in charge of it's own state
+
+> Objects
+
+- Need a singleton
+- Need a factory pattern
+- Need to implement pattern matching logic
+- Need a utility method that doesn't require an instance or state
+- Need default values
+
+```
+object MyMath {
+  def add(x:Int, y:Int) = x + y
+}
+println(MyMath.add(2, 3))
+// 5
+case class Employee(firstName:String, lastName:String, title:String)
+object tom extends Employee("Tom", "Lee", "Programmer")
+println(tom.firstName)
+// Tom
 ```
