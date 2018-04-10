@@ -1,4 +1,4 @@
-package com.company.app._06_ScalaObject
+package com.company.app._06ScalaObject
 
 import org.scalatest.FunSuite
 

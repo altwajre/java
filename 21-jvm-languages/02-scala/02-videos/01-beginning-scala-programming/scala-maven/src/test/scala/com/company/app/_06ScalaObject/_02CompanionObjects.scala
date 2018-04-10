@@ -1,4 +1,4 @@
-package com.company.app._06_ScalaObject
+package com.company.app._06ScalaObject
 
 //class access companion object private member
 class SecretAgent(val name:String) {

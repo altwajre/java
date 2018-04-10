@@ -6,9 +6,9 @@ class Foo(x:Int) {
 object InfixOperatorsRunner extends App {
   val foo = new Foo(10)
   println(foo.bar(5))
-  println(foo bar 5)
+  println(foo bar 5) // Infix invoke, invoke method with spaces
   println(foo.baz(10, 14))
-  println(foo baz (10, 14))
+  println(foo baz (10, 14)) // Infix invoke, invoke method with spaces
   println(3 + 10)
   println(3.+(10))
 }
