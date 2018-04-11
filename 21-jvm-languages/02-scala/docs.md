@@ -510,3 +510,11 @@ object EmployeeDesignRunner extends App {
   // Department(Sports)
 }
 ```
+
+## Scala Option
+
+- Scala programmers don't like null
+- Options are modeled as `Some` or `None`
+- `Some` contains answer to be extracted
+- Extracting the answer can be done by calling `get`, `getOrElse`, pattern matching, or functions
+- Scala still uses null to inter-operate with Java

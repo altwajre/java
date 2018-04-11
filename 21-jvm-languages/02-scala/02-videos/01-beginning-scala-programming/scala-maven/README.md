@@ -1,5 +1,7 @@
 # Scala maven
 
+Examples are in test/scala
+
 ## Test
 
 - specs2 vs scalatest

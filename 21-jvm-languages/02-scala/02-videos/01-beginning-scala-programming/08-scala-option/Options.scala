@@ -1,8 +1,11 @@
 case class Employee(firstName:String, middleName: Option[String], lastName:String) {
+  // constructor
   def this(firstName:String, middleName:String, lastName:String) =
     this(firstName, Some(middleName), lastName)
+  // constructor
   def this(firstName:String, lastName:String) =
-  this(firstName, None, lastName)
+    this(firstName, None, lastName)
+  // constructor
   def this() = this("Unknown", "Unknown")
 }
 

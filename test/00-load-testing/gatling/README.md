@@ -18,8 +18,8 @@ https://wiki.jenkins.io/display/JENKINS/Gatling+Plugin
 ## Recorder Installation
 
 download `bundle` at https://gatling.io/download/
-unzip it to `/Users/whan/apps`
-launch it `/Users/whan/apps/gatling/bin/recorder.sh`
+unzip it to `/Users/whan`
+launch it `/Users/whan/gatling/bin/recorder.sh`
 
 ## tutorial
 

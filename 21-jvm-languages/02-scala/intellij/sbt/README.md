@@ -2,10 +2,14 @@
 
 http://www.scala-lang.org/documentation/your-first-lines-of-scala.html
 
+- Getting Started with Scala and SBT in IntelliJ IDEA
+https://www.youtube.com/watch?v=Ok7gYD1VbNw&t=229s
+
 ## Steps
 
-1. create a `sbt` project
-2. add `HelloWorld` object
+- install scala plugin
+- create a `sbt` project
+- add `HelloWorld` object
 
 ```
 object HelloWorld {

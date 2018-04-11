@@ -8,4 +8,17 @@ object ScalaApp {
     val userJson = Source.fromInputStream(stream).mkString
     println(userJson)
   }
+  /*
+{
+  "id": 1,
+  "name": {
+    "first": "Yong",
+    "last": "Tom"
+  },
+  "contact": [
+    {"type": "phone/home", "ref": "111-111-1234"},
+    {"type": "phone/work", "ref": "222-222-2222"}
+  ]
+}
+   */
 }
