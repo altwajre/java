@@ -1,13 +1,9 @@
 package com.company.app._05Clazzes
 
-import org.scalatest.FunSuite
+class Employee(val firstName:String, lastName:String)
 
-class _01Clazzes extends FunSuite{
-  test("classes") {
-    class Employee(val firstName:String, lastName:String)
-    val ada = new Employee("Ada", "Lovelace")
-    println(ada.firstName)
-    // Ada
-  }
-
+object RunnerApp extends App {
+  val ada = new Employee("Ada", "Lovelace")
+  println(ada.firstName)
+  // Ada
 }

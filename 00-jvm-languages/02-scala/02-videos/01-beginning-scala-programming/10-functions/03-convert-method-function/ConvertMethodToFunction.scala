@@ -4,6 +4,7 @@ class Foo(x:Int) {
 }
 
 class Baz(y:Int) {
+  // a method takes function as parameter
   def qux(f:Int => Int) = f(y)  // qux(f:Int => Int) means function as parameter in a method
   def jam(f:(Int, Int) => Int) = f(y, 10)
 }
@@ -15,6 +16,7 @@ object ConvertMethodToFunction extends App {
   println(f(15))
 
   val z = new Baz(25)
+  // pass Foo.bar() method as function into Baz.qux(f)
   println(z.qux(f))
   println(z.qux(x.bar))
 

@@ -21,8 +21,9 @@ object Functions extends App { // it is runnable
   println(f1("Hello"))
   println(f0())
   println(f2(8, "Wow"))
+  // 8Wow
   println(f3("Hello"))
-
+  // (Hello,5)
 }
 
 //$ scala Functions.scala

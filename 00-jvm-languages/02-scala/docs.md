@@ -518,3 +518,183 @@ object EmployeeDesignRunner extends App {
 - `Some` contains answer to be extracted
 - Extracting the answer can be done by calling `get`, `getOrElse`, pattern matching, or functions
 - Scala still uses null to inter-operate with Java
+
+```
+case class Employee(firstName: String, middleName: Option[String], lastName: String) {
+  // constructor
+  def this(firstName: String, middleName: String, lastName: String) =
+    this(firstName, Some(middleName), lastName)
+  // constructor
+  def this(firstName: String, lastName: String) =
+    this(firstName, None, lastName)
+  // constructor
+  def this() = this("Unknown", "Unknown")
+}
+object Options extends App {
+  private val middle = new Employee("Tom", "Middle", "Lee")
+  println(middle.middleName.getOrElse("No Middle name"))
+  // Middle
+  private val noMiddle = new Employee("Harry", "Wang")
+  println(noMiddle.middleName.getOrElse("No Middle name"))
+  // No Middle name
+  private val noName = new Employee
+  println(noName.firstName)
+  // Unknown
+  def peelTheMiddleName(x:Option[String]):String = {
+    x match {
+      case Some(name) => name
+      case None => "no middle name"
+    }
+  }
+  println(peelTheMiddleName(middle.middleName))
+  // Middle
+  println(peelTheMiddleName(noMiddle.middleName))
+  // no middle name
+  println(peelTheMiddleName(noName.middleName))
+  // no middle name
+}
+```
+
+## Scala Tuples
+
+- Tuples are dummy containers
+- Tuples are typed
+- Tupled go all the way to Tuple22
+- Tuple2 has a swap method
+- Tuples are immutable
+
+```
+object Tuples extends App {
+  val t = (8, "Cool", 3.14)
+  println(t._1)
+  // 8
+  println(t._2)
+  // Cool
+  println(t._3)
+  // 3.14
+  val t1:(Int, String, Double) = t
+  println(t1._1)
+  // 8
+  val t2:Tuple3[Int, String, Double] = t
+  case class Department(name:String)
+  val u = ("8", Department("QA"))
+  println(u)
+  // (8,Department(QA))
+  private val u2: (Department, String) = u.swap
+  println(u2)
+  // (Department(QA),8)
+}
+```
+
+## Creating A Function
+
+- Functions are a trait (pure abstract) that is instantiated anonymously
+- `apply` method in the function means that you don't have to call it explicitly
+- While you can only return one item, that one item can be a tuple if you need to return multiple items
+
+```
+// Function1 takes string; returns int
+var f1 = (s:String) => s.length
+println(f1("Hello"))
+// 5
+// Function0 return int
+val f0 = () => 1
+println(f0.apply())
+// 1
+println(f0())
+// 1
+// Function2 takes int, string; returns string
+val f2 = (v1:Int, v2:String) => v1 + v2
+println(f2(8, "Wow"))
+// 8Wow
+```
+
+## Is it a method or is it a function
+
+- Functions are their own objects
+- Methods are not functions
+- Methods belong to a context
+- If all of it gets confusing, use an explicit apply
+
+```
+object MyObject {
+  // takes string, returns int
+  val f = (x:String) => x.size // function: f is a reference to function
+  // takes string, return int
+  def m(x:String) = x.size // method: m is object inside MyObject accepts an Int
+}
+object MethodOrFunction extends App {
+  // function: can use apply() to invoke the function
+  println(MyObject.f.apply("function"))
+  // 8
+  println(MyObject.f("function"))
+  // 8
+  println(MyObject.m("method"))
+  // 6
+}
+```
+
+## Converting a method to a function
+
+- Methods can be converted to functions using partially applied functions
+- Use an underscore to turn method parameters into function parameters
+- If an underscore is the last character in a method parameter, you can remove the underscore
+
+```
+class Foo(x:Int) {
+  def bar(y:Int) = x + y
+  def gym(z:Int, a:Int) = x + z + a
+}
+class Baz(y:Int) {
+  def qux(f:Int => Int) = f(y) // qux(f:Int => Int) means function as parameter in a method
+  def jam(f:(Int, Int) => Int) = f(y, 10)
+}
+object ConvertMethodToFunction extends App {
+  val x = new Foo(3)
+  val f = x.bar _ // convert a method to a function by using _
+  // 5 + 3 = 8
+  println(f.apply(5))
+  // 8
+  println(f(5))
+  // 8
+
+  // 10 + 3 = 13
+  val z = new Baz(10)
+  // pass Foo.bar() method as function into Baz.qux(f)
+  println(z.qux(f))
+  // 13
+  println(z.qux(x.bar))
+  // 13
+
+  // 100 + 10 + 3 = 113
+  val f2 = x.gym(100, _:Int)
+  println(z.qux(f2))
+  // 113
+
+  // 10 + 10 + 3 = 23
+  val f3 = x.gym _
+  println(z.jam(f3))
+  // 23
+}
+```
+
+## Closures
+
+- Closures are functions that close around the environment
+- Closures are used to make up functions from the environment
+- It is best to enclose around something that is stable, e.g. val
+
+```
+class Foo2(x:Int) {
+  // a method takes function as parameter
+  def bar(y:Int => Int) = y(x)
+}
+object Closures extends App {
+  val m = 200 // environment to be closed
+  val f = (x:Int) => x + m // closing environment m=200 comes from outside of function
+  val foo = new Foo2(100)
+  // 100 + 200
+  println(foo.bar(f))
+  // 300
+}
+```
