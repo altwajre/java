@@ -13,7 +13,8 @@ object MapFunction extends App {
   println(b.map(s => (s, s.size))) //Set((Green,5), (Brown,5), (Gray,4), (Red,3), (Yellow,6), (Purple,6))
 
   val fifaMensChamps = Map('Germany -> 4, 'Brazil -> 5, 'Italy -> 4, 'Argentina -> 2)
-  println(fifaMensChamps.map(t => (Symbol.apply("Team " + t._1.name),t._2))) //Map('Team Germany -> 4, 'Team Brazil -> 5, 'Team Italy -> 4, 'Team Argentina -> 2)
+  println(fifaMensChamps.map(t => (Symbol.apply("Team " + t._1.name),t._2)))
+  //Map('Team Germany -> 4, 'Team Brazil -> 5, 'Team Italy -> 4, 'Team Argentina -> 2)
 
   println("Hello!".map(c => (c + 1).toChar)) //Ifmmp"
   println(Some(4).map(1+)) //Some(5)
