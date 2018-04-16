@@ -2,7 +2,12 @@
 
 https://www.safaribooksonline.com/library/view/building-microservices-with/9781788292658/video2_1.html
 
-- Load Test
+
+## Load Test
+
+mvn clean gatling:execute
+
+/test/scala/
 
 create `scala` under `test` and mark it as `Test Sources Root`
 
@@ -58,7 +63,7 @@ val postGet: ScenarioBuilder = scenario("Post Get")
 - server
 Launch vertx-server
 
-- server
+- test
 mvn clean gatling:execute
 
 > run a specific test

@@ -86,10 +86,11 @@ class LoadTest extends Simulation {
     )
 
   setUp(
-    //    postResponseBody.inject(atOnceUsers(1))
+    postGet.inject(atOnceUsers(1))
+//      postResponseBody.inject(atOnceUsers(1))
     //    postGetAll.inject(atOnceUsers(1))
 //    postGet.inject(atOnceUsers(2))
-          postGet.inject(constantUsersPerSec(50) during( 10 seconds))
+//          postGet.inject(constantUsersPerSec(50) during( 10 seconds))
     //    getAll.inject(atOnceUsers(1))
     //        post.inject(constantUsersPerSec(50) during( 10 seconds)),
     //        getAll.inject(constantUsersPerSec(50) during( 10 seconds))

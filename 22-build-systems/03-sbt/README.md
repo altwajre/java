@@ -6,6 +6,7 @@ http://www.scala-sbt.org/1.0/docs/index.html
 
 ```
 $ brew install sbt
+$ sbt 'inspect sbtVersion'
 ```
 
 ## Modify SBT
@@ -25,7 +26,7 @@ $ sbt
 [info] Set current project to sandbox (in build file:/Users/whan/sbt/sandbox/)
 > console
 [info] Starting scala interpreter...
-[info] 
+[info]
 Welcome to Scala 2.12.1 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_45).
 Type in expressions for evaluation. Or try :help.
 
