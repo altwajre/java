@@ -97,15 +97,28 @@ public class WhiskyVerticle extends AbstractVerticle {
   private void create(RoutingContext routingContext) {
     // read the request's content and create an instance of Whisky.
     final Whisky whisky = Json.decodeValue(routingContext.getBodyAsString(), Whisky.class);
-    whisky.setState(State.ACTIVE);
-    // Add it to the backend map
-    products.put(whisky.getId(), whisky);
 
-    // Return the created whisky as JSON
-    routingContext.response()
-        .setStatusCode(201)
-        .putHeader("content-type", "application/json; charset=utf-8")
-        .end(Json.encodePrettily(whisky));
+    try {
+      if(whisky.getId() % 2 == 0) {
+        throw new RuntimeException("Failed to create whisky when it is even number");
+      }
+
+      whisky.setState(State.ACTIVE);
+      // Add it to the backend map
+      products.put(whisky.getId(), whisky);
+
+      // Return the created whisky as JSON
+      routingContext.response()
+          .setStatusCode(201)
+          .putHeader("content-type", "application/json; charset=utf-8")
+          .end(Json.encodePrettily(whisky));
+    }
+    catch (Exception e) {
+      routingContext.response()
+          .setStatusCode(400)
+          .putHeader("content-type", "application/json; charset=utf-8")
+          .end(e.getMessage());
+    }
   }
 
   private void update(RoutingContext routingContext) {

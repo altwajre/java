@@ -1,14 +1,12 @@
-# Running
+# Writing the first test
 
-https://www.scala-sbt.org/1.0/docs/Running.html
+http://www.scalatest.org/user_guide/writing_your_first_test
 
 ```
 $ sbt new sbt/scala-seed.g8
 $ cd hello/
 
-$ sbt clean compile
 $ sbt clean test
-$ sbt clean run
 ```
 
 ## Intellij

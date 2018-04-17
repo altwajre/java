@@ -7,6 +7,8 @@ java -jar ./target/unit-integration-tests-1.0-SNAPSHOT-fat.jar
 
 ## clients
 
+junit5-swagger
+
 ### rest assured
 
 - intellij

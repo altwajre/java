@@ -2,6 +2,12 @@
 
 http://vertx.io/blog/unit-and-integration-tests/
 
+- intellij
+
+App.main()
+
+- command line
+
 mvn clean package
 java -jar ./target/unit-integration-tests-1.0-SNAPSHOT-fat.jar
 
