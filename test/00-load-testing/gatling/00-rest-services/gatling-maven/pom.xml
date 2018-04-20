@@ -106,17 +106,17 @@
         <groupId>io.gatling</groupId>
         <artifactId>gatling-maven-plugin</artifactId>
         <version>${gatling-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>getUsers</id>
-            <goals>
-              <goal>execute</goal>
-            </goals>
-            <configuration>
-              <!--<simulationClass>com.company.app.LoadTest</simulationClass>-->
-            </configuration>
-          </execution>
-        </executions>
+        <!--<executions>-->
+          <!--<execution>-->
+            <!--<id>getUsers</id>-->
+            <!--<goals>-->
+              <!--<goal>execute</goal>-->
+            <!--</goals>-->
+            <!--<configuration>-->
+              <!--&lt;!&ndash;<simulationClass>com.company.app.LoadTest</simulationClass>&ndash;&gt;-->
+            <!--</configuration>-->
+          <!--</execution>-->
+        <!--</executions>-->
       </plugin>
 
       <plugin>

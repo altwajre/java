@@ -9,8 +9,8 @@ object LoadJson {
 
   def main(args: Array[String]): Unit = {
 
-//    stringToJson
-//    streamToJson
+    stringToJson
+    streamToJson
     loadJsonToString
   }
 

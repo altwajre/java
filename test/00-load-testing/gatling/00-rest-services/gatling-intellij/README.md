@@ -18,9 +18,36 @@ version: 13
 
 ```
 mvn clean gatling:execute
-mvn clean install
 ```
 
-- intellij
+- gatling plugin
+
+```
+  <plugin>
+    <groupId>io.gatling</groupId>
+    <artifactId>gatling-maven-plugin</artifactId>
+    <version>${gatling-plugin.version}</version>
+  </plugin>
+```
+
+- remove execution goal, so `mvn clean install` does not run perf tests
+
+https://stackoverflow.com/questions/38896841/skip-gatling-tests-when-building-release
+
+```
+    <executions>
+      <execution>
+        <id>getUsers</id>
+        <goals>
+          <goal>execute</goal>
+        </goals>
+        <configuration>
+          <!--<simulationClass>com.company.app.LoadTest</simulationClass>-->
+        </configuration>
+      </execution>
+    </executions>
+```
+
+## intellij
 
 Right click `Engine`, click `Run`

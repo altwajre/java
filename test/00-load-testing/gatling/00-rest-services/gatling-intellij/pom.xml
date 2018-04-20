@@ -113,17 +113,17 @@
         <groupId>io.gatling</groupId>
         <artifactId>gatling-maven-plugin</artifactId>
         <version>${gatling-plugin.version}</version>
-        <executions>
+        <!-- <executions>
           <execution>
             <id>getUsers</id>
             <goals>
               <goal>execute</goal>
             </goals>
             <configuration>
-              <!--<simulationClass>com.company.app.LoadTest</simulationClass>-->
+              <simulationClass>com.company.app.LoadTest</simulationClass>
             </configuration>
           </execution>
-        </executions>
+        </executions> -->
       </plugin>
 
       <!--<plugin>-->

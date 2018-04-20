@@ -75,15 +75,21 @@ Launch vertx-server
 - test
 mvn clean gatling:execute
 
-> run a specific test
-
-specific the class at `gatling-maven-plugin` `simulationClass`
+- gatling plugin
 
 ```
   <plugin>
     <groupId>io.gatling</groupId>
     <artifactId>gatling-maven-plugin</artifactId>
     <version>${gatling-plugin.version}</version>
+  </plugin>
+```
+
+- remove execution goal, so `mvn clean install` does not run perf tests
+
+https://stackoverflow.com/questions/38896841/skip-gatling-tests-when-building-release
+
+```
     <executions>
       <execution>
         <id>getUsers</id>
@@ -91,9 +97,8 @@ specific the class at `gatling-maven-plugin` `simulationClass`
           <goal>execute</goal>
         </goals>
         <configuration>
-          <simulationClass>com.company.app.LoadTest</simulationClass>
+          <!--<simulationClass>com.company.app.LoadTest</simulationClass>-->
         </configuration>
       </execution>
     </executions>
-  </plugin>
 ```
