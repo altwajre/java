@@ -26,6 +26,23 @@ class LoadTest extends Simulation {
       session
     })
 
+  val validateJsonFieldValue: ScenarioBuilder = scenario("Validate json field value")
+    .exec(http("Get first whisky")
+      .get(s"http://localhost:${port}/api/whiskies/1")
+      .check(
+        status.is(200),
+        jsonPath("$..id").find.saveAs("id"),
+        jsonPath("$..state").is("ACTIVE"),
+        bodyString.saveAs("body"))
+    )
+    .exec(session => {
+      val id = session.get("id").asOption[String]
+      println(id)
+      val body = session.get("body").asOption[String]
+      println(body)
+      session
+    })
+
   val postGetAll: ScenarioBuilder = scenario("Post Get All")
     .exec(http("Create whisky")
       .post(s"http://localhost:${port}/api/whiskies")
@@ -36,7 +53,7 @@ class LoadTest extends Simulation {
         bodyString.saveAs("body"))
     )
     .pause(1)
-    .exec(http("Get whisky")
+    .exec(http("Get all whisky")
       .get(s"http://localhost:${port}/api/whiskies")
       .check(status.is(200))
     )
@@ -86,11 +103,12 @@ class LoadTest extends Simulation {
     )
 
   setUp(
-    postGet.inject(atOnceUsers(1))
-//      postResponseBody.inject(atOnceUsers(1))
+    //    postGet.inject(atOnceUsers(1))
+    validateJsonFieldValue.inject(atOnceUsers(1))
+    //      postResponseBody.inject(atOnceUsers(1))
     //    postGetAll.inject(atOnceUsers(1))
-//    postGet.inject(atOnceUsers(2))
-//          postGet.inject(constantUsersPerSec(50) during( 10 seconds))
+    //    postGet.inject(atOnceUsers(2))
+    //          postGet.inject(constantUsersPerSec(50) during( 10 seconds))
     //    getAll.inject(atOnceUsers(1))
     //        post.inject(constantUsersPerSec(50) during( 10 seconds)),
     //        getAll.inject(constantUsersPerSec(50) during( 10 seconds))

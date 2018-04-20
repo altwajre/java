@@ -25,7 +25,8 @@ public class App {
 
   private static void crud() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
-    JsonNode root = mapper.readTree(new File("src/main/resources/data/user.json"));
+    File file = new File("src/main/resources/data/user.json");
+    JsonNode root = mapper.readTree(file);
 
     final String resultOriginal = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(root);
     System.out.println("Before Update: \n" + resultOriginal);

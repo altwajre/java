@@ -7,6 +7,10 @@ https://gatling.io/docs/current/cheat-sheet/
 https://gatling.io/documentation/
 https://gatling.io/docs/current/quickstart/
 
+- cheatsheet
+
+https://worldline.github.io/gatling-cheatsheet/
+
 - maven - intellij
 
 https://gatling.io/docs/current/extensions/maven_archetype/

@@ -2,16 +2,20 @@ package com.company.app;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
+import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
+import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class WhiskyVerticle extends AbstractVerticle {
 
@@ -22,16 +26,40 @@ public class WhiskyVerticle extends AbstractVerticle {
 
     createSomeData();
 
+    Set<String> allowedHeaders = new HashSet<>();
+    allowedHeaders.add("x-requested-with");
+    allowedHeaders.add("Access-Control-Allow-Origin");
+    allowedHeaders.add("origin");
+    allowedHeaders.add("Content-Type");
+    allowedHeaders.add("accept");
+    allowedHeaders.add("X-PINGARUNER");
+
+    Set<HttpMethod> allowedMethods = new HashSet<>();
+    allowedMethods.add(HttpMethod.GET);
+    allowedMethods.add(HttpMethod.POST);
+    allowedMethods.add(HttpMethod.OPTIONS);
+    allowedMethods.add(HttpMethod.DELETE);
+    allowedMethods.add(HttpMethod.PATCH);
+    allowedMethods.add(HttpMethod.PUT);
+
     // Create a router object.
     Router router = Router.router(vertx);
 
     // Bind "/" to our hello message - so are still compatible.
-    router.route("/").handler(routingContext -> {
-      HttpServerResponse response = routingContext.response();
-      response
-          .putHeader("content-type", "text/html")
-          .end("<h1>Hello from my first Vert.x 3 application</h1>");
-    });
+//    router.route("/").handler(routingContext -> {
+//      HttpServerResponse response = routingContext.response();
+//      response
+//          .putHeader("content-type", "text/html")
+//          .end("<h1>Hello from my first Vert.x 3 application</h1>");
+//    });
+
+    router.route("/").handler(
+        CorsHandler
+            .create("http://localhost:8080")
+            .allowedHeaders(allowedHeaders)
+            .allowedMethods(allowedMethods)
+//            .allowCredentials(true)
+    );
 
     // Serve static resources from the /assets directory
     router.route("/assets/*").handler(StaticHandler.create("assets"));
@@ -84,10 +112,9 @@ public class WhiskyVerticle extends AbstractVerticle {
             // default to 8080
             config().getInteger("http.port", 8080),
             result -> {
-              if(result.succeeded()) {
+              if (result.succeeded()) {
                 future.complete();
-              }
-              else {
+              } else {
                 future.fail(result.cause());
               }
             }
@@ -112,16 +139,14 @@ public class WhiskyVerticle extends AbstractVerticle {
     final String id = routingContext.request().getParam("id");
     JsonObject json = routingContext.getBodyAsJson();
 
-    if(id == null || json == null) {
+    if (id == null || json == null) {
       routingContext.response().setStatusCode(400).end();
-    }
-    else {
+    } else {
       final Integer idAsInteger = Integer.valueOf(id);
       Whisky whisky = products.get(idAsInteger);
-      if(whisky == null) {
+      if (whisky == null) {
         routingContext.response().setStatusCode(404).end();
-      }
-      else {
+      } else {
         whisky.setName(json.getString("name"));
         whisky.setOrigin(json.getString("origin"));
         routingContext.response()
@@ -149,10 +174,9 @@ public class WhiskyVerticle extends AbstractVerticle {
 
   private void delete(RoutingContext routingContext) {
     final String id = routingContext.request().getParam("id");
-    if(id == null){
+    if (id == null) {
       routingContext.response().setStatusCode(400).end();
-    }
-    else {
+    } else {
       Integer idAsInteger = Integer.valueOf(id);
       products.remove(idAsInteger);
     }
@@ -161,16 +185,14 @@ public class WhiskyVerticle extends AbstractVerticle {
 
   private void get(RoutingContext routingContext) {
     final String id = routingContext.request().getParam("id");
-    if(id == null) {
+    if (id == null) {
       routingContext.response().setStatusCode(400).end();
-    }
-    else {
+    } else {
       final Integer idAsInteger = Integer.valueOf(id);
       Whisky whisky = products.get(idAsInteger);
-      if(whisky == null) {
+      if (whisky == null) {
         routingContext.response().setStatusCode(404).end();
-      }
-      else {
+      } else {
         routingContext.response()
             .putHeader("content-type", "application/json; charset=utf-8")
             .end(Json.encodePrettily(whisky));
@@ -191,16 +213,14 @@ public class WhiskyVerticle extends AbstractVerticle {
     final String id = routingContext.request().getParam("id");
     JsonObject json = routingContext.getBodyAsJson();
 
-    if(id == null || json == null) {
+    if (id == null || json == null) {
       routingContext.response().setStatusCode(400).end();
-    }
-    else {
+    } else {
       final Integer idAsInteger = Integer.valueOf(id);
       Whisky whisky = products.get(idAsInteger);
-      if(whisky == null) {
+      if (whisky == null) {
         routingContext.response().setStatusCode(404).end();
-      }
-      else {
+      } else {
         whisky.setState(state);
         routingContext.response()
             .putHeader("content-type", "application/json; charset=utf-8")
