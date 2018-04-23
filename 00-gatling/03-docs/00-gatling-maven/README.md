@@ -14,6 +14,15 @@ Right click `Engine`, select test to run
 mvn clean gatling:execute
 ```
 
+## modularize scenarios
+
+modularize files
+
+```
+/scenarios
+/simulation
+```
+
 ## Create project
 
 - create project
