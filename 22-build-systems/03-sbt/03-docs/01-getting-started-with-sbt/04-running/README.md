@@ -14,3 +14,7 @@ $ sbt clean run
 ## Intellij
 
 open `build.sbt`
+
+- run
+
+Right click `object Hello` body and click `Run Hello`
