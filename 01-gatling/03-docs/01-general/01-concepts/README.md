@@ -27,3 +27,9 @@ https://gatling.io/docs/current/http/http_protocol/#http-protocol
 ## Session
 
 Each virtual user is backed by a Session. Those sessions are the actual messages that go down the scenario workflow. A Session is basically a state placeholder, where testers can inject or capture and store data.
+
+## Feeders
+
+When the tested application offers the possibility to authenticate, tests should take this into consideration and use data to test log in, log out, actions allowed only for certain users, and so on.
+
+Feeders are a convenient API for testers to inject the data from an external source into the virtual user's sessions.
