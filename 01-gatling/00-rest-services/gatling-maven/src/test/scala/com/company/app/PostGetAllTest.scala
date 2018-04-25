@@ -37,7 +37,7 @@ class PostGetAllTest extends Simulation {
 
   setUp(
     //    postGetAll.inject(atOnceUsers(1))
-    postGetAll.inject(constantUsersPerSec(50) during (10 seconds))
+    postGetAll.inject(constantUsersPerSec(5) during (2 seconds))
   )
 
   private def randomName(): String = {

@@ -4,11 +4,29 @@ https://gatling.io/docs/current/extensions/maven_archetype/
 
 ## Run Test
 
-- intellij
+> debug in intellij
+
+- disable runMultipleSimulations
+
+comment out runMultipleSimulations 
+
+```
+<configuration>
+  <!--<runMultipleSimulations>true</runMultipleSimulations>-->
+</configuration>
+```
+
+or change true to false
+
+```
+<configuration>
+  <runMultipleSimulations>false</runMultipleSimulations>
+</configuration>
+```
 
 Right click `Engine`, select test to run
 
-- mvn
+> mvn run
 
 ```
 mvn clean gatling:execute
