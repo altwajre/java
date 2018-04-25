@@ -8,17 +8,27 @@ class GetAllTest extends Simulation {
   val getAll: ScenarioBuilder = scenario("Get All")
     .exec(http("Get whiskies")
       .get("http://localhost:8080/api/whiskies")
-      .extraInfoExtractor(extraInfo =>
-        List(
-          extraInfo.requestName,
-          s"\nResponse Body:\r\n${extraInfo.response.body.string}"
-        )
+      .check(
+        status is 200,
+        bodyString.saveAs("getResponseBody")
       )
+//      .extraInfoExtractor(extraInfo =>
+//        List(
+//          extraInfo.requestName,
+//          s"\nResponse Body:\r\n${extraInfo.response.body.string}"
+//        )
+//      )
     )
+    .exec(session => {
+      println("# Get all whiskies session")
+      val getResponseBody = session.get("getResponseBody").asOption[String]
+      println(getResponseBody)
+      session
+    })
 
   setUp(
     getAll.inject(atOnceUsers(1))
-//      getAll.inject(constantUsersPerSec(50) during( 10 seconds))
+    //      getAll.inject(constantUsersPerSec(50) during( 10 seconds))
   )
 
 }

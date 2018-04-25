@@ -1,6 +1,6 @@
 package com.company.app.simulation
 
-import com.company.app.UuidFeeder
+import com.company.app.feeder.UuidFeeder
 import com.company.app.scenairos.{CreateWhisky, GetWhisky}
 import com.company.app.util.{Environemnt, Headers}
 import io.gatling.core.Predef._
@@ -30,6 +30,11 @@ class PostGetOneScenario extends Simulation {
       .exec(GetWhisky.getWhiskyHttp)
       .exec(session => {
         println("# Get Whisky")
+
+        println("# before get uuid")
+        val uuid = session.get("uuid").asOption[String]
+        println(uuid)
+        println("# after get uuid")
 
         val id = session.get("id").asOption[String]
         println(id)

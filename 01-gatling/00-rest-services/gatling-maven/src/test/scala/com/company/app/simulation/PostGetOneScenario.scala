@@ -31,6 +31,11 @@ class PostGetOneScenario extends Simulation {
       .exec(session => {
         println("# Get Whisky")
 
+        println("# before get uuid")
+        val uuid = session.get("uuid").asOption[String]
+        println(uuid)
+        println("# after get uuid")
+
         val id = session.get("id").asOption[String]
         println(id)
 
