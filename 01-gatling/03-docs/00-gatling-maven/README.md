@@ -1,6 +1,6 @@
-# Gatling Intellij debug
+# gatling docs
 
-https://gatling.io/docs/current/extensions/maven_archetype/
+https://gatling.io/docs/current/general
 
 ## Run Test
 
@@ -79,4 +79,16 @@ https://stackoverflow.com/questions/38896841/skip-gatling-tests-when-building-re
         </configuration>
       </execution>
     </executions>
+```
+
+## Configuration
+
+https://gatling.io/docs/2.3/general/configuration/
+
+> Runs in mute mode
+
+/resources/gatling.conf
+
+```
+mute = true
 ```

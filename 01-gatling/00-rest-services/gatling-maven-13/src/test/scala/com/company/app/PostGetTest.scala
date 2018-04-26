@@ -2,6 +2,7 @@ package com.company.app
 
 import java.util.UUID
 
+import com.company.app.feeder.UuidFeeder
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ScenarioBuilder
 import io.gatling.http.Predef._

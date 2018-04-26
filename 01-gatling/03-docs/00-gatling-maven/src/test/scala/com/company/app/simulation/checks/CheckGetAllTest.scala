@@ -38,7 +38,6 @@ class CheckGetAllTest extends Simulation {
 
   setUp(
     getAll
-    //      getAll.inject(constantUsersPerSec(50) during( 10 seconds))
   )
 
 }

@@ -1,6 +1,6 @@
 package com.company.app.simulation
 
-import com.company.app.UuidFeeder
+import com.company.app.feeder.UuidFeeder
 import com.company.app.scenairos.{CreateWhisky, GetWhisky}
 import com.company.app.util.{Environemnt, Headers}
 import io.gatling.core.Predef._
