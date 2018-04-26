@@ -23,7 +23,7 @@ class CheckPostGetTest extends Simulation {
         status not 404,
         status not 500,
         currentLocation is postUrl,
-        responseTimeInMillis.lessThan(100L),
+        responseTimeInMillis.lessThan(100),
         jsonPath("$.id").find.saveAs("id"),
         jsonPath("$.id").exists,
         jsonPath("$.idx").notExists,

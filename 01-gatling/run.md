@@ -26,7 +26,7 @@ or change true to false
 
 Right click `Engine`, select test to run
 
-- mvn run
+> mvn run
 
 ```
 mvn clean gatling:execute

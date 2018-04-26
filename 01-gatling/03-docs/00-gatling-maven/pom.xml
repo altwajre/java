@@ -114,7 +114,7 @@
         <artifactId>gatling-maven-plugin</artifactId>
         <version>${gatling-plugin.version}</version>
         <configuration>
-          <!--<runMultipleSimulations>true</runMultipleSimulations>-->
+          <runMultipleSimulations>true</runMultipleSimulations>
         </configuration>
         <!-- <executions>
           <execution>
