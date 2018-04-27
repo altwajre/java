@@ -1,4 +1,4 @@
-package com.company.app.simulation
+package com.company.app.simulation.warmup
 
 import com.company.app.feeder.UuidFeeder
 import com.company.app.scenairos.{CreateWhisky, GetWhiskies}
@@ -8,17 +8,32 @@ import io.gatling.http.Predef.http
 
 import scala.concurrent.duration._
 
-class PostGetAllOneScenario extends Simulation {
-  val httpConf = http.baseURL(Environemnt.baseURL)
+// http.warmup() is used for warming up Gatling itself
+class delayedSimulation extends Simulation {
+  val httpConf = http
+    .baseURL(Environemnt.baseURL)
+//    .warmUp("http://localhost:8080/api/whiskies")
     .headers(Headers.commonHeader)
 
   val createGetAllScenarios = List(
+
+    scenario("Warmup scenario: perform Get only to warmup server")
+      .exec(http("Get whiskies")
+        .get("/")
+      )
+      .exec(session => {
+        println("# 1 Warmup")
+        session
+      })
+      .inject(
+        constantUsersPerSec(1) during (1 seconds)
+      ),
 
     scenario("Create Whisky")
       .feed(UuidFeeder.feeder)
       .exec(CreateWhisky.createWhiskyHttp)
       .exec(session => {
-        println("# Create Whisky")
+        println("# 2 Create Whisky")
         val id = session.get("id").asOption[String]
         println(id)
 
@@ -28,19 +43,20 @@ class PostGetAllOneScenario extends Simulation {
         session
       })
       .inject(
+        nothingFor(2 seconds), // wait for warmup
         atOnceUsers(2)
       ),
 
     scenario("Get All Whiskies")
       .exec(GetWhiskies.getWhiskiesHttp)
       .exec(session => {
-        println("# Get All Whiskies")
+        println("# 3 Get All Whiskies")
         val getWhiskiesResponse = session.get("getWhiskiesResponse").asOption[String]
         println(getWhiskiesResponse)
         session
       })
       .inject(
-        nothingFor(2 seconds), // wait for create to finish
+        nothingFor(3 seconds), // wait for create
         atOnceUsers(1)
       )
   )
@@ -51,4 +67,5 @@ class PostGetAllOneScenario extends Simulation {
     .assertions(
       global.responseTime.max.lessThan(Environemnt.maxResponseTime.toInt)
     )
+
 }

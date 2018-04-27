@@ -8,7 +8,8 @@ import io.gatling.http.Predef.http
 import scala.concurrent.duration._
 
 class GetAllSimulation extends Simulation {
-  val httpConf = http.baseURL(Environemnt.baseURL)
+  val httpConf = http
+    .baseURL(Environemnt.baseURL)
     .headers(Headers.commonHeader)
 
   val getWhiskiesScenario = List(

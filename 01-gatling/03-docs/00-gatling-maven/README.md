@@ -2,6 +2,8 @@
 
 https://gatling.io/docs/current/general
 
+/gatling/gatling-core/src/test/scala/io/gatling/core/compile/CoreCompileTest.scala
+
 ## Run Test
 
 > debug in intellij
@@ -92,3 +94,7 @@ https://gatling.io/docs/2.3/general/configuration/
 ```
 mute = true
 ```
+
+## Note
+
+http.warmup() is used for warming up Gatling itself

@@ -1,12 +1,12 @@
 package com.company.app.simulation.session
 
-import com.company.app.feeder.CustomerFeeder
+import com.company.app.feeder.ArrayFeeder
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ScenarioBuilder
 
 class ChangeFeederSessionAttributeTest extends Simulation {
   val feedCustomers: ScenarioBuilder = scenario("Change Session attributes")
-    .feed(CustomerFeeder.feeder) // 'Feeder is now empty' exception may occur when
+    .feed(ArrayFeeder.feeder) // 'Feeder is now empty' exception may occur when
     .exec(session => {
       println("# session_1")
       val name = session.get("name").asOption[String]
