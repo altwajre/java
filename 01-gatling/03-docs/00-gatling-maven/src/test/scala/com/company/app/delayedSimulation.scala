@@ -1,4 +1,4 @@
-package com.company.app.simulation.warmup
+package com.company.app
 
 import com.company.app.feeder.UuidFeeder
 import com.company.app.scenairos.{CreateWhisky, GetWhiskies}

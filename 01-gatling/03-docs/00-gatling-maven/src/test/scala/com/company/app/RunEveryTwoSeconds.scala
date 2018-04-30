@@ -1,4 +1,4 @@
-package com.company.app.simulation.scenarios
+package com.company.app
 
 import com.company.app.feeder.ArrayFeeder
 import io.gatling.core.Predef._
