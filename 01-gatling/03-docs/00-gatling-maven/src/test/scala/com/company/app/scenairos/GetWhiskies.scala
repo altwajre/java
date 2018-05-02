@@ -12,7 +12,7 @@ object GetWhiskies {
       bodyString.saveAs("getWhiskiesResponse")
     )
 
-  val getWhiskies = scenario("Get all whiskies")
+  val getWhiskiesScenario = scenario("Get all whiskies")
     .exec(getWhiskiesHttp)
     .exec(session => {
       val getWhiskiesResponse = session.get("getWhiskiesResponse").asOption[String]

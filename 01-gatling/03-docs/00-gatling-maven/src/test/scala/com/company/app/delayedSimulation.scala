@@ -9,7 +9,7 @@ import io.gatling.http.Predef.http
 import scala.concurrent.duration._
 
 // http.warmup() is used for warming up Gatling itself
-class delayedSimulation extends Simulation {
+class DelayedSimulation extends Simulation {
   val httpConf = http
     .baseURL(Environemnt.baseURL)
 //    .warmUp("http://localhost:8080/api/whiskies")

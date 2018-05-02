@@ -29,6 +29,7 @@ Right click `Engine`, select test to run
 > mvn run
 
 ```
+mvn clean gatling:test
 mvn clean gatling:execute
 ```
 

@@ -1,5 +1,6 @@
 package com.company.app.scenairos
 
+import com.company.app.feeder.UuidFeeder
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 
@@ -13,7 +14,8 @@ object CreateWhisky {
       jsonPath("$..id").find.saveAs("id"),
       bodyString.saveAs("createWhiskyResponse"))
 
-  val createWhisky = scenario(" POST whisky")
+  val createWhiskyScenario = scenario(" POST whisky")
+    .feed(UuidFeeder.feeder)
     .exec(createWhiskyHttp)
 
 }

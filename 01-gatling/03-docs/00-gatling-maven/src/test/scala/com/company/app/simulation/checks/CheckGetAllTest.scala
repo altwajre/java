@@ -17,6 +17,8 @@ class CheckGetAllTest extends Simulation {
         currentLocation is getUrl,
         //        currentLocation is getUrl + "x", // it will fail
         bodyString.saveAs("getResponseBody"),
+        jsonPath("$[0].origin").findAll.saveAs("firstOrigin"),
+        jsonPath("$[0].state").findAll.saveAs("firstState"),
         substring("origin").findAll.saveAs("origins"),
         substring("origin").count.saveAs("counts")
       )
@@ -24,6 +26,11 @@ class CheckGetAllTest extends Simulation {
     .exec(session => {
       val getResponseBody = session.get("getResponseBody").asOption[String]
       println(getResponseBody)
+
+      val firstOrigin = session.get("firstOrigin").asOption[String]
+      println(firstOrigin.get)
+      val firstState = session.get("firstState").asOption[String]
+      println(firstState.get)
 
       val origins = session.get("origins").asOption[String]
       println(origins.get)

@@ -13,7 +13,7 @@ class GetAllSimulation extends Simulation {
     .headers(Headers.commonHeader)
 
   val getWhiskiesScenario = List(
-    GetWhiskies.getWhiskies
+    GetWhiskies.getWhiskiesScenario
       .inject(
         atOnceUsers(1)
       )

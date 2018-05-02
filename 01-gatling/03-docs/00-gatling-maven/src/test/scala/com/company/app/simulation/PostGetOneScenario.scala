@@ -15,7 +15,6 @@ class PostGetOneScenario extends Simulation {
   val createGetOneScenarios = List(
 
     scenario("Create Get All")
-      .feed(UuidFeeder.feeder)
       .exec(CreateWhisky.createWhiskyHttp)
       .exec(session => {
         println("# Create Whisky")
