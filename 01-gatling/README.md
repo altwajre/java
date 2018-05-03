@@ -58,3 +58,13 @@ Escape Gatling's Expression Language such that it won't be interpreted by Scala 
 Typically, double the $ that are Gatling's EL you don't want to be interpolated, as such:
 
 StringBody(s"""{"objectId":$${assetid},"objectType":"m-asset","name1": "$tName","accountId":4,"userId":5}""")
+
+## reference
+
+- Setup gatling test env
+
+https://dzone.com/articles/how-to-set-up-a-gatling-tests-implementation-envir
+
+- REST API website
+
+https://jsonplaceholder.typicode.com/

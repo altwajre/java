@@ -6,9 +6,16 @@ import io.gatling.http.Predef._
 
 object CreateWhisky {
 
+  private val requestBody =
+    s"""
+       |{
+       |  "name": "$${uuid}",
+       |  "origin": "Scotland"
+       |}
+    """.stripMargin
   val createWhiskyHttp = http("Create whisky")
     .post(s"/")
-    .body(StringBody(s"""{"name": "$${uuid}", "origin": "Scotland"}""")).asJSON
+    .body(StringBody(requestBody)).asJSON
     .check(
       status.is(201),
       jsonPath("$..id").find.saveAs("id"),
