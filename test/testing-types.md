@@ -4,11 +4,12 @@ https://www.codeproject.com/Tips/351122/What-is-software-testing-What-are-the-di
 
 Unit Testing
 Integration Testing
+
 Functional Testing
 System Testing
 Stress Testing
 Performance Testing
 Usability Testing
-Acceptance Testing
+User Acceptance Testing
 Regression Testing
 Beta Testing

@@ -17,16 +17,25 @@ public class JunitTest {
   @Parameterized.Parameters
   public static Iterable<Object[]> data(){
     return Arrays.asList(new Object[][]{
-        new String[]{"one"}, new String[]{"two"}
+        new String[]{"one"},
+        new String[]{"two"},
+        new String[]{"three"}
     });
   }
 
   @Test
-  public void testMethod(){
-    System.out.println("The parameter value is: " + data);
+  public void test1(){
+    System.out.println("test1: The parameter value is: " + data);
+  }
+
+  @Test
+  public void test2(){
+    System.out.println("test2: The parameter value is: " + data);
   }
 }
 /*
-The parameter value is: one
-The parameter value is: two
+test1: The parameter value is: one
+test2: The parameter value is: one
+test1: The parameter value is: two
+test2: The parameter value is: two
  */
