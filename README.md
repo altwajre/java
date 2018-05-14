@@ -5,18 +5,36 @@ java
 
 https://gist.github.com/JeOam/a926dbb5145c4d0789c1
 
-- brew install java 8
+> brew install java 8
+
+```
 brew cask install caskroom/versions/java8
 java -version
-
 ls /Library/Java/JavaVirtualMachines/
 jdk1.8.0_162.jdk
+```
 
-- brew install Maven
+> brew install Maven
+
+- set JAVA_HOME in ~/.bash_profile
+
+```
+atom ~/.bash_profile
+```
+
+add following to the end of the ~/.bash_profile
+
+```
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home
-brew install maven
+echo $JAVA_HOME
+```
 
+- install maven
+
+```
+brew install maven
 mvn -version
+```
 
 - brew install java 9
 brew cask install java
