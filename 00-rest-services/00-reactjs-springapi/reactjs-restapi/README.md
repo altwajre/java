@@ -121,3 +121,5 @@ js/*.js
 
 mvn clean package
 java -jar target/reactjs-restapi-1.0-SNAPSHOT.jar
+
+http://localhost:8080/
