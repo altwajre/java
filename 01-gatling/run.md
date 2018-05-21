@@ -28,9 +28,17 @@ Right click `Engine`, select test to run
 
 > mvn run
 
+- run all tests
+
 ```
 mvn clean gatling:test
 mvn clean gatling:execute
+```
+
+- run one test
+
+```
+mvn clean gatling:test -Dgatling.simulationClass=com.godaddy.commerce.fulfillments.PurchaseSimple
 ```
 
 > Command line
