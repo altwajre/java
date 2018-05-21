@@ -5,6 +5,7 @@ import io.gatling.core.Predef._
 import io.gatling.core.structure.ScenarioBuilder
 import io.gatling.http.Predef.{http, status}
 
+// Data driven
 // https://gatling.io/docs/current/session/feeder/
 class ArrayMapHasUuidTest extends Simulation {
   val feedCustomers: ScenarioBuilder = scenario("Feed customers")

@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="myTest">
+  <test name="Regression">
+    <groups>
+      <run>
+        <include name="pri1"/>
+        <exclude name="pending"/>
+      </run>
+    </groups>
+    <packages>
+      <package name="com.company.app"/>
+    </packages>
+  </test>
+</suite>
