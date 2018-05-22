@@ -1,4 +1,4 @@
-package computerdatabase
+package com.company.app
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
@@ -17,13 +17,13 @@ class BasicSimulation extends Simulation {
   val scn = scenario("Scenario Name") // A scenario is a chain of requests and pauses
     .exec(http("request_1")
     .get("/"))
-    .pause(7) // Note that Gatling has recorder real time pauses
+    .pause(1) // Note that Gatling has recorder real time pauses
     .exec(http("request_2")
     .get("/computers?f=macbook"))
     .pause(2)
     .exec(http("request_3")
       .get("/computers/6"))
-    .pause(3)
+    .pause(1)
     .exec(http("request_4")
       .get("/"))
     .pause(2)
@@ -38,7 +38,7 @@ class BasicSimulation extends Simulation {
     .pause(734 milliseconds)
     .exec(http("request_8")
       .get("/computers?p=4"))
-    .pause(5)
+    .pause(1)
     .exec(http("request_9")
       .get("/computers/new"))
     .pause(1)

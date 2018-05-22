@@ -38,7 +38,7 @@ mvn clean gatling:execute
 - run one test
 
 ```
-mvn clean gatling:test -Dgatling.simulationClass=com.godaddy.commerce.fulfillments.PurchaseSimple
+mvn clean gatling:test -Dgatling.simulationClass=com.company.app.BasicSimulation
 ```
 
 > Command line

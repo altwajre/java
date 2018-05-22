@@ -9,20 +9,34 @@ enter 1 to select archetype
 enter 20 to select gatling archetype
 ```
 
-> mute
+> gatling.conf
 
-gatling.conf
+- mute
 
 ```
-mute = true
+mute = true                 # When set to true, don't ask for simulation name nor run description (currently only used by Gatling SBT plugin)
+```
+
+- jenkins
+
+```
+keepAlive = false                               # Allow pooling HTTP connections (keep-alive header automatically added)
+connectTimeout = 80000                          # Timeout when establishing a connection
+handshakeTimeout = 80000                        # Timeout when performing TLS hashshake
 ```
 
 ## Run Test
 
-> maven
+- Run All
 
 ```
 mvn clean gatling:test
+```
+
+- Run One Test
+
+```
+mvn clean gatling:test -Dgatling.simulationClass=com.company.app.BasicSimulation
 ```
 
 > intellij
