@@ -20,10 +20,10 @@ class ArrayMapHasUuidTest extends Simulation {
     ))
     .exec(session => {
       val uuid = session.get("uuid").asOption[Iterator[Map[String, String]]]
-      val name = session.get("name").asOption[String]
+      val name = session.get("name").asOption[Iterator[Map[String, String]]]
       val age = session.get("age").asOption[String]
 
-      println(uuid.get.next().get("uuid").get + " - " + name.get + " is " + age.get)
+      println(uuid.get.next().get("uuid").get + " - " + name.get.next().get("uuid").get + " is " + age.get)
 
       session
     })

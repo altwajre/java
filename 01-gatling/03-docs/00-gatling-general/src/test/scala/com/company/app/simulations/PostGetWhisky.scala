@@ -1,11 +1,13 @@
 package com.company.app.simulations
 
+import java.util.UUID
+
 import com.company.app.feeder.UuidFeeder
 import io.gatling.core.Predef._
 import io.gatling.core.structure.ScenarioBuilder
 import io.gatling.http.Predef._
 
-class PostGetTest extends Simulation {
+class PostGetWhisky extends Simulation {
 
   val port: String = "8080"
   println(port)
@@ -15,7 +17,10 @@ class PostGetTest extends Simulation {
     .exec(http("Create whisky")
       .post(s"http://localhost:${port}/api/whiskies")
       // $${uuid} is from UuidFeeder.feeder
-      .body(StringBody(s"""{"name": "$${uuid}", "origin": "Scotland"}""")).asJSON
+//      .body(StringBody(s"""{"name": "$${uuid}", "origin": "Scotland"}""")).asJSON
+      .body(StringBody(s"""{"name": "$${uuid}", "origin": "$${originUuid}"}""")).asJSON
+      // DO NOT do following because it is not random UUID
+//      .body(StringBody(s"""{"name": "${UUID.randomUUID.toString}", "origin": "${UUID.randomUUID.toString}"}""")).asJSON
       .check(
         status.is(201),
         jsonPath("$..id").find.saveAs("id"),
@@ -47,7 +52,7 @@ class PostGetTest extends Simulation {
     })
 
   setUp(
-    postGet.inject(atOnceUsers(1))
+    postGet.inject(atOnceUsers(2))
 //      postGet.inject(constantUsersPerSec(50) during( 10 seconds))
   )
 
