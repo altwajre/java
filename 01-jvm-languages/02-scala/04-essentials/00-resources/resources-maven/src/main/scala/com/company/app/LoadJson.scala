@@ -10,8 +10,8 @@ object LoadJson {
   def main(args: Array[String]): Unit = {
 
     stringToJson
-    streamToJson
-    loadJsonToString
+//    streamToJson
+//    loadJsonToString
   }
 
   private def stringToJson = {

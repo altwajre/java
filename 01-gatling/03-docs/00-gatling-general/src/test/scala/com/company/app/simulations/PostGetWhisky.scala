@@ -7,6 +7,8 @@ import io.gatling.core.Predef._
 import io.gatling.core.structure.ScenarioBuilder
 import io.gatling.http.Predef._
 
+import scala.io.Source
+
 class PostGetWhisky extends Simulation {
 
   val port: String = "8080"
@@ -17,16 +19,25 @@ class PostGetWhisky extends Simulation {
     .exec(http("Create whisky")
       .post(s"http://localhost:${port}/api/whiskies")
       // $${uuid} is from UuidFeeder.feeder
-//      .body(StringBody(s"""{"name": "$${uuid}", "origin": "Scotland"}""")).asJSON
-      .body(StringBody(s"""{"name": "$${uuid}", "origin": "$${originUuid}"}""")).asJSON
+      //      .body(StringBody(s"""{"name": "$${uuid}", "origin": "Scotland"}""")).asJSON
+      //      .body(StringBody(s"""{"name": "$${uuid}", "origin": "$${originUuid}"}""")).asJSON
+      .body(StringBody(Source.fromResource("data/mywhisky.json").mkString))
+      //      .body(RawFileBody("mywhisky.json")).asJSON
+      //      .body(ElFileBody("mywhisky.json")).asJSON
       // DO NOT do following because it is not random UUID
-//      .body(StringBody(s"""{"name": "${UUID.randomUUID.toString}", "origin": "${UUID.randomUUID.toString}"}""")).asJSON
+      //      .body(StringBody(s"""{"name": "${UUID.randomUUID.toString}", "origin": "${UUID.randomUUID.toString}"}""")).asJSON
       .check(
-        status.is(201),
-        jsonPath("$..id").find.saveAs("id"),
-        bodyString.saveAs("postResponseBody"))
+      status.is(201),
+      jsonPath("$..id").find.saveAs("id"),
+      bodyString.saveAs("postResponseBody"))
+      .check(currentLocation.saveAs("url"))
     )
     .exec(session => {
+      val url = session.get("url").asOption[String]
+      println("url: " + url)
+      val source = Source.fromResource("data/mywhisky.json")
+      val myBody = source.mkString
+      println(myBody)
       println("# Create whisky session")
       val id = session.get("id").asOption[String]
       println(id.get)
@@ -53,7 +64,7 @@ class PostGetWhisky extends Simulation {
 
   setUp(
     postGet.inject(atOnceUsers(2))
-//      postGet.inject(constantUsersPerSec(50) during( 10 seconds))
+    //      postGet.inject(constantUsersPerSec(50) during( 10 seconds))
   )
 
 }
