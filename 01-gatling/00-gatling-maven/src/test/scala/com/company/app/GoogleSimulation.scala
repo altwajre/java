@@ -11,17 +11,20 @@ class GoogleSimulation extends Simulation {
       .get("https://www.google.com")
       .check(
         status.is(200),
-        bodyString.saveAs("getBody")
+        bodyString.saveAs("getBody"),
+        currentLocation.saveAs("url")
       ))
     .exec(session => {
       val getBody = session.get("getBody").asOption[String]
       println("getBody: " + getBody)
+      val url = session.get("url").asOption[String]
+      println("url: " + url)
       session
     })
 
   setUp(
-    //    test.inject(atOnceUsers(10))
-    test.inject(constantUsersPerSec(10) during (2 seconds))
+    test.inject(atOnceUsers(2))
+    //    test.inject(constantUsersPerSec(10) during (2 seconds))
   )
 
 }
