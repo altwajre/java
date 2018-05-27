@@ -18,7 +18,7 @@ brew install groovy
 
 > general
 
-- goto `Preferences`, `Build, Execution, Deployment`, `Gradle`, `Service directory path:`
+- goto `Preferences`, `Build, Execution, Deployment`, `Build Tools`, `Gradle`, `Service directory path:`
 - enter `/usr/local/Cellar/gradle/4.3.1/libexec`
 
 > project
