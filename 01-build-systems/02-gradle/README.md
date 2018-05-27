@@ -41,6 +41,6 @@ gradle getHomeDir
 
 > Open existing gradle project
 
-- check Use auto-import
-- check Create directories for empty content roots automatically
-- select Use gradle `wrapper` task configuration
+- check `Use auto-import`
+- check `Create directories for empty content roots automatically`
+- select `Use gradle 'wrapper' task configuration`
