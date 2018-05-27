@@ -14,14 +14,33 @@ gradle -v
 
 brew install groovy
 
+## Get GRADLE_HOME
+
+- build.gradle
+
+```
+task getHomeDir << {
+    println gradle.gradleHomeDir
+}
+```
+
+- Run following to get GRADLE_HOME
+
+gradle getHomeDir
+
 ## intellij
 
-> general
+> Add gradle home
 
 - goto `Preferences`, `Build, Execution, Deployment`, `Build Tools`, `Gradle`, `Service directory path:`
-- enter `/usr/local/Cellar/gradle/4.3.1/libexec`
+- enter `/usr/local/Cellar/gradle/4.7/libexec`
 
-> project
+> Create a new gradle project
 
-- gradle location
-/usr/local/Cellar/gradle/4.3.1/libexec/
+- the first new gradle project will download gradle dependencies
+
+> Open existing gradle project
+
+- check Use auto-import
+- check Create directories for empty content roots automatically
+- select Use gradle `wrapper` task configuration
