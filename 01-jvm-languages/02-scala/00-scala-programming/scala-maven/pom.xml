@@ -73,6 +73,7 @@
           <target>8</target>
         </configuration>
       </plugin>
+      
       <plugin>
         <groupId>org.scala-tools</groupId>
         <artifactId>maven-scala-plugin</artifactId>
@@ -91,6 +92,7 @@
           </args>
         </configuration>
       </plugin>
+
     </plugins>
   </build>
 
