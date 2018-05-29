@@ -1,3 +1,5 @@
+package com.company.app
+
 import akka.actor.{Actor, ActorSystem, Props}
 
 // Define Actor Messages
@@ -10,6 +12,7 @@ class Greeter extends Actor {
   }
 }
 
+// Right click HelloAkka, click Run
 object HelloAkka extends App {
 
   // Create the 'hello akka' actor system
@@ -25,11 +28,3 @@ object HelloAkka extends App {
   system.terminate()
 
 }
-
-//$ sbt
-//[info] Set current project to hello-akka (in build file:)
-//> run
-//[info] Compiling 1 Scala source to
-//[info] Running HelloAkkaScala
-//Hello Akka
-//[success] Total time: 5 s, completed Dec 26, 2016 9:46:17 PM
