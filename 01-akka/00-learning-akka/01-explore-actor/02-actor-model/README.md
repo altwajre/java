@@ -12,3 +12,7 @@
 - Solve this problem by preventing multiple threads from mutating data simultaneously
 
 ## Actor Model
+
+How the actor model meets the needs of concurrent, distributed systems
+
+https://doc.akka.io/docs/akka/2.5.3/scala/guide/actors-intro.html

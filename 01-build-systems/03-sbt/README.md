@@ -15,6 +15,11 @@ $ sbt 'inspect sbtVersion'
 $ sudo nano `which sbt`
 ```
 
+## Intellij
+
+- Install `sbt` plugin, restart
+- Select `Scala`, select `sbt`
+
 ## sandbox
 
 ```
