@@ -78,7 +78,7 @@ public class SocialNetwork {
 
     static class Person{
         private ArrayList<Integer> friends = new ArrayList<Integer>();
-        private int personID;
+        private int id;
         private String info;
         public String getInfo(){return info;}
         public void setInfo(String info){this.info = info;}
@@ -87,9 +87,9 @@ public class SocialNetwork {
             for(int i = 0; i < temp.length; i++) temp[i] = friends.get(i);
             return temp;
         }
-        public int getID(){return personID;}
+        public int getID(){return id;}
         public void addFriend(int id){friends.add(id);}
-        public Person(int id){this.personID = id;}
+        public Person(int id){this.id = id;}
     }
     static class Machine{
         public HashMap<Integer, Person> persons = new HashMap<Integer, Person>();
@@ -114,10 +114,10 @@ public class SocialNetwork {
         }
     }
     static Server server = new Server();  // Server = Graph here
-    private static boolean reachable(Person p1, Person p6) {
+    private static boolean reachable(Person p1, Person p2) {
         Person src = p1;
-        Person dest = p6;
-        // use set because personID is unique
+        Person dest = p2;
+        // use set because id is unique
         Set<Integer> hashSet = new HashSet<Integer>();
         Queue<Person> queue = new LinkedList<Person>();
         hashSet.add(src.getID());
@@ -126,9 +126,10 @@ public class SocialNetwork {
             Person tmp = queue.remove();
             for(int personID : tmp.getFriends()){
                 Person person = getPerson(personID);
-                if(person == dest) return true;
+                if(person.id == dest.id) return true;
                 if(!hashSet.contains(personID)){
                     queue.add(person);
+                    hashSet.add(person.id);
                 }
             }
         }
@@ -146,7 +147,7 @@ public class SocialNetwork {
 
         // 3, Get person from that machine
         Person person = machine.getPersonWithID(personID);
-        System.out.format("\npersonID=%s", person.getID());
+        System.out.format("\nid=%s", person.getID());
 
         return person;
     }
@@ -155,32 +156,32 @@ public class SocialNetwork {
 output:
 friendID=2's machine_index is 1
 machineID=1
-personID=2friendID=5's machine_index is 2
+id=2friendID=5's machine_index is 2
 machineID=2
-personID=5friendID=1's machine_index is 1
+id=5friendID=1's machine_index is 1
 machineID=1
-personID=1friendID=5's machine_index is 2
+id=1friendID=5's machine_index is 2
 machineID=2
-personID=5friendID=1's machine_index is 1
+id=5friendID=1's machine_index is 1
 machineID=1
-personID=1friendID=2's machine_index is 1
+id=1friendID=2's machine_index is 1
 machineID=1
-personID=2friendID=4's machine_index is 2
+id=2friendID=4's machine_index is 2
 machineID=2
-personID=4friendID=1's machine_index is 1
+id=4friendID=1's machine_index is 1
 machineID=1
-personID=1friendID=2's machine_index is 1
+id=1friendID=2's machine_index is 1
 machineID=1
-personID=2friendID=4's machine_index is 2
+id=2friendID=4's machine_index is 2
 machineID=2
-personID=4friendID=1's machine_index is 1
+id=4friendID=1's machine_index is 1
 machineID=1
-personID=1friendID=5's machine_index is 2
+id=1friendID=5's machine_index is 2
 machineID=2
-personID=5friendID=5's machine_index is 2
+id=5friendID=5's machine_index is 2
 machineID=2
-personID=5friendID=6's machine_index is 2
+id=5friendID=6's machine_index is 2
 machineID=2
-personID=6
+id=6
 is p1 reachable to p6?: true
  */
