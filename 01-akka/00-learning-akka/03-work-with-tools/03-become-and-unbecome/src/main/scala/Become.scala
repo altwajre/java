@@ -65,3 +65,8 @@ object BecomeHotswap extends App {
   system.terminate()
 
 }
+/*
+User Storage connected to DB
+User Storage receive Create to do in user: Some(User(Admin,admin@gmail.com))
+User Storage Disconnect from DB
+ */
