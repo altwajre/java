@@ -9,6 +9,7 @@ import scala.concurrent.duration._
 case object Error
 case class StopActor(actorRef: ActorRef)
 
+// child actor
 class LifeCycleActor extends Actor {
   var sum = 1
 
