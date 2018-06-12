@@ -6,7 +6,7 @@ import scala.concurrent.duration._
 //We imported scala.concurrent.ExecutionContext.Implicits.global to execute the future.
 import scala.concurrent.ExecutionContext.Implicits.global
 
-case object Foo
+case object Foo4
 
 /*
 Reducing a sequence of futures

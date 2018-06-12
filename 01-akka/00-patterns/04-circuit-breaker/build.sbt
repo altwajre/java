@@ -1,4 +1,4 @@
-name := "futures"
+name := "circuit-breaker"
 
 version := "0.1"
 

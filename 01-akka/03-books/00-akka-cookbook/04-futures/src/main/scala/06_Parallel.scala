@@ -10,8 +10,6 @@ https://www.safaribooksonline.com/library/view/akka-cookbook/9781785288180/ea739
 
 Will learn how independent operations can be parallelize, which will reduce the running time of a program.
 
-How it works...
-
  */
 object Fib {
   def fib(n: Int): Int = {

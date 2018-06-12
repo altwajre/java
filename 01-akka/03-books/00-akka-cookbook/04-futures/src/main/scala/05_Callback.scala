@@ -3,7 +3,7 @@ import scala.util.{Failure, Success}
 //We imported scala.concurrent.ExecutionContext.Implicits.global to execute the future.
 import scala.concurrent.ExecutionContext.Implicits.global
 
-case object Foo
+case object Foo3
 
 /*
 Handling callback on futures
