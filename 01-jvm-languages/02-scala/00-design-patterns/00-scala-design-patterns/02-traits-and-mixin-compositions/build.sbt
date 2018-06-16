@@ -1,4 +1,4 @@
-name := "traits"
+name := "traits-and-mixin-compositions"
 
 version := "0.1"
 

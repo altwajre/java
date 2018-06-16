@@ -17,7 +17,7 @@ case class MixingInTraitsWithVariables(val notificationMessage: String) extends 
 object MixingInTraitsWithVariablesApp extends App {
   private val mixingInTraitsWithVariables = MixingInTraitsWithVariables("hello")
   println(mixingInTraitsWithVariables.notificationMessage)
-  println(mixingInTraitsWithVariables.clear)
+  mixingInTraitsWithVariables.clear
 }
 /*
 hello
