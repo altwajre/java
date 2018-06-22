@@ -1,4 +1,4 @@
-name := "components"
+name := "json"
 
 version := "0.1"
 
