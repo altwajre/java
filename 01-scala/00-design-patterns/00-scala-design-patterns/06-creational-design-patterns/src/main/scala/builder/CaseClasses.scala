@@ -10,9 +10,10 @@ The builder design pattern with case classes uses immutable fields and this is c
 Drawback:
 No validation
  */
-case class Person(firstName: String = "", lastName: String = "", age: Int = 0)
 
 object CaseClasses {
+  case class Person(firstName: String = "", lastName: String = "", age: Int = 0)
+
   def main(args: Array[String]) = {
     val person1 = Person("Tom", "Niko", 28)
     val person2 = Person("Harry")
