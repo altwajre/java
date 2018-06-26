@@ -3,6 +3,7 @@ Upper Type Bounds
 
 https://docs.scala-lang.org/tour/upper-type-bounds.html
 
+class PetContainer[P <: Pet](p: P)
  */
 abstract class Animal {
   def name: String

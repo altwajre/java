@@ -4,8 +4,8 @@ Sum ADTs
 
 https://www.safaribooksonline.com/library/view/scala-design-patterns/9781788471305/732792f3-c611-4426-b46b-eb35d8d7f266.xhtml
 
-Sum algebraic data types are the ones in which we can simply enumerate all the possible values of a type
-and provide a separate constructor for each value.
+Sum algebraic data types are the ones in which we can simply enumerate all the
+possible values of a type and provide a separate constructor for each value.
  */
 sealed abstract trait Month
 case object January extends Month
