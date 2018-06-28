@@ -3,7 +3,8 @@ Self type
 
 https://docs.scala-lang.org/tour/self-types.html
 
-Self-types are a way to declare that a trait must be mixed into another trait, even though it doesn't directly extend it.
+Self-types are a way to declare that a trait must be mixed into another trait,
+even though it doesn't directly extend it.
 That makes the members of the dependency available without imports.
  */
 
@@ -16,6 +17,7 @@ object SelfType {
 
     trait Tweeter {
       this: User => // self-type: reassign this
+  //  self: User =>
       def tweet(tweetText: String) = println(s"$username: $tweetText")
     }
 
