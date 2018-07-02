@@ -3,8 +3,8 @@ object CurriedParameters extends App {
   def bar(x:Int)(y:Int)(z:Int) = x + y + z
   def baz(x:Int, y:Int)(z:Int) = x + y + z
 
-  val f = foo(10, _:Int, _:Int) // partial function
-  val g = bar(20) _ // partial function
+  val f = foo(10, _:Int, _:Int) // partially applied function
+  val g = bar(20) _ // partially applied function
 
   println(f(3, 5))
   println(g(5)(3))
