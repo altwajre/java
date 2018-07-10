@@ -6,8 +6,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class App {
   static ObjectMapper mapper = new ObjectMapper();
@@ -17,8 +16,37 @@ public class App {
 
     createFromString();
 
-    createArrayFromObjectNode();
+    createArrayFromList();
 
+    createNodeFromMap();
+  }
+
+  private static void createNodeFromMap() {
+    System.out.println("# createNodeFromMap");
+    Map<String, Object> map = new HashMap<>();
+    map.put("name", "Tom");
+    map.put("age", 28);
+    map.put("likeCake", true);
+
+    JsonNode properties = mapper.convertValue(map, JsonNode.class);
+    System.out.println(properties);
+
+    properties.forEach(d -> {
+      System.out.println(d);
+    });
+
+    Map<String, Object> newMap = new HashMap<>();
+    newMap.put("name", "Dick");
+    newMap.put("age", 18);
+
+    JsonNode newProperties = mapper.convertValue(newMap, JsonNode.class);
+    Iterator<String> fieldNames = newProperties.fieldNames();
+    while (fieldNames.hasNext()) {
+      String fieldName = fieldNames.next();
+//      System.out.println(fieldName);
+      ((ObjectNode)properties).replace(fieldName, newProperties.path(fieldName));
+    }
+    System.out.println(properties);
   }
 
   private static void createFromString() throws IOException {
@@ -57,8 +85,8 @@ Nikka
 {"name":"Nikka","origin":"Japanese","version":8}
  */
 
-  private static void createArrayFromObjectNode() {
-    System.out.println("#createArrayFromObjectNode");
+  private static void createArrayFromList() {
+    System.out.println("#createArrayFromList");
 
     List<Person> people = new ArrayList<Person>();
     people.add(new Person("Tom", 18));
@@ -90,14 +118,29 @@ Nikka
     System.out.println(whisky.toString());
   }
 /*
-#createArrayFromObjectNode
+#createFromObjectNode
+Nikka
+8
+{"name":"Nikka","origin":"Japanese","version":8}
+#createFromString
+{"name":"Nikka","origin":"Japan"}
+After added a field: {"name":"Nikka","origin":"Japan","age":28}
+#createArrayFromList
 Nikka
 8
 Tom
 18
 Harry
 28
-{"name":"Nikka","origin":"Japanese","version":8,"people":[{"name":"Tom","age":18},{"name":"Harry","age":28}]}
+Will
+38
+{"name":"Nikka","origin":"Japanese","version":8,"people":[{"name":"Tom","age":18},{"name":"Harry","age":28},{"name":"Will","age":38}]}
+# createNodeFromMap
+{"name":"Tom","likeCake":true,"age":28}
+"Tom"
+true
+28
+{"name":"Dick","likeCake":true,"age":18}
  */
 
 }

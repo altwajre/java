@@ -1,11 +1,9 @@
 /*
-Multiple Parameter Lists
+Multiple Parameter Lists (currying)
 
 https://docs.scala-lang.org/tour/multiple-parameter-lists.html
 
  */
-
-case class Foo2()
 
 object MultipleParameterLists {
   def main(args: Array[String]) = {

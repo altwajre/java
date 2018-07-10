@@ -5,8 +5,6 @@ https://docs.scala-lang.org/tour/named-arguments.html
 
  */
 
-case class Foo8()
-
 object NamedArguments {
   def main(args: Array[String]) = {
     printName("John", "Smith")

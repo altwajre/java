@@ -4,8 +4,6 @@ Nested Methods
 https://docs.scala-lang.org/tour/nested-functions.html
  */
 
-case class Bar()
-
 object NestedMethods {
   def main(args: Array[String]) = {
     def factorial(x: Int): Int = {
