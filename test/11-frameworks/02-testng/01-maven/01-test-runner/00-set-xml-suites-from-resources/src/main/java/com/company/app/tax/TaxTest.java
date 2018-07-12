@@ -1,4 +1,4 @@
-package com.company.app.test;
+package com.company.app.tax;
 
 import org.testng.annotations.Test;
 
@@ -11,12 +11,21 @@ class Tax {
 }
 
 public class TaxTest {
-    @Test
+
+    @Test(groups = {"P0"})
     public void calc_tax_test(){
         Tax tax = new Tax();
         double actual = tax.calcTax(100, 8);
         double expected = 8;
-        assertEquals(expected, actual, 0);
+        assertEquals(expected, actual);
+    }
+
+    @Test(groups = {"P1"})
+    public void calc_negative_tax_test(){
+        Tax tax = new Tax();
+        double actual = tax.calcTax(-100, 8);
+        double expected = -8;
+        assertEquals(expected, actual);
     }
 }
 

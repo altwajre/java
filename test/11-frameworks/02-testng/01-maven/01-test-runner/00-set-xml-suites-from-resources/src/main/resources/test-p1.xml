@@ -1,0 +1,15 @@
+<suite name="Fulfillment P0 and P1 Tests">
+  <test name="Regression">
+    <packages>
+      <package name="com.company.app.math" />
+      <package name="com.company.app.tax" />
+    </packages>
+
+    <groups>
+      <run>
+        <include name="P0"/>
+        <include name="P1"/>
+      </run>
+    </groups>
+  </test>
+</suite>

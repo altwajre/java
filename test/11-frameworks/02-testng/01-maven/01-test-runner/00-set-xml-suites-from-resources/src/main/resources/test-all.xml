@@ -1,7 +1,8 @@
 <suite name="test-all">
     <test name="Regression" group-by-instances="true">
         <packages>
-            <package name="com.company.app.test" />
+            <package name="com.company.app.math" />
+            <package name="com.company.app.tax" />
         </packages>
     </test>
 </suite>
