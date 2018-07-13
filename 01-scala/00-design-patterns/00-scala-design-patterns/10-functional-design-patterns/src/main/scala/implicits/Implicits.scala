@@ -1,5 +1,0 @@
-package implicits
-
-object Implicits {
-
-}
