@@ -9,6 +9,7 @@ val monocleVersion = "1.5.0" // 1.5.0-cats based on cats 1.0.x
 libraryDependencies ++= Seq(
   "org.scalaz" %% "scalaz-core" % "7.2.20",
   "com.h2database" % "h2" % "1.4.197",
+  "commons-codec" % "commons-codec" % "1.11",
   "com.github.julien-truffaut" %%  "monocle-core"  % monocleVersion,
   "com.github.julien-truffaut" %%  "monocle-macro" % monocleVersion,
   "org.scalatest" %% "scalatest" % "3.0.5",
