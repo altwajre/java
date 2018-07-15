@@ -1,4 +1,4 @@
-package monoids
+package _01_monoids
 
 import scalaz._
 import Scalaz._
