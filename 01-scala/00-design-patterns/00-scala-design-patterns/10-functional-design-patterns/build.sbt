@@ -1,4 +1,4 @@
-name := "10-functional-design-patterns"
+name := "functional-design-patterns"
 
 version := "0.1"
 
