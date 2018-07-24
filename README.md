@@ -1,6 +1,13 @@
 # java
 java
 
+## Uninstall Java
+
+sudo rm -rf /Library/Java/JavaVirtualMachines/jdk(version).jdk
+sudo rm -rf /Library/PreferencePanes/JavaControlPanel.prefPane
+sudo rm -rf /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin
+sudo rm -rf ~/Library/Application\ Support/Oracle/Java
+
 ## Install Java
 
 https://gist.github.com/JeOam/a926dbb5145c4d0789c1
