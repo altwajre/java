@@ -20,9 +20,6 @@ Some use cases could benefit from parallelizing some processing tasks. Akka Stre
 to indicate when a stage should run asynchronously and have its own internal actor.
 
 By default, all the stages not marked async will run in a single actor.
-
-
-
  */
 
 trait PipeliningParallelizing extends App {
