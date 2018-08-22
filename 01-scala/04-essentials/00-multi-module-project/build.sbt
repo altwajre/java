@@ -1,4 +1,4 @@
-name := "multimoduleproject"
+name := "multi-module-project"
 
 version := "0.1"
 
