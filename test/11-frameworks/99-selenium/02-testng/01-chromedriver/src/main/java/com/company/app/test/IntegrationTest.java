@@ -15,6 +15,7 @@ public class IntegrationTest {
         System.setProperty("webdriver.chrome.driver", relativePath);
         WebDriver driver = new ChromeDriver();
         driver.get(Global.Config.getUrl());  // get url from yml config such as config.prod.yml
+
         WebElement element = driver.findElement(By.name("q"));
         element.sendKeys("Cheese!");
         element.submit();
