@@ -1,22 +1,13 @@
-package com.company.app;
+package com.company.app.testng;
 
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class TestngTest {
+public class TestngTest extends DataDrivenBase {
   @BeforeSuite
   public static void beforeSuite() {
     System.out.println("beforeSuite executed");
-  }
-
-  @DataProvider
-  public Object[][] dataMethod(){
-    return new String[][]{
-        new String[]{"one"},
-        new String[]{"two"},
-        new String[]{"three"}
-    };
   }
 
   @Test(dataProvider = "dataMethod")
