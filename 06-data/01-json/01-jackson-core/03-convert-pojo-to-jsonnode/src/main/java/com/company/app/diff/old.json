@@ -1,0 +1,31 @@
+{
+  "id": null,
+  "name": "Will",
+  "age": 28,
+  "friends": [
+    "Tom",
+    "Dick",
+    "Harry"
+  ],
+  "books": [
+    "Java",
+    "Python"
+  ],
+  "keys": {
+    "1": "Apple",
+    "2": "Orange"
+  },
+  "offers": [
+    {
+      "offer": {
+        "name": "offer_1",
+        "products": [
+          {
+            "name": "product_1"
+          }
+        ]
+      },
+      "key": "123"
+    }
+  ]
+}
