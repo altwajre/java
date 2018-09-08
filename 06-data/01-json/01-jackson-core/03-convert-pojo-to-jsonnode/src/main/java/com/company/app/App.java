@@ -26,36 +26,49 @@ public class App {
 
     Product product = new Product();
     product.setName("product_1");
+    product.setUri("product_uri");
 
     ProductContainer productContainer = new ProductContainer();
-    productContainer.setKey("abc");
+    productContainer.setKey("product_key");
     productContainer.setProduct(product);
 
     Offer offer = new Offer();
     offer.setName("offer_1");
+    offer.setUri("offer_uri");
 
     OfferContainer offerContainer = new OfferContainer();
-    offerContainer.setKey("123");
+    offerContainer.setKey("offer_key");
     offerContainer.setOffer(offer);
 
     offer.setProducts(Arrays.asList(productContainer));
 
     person.setOffers(Arrays.asList(offerContainer));
 
-    System.out.println("# Pojo to JsonNode");
+    System.out.println("# Pojo to Json");
     JsonNode customerJson = mapper.convertValue(person, JsonNode.class);
     System.out.println(customerJson);
 
-    System.out.println("# JsonNode to Pojo");
+    System.out.println("# Json to Pojo");
     Person jsonToPojo = mapper.treeToValue(customerJson, Person.class);
     System.out.println(jsonToPojo);
+
+    System.out.println("# Set offer pojo uri=null");
+    person.getOffers().get(0).getOffer().setUri(null);
+    System.out.println(person);
+
+    System.out.println("# Pojo to Json, offer.uri should be excluded in json");
+    JsonNode customerJson2 = mapper.convertValue(person, JsonNode.class);
+    System.out.println(customerJson2);
 
   }
 }
 /*
-output:
-# Pojo to JsonNode
-{"id":null,"name":"Will","age":28,"friends":["Tom","Dick","Harry"],"books":["Java","Python"],"keys":{"1":"Apple","2":"Orange"},"offers":[{"key":"123","offer":{"name":"offer_1","products":[{"key":"abc","product":{"name":"product_1"}}]}}]}
-# JsonNode to Pojo
-Person(id=null, name=Will, age=28, friends=[Tom, Dick, Harry], books=[Java, Python], keys={1=Apple, 2=Orange}, offers=[OfferContainer(key=123, offer=Offer(name=offer_1, products=[ProductContainer(key=abc, product=Product(name=product_1))]))])
+# Pojo to Json
+{"name":"Will","age":28,"friends":["Tom","Dick","Harry"],"books":["Java","Python"],"keys":{"1":"Apple","2":"Orange"},"offers":[{"key":"offer_key","offer":{"name":"offer_1","products":[{"key":"product_key","product":{"name":"product_1","uri":"product_uri"}}],"uri":"offer_uri"}}]}
+# Json to Pojo
+Person(id=null, name=Will, age=28, friends=[Tom, Dick, Harry], books=[Java, Python], keys={1=Apple, 2=Orange}, offers=[OfferContainer(key=offer_key, offer=Offer(name=offer_1, products=[ProductContainer(key=product_key, product=Product(name=product_1, uri=product_uri))], uri=offer_uri))])
+# Set offer pojo uri=null
+Person(id=null, name=Will, age=28, friends=[Tom, Dick, Harry], books=[Java, Python], keys={1=Apple, 2=Orange}, offers=[OfferContainer(key=offer_key, offer=Offer(name=offer_1, products=[ProductContainer(key=product_key, product=Product(name=product_1, uri=product_uri))], uri=null))])
+# Pojo to Json, offer.uri should be excluded in json
+{"name":"Will","age":28,"friends":["Tom","Dick","Harry"],"books":["Java","Python"],"keys":{"1":"Apple","2":"Orange"},"offers":[{"key":"offer_key","offer":{"name":"offer_1","products":[{"key":"product_key","product":{"name":"product_1","uri":"product_uri"}}]}}]}
  */
