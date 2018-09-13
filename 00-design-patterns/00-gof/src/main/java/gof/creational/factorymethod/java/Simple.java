@@ -1,4 +1,4 @@
-package gof.creational.factorymethod;
+package gof.creational.factorymethod.java;
 
 /*
 Learn Design Patterns with Java
@@ -87,7 +87,7 @@ class IceCreamFactory {
   }
 }
 
-public class Java {
+public class Simple {
   public static void main (String[] args) {
     IceCream iceCream = IceCreamFactory.createIceCream("Strawberry");
     System.out.println(iceCream);

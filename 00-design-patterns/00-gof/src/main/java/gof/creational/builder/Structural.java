@@ -4,37 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class Builder{
-  public abstract void BuildPartA();
-  public abstract void BuildPartB();
-  public abstract Product GetResult();
+  public abstract void addPartA();
+  public abstract void addPartB();
+  public abstract Product build();
 }
 class ConcreteBuilder1 extends Builder{
   private Product product = new Product();
   @Override
-  public void BuildPartA() {
+  public void addPartA() {
     product.Add("PartA");
   }
   @Override
-  public void BuildPartB() {
+  public void addPartB() {
     product.Add("PartB");
   }
   @Override
-  public Product GetResult() {
+  public Product build() {
     return product;
   }
 }
 class ConcreteBuilder2 extends Builder{
   private Product product = new Product();
   @Override
-  public void BuildPartA() {
+  public void addPartA() {
     product.Add("PartX");
   }
   @Override
-  public void BuildPartB() {
+  public void addPartB() {
     product.Add("PartY");
   }
   @Override
-  public Product GetResult() {
+  public Product build() {
     return product;
   }
 }
@@ -52,8 +52,8 @@ class Product{
 }
 class Director{
   public void Construct(Builder builder){
-    builder.BuildPartA();
-    builder.BuildPartB();
+    builder.addPartA();
+    builder.addPartB();
   }
 }
 // Builder
@@ -65,11 +65,11 @@ public class Structural {
     Builder b1 = new ConcreteBuilder1();
     Builder b2 = new ConcreteBuilder2();
     director.Construct(b1);
-    Product p1 = b1.GetResult();
+    Product p1 = b1.build();
     p1.Show();
 
     director.Construct(b2);
-    Product p2 = b2.GetResult();
+    Product p2 = b2.build();
     p2.Show();
   }
 }

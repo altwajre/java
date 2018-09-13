@@ -1,7 +1,6 @@
 package gof.creational.builder;
 
 import lombok.Builder;
-import lombok.Data;
 
 /*
 Consider a builder when faced with many constructor parameters
@@ -55,7 +54,6 @@ class Customer {
   }
 }
 
-@Data
 @Builder
 class User {
   private String name;
@@ -71,7 +69,8 @@ public class Effective {
 
   private static void testCustomBuilder() {
     System.out.println("#testCustomBuilder");
-    final Customer tom = Customer.builder()
+    final Customer tom = Customer
+        .builder()
         .name("Tom")
         .age(18)
         .build();
@@ -80,7 +79,8 @@ public class Effective {
 
   private static void testLombokBuilder() {
     System.out.println("#testLombokBuilder");
-    final User dick = User.builder()
+    final User dick = User
+        .builder()
         .name("Dick")
         .age(28)
         .build();
