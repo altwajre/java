@@ -3,6 +3,11 @@ package gof.structural.decorator.realworld;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Definition
+Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing
+for extending functionality.
+ */
 abstract class LibraryItem<T>{  // abstract Component
   public static int NumCopies;
   public abstract void display();
@@ -71,7 +76,7 @@ class Borrowable<T> extends Decorator<T> {  // Concrete Decorator
   }
 }
 
-public class DecoratorApp {
+public class RealWorld {
   public static void main( String[] args )
   {
     Book book = new Book("Worley", "Inside ASP.NET", 10);
@@ -89,11 +94,6 @@ public class DecoratorApp {
   }
 }
 /*
-Definition
-Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing
-for extending functionality.
-
-output:
 Book -----
  Author: Worley
  Title: Inside ASP.NET

@@ -3,6 +3,11 @@ package gof.structural.composite;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Definition
+Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual
+objects and compositions of objects uniformly.
+ */
 class TreeNode{  // Composite
   private List<TreeNode> children = new ArrayList<TreeNode>();
   public String Content;
@@ -46,11 +51,6 @@ public class RealWorld {
   }
 }
 /*
-Definition
-Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual
-objects and compositions of objects uniformly.
-
-output:
 - Picture
 -- Red Line
 -- Blue Circle

@@ -3,6 +3,10 @@ package gof.structural.bridge;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Definition
+Decouple an abstraction from its implementation so that the two can vary independently.
+ */
 interface IDataObject<T>{  // Implementor
   void nextRecord();
   void priorRecord();
@@ -72,10 +76,6 @@ public class RealWorld {
   }
 }
 /*
-Definition
-Decouple an abstraction from its implementation so that the two can vary independently.
-
-output:
 Jim Jones
 Samual Jackson
 Allan Good

@@ -3,6 +3,11 @@ package gof.creational.factorymethod;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Definition
+Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets
+a class defer instantiation to subclasses.
+ */
 abstract class Page{  // abstract Product
   @Override
   public String toString(){ return this.getClass().getSimpleName(); }
@@ -61,11 +66,6 @@ public class RealWorld {
   }
 }
 /*
-Definition
-Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets
-a class defer instantiation to subclasses.
-
-output:
 Resume--
  SkillsPage
  EducationPage

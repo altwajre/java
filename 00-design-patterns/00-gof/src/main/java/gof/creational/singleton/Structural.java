@@ -1,5 +1,9 @@
 package gof.creational.singleton;
 
+/*
+Definition
+Ensure a class has only one instance and provide a global point of access to it.
+ */
 class Singleton{
   private static Singleton instance;
   protected Singleton(){
@@ -29,9 +33,5 @@ public class Structural {
   }
 }
 /*
-Definition
-Ensure a class has only one instance and provide a global point of access to it.
-
-output:
 Object are the same instance
  */

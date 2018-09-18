@@ -1,5 +1,9 @@
 package gof.structural.bridge;
 
+/*
+Definition
+Decouple an abstraction from its implementation so that the two can vary independently.
+ */
 class Abstraction{
   protected Implementor implementor;
   public void setImplementor(Implementor implementor){
@@ -35,7 +39,7 @@ public class Structural {
   public static void main( String[] args )
   {
     Abstraction ab = new RefinedAbstraction();
-    ab.implementor = new ConcreteImplementorA();
+    ab.setImplementor(new ConcreteImplementorA());
     ab.operation();
 
     ab.implementor = new ConcreteImplementorB();
@@ -43,10 +47,6 @@ public class Structural {
   }
 }
 /*
-Definition
-Decouple an abstraction from its implementation so that the two can vary independently.
-
-output:
 ConcreteImplementorA operation
 ConcreteImplementorB operation
  */

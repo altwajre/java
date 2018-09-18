@@ -1,5 +1,10 @@
 package gof.structural.adapter;
 
+/*
+Definition
+Convert the interface of a class into another interface clients expect. Adapter lets classes work together that
+couldn't otherwise because of incompatible interfaces.
+ */
 enum Chemical{Water, Benzene, Ethanol}
 enum State{Boiling, Melting}
 class ChemicalDatabank{  // Adaptee
@@ -84,11 +89,6 @@ public class RealWorld {
   }
 }
 /*
-Definition
-Convert the interface of a class into another interface clients expect. Adapter lets classes work together that
-couldn't otherwise because of incompatible interfaces.
-
-output:
 Compound: Unknown -------
 
 Compound: Water --------

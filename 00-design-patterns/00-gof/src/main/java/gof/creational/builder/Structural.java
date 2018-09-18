@@ -3,6 +3,11 @@ package gof.creational.builder;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Definition
+Separate the construction of a complex object from its representation so that the same construction process can create
+different representations.
+ */
 abstract class Builder{
   public abstract void addPartA();
   public abstract void addPartB();
@@ -74,11 +79,6 @@ public class Structural {
   }
 }
 /*
-Definition
-Separate the construction of a complex object from its representation so that the same construction process can create
-different representations.
-
-output:
 Product Parts ------
 PartA
 PartB

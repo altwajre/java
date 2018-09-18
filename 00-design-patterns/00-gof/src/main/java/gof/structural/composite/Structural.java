@@ -3,6 +3,11 @@ package gof.structural.composite;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Definition
+Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual
+objects and compositions of objects uniformly.
+ */
 abstract class Component{
   protected String name;
   public Component(String name){
@@ -73,11 +78,6 @@ public class Structural {
   }
 }
 /*
-Definition
-Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual
-objects and compositions of objects uniformly.
-
-output:
 -root
 ---Leaf A
 ---Leaf B

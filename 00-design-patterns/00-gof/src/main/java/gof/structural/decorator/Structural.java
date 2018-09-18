@@ -1,5 +1,10 @@
 package gof.structural.decorator;
 
+/*
+Definition
+Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing
+for extending functionality.
+ */
 abstract class Component{
   public abstract void Operation();
 }
@@ -55,11 +60,6 @@ public class Structural {
   }
 }
 /*
-Definition
-Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing
-for extending functionality.
-
-output:
 ConcreteComponent.Operation()
 ConcreteDecoratorA.Operation()
 ConcreteDecoratorB.AddBehavior()

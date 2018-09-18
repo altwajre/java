@@ -3,6 +3,10 @@ package gof.creational.prototype;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+Definition
+Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.
+ */
 // interface Cloneable is abstract Prototype
 class Color implements Cloneable{  // Concrete Prototype
   private int _red;
@@ -51,10 +55,6 @@ public class RealWorld {
   }
 }
 /*
-Definition
-Specify the kind of objects to create using a prototypical instance, and create new objects by copying this prototype.
-
-output:
 Cloning color RGB: 255,0,0
 RGB: 255,0,0
 Cloning color RGB: 128,211,128

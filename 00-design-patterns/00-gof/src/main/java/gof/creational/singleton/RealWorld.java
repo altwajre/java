@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/*
+Definition
+Ensure a class has only one instance and provide a global point of access to it.
+ */
 class Server{
   private String name;
   private String ip;
@@ -52,10 +56,6 @@ public class RealWorld {
   }
 }
 /*
-Definition
-Ensure a class has only one instance and provide a global point of access to it.
-
-output:
 Same instance
 
 Dispatch request to: ServerI

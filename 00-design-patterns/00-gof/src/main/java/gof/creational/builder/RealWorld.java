@@ -3,6 +3,11 @@ package gof.creational.builder;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+Definition
+Separate the construction of a complex object from its representation so that the same construction process can create
+different representations.
+ */
 enum PartType{ Frame, Engine, Wheel, Door }
 enum VehicleType{ Car, Scooter, MotorCycle }
 class Vehicle{  // Product
@@ -87,11 +92,6 @@ public class RealWorld {
   }
 }
 /*
-Definition
-Separate the construction of a complex object from its representation so that the same construction process can create
-different representations.
-
-output:
 --------------------------
 Vehicle Type: Scooter
  Frame  : Scooter Frame

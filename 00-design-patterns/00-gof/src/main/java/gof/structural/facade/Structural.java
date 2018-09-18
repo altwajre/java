@@ -1,5 +1,10 @@
 package gof.structural.facade;
 
+/*
+Definition
+Provide a unified interface to a set of interfaces in a subsystem. Façade defines a higher-level interface that makes
+the subsystem easier to use.
+ */
 class SubSystemOne{
   public void MethodOne(){
     System.out.println(" SubSystemOne Method");
@@ -53,11 +58,6 @@ public class Structural {
   }
 }
 /*
-Definition
-Provide a unified interface to a set of interfaces in a subsystem. Façade defines a higher-level interface that makes
-the subsystem easier to use.
-
-output:
 MethodA() ----
  SubSystemOne Method
  SubSystemTwo Method

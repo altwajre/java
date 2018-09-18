@@ -1,5 +1,9 @@
 package gof.creational.abstractfactory;
 
+/*
+Definition
+Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
+ */
 interface IHerbivore{ }  // Abstract Product_A
 
 interface ICarnivore{ void Eat(IHerbivore h); } // Abstract Product_B
@@ -71,10 +75,6 @@ public class RealWorld {
 
 }
 /*
-Definition
-Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
-
-output:
 Lion eats Cow
 Wolf eats Horse
  */

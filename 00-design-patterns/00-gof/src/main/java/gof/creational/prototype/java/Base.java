@@ -24,7 +24,7 @@ class Customer implements Person, Cloneable {
   }
 }
 
-public class Simple {
+public class Base {
   public static void main(String[] args) {
     System.out.println("### Statue creation by Prototype design pattern ");
     System.out.println("How many Statue you want to create based on Mold / prototype ?");

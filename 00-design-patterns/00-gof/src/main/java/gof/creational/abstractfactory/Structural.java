@@ -1,5 +1,9 @@
 package gof.creational.abstractfactory;
 
+/*
+Definition
+Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
+ */
 abstract class AbstractProductA{}
 
 abstract class AbstractProductB{
@@ -79,10 +83,6 @@ public class Structural {
 
 }
 /*
-Definition
-Provide an interface for creating families of related or dependent objects without specifying their concrete classes.
-
-output:
 ProductB1 interacts with ProductA1
 ProductB2 interacts with ProductA2
  */

@@ -26,7 +26,7 @@ class UnsharedConcreteFlyweight extends Flyweight {
 }
 
 class FlyweightFactory {
-  private Map flyweights = new HashMap();
+  private Map<String, Flyweight> flyweights = new HashMap();
 
   public FlyweightFactory() {
     flyweights.put("X", new ConcreteFlyweight());
@@ -35,7 +35,7 @@ class FlyweightFactory {
   }
 
   public Flyweight getFlyweight(String key) {
-    return (Flyweight) flyweights.get(key);
+    return flyweights.get(key);
   }
 }
 
