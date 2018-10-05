@@ -7,19 +7,20 @@ public class App
     public static void main( String[] args )
     {
         Connection conn = null;
-        String url = "jdbc:mysql://localhost/test?useSSL=false";
-        String userName = "root";
+        String url = "jdbc:mysql://localhost/test?useSSL=false&allowPublicKeyRetrieval=true";
+        String userName = "test";
         String password = "test";
 
         try
         {
-            Class.forName ("com.mysql.jdbc.Driver"); // run Driver static block code.
+//            Class.forName ("com.mysql.jdbc.Driver"); // run Driver static block code.
+            Class.forName ("com.mysql.cj.jdbc.Driver"); // run Driver static block code.
             conn = DriverManager.getConnection (url, userName, password);
             System.out.println ("Connected");
 
-            changeInformation(conn);
+//            changeInformation(conn);
 
-//            retrieveInformation(conn);
+            retrieveInformation(conn);
         }
         catch (Exception e)
         {

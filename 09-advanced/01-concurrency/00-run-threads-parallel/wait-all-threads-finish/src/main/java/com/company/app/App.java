@@ -56,6 +56,7 @@ public class App {
         "http://en.wikipedia.org/wiki/Main_Page"};
 
     IntStream.range(0, hostList.length).parallel().forEach(i -> {
+      System.out.println(Thread.currentThread().getName());
       String url = hostList[i];
       Runnable worker = new MyRunnable(url);
       executor.execute(worker);

@@ -4,6 +4,9 @@ https://gatling.io/docs/current/general
 
 /gatling/gatling-core/src/test/scala/io/gatling/core/compile/CoreCompileTest.scala
 
+## Server
+
+Launch `00-vertx-server` first
 
 ## Create maven project
 

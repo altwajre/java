@@ -84,10 +84,9 @@ public class WhiskyVerticle extends AbstractVerticle {
             // default to 8080
             config().getInteger("http.port", 8080),
             result -> {
-              if(result.succeeded()) {
+              if (result.succeeded()) {
                 future.complete();
-              }
-              else {
+              } else {
                 future.fail(result.cause());
               }
             }
@@ -97,7 +96,9 @@ public class WhiskyVerticle extends AbstractVerticle {
   private void create(RoutingContext routingContext) {
     System.out.println("create");
     // read the request's content and create an instance of Whisky.
-    final Whisky whisky = Json.decodeValue(routingContext.getBodyAsString(), Whisky.class);
+    String bodyAsString = routingContext.getBodyAsString();
+    System.out.println("# body: " + bodyAsString);
+    final Whisky whisky = Json.decodeValue(bodyAsString, Whisky.class);
     whisky.setState(State.ACTIVE);
     // Add it to the backend map
     products.put(whisky.getId(), whisky);
@@ -114,16 +115,14 @@ public class WhiskyVerticle extends AbstractVerticle {
     final String id = routingContext.request().getParam("id");
     JsonObject json = routingContext.getBodyAsJson();
 
-    if(id == null || json == null) {
+    if (id == null || json == null) {
       routingContext.response().setStatusCode(400).end();
-    }
-    else {
+    } else {
       final Integer idAsInteger = Integer.valueOf(id);
       Whisky whisky = products.get(idAsInteger);
-      if(whisky == null) {
+      if (whisky == null) {
         routingContext.response().setStatusCode(404).end();
-      }
-      else {
+      } else {
         whisky.setName(json.getString("name"));
         whisky.setOrigin(json.getString("origin"));
         routingContext.response()
@@ -161,10 +160,9 @@ public class WhiskyVerticle extends AbstractVerticle {
     System.out.println("delete");
 
     final String id = routingContext.request().getParam("id");
-    if(id == null){
+    if (id == null) {
       routingContext.response().setStatusCode(400).end();
-    }
-    else {
+    } else {
       Integer idAsInteger = Integer.valueOf(id);
       products.remove(idAsInteger);
     }
@@ -175,16 +173,14 @@ public class WhiskyVerticle extends AbstractVerticle {
     System.out.println("get");
 
     final String id = routingContext.request().getParam("id");
-    if(id == null) {
+    if (id == null) {
       routingContext.response().setStatusCode(400).end();
-    }
-    else {
+    } else {
       final Integer idAsInteger = Integer.valueOf(id);
       Whisky whisky = products.get(idAsInteger);
-      if(whisky == null) {
+      if (whisky == null) {
         routingContext.response().setStatusCode(404).end();
-      }
-      else {
+      } else {
         routingContext.response()
             .putHeader("content-type", "application/json; charset=utf-8")
             .end(Json.encodePrettily(whisky));
@@ -207,16 +203,14 @@ public class WhiskyVerticle extends AbstractVerticle {
     final String id = routingContext.request().getParam("id");
     JsonObject json = routingContext.getBodyAsJson();
 
-    if(id == null || json == null) {
+    if (id == null || json == null) {
       routingContext.response().setStatusCode(400).end();
-    }
-    else {
+    } else {
       final Integer idAsInteger = Integer.valueOf(id);
       Whisky whisky = products.get(idAsInteger);
-      if(whisky == null) {
+      if (whisky == null) {
         routingContext.response().setStatusCode(404).end();
-      }
-      else {
+      } else {
         whisky.setState(state);
         routingContext.response()
             .putHeader("content-type", "application/json; charset=utf-8")
