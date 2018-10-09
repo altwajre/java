@@ -129,7 +129,7 @@ public class Simple {
     System.out.println("Builder Design pattern example ");
     Architect architect = new Architect();
 
-    // Hiding complexity and building one bed room house
+    // Hiding complexity and building two bed room house
     architect.setHouseBuilder(new TwoBedroomHouseBuilder());
     architect.buildHouse();
     House house = architect.getFinishedHouse();

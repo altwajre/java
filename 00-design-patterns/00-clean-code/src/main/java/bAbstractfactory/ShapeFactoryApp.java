@@ -1,4 +1,4 @@
-package creational.abstractfactory;
+package bAbstractfactory;
 
 interface Shape {
 }

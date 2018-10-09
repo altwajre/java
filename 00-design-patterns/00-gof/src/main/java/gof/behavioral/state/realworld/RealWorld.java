@@ -1,5 +1,9 @@
 package gof.behavioral.state.realworld;
 
+/*
+Definition
+Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
+ */
 abstract class State{  // abstract State
   protected double interest;
   protected double lowerLimit;

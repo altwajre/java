@@ -1,5 +1,7 @@
 # Shortcuts
 
+psvm - generate main()
+
 https://www.jetbrains.com/help/idea/mastering-intellij-idea-keyboard-shortcuts.html
 
 ⌘ - Command

@@ -21,7 +21,7 @@ object CustomSerializerApp {
     },
     {
       case breed:Breed => {
-        println(breed.getClass.getSimpleName)
+        println("# BreedSerializer: " + breed.getClass.getSimpleName)
         JString(breed.getClass.getSimpleName.replace("$",""))
       }
     }))
@@ -31,10 +31,10 @@ object CustomSerializerApp {
     implicit lazy val serializerFormats: Formats = DefaultFormats ++ serializers
 
     val dog = new Dog("Tom", Mastiff)
-    println(dog)
+    println("# Dog=" + dog)
 
     val ser = write(dog)
-    println(s"${ser.getClass.getSimpleName}: $ser")
+    println(s"# main: ${ser.getClass.getSimpleName}: $ser")
   }
 }
 /*

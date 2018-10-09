@@ -1,4 +1,4 @@
-package behavioral.command.simple;
+package aCommand.simple;
 
 interface Command {
   void execute();

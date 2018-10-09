@@ -2,7 +2,7 @@ import org.json4s.jackson.JsonMethods._
 
 object ParsingJsonJackson {
   def main(args: Array[String]): Unit = {
-    val intList = parse(""" { "numbers" : [1, 2, 3, 4] } """)
+    val intList = parse("""{ "numbers" : [1, 2, 3, 4] }""")
     println(intList)
     val doubleList = parse("""{"name":"Toy","price":35.35}""", useBigDecimalForDouble = true)
     println(doubleList)

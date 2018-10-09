@@ -1,4 +1,4 @@
-package gof.creational.abstractfactory.java;
+package gof.creational.abstractfactory.java.bonus;
 
 interface Pizza {
   void getDescription();
