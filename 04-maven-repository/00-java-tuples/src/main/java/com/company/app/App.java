@@ -19,3 +19,9 @@ public class App {
     System.out.println(age);
   }
 }
+/*
+runnable is invoked
+[Tom, 28]
+Tom
+28
+ */

@@ -1,4 +1,4 @@
-package gof.behavioral.strategy;
+package cStrategyTemplateMethod.Strategy;
 
 /*
 Definition
@@ -36,7 +36,7 @@ class Context{
   }
 }
 
-public class Structural {
+public class App {
   public static void main( String[] args )
   {
     Context context;
