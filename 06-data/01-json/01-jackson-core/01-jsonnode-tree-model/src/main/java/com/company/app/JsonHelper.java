@@ -1,6 +1,7 @@
 package com.company.app;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,6 +30,14 @@ public class JsonHelper {
     try {
       return mapper.treeToValue(jsonBody, type);
     } catch (JsonProcessingException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  public static <T> T toList(String jsonString, TypeReference<T> typeReference) {
+    try {
+      return mapper.readValue(jsonString, typeReference);
+    } catch (IOException e) {
       throw new RuntimeException(e);
     }
   }

@@ -10,7 +10,9 @@ interface ShapeFactory {
 
 public class ShapeFactoryApp {
   public static void main(String[] args) {
-
+    ShapeFactory factory = new ShapeFactoryImpl();
+    Shape circle = factory.make("circle");
+    System.out.println(circle.getClass().getSimpleName());
   }
 }
 
