@@ -5,7 +5,7 @@ https://www.rabbitmq.com/tutorials/tutorial-two-java.html
 > mysql
 
 - setup-mysql.md
-- run InfiniteFinancesSchema.sql in mysql before running Apps
+- run InfiniteFinancesSchema.sql in mysql workbench before running Apps
 
 > Run Apps in intellij
 

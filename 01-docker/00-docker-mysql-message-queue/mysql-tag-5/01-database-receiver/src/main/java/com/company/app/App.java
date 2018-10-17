@@ -84,7 +84,6 @@ public class App {
       UserDao userDao = new UserJpaDao();
       userDao.setEntityManager(entityManager);
 
-
       userDao.save(user);
 
       entityManager.getTransaction().commit();
