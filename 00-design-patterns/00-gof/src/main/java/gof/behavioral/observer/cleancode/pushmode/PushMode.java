@@ -36,8 +36,8 @@ class Subject<T> {
 public class PushMode {
   public static void main(String[] args) {
     Subject<String> subject = new Subject<>();
-    subject.register((String msg) -> System.out.println("Observer_1 received " + msg));
-    subject.register((String msg) -> System.out.println("Observer_2 received " + msg));
+    subject.register((String msg) -> System.out.println("Tom received " + msg));
+    subject.register((String msg) -> System.out.println("Harry received " + msg));
     subject.notifyObservers("msft=88");
     subject.notifyObservers("yhoo=18");
   }

@@ -1,4 +1,4 @@
-package com.company.app._02_ConceptsAndAlgorithms.ScalabilityMemory;
+package com.company.app;
 
 import org.junit.Test;
 
@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /*
- Most Recently Used (MRU): https://en.wikipedia.org/wiki/Cache_algorithms
+ Most Recently Used cache algorithm (MRU): https://en.wikipedia.org/wiki/Cache_algorithms
 
  Solution:
-  - A Linked list to move "fresh" items to the front.
+  - A Linked list to move "fresh" items to the front, and maintain list order
   - A hash table allows lookup of data.
  */
 public class CacheMostRecentUsed {

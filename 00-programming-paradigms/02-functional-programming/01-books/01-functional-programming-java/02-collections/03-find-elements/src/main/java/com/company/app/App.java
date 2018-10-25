@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class App
 {
-    final static List<String> names = Arrays.asList("Tom", "Dick", "Harry", "Nate", "Will", "Neal");
+    final static List<String> names = Arrays.asList("Tom", "Lee", "Harry", "Nate", "Will", "Neal");
     static void imperative(List<String> names) {
         final List<String> startsWithN = new ArrayList<String>();
         for(String name : names){
