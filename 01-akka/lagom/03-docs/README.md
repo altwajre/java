@@ -1,5 +1,7 @@
 # lagom
 
+https://developer.lightbend.com/start/?group=lagom&project=lagom-scala-sbt
+
 https://www.lagomframework.com/blog/announcing-lagom-code-generator.html
 
 ```
