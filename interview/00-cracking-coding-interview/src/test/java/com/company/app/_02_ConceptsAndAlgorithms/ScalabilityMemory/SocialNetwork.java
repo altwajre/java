@@ -114,7 +114,7 @@ public class SocialNetwork {
         }
     }
     static Server server = new Server();  // Server = Graph here
-    private static boolean reachable(Person p1, Person p2) {
+    private static    {
         Person src = p1;
         Person dest = p2;
         // use set because id is unique

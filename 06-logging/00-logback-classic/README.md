@@ -1,5 +1,6 @@
 # logback-classic
 
+https://logback.qos.ch/manual/index.html
 https://logback.qos.ch/documentation.html
 
 - Logback is a better alternative for Log4j and provides native support for SLF4j.

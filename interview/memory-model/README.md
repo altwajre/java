@@ -32,4 +32,5 @@ https://www.safaribooksonline.com/videos/java-object-oriented-programming/978178
 
 ## Garbage Collection
 
+http://www.tothenew.com/blog/java-garbage-collection-an-overview/
 https://www.safaribooksonline.com/videos/java-object-oriented-programming/9781788296106/9781788296106-video3_3

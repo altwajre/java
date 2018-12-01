@@ -28,6 +28,30 @@ https://www.safaribooksonline.com/videos/java-object-oriented-programming/978178
 - Reference local variables are not given a default value if not initialized, the developer must provide a value (null or point to an object)
 - Primitive local variables are not given a default value if not initialized, the developer must provide a value
 
+```
+public class ClassA {
+  public String instVar1;
+  public String instVar2;
+
+  public static void main(String[] args) {
+    ClassA localRef1 = null;
+    localRef1 = new ClassA();
+    localRef1.setInstVars(localRef1);
+  }
+
+  void setInstVars(ClassA localRef2) {
+    localRef2.instVar1 = "aaa";
+    localRef2.setInstVar2("bbb");
+  }
+
+  void setInstVar2(String localRef3) {
+    this.instVar2 = localRef3;
+    String localRef4 = "ccc";
+    this.instVar2 = localRef4;
+  }
+}
+```
+
 ## Garbage Collection
 
 https://www.safaribooksonline.com/videos/java-object-oriented-programming/9781788296106/9781788296106-video3_3

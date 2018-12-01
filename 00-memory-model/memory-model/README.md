@@ -1,5 +1,6 @@
 # The Java Memory Model
 
+http://www.tothenew.com/blog/java-garbage-collection-an-overview/
 https://www.youtube.com/watch?v=LTnp79Ke8FI
 
 - All data for primitive type variable is stored on the stack
@@ -31,5 +32,3 @@ https://www.safaribooksonline.com/videos/java-object-oriented-programming/978178
 ## Garbage Collection
 
 https://www.safaribooksonline.com/videos/java-object-oriented-programming/9781788296106/9781788296106-video3_3
-
-http://www.tothenew.com/blog/java-garbage-collection-an-overview/

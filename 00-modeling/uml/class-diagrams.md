@@ -1,8 +1,53 @@
 # Class Diagrams
 
-https://www.safaribooksonline.com/videos/uml-fundamentals/9781771373630/9781771373630-video214158
+https://www.lucidchart.com
+
+Attributes, Operations and Relationship
+
+## Relationship - Associations, Line, Arrow
+
+https://www.safaribooksonline.com/videos/uml-fundamentals/9781771373630/9781771373630-video214165
+
+> Associations - Direction of Navigability
+
+- An association end can have an `arrow-head` to indicate whether the association is navigable from the class
+
+Schedule holds a reference of TimedEvent
+
+[TimedEvent] <-- belongs to -- [Schedule]
+
+> Generalization and Specialization - Subclass
+
+- A generalization/specialization relationship is shown with an `unfilled triangle` at the superclass end of the relationship
+
+[Builder] <|--- [ConcreteBuilder]
+
+### Composition and Aggregation
+
+> Whole-part relationships
+
+- In many systems, relationships between classes reflect a relationship between a whole and the parts that make it up:
+
+> Composition
+
+- Composition is the strong whole-part relationship
+- If a class is composed of others, deleting an instance of the whole results in deletion of the instances of the parts
+- 'Whole' end of the relationship shows a `black filled diamond`
+
+[TimedEvent] 1..* <- is composed of - 1 [Schedule]
+
+> Aggregation
+
+- Aggregation is the weaker whole-part relationship
+- If a class is an aggregation of others, deleting instances of the whole leaves the instances of the parts untouched
+- 'Whole' end of the relationship shows an `unfilled diamond`
 
 ## Attributes
+
+https://www.safaribooksonline.com/videos/uml-fundamentals/9781771373630/9781771373630-video214161
+
+- Attributes are shown in the first compartment under the name of the class
+- Attribute names use camel case
 
 > Visibility
 
@@ -37,6 +82,9 @@ https://www.safaribooksonline.com/videos/uml-fundamentals/9781771373630/97817713
 
 ## Operations
 
+- Operations are shown in the second compartment under the attributes
+
+
 > Visibility
 
 ```
@@ -65,32 +113,3 @@ https://www.safaribooksonline.com/videos/uml-fundamentals/9781771373630/97817713
 + removeTimedEvent(event: TimedEvent)
 + changeDates(startDate: Date, duration: int)
 ```
-
-## Associations
-
-> Multiplicity of association ends
-
-- Format of multiplicity labels
-
-```
-1           exactly one
-0..1        zero or one (optional)
-1..*        one or more
-0..*        zero or more
-*           same as 0..*
-1..7        a specific range
-1,3,5       a list of values
-1,3,7..10   a list of values and ranges
-```
-
-## Composition and Aggregation
-
-> Composition
-
-- Composition is the strong whole-part relationship
-- If a class is composed of others, deleting an instance of the whole results in deletion of the instances of the parts
-
-> Aggregation
-
-- Aggregation is the weaker whole-part relationship
-- If a class is an aggregation of others, deleting instances of the whole leaves the instances of the parts untouched

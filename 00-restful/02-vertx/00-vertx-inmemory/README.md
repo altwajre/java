@@ -2,8 +2,8 @@
 
 http://vertx.io/blog/unit-and-integration-tests/
 
-mvn clean package
-java -jar ./target/unit-integration-tests-1.0-SNAPSHOT-fat.jar
+mvn clean package -DskipTests -DskipITs
+java -jar ./target/vertx-inmemory-1.0-SNAPSHOT-fat.jar
 
 - GET all
 curl http://localhost:8080/api/whiskies
