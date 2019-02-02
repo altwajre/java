@@ -141,7 +141,18 @@ public class WhiskyVerticle extends AbstractVerticle {
   private void suspend(RoutingContext routingContext) {
     System.out.println("suspend");
 
-    changeState(routingContext, State.SUSPENDED);
+    try {
+      Thread.sleep(100);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+//    changeState(routingContext, State.SUSPENDED);
+
+    routingContext.response()
+        .setStatusCode(200)
+        .putHeader("content-type", "application/json; charset=utf-8")
+        .end(Json.encodePrettily(""));
   }
 
   private void unsuspend(RoutingContext routingContext) {

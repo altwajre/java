@@ -16,7 +16,7 @@ class Person {
   }
 }
 
-public class HeapAndStack {
+public class HeapAndStack {==
   public static void main(String[] args) {
     Person person1 = null;
     person1 = new Person();

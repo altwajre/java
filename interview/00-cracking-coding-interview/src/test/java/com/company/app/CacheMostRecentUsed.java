@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /*
- Most Recently Used cache (MRU): https://en.wikipedia.org/wiki/Cache_algorithms
+ Design and implement Most Recently Used cache (MRU): https://en.wikipedia.org/wiki/Cache_algorithms
 
  Solution:
-  - A Double Linked list to move new item to the front maintain the order
+  - A Double Linked list to move new item to the front, and maintain the order
   - A hash table for lookup of data.
  */
 public class CacheMostRecentUsed {

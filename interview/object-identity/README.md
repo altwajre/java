@@ -27,7 +27,6 @@ https://www.safaribooksonline.com/videos/java-object-oriented-programming/978178
 - The solution is to wrap the variable as an instance variable in a Class and provide an equals() method for that Class
 - Objects created from that Class are referred to as "value Objects" because they are used simply to wrap/embed a specific value
 
-
 ### Pros and cons
 
 > Benefits:
@@ -67,10 +66,10 @@ C 7    | P 13
 - Hashcodes are used to increase performance of some collection Classes. In those Classes a hashcode
   - Is associated to an Object
   - Designates a group of Objects as more Object are associated to it
-  
+
 - The HashMap and HashSet classes use the hashcode value of an Object as an "instruction" on where to
   - Store the object in an "add" operation
-  - Locate the object in a "search" operation 
+  - Locate the object in a "search" operation
 
 HashMap<Client, Policy> myHashMap = new HashMap<Client, Policy>();
 
