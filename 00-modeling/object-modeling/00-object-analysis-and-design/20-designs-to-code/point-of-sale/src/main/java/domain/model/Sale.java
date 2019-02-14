@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+// Sale = Order
 public class Sale {
   // Figure 26.4 Sale contains SalesLineItems and TaxLineItems
   private List<SalesLineItem> lineItems = new ArrayList<>();

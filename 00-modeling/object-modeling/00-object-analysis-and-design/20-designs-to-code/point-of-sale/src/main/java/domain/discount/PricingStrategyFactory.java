@@ -5,6 +5,7 @@ import domain.model.Sale;
 
 public enum PricingStrategyFactory {
   INSTANCE;
+
   private DiscountStore discountStore = DiscountStore.INSTANCE;
   private Sale sale;
   private CompositePricingStrategy compositePricingStrategy;
