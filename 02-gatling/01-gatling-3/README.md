@@ -16,7 +16,7 @@ Launch `00-vertx-server` first
 io.gatling.highcharts
 gatling-highcharts-maven-archetype
 3.0.0
-3, select `gatling-highcharts-maven-archetype:3.0.0`
+3, select root `gatling-highcharts-maven-archetype`
 ```
 
 ## Run Test

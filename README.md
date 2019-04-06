@@ -47,6 +47,10 @@ mvn -version
 brew cask install java
 brew cask uninstall java
 
+- install maven on windows
+
+https://www.mkyong.com/maven/how-to-install-maven-in-windows/
+
 ## Install IDE
 
 ### Intellij
@@ -89,9 +93,13 @@ Solution: `Build, Execution, Deployment`, `Build Tools`, `Maven`, `Running Tests
 
 note: download and install `Windows x64` packages
 
-- Install Java JDK
+- Install Java 8 JDK
 download JDK `Windows x64`
+https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 http://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 - JDK path
 `C:\Program Files\Java\jdk1.8.0_102`
+
+- JAVA_HOME
+https://www.mkyong.com/java/how-to-set-java_home-on-windows-10/

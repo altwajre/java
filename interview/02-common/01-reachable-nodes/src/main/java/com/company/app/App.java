@@ -3,6 +3,11 @@ package com.company.app;
 import java.util.*;
 
 /*
+Describe how you would design an algorithm to show the connection between two people for a very large social network like Facebook
+
+boolean isConnected(Person src, Person dest) {
+}
+
 design the data structures for a very large social network like Facebook or LinkedIn.
      Describe how you would design an algorithm to show the connection, or path, between two people.
 

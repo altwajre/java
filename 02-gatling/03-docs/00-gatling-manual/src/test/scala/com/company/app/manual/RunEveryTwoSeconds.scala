@@ -12,15 +12,24 @@ class RunEveryTwoSeconds extends Simulation {
       println("# run every 2 seconds")
       session
     })
-    .forever {
-      pace(2 seconds)
-        .feed(ArrayFeeder.feeder.circular)
-        .exec(http("get whiskies")
-          .get("http://localhost:8080/api/whiskies")
-          .check(
-            status is 200
-          ))
-    }
+//    .forever {
+//      pace(2 seconds)
+//        .feed(ArrayFeeder.feeder.circular)
+//        .exec(http("get whiskies")
+//          .get("http://localhost:8080/api/whiskies")
+//          .check(
+//            status is 200
+//          ))
+//    }
+      .repeat(3) {
+        pace(2 seconds)
+          .feed(ArrayFeeder.feeder.circular)
+          .exec(http("get whiskies")
+            .get("http://localhost:8080/api/whiskies")
+            .check(
+              status is 200
+            ))
+      }
 
   setUp(
     lambdaUser.inject(atOnceUsers(2))

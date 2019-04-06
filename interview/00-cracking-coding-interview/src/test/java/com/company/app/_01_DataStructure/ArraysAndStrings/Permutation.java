@@ -15,7 +15,7 @@ public class Permutation {
 
     @Test
     public void Test() {
-        permutationSortTest();
+//        permutationSortTest();
         permutationTest();
     }
 
@@ -45,8 +45,8 @@ public class Permutation {
     private static void permutationTest() {
         out.println("#permutationTest");
         out.println(permutation("abcd", "bdca"));  // true
-        out.println(permutation("abcd", "bdcz"));  // false
-        out.println(permutation("abcad", "abdca"));  // true
+//        out.println(permutation("abcd", "bdcz"));  // false
+//        out.println(permutation("abcad", "abdca"));  // true
     }
 
     /*
@@ -60,10 +60,12 @@ public class Permutation {
         int[] letters = new int[256];  // assumption
         char[] s_array = s.toCharArray();
         for (char c : s_array) {  // count number of each char in s.
-            letters[c]++;  // letters[c] = letters[(int)c], letters['a'] = letters[97]
+            out.println(c);
+            letters[(int)c]++;  // letters[c] = letters[(int)c], letters['a'] = letters[97]
         }
         for (int i = 0; i < t.length(); i++) {
             int c = (int) t.charAt(i);
+            out.println("int: "+c);
             if (--letters[c] < 0) {
                 return false;
             }
